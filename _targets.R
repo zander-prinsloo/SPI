@@ -114,6 +114,14 @@ pipeline_targets <- function() {
     format = "rds"
   )
 
+  # --- Dimension 3: Data products (UN SDG) -----------------------------------
+  # (from the "unstats" chunk)
+  dim3 <- tar_target(
+    name = "dim3",
+    command = combine_dim3(params),
+    format = "rds"
+  )
+
   # --- Stage B: Index --------------------------------------------------------
   # (Populated in Phase 4)
 
@@ -133,7 +141,8 @@ pipeline_targets <- function() {
     iso_codes,
     country_grid,
     dim1_5,
-    dim2
+    dim2,
+    dim3
   )
 }
 
