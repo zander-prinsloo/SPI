@@ -8,8 +8,8 @@ language: "R"
 estimated-effort: "large"
 deviation-policy: "ask"
 execution-report: ".cg-docs/work-reports/2026-09-21-targets-pipeline-replication.md"
-completed-phases: [1, 2]
-current-phase: 3
+completed-phases: [1, 2, 3]
+current-phase: 4
 artifact-schema-version: 1
 tags: [targets, pipeline, replication, testing, user-guide, spi]
 ---
