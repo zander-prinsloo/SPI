@@ -90,9 +90,16 @@ status: active
   renv). All 8 census/survey + CRVS columns verified with 0 differences;
   GEO has 2 diffs (AFG 2016) EXPECTED to resolve in the append step's
   na.locf carry-forward.
-- Phase 3 evidence so far: D1.5, D2, D3, D4 all ported and verified at the
-  dimension level. V5/V6 (full SPI_data.csv/.dta) pending the append/save
-  port (Step 13).
+- Phase 3, Step 12 (D5): COMPLETE. `R/dim5.R` with legislation (1),
+  standards (10), finance (1). All 12 SPI columns verified; CGOV matches
+  with 0 differences. Remaining diffs follow two patterns, both EXPECTED
+  to resolve in the append step: (a) NA vs value (na.locf carry-forward,
+  e.g. ALB 2021 DILG, VEN 2021 SNAU, ARE 2019 CNIN, AND 2024 CPIBY);
+  (b) 0 vs 1 for high-income OECD countries (OECD adjustment, e.g. AUS,
+  BEL, SGP, AUT, CHE, CHL).
+- Phase 3 evidence so far: D1.5, D2, D3, D4, D5 all ported and verified at
+  the dimension level. V5/V6 (full SPI_data.csv/.dta) pending the
+  append/save port (Step 13).
 
 ## Evidence Table
 

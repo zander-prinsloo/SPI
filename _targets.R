@@ -130,6 +130,16 @@ pipeline_targets <- function() {
     format = "rds"
   )
 
+  # --- Dimension 5: Data infrastructure --------------------------------------
+  # (from the "legislation_governance", "standards_meta", "snau", "naby",
+  # "cnin", "cpiby", "hous", "empl", "cgov", "fina", "mony", "gsbp", "msc",
+  # and "finance" chunks)
+  dim5 <- tar_target(
+    name = "dim5",
+    command = combine_dim5(params, country_grid),
+    format = "rds"
+  )
+
   # --- Stage B: Index --------------------------------------------------------
   # (Populated in Phase 4)
 
@@ -151,7 +161,8 @@ pipeline_targets <- function() {
     dim1_5,
     dim2,
     dim3,
-    dim4
+    dim4,
+    dim5
   )
 }
 
