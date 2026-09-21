@@ -108,9 +108,61 @@ Source: <https://datacatalog.worldbank.org/int/search/dataset/0037712>
 2. `02_SPI_index.Rmd` → creates the index, updates working paper results
 3. `03_SPI_data_validation.Rmd` → additional checks (e.g. number of countries)
 
-## 5. Manual Checkpoints
+## 5. Data Pulls and Manual Checkpoints
 
-*(draft)*
+The pipeline includes OPT-IN download targets and manual download checkpoints.
+They are **not** triggered by a default `targets::tar_make()` — this keeps the
+replication gate deterministic (the committed raw files in `01_raw_data/` are
+the source of truth for the 202511 vintage).
+
+### 5.1 API pulls (opt-in)
+
+These targets download fresh data from public APIs into `01_raw_data/`. They
+only run when `run_downloads <- TRUE` in `config/params.R`:
+
+```r
+# config/params.R
+run_downloads <- TRUE   # set to TRUE only when updating to a new vintage
+```
+
+Then run:
+
+```r
+targets::tar_make(pull_jmp)      # JMP washdata (safely managed water)
+targets::tar_make(pull_unsdg)    # UN SDG API (legislation, finance, CRVS)
+```
+
+| Target | Source | Writes to | Notes |
+|--------|--------|-----------|-------|
+| `pull_jmp` | JMP washdata API (`washdata.org/data/country/<ISO3C>/household/download`) | `01_raw_data/1.5_DUIO/Safely_Managed_Water_data.csv` | ~200 HTTP requests; takes several minutes |
+| `pull_unsdg` | UN Stats SDG API (`unstats.un.org/SDGAPI`) | `01_raw_data/5.1_DILG/SG_STT_FPOS.csv`, `5.5_DIFI/SG_STT_FIN.csv`, `4.2_SOAD/SG_REG_BRTH90N.csv` | Series: SG_STT_FPOS, SG_STT_FIN, SG_REG_BRTH90N |
+
+### 5.2 Manual download checkpoints
+
+These targets verify that manually-downloaded source files are present and
+schema-valid. They run by default and **fail loudly** (R8) with download
+instructions when a file is missing or the format changed:
+
+```r
+targets::tar_make(checkpoint_wdi)        # WDI metadata (manual download)
+targets::tar_make(checkpoint_ilo)        # ILO ilostat (bulk explorer)
+targets::tar_make(checkpoint_odin)       # ODIN (Open Data Watch)
+targets::tar_make(checkpoint_nada)       # NADA check (NSO websites)
+targets::tar_make(checkpoint_microdata)  # microdata library pull
+targets::tar_make(checkpoint_unigme)     # UN IGME child mortality
+```
+
+| Target | Source | Expected file | Download instructions |
+|--------|--------|---------------|----------------------|
+| `checkpoint_wdi` | WDI catalog | `01_raw_data/metadata/WDI_metadata_<YEAR>.csv` | <https://datacatalog.worldbank.org/int/search/dataset/0037712> |
+| `checkpoint_ilo` | ILO bulk explorer | `01_raw_data/1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-*.csv` + `EAP_DWAP_SEX_AGE_RT_A-*.csv` | <https://www.ilo.org/shinyapps/bulkexplorer2/> (modelled + survey, sex=Total, age 15+) |
+| `checkpoint_odin` | Open Data Watch | `01_raw_data/2.2_DSOA/ODIN_<YEAR>.csv` | <https://odin.opendatawatch.com> |
+| `checkpoint_nada` | NSO websites | `01_raw_data/2.4_DSDS/D2.4.NADA.<YEAR>.csv` | Run `02_programs/misc_scripts/nada_check.R` |
+| `checkpoint_microdata` | Microdata libraries | `01_raw_data/4.1_SOCS/raw/D4.1.*.<YEAR>.csv` (8 files) | Run `02_programs/misc_scripts/microdata_library_pull.Rmd` |
+| `checkpoint_unigme` | UN IGME | `01_raw_data/1.5_DUIO/UNICEF-CME_DF_2021_WQ-1.0-download.csv` | <https://childmortality.org> |
+
+When a checkpoint fails, read the error message — it contains the exact
+download instructions for that source.
 
 ## 6. Troubleshooting
 

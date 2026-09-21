@@ -42,6 +42,13 @@ staging_dir <- here::here("staging")         # new pipeline outputs (writable)
 # unweighted (1). The 202511 vintage uses unweighted (wgt = 1).
 wgt <- 1
 
+# --- Data pulls --------------------------------------------------------------
+# run_downloads controls whether the OPT-IN API pull targets (pull_jmp,
+# pull_unsdg) download fresh data into 01_raw_data/. Keep FALSE for
+# replication runs (the committed raw files are the source of truth).
+# Set TRUE only when updating to a new vintage.
+run_downloads <- FALSE
+
 # --- Country metadata --------------------------------------------------------
 # The World Bank country list (from wbstats) is used for country matching
 # throughout the pipeline (e.g. filtering to valid iso3c codes).

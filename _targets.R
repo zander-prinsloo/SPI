@@ -240,7 +240,90 @@ pipeline_targets <- function() {
     quantiles,
     treemap,
     databank,
-    spl_admin
+    spl_admin,
+    # Download/checkpoint targets (see download_targets() below)
+    download_targets()
+  )
+}
+
+# =============================================================================
+# OPT-IN DOWNLOAD TARGETS
+# =============================================================================
+# These targets download or verify external data sources.
+#
+# The API PULL targets (pull_jmp, pull_unsdg) write fresh data to
+# 01_raw_data/ and are OPT-IN: they only run when the technical lead sets
+# run_downloads = TRUE in config/params.R (or passes it explicitly). By
+# default they are no-ops, so tar_make() keeps the replication gate
+# deterministic (the committed raw files are the source of truth for the
+# 202511 vintage).
+#
+# The CHECKPOINT targets (checkpoint_*) verify that manually-downloaded
+# source files are present and schema-valid. They run by default and fail
+# loudly (R8) with download instructions when a file is missing or the
+# format changed.
+#
+# To run the API pulls for a new vintage:
+#   config/params.R: run_downloads <- TRUE
+#   targets::tar_make(pull_jmp, pull_unsdg)
+download_targets <- function() {
+  list(
+    # --- API pulls (write fresh data to 01_raw_data/; opt-in) ----------------
+    tar_target(
+      name = "pull_jmp",
+      command = {
+        if (isTRUE(params$run_downloads)) {
+          pull_jmp_water(params)
+        } else {
+          message("pull_jmp skipped (run_downloads = FALSE). Set run_downloads = TRUE in config/params.R to download fresh JMP data.")
+          NULL
+        }
+      },
+      format = "rds"
+    ),
+    tar_target(
+      name = "pull_unsdg",
+      command = {
+        if (isTRUE(params$run_downloads)) {
+          download_unsdg_series(params)
+        } else {
+          message("pull_unsdg skipped (run_downloads = FALSE). Set run_downloads = TRUE in config/params.R to download fresh UN SDG data.")
+          NULL
+        }
+      },
+      format = "rds"
+    ),
+    # --- Manual download checkpoints (fail loudly with instructions) --------
+    tar_target(
+      name = "checkpoint_wdi",
+      command = checkpoint_wdi_metadata(params),
+      format = "rds"
+    ),
+    tar_target(
+      name = "checkpoint_ilo",
+      command = checkpoint_ilo_lfp(params),
+      format = "rds"
+    ),
+    tar_target(
+      name = "checkpoint_odin",
+      command = verify_odin_data(params),
+      format = "rds"
+    ),
+    tar_target(
+      name = "checkpoint_nada",
+      command = verify_nada_data(params),
+      format = "rds"
+    ),
+    tar_target(
+      name = "checkpoint_microdata",
+      command = verify_microdata_files(params),
+      format = "rds"
+    ),
+    tar_target(
+      name = "checkpoint_unigme",
+      command = verify_unigme_data(params),
+      format = "rds"
+    )
   )
 }
 

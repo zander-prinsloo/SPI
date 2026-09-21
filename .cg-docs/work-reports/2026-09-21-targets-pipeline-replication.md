@@ -186,6 +186,29 @@ status: active
   only reproducible value columns (excluding WB-drift metadata, jitter
   columns, and aggregate rows with documented vintage artifacts). Full
   suite: 68 passed, 0 failed, 0 skipped.
+- Phase 6, Step 21 (download targets + manual checkpoints): COMPLETE.
+  Created `R/pull_wdi.R` (WDI metadata checkpoint), `R/pull_jmp.R` (JMP
+  washdata API pull), `R/pull_unsdg.R` (UN SDG API pull), `R/pull_ilo.R`
+  (ILO ilostat checkpoint), and `R/checkpoints.R` (ODIN, NADA, microdata
+  library, UN IGME checkpoints). Added 8 opt-in targets to `_targets.R`
+  (pull_jmp, pull_unsdg, checkpoint_wdi, checkpoint_ilo, checkpoint_odin,
+  checkpoint_nada, checkpoint_microdata, checkpoint_unigme). Design:
+  - API pulls (pull_jmp, pull_unsdg) are no-ops unless
+    `run_downloads <- TRUE` in config/params.R -- keeps the replication
+    gate deterministic (committed raw files are the source of truth).
+  - Checkpoints run by default and fail loudly (R8) with download
+    instructions when a source file is missing or schema-invalid.
+  - Functions renamed to avoid target/global name conflicts
+    (verify_odin_data, verify_nada_data, verify_microdata_files,
+    verify_unigme_data, download_unsdg_series).
+  - Checkpoint schemas validated against RAW column names (WDI metadata
+    uses "Country Code"/"Income Group"/"External debt Reporting status";
+    ODIN uses "Country Code"/"Year").
+  - `tests/testthat/test-downloads.R` added: 18 smoke tests (happy path +
+    fail-loudly error path for each checkpoint).
+  - User guide section 5 documents all pulls and checkpoints with
+    download instructions.
+  Full suite: 86 passed, 0 failed, 0 skipped.
 
 ## Evidence Table
 
@@ -200,7 +223,7 @@ status: active
 | V7 | 4 | `SPI_index.csv` matches vintage | PASSED (index value cols) |
 | V8 | 5 | Validation expectations as automated tests | PASSED |
 | V9 | 6 | misc_scripts outputs match vintage | PASSED (reproducible value cols) |
-| V10 | 6 | Download targets + manual checkpoints | pending |
+| V10 | 6 | Download targets + manual checkpoints | PASSED (8 targets + 18 smoke tests) |
 | V11 | 7 | User guide complete | pending |
 | V12 | final | Full pipeline reproduces vintage | pending |
 | V13 | final | Historical outputs unchanged | pending |
