@@ -129,6 +129,25 @@ status: active
   verified: 4557 rows x 80 cols, index values match vintage.
 - Phase 4 evidence: V7 (SPI_index.csv matches vintage) PASSED for all
   index value columns. Full suite: 52 passed, 0 failed, 4 skipped.
+- Phase 5, Step 16 (validation expectations as automated tests): COMPLETE.
+  `tests/testthat/test-validation.R` created with the exact
+  `validate::validator()` rule set from 03_SPI_data_validation.Rmd
+  (countries_included, dates_covered, dates_by_country, min/max 0-1 for
+  every SPI indicator). 4 tests: happy path (all rules pass), edge case
+  (new country), error path (out-of-range value fails). **Accepted
+  exception**: SPI.D5.3.DISK rule errors because the column is not
+  produced by the pipeline nor present in the vintage (skills indicator
+  gap) -- rule kept for exact rule-set fidelity, excluded from the
+  unexpected-error check with documentation.
+- Phase 5, Step 17 (vintage comparison + correlation checks): COMPLETE.
+  `tests/testthat/test-vintage-compare.R` created. dataCompareR is
+  archived on CRAN (not installable), so the comparison uses the project's
+  compare_frames() utility (1e-9 tolerance) against the vintage fixtures
+  (documented replacement from Phase 1). 3 tests: SPI_data vintage match,
+  SPI_index vintage match, positive correlation check. SPI.D3.NA excluded
+  from correlation (constant placeholder column).
+- Phase 5 evidence: V8 (validation expectations as automated tests, all
+  pass) PASSED. Full suite: 59 passed, 0 failed, 4 skipped.
 
 ## Evidence Table
 
@@ -141,7 +160,7 @@ status: active
 | V5 | 3 | `SPI_data.csv` matches vintage | PASSED (SPI/RAW cols) |
 | V6 | 3 | `SPI_data.dta` matches vintage | PASSED (structural) |
 | V7 | 4 | `SPI_index.csv` matches vintage | PASSED (index value cols) |
-| V8 | 5 | Validation expectations as automated tests | pending |
+| V8 | 5 | Validation expectations as automated tests | PASSED |
 | V9 | 6 | misc_scripts outputs match vintage | pending |
 | V10 | 6 | Download targets + manual checkpoints | pending |
 | V11 | 7 | User guide complete | pending |
