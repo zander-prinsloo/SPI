@@ -6,7 +6,7 @@
   "branch": "pipeline-refactor",
   "plan": ".cg-docs/plans/2026-09-21-targets-pipeline-replication.md",
   "executionReport": ".cg-docs/work-reports/2026-09-21-targets-pipeline-replication.md",
-  "currentPhase": 5,
+  "currentPhase": 6,
   "evidenceStatus": [
     {"id": "V1", "status": "passed", "artifact": "renv.lock"},
     {"id": "V2", "status": "passed", "artifact": "_targets.R"},
@@ -14,7 +14,8 @@
     {"id": "V4", "status": "passed", "artifact": "tests/fixtures/manifest.json"},
     {"id": "V5", "status": "passed", "artifact": "staging/SPI_data.csv"},
     {"id": "V6", "status": "passed", "artifact": "staging/SPI_data.dta"},
-    {"id": "V7", "status": "passed", "artifact": "staging/SPI_index.csv"}
+    {"id": "V7", "status": "passed", "artifact": "staging/SPI_index.csv"},
+    {"id": "V8", "status": "passed", "artifact": "tests/testthat/test-validation.R"}
   ],
   "unresolvedDecisions": [
     {"id": "D1", "summary": "renv bootstrap approved (Option 1) - renv::init() + targets/tarchetypes", "blocking": false}
@@ -22,5 +23,5 @@
   "artifactRefs": [
     {"kind": "execution-report", "path": ".cg-docs/work-reports/2026-09-21-targets-pipeline-replication.md", "status": "active"}
   ],
-  "nextCommand": "/cg-work phase5"
+  "nextCommand": "/cg-work phase6"
 }
