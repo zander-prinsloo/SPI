@@ -171,14 +171,55 @@ pipeline_targets <- function() {
     format = "rds"
   )
 
-  # --- Stage B: Index --------------------------------------------------------
-  # (Populated in Phase 4)
-
-  # --- Stage C: Validation ---------------------------------------------------
-  # (Populated in Phase 5)
-
   # --- Stage D: Misc outputs -------------------------------------------------
-  # (Populated in Phase 6)
+  # (from misc_scripts/SPI_quantiles.R, SPI_treemap.R, databank.R, and the
+  # "aspire" chunk of 01-SPI_data_prep.Rmd)
+
+  # Quantiles and indicators (SPI_quantiles.csv, SPI_quantiles_2024.csv,
+  # SPI_indicators_2024.csv)
+  quantiles <- tar_target(
+    name = "quantiles",
+    command = {
+      q <- build_quantiles(spi_index, params)
+      q24 <- build_quantiles_2024(spi_index, q, params)
+      save_quantiles(q, q24$quantiles_2024, q24$indicators_2024, params)
+      q
+    },
+    format = "rds"
+  )
+
+  # Treemap (SPI_treemap.csv)
+  treemap <- tar_target(
+    name = "treemap",
+    command = {
+      t <- build_treemap(spi_index, params)
+      save_treemap(t, params)
+      t
+    },
+    format = "rds"
+  )
+
+  # Databank outputs (SPI_databank_country_and_aggregates*.csv, footnotes)
+  databank <- tar_target(
+    name = "databank",
+    command = {
+      d <- build_databank(spi_index, spi_data, params)
+      save_databank(d, params)
+      d
+    },
+    format = "rds"
+  )
+
+  # SPL admin data availability (SPL_admin_data_availability.csv)
+  spl_admin <- tar_target(
+    name = "spl_admin",
+    command = {
+      s <- build_spl_admin(params)
+      save_spl_admin(s, params)
+      s
+    },
+    format = "rds"
+  )
 
   # ===========================================================================
   # TARGET LIST
@@ -195,7 +236,11 @@ pipeline_targets <- function() {
     dim4,
     dim5,
     spi_data,
-    spi_index
+    spi_index,
+    quantiles,
+    treemap,
+    databank,
+    spl_admin
   )
 }
 
