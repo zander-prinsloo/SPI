@@ -106,6 +106,14 @@ pipeline_targets <- function() {
     format = "rds"
   )
 
+  # --- Dimension 2: Data services --------------------------------------------
+  # (from the "idds", "online_access", and "nada" chunks)
+  dim2 <- tar_target(
+    name = "dim2",
+    command = combine_dim2(params, country_grid),
+    format = "rds"
+  )
+
   # --- Stage B: Index --------------------------------------------------------
   # (Populated in Phase 4)
 
@@ -124,7 +132,8 @@ pipeline_targets <- function() {
     params,
     iso_codes,
     country_grid,
-    dim1_5
+    dim1_5,
+    dim2
   )
 }
 
