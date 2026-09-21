@@ -157,6 +157,21 @@ pipeline_targets <- function() {
   )
 
   # --- Stage B: Index --------------------------------------------------------
+  # (from the "data", "index_weights", "index", and "saver" chunks of
+  # 02-SPI_index.Rmd)
+  # Builds the nested index (dimension -> pillar -> overall) and writes
+  # SPI_index.csv to the staging directory (constraint C7).
+  spi_index <- tar_target(
+    name = "spi_index",
+    command = {
+      idx <- build_index(spi_data, params)
+      save_index(idx, params)
+      idx
+    },
+    format = "rds"
+  )
+
+  # --- Stage B: Index --------------------------------------------------------
   # (Populated in Phase 4)
 
   # --- Stage C: Validation ---------------------------------------------------
@@ -179,7 +194,8 @@ pipeline_targets <- function() {
     dim3,
     dim4,
     dim5,
-    spi_data
+    spi_data,
+    spi_index
   )
 }
 

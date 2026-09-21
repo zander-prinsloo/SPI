@@ -72,7 +72,19 @@ test_that("staged SPI_index.csv matches the 202511 vintage", {
     skip("staging/SPI_index.csv not yet produced (Phase 4)")
   }
   fixture <- read_fixture("SPI_index.csv")
-  result <- compare_frames(staged, fixture, key_cols = c("iso3c", "date"))
+
+  # Compare only the index value columns (SPI.INDEX*, SPI.DIM*, SPI.D*).
+  # The metadata columns (country name, income) and population come from the
+  # live World Bank API and drift between vintages.
+  idx_cols <- c(
+    names(staged)[grepl("^SPI[.]INDEX", names(staged))],
+    names(staged)[grepl("^SPI[.]DIM", names(staged))],
+    names(staged)[grepl("^SPI[.]D[0-9]", names(staged))]
+  )
+  staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(idx_cols))
+  fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(idx_cols))
+
+  result <- compare_frames(staged_sub, fixture_sub, key_cols = c("iso3c", "date"))
   expect_true(
     result$identical,
     info = paste(result$differences, collapse = "\n")

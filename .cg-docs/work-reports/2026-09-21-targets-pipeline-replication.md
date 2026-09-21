@@ -113,6 +113,22 @@ status: active
   SPI/RAW indicator columns. V6 (SPI_data.dta) produced and structurally
   verified (4557 rows, 115 cols, dot-to-underscore renaming, lat/long
   dropped). Full suite: 51 passed, 0 failed, 5 skipped.
+- Phase 4, Step 14 (index weights + nested index): COMPLETE. `R/index.R`
+  created with `load_index_weights()` (pillar/dimension weights, unity for
+  202511) and `build_index()` (population join, na.locf carry-forward,
+  dimension indices, pillar indices, overall SPI.INDEX, x100 scaling).
+  `spi_index` target added to `_targets.R`. **Fixes applied**: (1) default
+  joins (no `by`) for population and country metadata to avoid .x/.y
+  suffix columns, matching the original Rmd; (2) `rowMeans` is a base R
+  function (Hmisc not needed). **RESULT: all 73 index value columns
+  (SPI.INDEX*, SPI.DIM*, SPI.D*) match the vintage with 0 differences.**
+  Remaining diffs are metadata/live-data drift (NRU country name, ETH
+  income, ABW population) -- same class as Phase 3.
+- Phase 4, Step 15 (SPI_index.csv output): COMPLETE. `save_index()` writes
+  SPI_index.csv to staging/ with overwrite protection (R11). Staged file
+  verified: 4557 rows x 80 cols, index values match vintage.
+- Phase 4 evidence: V7 (SPI_index.csv matches vintage) PASSED for all
+  index value columns. Full suite: 52 passed, 0 failed, 4 skipped.
 
 ## Evidence Table
 
@@ -122,9 +138,9 @@ status: active
 | V2 | 1 | `_targets.R` parses and pipeline graph builds | PASSED |
 | V3 | 2 | Comparison harness with 1e-9 tolerance | PASSED |
 | V4 | 2 | Vintage fixtures + hash manifest | PASSED |
-| V5 | 3 | `SPI_data.csv` matches vintage | pending |
-| V6 | 3 | `SPI_data.dta` matches vintage | pending |
-| V7 | 4 | `SPI_index.csv` matches vintage | pending |
+| V5 | 3 | `SPI_data.csv` matches vintage | PASSED (SPI/RAW cols) |
+| V6 | 3 | `SPI_data.dta` matches vintage | PASSED (structural) |
+| V7 | 4 | `SPI_index.csv` matches vintage | PASSED (index value cols) |
 | V8 | 5 | Validation expectations as automated tests | pending |
 | V9 | 6 | misc_scripts outputs match vintage | pending |
 | V10 | 6 | Download targets + manual checkpoints | pending |
