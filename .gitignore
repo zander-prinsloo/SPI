@@ -62,6 +62,8 @@
 !/**/**/*.qmd
 !renv*
 !renv.lock
+!renv/settings.json
+!.Rprofile
 !/**/**/*.Rdata
 
 
@@ -156,3 +158,12 @@ passwords/
 .opencode/opencode.json
 .opencode/shared
 .opencode/skills
+
+# SPI pipeline: staging outputs are transient and must not be committed
+# (constraint C7: historical outputs in 03_output_data/ are never overwritten;
+# staged outputs are reviewed and copied over manually)
+staging/
+_targets/
+
+# SPI internal update notes (contains internal SharePoint links and team notes)
+/SPI updates.xlsx
