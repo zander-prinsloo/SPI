@@ -1,0 +1,50 @@
+schemaVersion: "compound-gpid-wiki-v1"
+folder: "wiki"
+pages:
+  - id: "readme"
+    file: "README.md"
+    title: "Home"
+    ownership: "auto"
+    order: 1
+    sections:
+      - id: "overview"
+        managed: true
+      - id: "methodology"
+        managed: true
+  - id: "data-sources"
+    file: "data-sources.md"
+    title: "Data Sources"
+    ownership: "auto"
+    order: 2
+    sections:
+      - id: "datasets"
+        managed: true
+      - id: "vintages"
+        managed: true
+      - id: "access"
+        managed: true
+  - id: "replication"
+    file: "replication.md"
+    title: "Replication"
+    ownership: "auto"
+    order: 3
+    sections:
+      - id: "environment-setup"
+        managed: true
+      - id: "steps"
+        managed: true
+      - id: "validation"
+        managed: true
+  - id: "results"
+    file: "results.md"
+    title: "Results"
+    ownership: "auto"
+    order: 4
+    sections:
+      - id: "key-findings"
+        managed: true
+      - id: "tables"
+        managed: true
+      - id: "figures"
+        managed: true
+lastUpdated: "2026-09-21"

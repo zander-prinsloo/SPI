@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "compound-gpid-roadmap-v1",
+  "milestones": [
+    {
+      "id": "current-focus-is-to-create",
+      "title": "Current focus is to create a better estimation pipeline from `01-SPI_data_prep.Rmd`, `02-SPI_index.Rmd`, and `03_SPI_data_validation.Rmd`.",
+      "objective": "Current focus is to create a better estimation pipeline from `01-SPI_data_prep.Rmd`, `02-SPI_index.Rmd`, and `03_SPI_data_validation.Rmd`. The pipeline should use `{targets}` and should exactly replicate the Rmd files. It is very important that the Rmd files remain untouched to test, and that the new pipeline exactly replicates the results from the existing pipeline.",
+      "status": "in-progress",
+      "features": [
+        {
+          "id": "initial-focus",
+          "title": "Current focus is to create a better estimation pipeline from `01-SPI_data_prep.Rmd`, `02-SPI_index.Rmd`, and `03_SPI_data_validation.Rmd`.",
+          "status": "in-progress",
+          "plan": null
+        }
+      ]
+    }
+  ]
+}
