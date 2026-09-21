@@ -140,6 +140,22 @@ pipeline_targets <- function() {
     format = "rds"
   )
 
+  # --- Append + save: final SPI data -----------------------------------------
+  # (from the "append" and "save" chunks of 01-SPI_data_prep.Rmd)
+  # Combines all dimensions, adds population, carries forward SPI values,
+  # applies the OECD high-income adjustment, and writes SPI_data.csv/.dta
+  # to the staging directory (constraint C7).
+  spi_data <- tar_target(
+    name = "spi_data",
+    command = {
+      dims <- list(dim1_5, dim2, dim3, dim4, dim5)
+      final <- append_spi(dims, params, country_grid)
+      save_spi(final, params)
+      final
+    },
+    format = "rds"
+  )
+
   # --- Stage B: Index --------------------------------------------------------
   # (Populated in Phase 4)
 
@@ -162,7 +178,8 @@ pipeline_targets <- function() {
     dim2,
     dim3,
     dim4,
-    dim5
+    dim5,
+    spi_data
   )
 }
 

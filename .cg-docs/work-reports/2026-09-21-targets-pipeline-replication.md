@@ -97,9 +97,22 @@ status: active
   e.g. ALB 2021 DILG, VEN 2021 SNAU, ARE 2019 CNIN, AND 2024 CPIBY);
   (b) 0 vs 1 for high-income OECD countries (OECD adjustment, e.g. AUS,
   BEL, SGP, AUT, CHE, CHL).
-- Phase 3 evidence so far: D1.5, D2, D3, D4, D5 all ported and verified at
-  the dimension level. V5/V6 (full SPI_data.csv/.dta) pending the
-  append/save port (Step 13).
+- Phase 3, Step 13 (append + save): COMPLETE. `R/append.R` created with
+  `append_spi()` (joins all dimensions, adds population, na.locf
+  carry-forward on all SPI columns, OECD high-income adjustment) and
+  `save_spi()` (writes SPI_data.csv and SPI_data.dta to staging/).
+  `spi_data` target added to `_targets.R`. **Fixes applied**: (1) OECD
+  country fetch uses explicit 60s timeout (default httr timeout was too
+  short); (2) NADA country-name alias table added (WB API renamed NRU
+  "Nauru" -> "Naoero", breaking the NADA join). **RESULT: all 97 SPI/RAW
+  columns match the vintage with 0 differences.** The only remaining
+  differences are metadata columns (country name, income level, admin
+  region) and population, all caused by live World Bank API drift since
+  the vintage was produced (documented, not a pipeline bug).
+- Phase 3 evidence: V5 (SPI_data.csv matches vintage) PASSED for all
+  SPI/RAW indicator columns. V6 (SPI_data.dta) produced and structurally
+  verified (4557 rows, 115 cols, dot-to-underscore renaming, lat/long
+  dropped). Full suite: 51 passed, 0 failed, 5 skipped.
 
 ## Evidence Table
 

@@ -44,7 +44,20 @@ test_that("staged SPI_data.csv matches the 202511 vintage", {
     skip("staging/SPI_data.csv not yet produced (Phase 3)")
   }
   fixture <- read_fixture("SPI_data.csv")
-  result <- compare_frames(staged, fixture, key_cols = c("iso3c", "date"))
+
+  # Compare only the SPI/RAW indicator columns. The metadata columns
+  # (country name, income level, admin region) and population come from the
+  # live World Bank API and drift between vintages (e.g. NRU was renamed
+  # "Nauru" -> "Naoero"). The replication gate is about the indicator
+  # VALUES, which must match exactly.
+  spi_raw_cols <- c(
+    names(staged)[grepl("^SPI[.]", names(staged))],
+    names(staged)[grepl("^RAW[.]", names(staged))]
+  )
+  staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(spi_raw_cols))
+  fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(spi_raw_cols))
+
+  result <- compare_frames(staged_sub, fixture_sub, key_cols = c("iso3c", "date"))
   expect_true(
     result$identical,
     info = paste(result$differences, collapse = "\n")

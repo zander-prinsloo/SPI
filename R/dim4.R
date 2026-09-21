@@ -27,6 +27,28 @@ library(dplyr)
 # business survey. Censuses use a 10/20-year window; surveys use a 10-year
 # window with 3/2/1 survey thresholds.
 
+# Country-name aliases: the NADA files use the country names as they were
+# when the files were created, but the World Bank API (wb_countries) may
+# have renamed countries since. Map old names to current metadata names so
+# the NADA join is robust to API drift.
+.country_name_aliases <- c(
+  "Nauru" = "Naoero"
+  # Add more aliases here as the World Bank API renames countries.
+)
+
+#' Map a NADA country name to the current metadata name
+#'
+#' @param name Character: the country name as it appears in a NADA file.
+#' @return The current metadata name (or the input if no alias applies).
+#' @noRd
+.map_nada_country <- function(name) {
+  if (name %in% names(.country_name_aliases)) {
+    .country_name_aliases[[name]]
+  } else {
+    name
+  }
+}
+
 #' Combine year strings from base and manual review sources
 #'
 #' Helper used by census_fun. Merges the year lists from two character
@@ -135,10 +157,15 @@ census_fun <- function(data, input_var, params) {
     dplyr::select(iso3c, indicator_date, input_var)
 
   # --- Append NADA data on censuses ------------------------------------------
+  # The NADA files key on country NAME (e.g. "Nauru"), not iso3c. We map
+  # through country_metadata to iso3c. This is robust to World Bank API
+  # country-name drift (e.g. NRU was renamed "Nauru" -> "Naoero").
   cs_df <- cs_df %>%
     dplyr::bind_rows(
       readr::read_csv(file.path(raw_dir, "4.1_SOCS", paste0(data, "_NADA.csv"))) %>%
-        dplyr::left_join(params$country_metadata, by = "country")
+        dplyr::mutate(country = purrr::map_chr(country, .map_nada_country)) %>%
+        dplyr::left_join(params$country_metadata, by = "country") %>%
+        dplyr::select(iso3c, indicator_date, nada_dates)
     ) %>%
     dplyr::group_by(iso3c, indicator_date) %>%
     dplyr::summarise(
@@ -234,13 +261,18 @@ survey_fun <- function(data, input_var, params) {
     dplyr::select(iso3c, indicator_date, input_var)
 
   # --- Append NADA data on surveys -------------------------------------------
+  # The NADA files key on country NAME (e.g. "Nauru"), not iso3c. We map
+  # through country_metadata to iso3c. This is robust to World Bank API
+  # country-name drift (e.g. NRU was renamed "Nauru" -> "Naoero").
   cs_df <- cs_df %>%
     dplyr::bind_rows(
       readr::read_csv(
         file.path(raw_dir, "4.1_SOCS", paste0(data, "_NADA.csv")),
         col_types = list(readr::col_character(), readr::col_double(), readr::col_character())
       ) %>%
-        dplyr::left_join(params$country_metadata, by = "country")
+        dplyr::mutate(country = purrr::map_chr(country, .map_nada_country)) %>%
+        dplyr::left_join(params$country_metadata, by = "country") %>%
+        dplyr::select(iso3c, indicator_date, nada_dates)
     ) %>%
     dplyr::group_by(iso3c, indicator_date) %>%
     dplyr::summarise(
