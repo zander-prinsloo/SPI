@@ -86,6 +86,9 @@
 # Markdown
 !/**/**/*.md
 
+# JSON (e.g. the fixtures hash manifest)
+!/**/**/*.json
+
 # xlsx files
 !/**/**/*.xlsx
 

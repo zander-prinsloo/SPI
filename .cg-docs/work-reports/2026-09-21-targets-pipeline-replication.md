@@ -49,6 +49,24 @@ status: active
 - Phase 1 evidence: V1 (lockfile has targets/tarchetypes/testthat) PASSED
   (with documented exception for large diff per D1). V2 (pipeline graph
   builds) PASSED.
+- Phase 2, Step 4 (comparison utilities): COMPLETE. `R/compare.R` created
+  with `compare_frames()` (1e-9 relative tolerance, column/type/NA/row-set
+  difference reporting with key-value row labels) and
+  `expect_frames_match()`. `tests/testthat/test-compare.R` has 14 tests,
+  all passing. Red-phase confirmed (test failed before implementation).
+- Phase 2, Step 5 (vintage fixtures): COMPLETE. 12 vintage output files
+  copied to `tests/fixtures/` with SHA-256 manifest
+  (`tests/fixtures/manifest.json`). `tests/testthat/test-fixtures.R` has 36
+  tests (fixture integrity + C7 historical-output protection), all passing.
+- Phase 2, Step 6 (stage-compare harness): COMPLETE.
+  `tests/testthat/test-stage-compare.R` wires comparison utilities against
+  fixtures for SPI_data, SPI_index, quantiles, treemap, SPL admin, and
+  databank files. 6 tests, all skipping until Phases 3-6 produce staged
+  outputs (expected).
+- Phase 2 evidence: V3 (comparison harness with 1e-9 tolerance) PASSED.
+  V4 (vintage fixtures + hash manifest) PASSED.
+- Full suite: 50 passed, 0 failed, 6 skipped (skips = stage-compare for
+  not-yet-produced outputs).
 
 ## Evidence Table
 
@@ -56,8 +74,8 @@ status: active
 |----|-------|-------------------|--------|
 | V1 | 1 | `renv.lock` updated with `{targets}`, `{tarchetypes}`, `{testthat}` | PASSED (exception: larger diff due to D1) |
 | V2 | 1 | `_targets.R` parses and pipeline graph builds | PASSED |
-| V3 | 2 | Comparison harness with 1e-9 tolerance | pending |
-| V4 | 2 | Vintage fixtures + hash manifest | pending |
+| V3 | 2 | Comparison harness with 1e-9 tolerance | PASSED |
+| V4 | 2 | Vintage fixtures + hash manifest | PASSED |
 | V5 | 3 | `SPI_data.csv` matches vintage | pending |
 | V6 | 3 | `SPI_data.dta` matches vintage | pending |
 | V7 | 4 | `SPI_index.csv` matches vintage | pending |

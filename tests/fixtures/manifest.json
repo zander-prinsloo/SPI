@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "spi-fixtures-manifest-v1",
+  "created": "2026-09-21",
+  "description": "SHA-256 hashes of the 202511 vintage output files. Used to verify historical outputs are never modified (constraint C7) and as immutable reference fixtures for the replication tests.",
+  "files": {
+    "SPI_data.csv": {
+      "sha256": "f72953b1be69b49a9b8c418d91adf65702bdd999875bf216d73e873ab4dbe2eb",
+      "size": 4405615,
+      "source": "03_output_data/SPI_data.csv"
+    },
+    "SPI_databank_country_and_aggregates.csv": {
+      "sha256": "34542671f086580298d54817306da9284141248367e61e3f8d86374c8cfedc7f",
+      "size": 39799071,
+      "source": "03_output_data/SPI_databank_country_and_aggregates.csv"
+    },
+    "SPI_databank_country_and_aggregates_DCS.csv": {
+      "sha256": "6b88e678c151c89eb6b01e630d6d5540b86824cabf45a75eec67ae11ac06e631",
+      "size": 16821387,
+      "source": "03_output_data/SPI_databank_country_and_aggregates_DCS.csv"
+    },
+    "SPI_databank_country_and_aggregates_DCS_wide.csv": {
+      "sha256": "1c28fde8283853c069f192f3c9ee5c7f54316fb6b0eb5433e96de93bee4fc715",
+      "size": 2761457,
+      "source": "03_output_data/SPI_databank_country_and_aggregates_DCS_wide.csv"
+    },
+    "SPI_databank_footnotes.csv": {
+      "sha256": "90517688d62501841e3f617602bad946dfeb282e06e28145efc203681addd782",
+      "size": 16503613,
+      "source": "03_output_data/SPI_databank_footnotes.csv"
+    },
+    "SPI_index.csv": {
+      "sha256": "9f8798ec6e466ca050994d4dc1d1c419e3e16f679c8cdfdef5476172de8ffa4a",
+      "size": 1798504,
+      "source": "03_output_data/SPI_index.csv"
+    },
+    "SPI_index_labelled.csv": {
+      "sha256": "9cb6a8a1aaa919eed022f8a24b7cee07d959295aa3abc4b9cafa81a3171b437e",
+      "size": 2038650,
+      "source": "03_output_data/SPI_index_labelled.csv"
+    },
+    "SPI_indicators_2024.csv": {
+      "sha256": "325de1dafc745f74cd21077e531befbd835e89d2d4149e0df37642fd37d0158d",
+      "size": 1793650,
+      "source": "03_output_data/SPI_indicators_2024.csv"
+    },
+    "SPI_quantiles.csv": {
+      "sha256": "1bf3e4fc540e425f569a386ca1b5b09f3a4131de2545d3c47f3deff46efe3a72",
+      "size": 479122,
+      "source": "03_output_data/SPI_quantiles.csv"
+    },
+    "SPI_quantiles_2024.csv": {
+      "sha256": "f707881bd4da148fc22cc364a2d1f95cd66e8c6790eb5bd5556c8828c04d2745",
+      "size": 53711,
+      "source": "03_output_data/SPI_quantiles_2024.csv"
+    },
+    "SPI_treemap.csv": {
+      "sha256": "35d534d8f3352c24f54c4ea8eb6f2d67a69df93db527f0692b3a99e493df5ebf",
+      "size": 1837821,
+      "source": "03_output_data/SPI_treemap.csv"
+    },
+    "SPL_admin_data_availability.csv": {
+      "sha256": "0853f6bf8cd4253b378647b159a0e3212dbfb7950ac41c934d599322ba7e13b5",
+      "size": 525309,
+      "source": "03_output_data/SPL_admin_data_availability.csv"
+    }
+  }
+}
