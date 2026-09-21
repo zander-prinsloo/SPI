@@ -42,6 +42,11 @@ staging_dir <- here::here("staging")         # new pipeline outputs (writable)
 # unweighted (1). The 202511 vintage uses unweighted (wgt = 1).
 wgt <- 1
 
+# --- Country metadata --------------------------------------------------------
+# The World Bank country list (from wbstats) is used for country matching
+# throughout the pipeline (e.g. filtering to valid iso3c codes).
+country_metadata <- wbstats::wb_countries()
+
 # --- Source schema registry --------------------------------------------------
 # (Phase 2) Expected column names/types per source file. The pipeline
 # validates every source read against this registry and FAILS LOUDLY on any

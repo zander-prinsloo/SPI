@@ -97,6 +97,15 @@ pipeline_targets <- function() {
     format = "rds"
   )
 
+  # --- Dimension 1.5: Data use by international organizations ----------------
+  # (from the "3.1", "aki_3.3", "3.15_debt", "safely_managed_scored", "lfp",
+  # and "aki_combine" chunks of 01-SPI_data_prep.Rmd)
+  dim1_5 <- tar_target(
+    name = "dim1_5",
+    command = combine_dim1_5(params, country_grid),
+    format = "rds"
+  )
+
   # --- Stage B: Index --------------------------------------------------------
   # (Populated in Phase 4)
 
@@ -114,7 +123,8 @@ pipeline_targets <- function() {
   list(
     params,
     iso_codes,
-    country_grid
+    country_grid,
+    dim1_5
   )
 }
 
