@@ -42,9 +42,12 @@ library(dplyr)
 score_sdds <- function(wdi_metadata, params, grid) {
   # --- Archived SCI data (for years 2004-2015) -------------------------------
   # The SCI archived data has SDDS subscription info for earlier years.
+  # NOTE: pivot only YR2004:YR2015 -- the SCI file also contains YR2016:YR2020
+  # but the original pipeline deliberately stops at 2015 (the WDI metadata
+  # covers 2016+). Pivoting the later years would create duplicate rows.
   sci_path <- file.path(params$raw_dir, "2.1_DSDR", "SCI_archived_data.csv")
   D2.1_DSDR_sci <- readr::read_csv(sci_path) %>%
-    tidyr::pivot_longer(cols = dplyr::starts_with("YR"), names_to = "date", values_to = "value") %>%
+    tidyr::pivot_longer(cols = YR2004:YR2015, names_to = "date", values_to = "value") %>%
     dplyr::filter(`Series Code` == "5.21.01.01.sdds") %>%
     dplyr::transmute(
       iso3c = `Country Code`,

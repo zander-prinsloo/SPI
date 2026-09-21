@@ -122,6 +122,14 @@ pipeline_targets <- function() {
     format = "rds"
   )
 
+  # --- Dimension 4: Data sources ---------------------------------------------
+  # (from the "cs", "crvs", and "geo" chunks)
+  dim4 <- tar_target(
+    name = "dim4",
+    command = combine_dim4(params, country_grid),
+    format = "rds"
+  )
+
   # --- Stage B: Index --------------------------------------------------------
   # (Populated in Phase 4)
 
@@ -142,7 +150,8 @@ pipeline_targets <- function() {
     country_grid,
     dim1_5,
     dim2,
-    dim3
+    dim3,
+    dim4
   )
 }
 

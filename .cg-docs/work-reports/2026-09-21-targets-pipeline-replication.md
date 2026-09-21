@@ -67,6 +67,32 @@ status: active
   V4 (vintage fixtures + hash manifest) PASSED.
 - Full suite: 50 passed, 0 failed, 6 skipped (skips = stage-compare for
   not-yet-produced outputs).
+- Phase 3, Step 7 (setup/grid): COMPLETE (done in Phase 1). Country grid
+  verified: 217 countries x 2004-2024 = 4,557 rows.
+- Phase 3, Step 8 (D1.5): COMPLETE. `R/dim1_5.R` with 5 indicators
+  (poverty comparability, child mortality, debt reporting, safely managed
+  water, labor force participation). All 5 SPI columns verified with 0
+  differences vs vintage.
+- Phase 3, Step 9 (D2): COMPLETE. `R/dim2.R` with 3 indicators (SDDS,
+  ODIN, NADA). **Fix applied**: SCI pivot restricted to YR2004:YR2015
+  (original code pivots only those years; pivoting YR2016:YR2020 created
+  duplicate rows overlapping WDI metadata). After fix, all 8 D2 columns
+  verified; remaining diffs (AUS 2004-2015 GDDS, NZL 2016 GDDS, AFG 2016
+  D2.2, SMR 2019 NADA) are all EXPECTED to resolve in the append step
+  (na.locf carry-forward + OECD high-income adjustment).
+- Phase 3, Step 10 (D3): COMPLETE. `R/dim3.R` with 16 UN SDG indicators.
+  All 16 SPI columns verified with 0 differences vs vintage.
+- Phase 3, Step 11 (D4): COMPLETE. `R/dim4.R` with censuses/surveys (8),
+  CRVS (1), geospatial (2). **Fixes applied**: (1) NADA join uses
+  `by = "country"` (NADA files key on country name, not iso3c); (2) joins
+  use default (all-common-column) keys to avoid `.x`/`.y` suffix columns,
+  matching the original Rmd; (3) `zoo` package installed (was missing from
+  renv). All 8 census/survey + CRVS columns verified with 0 differences;
+  GEO has 2 diffs (AFG 2016) EXPECTED to resolve in the append step's
+  na.locf carry-forward.
+- Phase 3 evidence so far: D1.5, D2, D3, D4 all ported and verified at the
+  dimension level. V5/V6 (full SPI_data.csv/.dta) pending the append/save
+  port (Step 13).
 
 ## Evidence Table
 
