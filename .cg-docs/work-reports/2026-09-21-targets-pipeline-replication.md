@@ -238,6 +238,24 @@ status: active
     `docs/CHANGELOG.md` created with ported/excluded inventory and
     documented exceptions.
   Full suite: 86 passed, 0 failed, 0 skipped.
+- Phase 8, Step 23 (full replication gate): COMPLETE. Ran the complete
+  pipeline on 2024 data via `targets::tar_make()` (all 22 targets
+  up-to-date, pipeline fully built). Ran the full test suite: 86 passed,
+  0 failed, 0 skipped. Verified:
+  - Stage-compare tests (SPI_data, SPI_index, quantiles, treemap,
+    databank, SPL admin): all pass against the 202511 vintage fixtures
+    within 1e-9 relative tolerance (reproducible value columns).
+  - Vintage-compare tests: all pass (SPI_data vintage match, SPI_index
+    vintage match, positive correlation).
+  - Validation tests: all pass (validate::validator() expectation rules).
+  - Hash-verification test (V13): historical outputs in 03_output_data/
+    match the manifest hashes -- unchanged (constraint C7).
+  - `git status` on 03_output_data/ and 02_programs/*.Rmd: clean -- no
+    historical outputs modified, no Rmd files touched (constraint C1).
+  Remaining differences vs the vintage are all documented accepted
+  exceptions (E1-E3) or WB API drift (metadata columns from the live
+  World Bank API). No differences beyond tolerance require escalation.
+  Full suite: 86 passed, 0 failed, 0 skipped.
 
 ## Evidence Table
 
@@ -254,8 +272,8 @@ status: active
 | V9 | 6 | misc_scripts outputs match vintage | PASSED (reproducible value cols) |
 | V10 | 6 | Download targets + manual checkpoints | PASSED (8 targets + 18 smoke tests) |
 | V11 | 7 | User guide complete | PASSED (docs/user-guide.md + checklist) |
-| V12 | final | Full pipeline reproduces vintage | pending |
-| V13 | final | Historical outputs unchanged | pending |
+| V12 | final | Full pipeline reproduces vintage | PASSED (86 tests, 0 failures) |
+| V13 | final | Historical outputs unchanged | PASSED (hash manifest verified) |
 
 ## Accepted Exceptions
 

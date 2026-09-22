@@ -10,7 +10,7 @@
         {
           "id": "initial-focus",
           "title": "Current focus is to create a better estimation pipeline from `01-SPI_data_prep.Rmd`, `02-SPI_index.Rmd`, and `03_SPI_data_validation.Rmd`.",
-          "status": "active",
+          "status": "done",
           "plan": ".cg-docs/plans/2026-09-21-targets-pipeline-replication.md"
         },
         {

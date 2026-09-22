@@ -1,15 +1,15 @@
 ---
 date: 2026-09-21
 title: "Targets-based SPI estimation pipeline with exact replication of the 2024 vintage"
-status: active
+status: completed
+completed-date: 2026-09-22
 scope: "Deep"
 brainstorm: ".cg-docs/brainstorms/2026-09-21-targets-pipeline-replication.md"
 language: "R"
 estimated-effort: "large"
 deviation-policy: "ask"
 execution-report: ".cg-docs/work-reports/2026-09-21-targets-pipeline-replication.md"
-completed-phases: [1, 2, 3, 4, 5, 6, 7]
-current-phase: 8
+completed-phases: [1, 2, 3, 4, 5, 6, 7, 8]
 artifact-schema-version: 1
 tags: [targets, pipeline, replication, testing, user-guide, spi]
 ---
