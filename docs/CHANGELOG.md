@@ -62,6 +62,10 @@ Created: 2026-09-22
 - **Country reports** — out of scope.
 - **`dataCompareR`** — archived on CRAN (not installable); replaced by the
   project's `compare_frames()` utility (1e-9 relative tolerance).
+- **`SPI_index_labelled.csv`** — a Stata-label artifact (column labels
+  bound as the first row, from `02-SPI_index.Rmd`). The pipeline produces
+  the unlabelled `SPI_index.csv`; the labelled variant is a Stata-specific
+  output not needed by the pipeline (P2.16).
 
 ## Documented exceptions
 
@@ -76,6 +80,11 @@ Created: 2026-09-22
 - **E3**: databank aggregate rows differ at the 2nd decimal from the
   vintage (the vintage databank was generated from an earlier index
   vintage). Country-level values are identical.
+- **E4**: `SPI.D1.5.LFP` window logic corrected. The original Rmd had
+  `else if (end_date - 1)` which is always TRUE, making the `i - 4` branch
+  unreachable. Fixed to `else if (end == end_date - 1)` (user-approved
+  methodology correction). This changes 34 LFP values and drops 70 rows
+  vs the 202511 vintage. Excluded from the stage-compare test.
 - **WB API drift**: metadata columns (country name, income, population,
   GDP, last_updated) change between vintages because the World Bank API is
   live. Documented, not a pipeline bug.

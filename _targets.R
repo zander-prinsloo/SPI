@@ -79,10 +79,18 @@ pipeline_targets <- function() {
 
   # --- Load pipeline parameters ----------------------------------------------
   # Parameters are a target themselves so that changing config/params.R
-  # invalidates downstream targets (targets tracks file hashes).
+  # invalidates downstream targets. The config file is a file target that
+  # `params` depends on, so targets rebuilds params (and everything
+  # downstream) when the configuration changes (e.g. end_date, imf_file,
+  # ilo filenames).
+  params_file <- tar_target(
+    name = "params_file",
+    command = "config/params.R",
+    format = "file"
+  )
   params <- tar_target(
     name = "params",
-    command = load_params(),
+    command = load_params(params_file),
     format = "rds"
   )
 
@@ -231,6 +239,7 @@ pipeline_targets <- function() {
   # The order here defines the pipeline graph. Add new targets as phases
   # complete.
   list(
+    params_file,
     params,
     iso_codes,
     country_grid,

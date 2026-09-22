@@ -8,6 +8,12 @@
 #   indicators -> dimension indices -> pillar indices -> SPI.INDEX
 # Weights are unity (wgt = 1) for the 202511 vintage.
 #
+# Sentinel convention (P2.28): SPI.DIM5.1.INDEX and SPI.DIM5.5.INDEX use
+# -99 as a sentinel for "no data" (the D5.1 legislation and D5.5 finance
+# dimensions are not part of the index). The -99 value is set BEFORE the
+# pillar aggregation so those dimensions contribute 0 to the overall
+# index. This mirrors the original Rmd exactly.
+#
 # Created: 2026-09-22
 # =============================================================================
 
@@ -99,7 +105,15 @@ load_index_weights <- function() {
 #' population weights, carries forward missing values, and builds the nested
 #' index (dimension -> pillar -> overall).
 #'
-#' @param spi_data The final SPI data frame (from append_spi()).
+#' NOTE: the original 02-SPI_index.Rmd reads SPI_data.csv from DISK
+#' (line 129). We mirror that CSV round-trip: the staged SPI_data.csv is
+#' deduplicated by save_spi() (dplyr::distinct()), so reading the CSV
+#' guarantees the same row set the vintage used. The in-memory spi_data
+#' target may contain duplicate rows from the append joins.
+#'
+#' @param spi_data The final SPI data frame (from append_spi()). Retained
+#'   only to create the targets dependency; the values come from the
+#'   staged CSV.
 #' @param params   List of pipeline parameters.
 #' @return A tibble with country, iso3c, date, SPI.INDEX.*, SPI.DIM*.*,
 #'   the SPI indicators, income, region, weights, population.
@@ -107,6 +121,9 @@ load_index_weights <- function() {
 build_index <- function(spi_data, params) {
   wgt <- params$wgt
   end_date <- params$end_date
+
+  # --- Read the staged SPI_data.csv (CSV round-trip, mirrors the Rmd) -------
+  spi_data <- readr::read_csv(file.path(params$staging_dir, "SPI_data.csv"))
 
   # --- Add population and weights (from the "data" chunk) --------------------
   # NOTE: default join (no `by`) so that the shared `population` column is

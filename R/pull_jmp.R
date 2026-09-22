@@ -36,7 +36,7 @@ library(dplyr)
 #'
 #' @param iso3c Character: the country code.
 #' @param timeout Numeric: HTTP timeout in seconds (default 60).
-#' @return A tibble with the normalized JMP data (possibly empty on error).
+#' @return A tibble with the normalized JMP data.
 #' @export
 jmp_country_download <- function(iso3c, timeout = 60) {
   url <- sprintf("https://washdata.org/data/country/%s/household/download", iso3c)
@@ -46,47 +46,38 @@ jmp_country_download <- function(iso3c, timeout = 60) {
     url <- "https://washdata.org/data/country/SRB/household/download"
   }
 
-  tryCatch(
-    {
-      resp <- httr::GET(url, httr::timeout(timeout))
-      if (httr::status_code(resp) != 200) {
-        stop(sprintf("HTTP %d for %s", httr::status_code(resp), url))
-      }
-      df <- readr::read_csv(httr::content(resp, as = "text", encoding = "UTF-8"),
-        show_col_types = FALSE
-      ) %>%
-        tibble::as_tibble(.name_repair = "universal")
+  # HARD STOP (R8): a failed download must abort the pull, never silently
+  # produce an NA row. A missing country file is a data problem that the
+  # technical lead must investigate -- the pipeline must not proceed with
+  # incomplete JMP data.
+  resp <- httr::GET(url, httr::timeout(timeout))
+  if (httr::status_code(resp) != 200) {
+    stop(
+      sprintf("JMP download failed for %s: HTTP %d\n  %s\n", iso3c, httr::status_code(resp), url),
+      "\nThe JMP washdata API did not return the expected file.",
+      "Investigate before proceeding -- the pipeline must not run with",
+      "incomplete JMP data.",
+      call. = FALSE
+    )
+  }
+  df <- readr::read_csv(httr::content(resp, as = "text", encoding = "UTF-8"),
+    show_col_types = FALSE
+  ) %>%
+    tibble::as_tibble(.name_repair = "universal")
 
-      # Normalize to the pipeline's expected columns. The JMP CSV has
-      # columns like source, type, year, geo, data_available, data_quality,
-      # data_value (with possible name variations).
-      df %>%
-        dplyr::mutate(
-          source = as.character(source),
-          type = as.character(type),
-          year = as.numeric(year),
-          geo = as.character(geo),
-          data_available = as.numeric(data_available),
-          data_quality = as.numeric(data_quality),
-          data_value = as.numeric(data_value)
-        )
-    },
-    error = function(e) {
-      # Fail loudly: a missing country file is a data problem, not a
-      # silent skip. The original Rmd returned an empty frame; we report
-      # the error so the technical lead knows which country failed.
-      warning(sprintf("JMP download failed for %s: %s", iso3c, conditionMessage(e)), call. = FALSE)
-      data.frame(
-        source = as.character(NA),
-        type = as.character(NA),
-        year = as.numeric(NA),
-        geo = as.character(NA),
-        data_available = as.numeric(NA),
-        data_quality = as.numeric(NA),
-        data_value = as.numeric(NA)
-      )
-    }
-  )
+  # Normalize to the pipeline's expected columns. The JMP CSV has
+  # columns like source, type, year, geo, data_available, data_quality,
+  # data_value (with possible name variations).
+  df %>%
+    dplyr::mutate(
+      source = as.character(source),
+      type = as.character(type),
+      year = as.numeric(year),
+      geo = as.character(geo),
+      data_available = as.numeric(data_available),
+      data_quality = as.numeric(data_quality),
+      data_value = as.numeric(data_value)
+    )
 }
 
 #' Download all JMP country files and combine them

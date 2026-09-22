@@ -29,9 +29,28 @@ read_staged_spi <- function() {
 
 # --- The validation rule set (from the Rmd "expectations" chunk) -------------
 
+# The original Rmd defines cntry_list <- unique(SPI_df_v1$iso3c) -- the
+# country set from the PREVIOUS vintage. We replicate that by reading the
+# vintage fixture's country set. This makes the rule meaningful: it fails
+# if the new pipeline drops or adds countries vs the vintage.
+#
+# NOTE: the variable must be in the GLOBAL environment -- the validate
+# package's validator() evaluates rule expressions in a clean environment
+# where free variables are only resolved from the global scope (this
+# mirrors the original Rmd, which also used a global cntry_list).
+vintage_countries <- {
+  fixture_path <- file.path(here::here("tests", "fixtures"), "SPI_data.csv")
+  if (file.exists(fixture_path)) {
+    unique(readr::read_csv(fixture_path)$iso3c)
+  } else {
+    character(0)
+  }
+}
+assign("cntry_list", vintage_countries, envir = globalenv())
+
 spi_validation_rules <- function() {
   validator(
-    countries_included = iso3c %in% unique(iso3c),  # all countries valid
+    countries_included = iso3c %in% cntry_list,  # same countries as the vintage
     dates_covered = date %in% c(2004:2024),          # dates included
 
     # check for each country that the dates are available

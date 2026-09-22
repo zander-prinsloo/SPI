@@ -425,15 +425,17 @@ read_ilo_lfp <- function(params) {
   ilo_ref_area <- readr::read_csv(file.path(params$raw_dir, "metadata", "ILO_reference_area.csv")) %>%
     dplyr::transmute(iso3c = ref_area, country = ref_area.label)
 
-  # Modelled estimates (EAP_2WAP) -- the 202511 vintage file
-  fn_modelled <- "/1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-20250923T0014.csv"
-  # Reported survey data (EAP_DWAP)
-  fn_survey <- "/1.5_DUIO/EAP_DWAP_SEX_AGE_RT_A-20250923T0014.csv"
+  # Modelled estimates (EAP_2WAP) and reported survey data (EAP_DWAP).
+  # The filenames come from config/params.R (ilo_modelled_file,
+  # ilo_survey_file) so a new vintage's files can be wired in without
+  # touching this code.
+  fn_modelled <- file.path(params$raw_dir, "1.5_DUIO", params$ilo_modelled_file)
+  fn_survey <- file.path(params$raw_dir, "1.5_DUIO", params$ilo_survey_file)
 
   # iso3c lookup from the UN country codes
   iso3c_lookup <- readr::read_csv(file.path(params$raw_dir, "metadata", "iso_codes.csv"))
 
-  lfp_estimated <- readr::read_csv(paste0(params$raw_dir, fn_modelled)) %>%
+  lfp_estimated <- readr::read_csv(fn_modelled) %>%
     tibble::as_tibble(.name_repair = "universal") %>%
     dplyr::filter(sex.label == "Total", classif1.label == "Age (Youth, adults): 15+") %>%
     dplyr::mutate(ref_area.label = ifelse(stringr::str_detect(ref_area.label, "Tanzania"),
@@ -450,7 +452,7 @@ read_ilo_lfp <- function(params) {
     dplyr::left_join(ilo_ref_area, by = "iso3c") %>%
     dplyr::select(iso3c, date, estimated_value)
 
-  lfp_reported <- readr::read_csv(paste0(params$raw_dir, fn_survey)) %>%
+  lfp_reported <- readr::read_csv(fn_survey) %>%
     tibble::as_tibble(.name_repair = "universal") %>%
     dplyr::filter(sex.label == "Total", classif1.label == "Age (Youth, adults): 15+") %>%
     dplyr::mutate(ref_area.label = ifelse(stringr::str_detect(ref_area.label, "Tanzania"),
@@ -505,13 +507,20 @@ score_ilo_lfp <- function(lfp_data, params) {
       dplyr::mutate(date = date_end)
   }
 
-  # 5-year window for each year from 2010 to end_date
+  # 5-year window for each year from 2010 to end_date (i-4 to i inclusive).
+  # The window extends for recent years (surveys reported with a lag):
+  #   end == end_date     -> 7-year window (i-6 to i)
+  #   end == end_date - 1 -> 6-year window (i-5 to i)
+  #   otherwise           -> 5-year window (i-4 to i)
+  # NOTE: the original Rmd had a bug here -- `else if (end_date - 1)` is
+  # always TRUE, so the `i - 4` branch was unreachable. Fixed to
+  # `else if (end == end_date - 1)` (user-approved methodology
+  # correction; see docs/CHANGELOG.md).
   purrr::map_dfr(2010:end_date, function(i) {
     end <- i
-    # Extend the window for recent years (surveys reported with a lag)
     start <- if (end == end_date) {
       i - 6
-    } else if (end_date - 1) {
+    } else if (end == end_date - 1) {
       i - 5
     } else {
       i - 4

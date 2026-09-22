@@ -208,10 +208,19 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 #### 4.1 Censuses and surveys
 
 - **Source**: National microdata libraries.
-- **Files**: `01_raw_data/4.1_SOCS/raw/D4.1.*.<YEAR>.csv` (8 files)
+- **Files**: `01_raw_data/4.1_SOCS/raw/D4.1.*.<YEAR>.csv` (8 files, where
+  `<YEAR>` is the vintage year, e.g. `D4.1.1.CEN.POPU.2024.csv`). The
+  pipeline reads the files for the CURRENT vintage (`end_date` in
+  `config/params.R`) and fails loudly if they are missing.
+- **Manual review**: `01_raw_data/4.1_SOCS/raw/D4.1.Manual.Review.<YEAR>.xlsx`
+  (one per vintage; the current vintage file is required, historical files
+  are read when present).
 - **Update**: Run the microdata library pull
-  (`02_programs/misc_scripts/microdata_library_pull.Rmd`). For the ILO
-  catalog, download `sources_en.csv` from
+  (`02_programs/misc_scripts/microdata_library_pull.Rmd`) and the
+  preprocess script
+  (`02_programs/misc_scripts/preprocess-manual-data-4.1-and-5.2.10.R`),
+  which reads the `input/` Excel files and writes the per-year CSVs. For
+  the ILO catalog, download `sources_en.csv` from
   <https://ilostat.ilo.org/data/national-sources-catalogue/> and rename to
   `ilo_sources_catalog.csv` in `01_raw_data/`.
 
@@ -375,6 +384,68 @@ The pipeline uses incremental re-runs: `targets::tar_make()` only rebuilds
 targets whose inputs changed. The slow steps are the API pulls (JMP ~200
 requests) and the microdata library pull — run those explicitly when
 updating.
+
+### 6.7 Forcing a rebuild after changing `end_date`
+
+`targets` tracks file hashes, so changing `end_date` in `config/params.R`
+invalidates the `params` target and everything downstream. However, some
+targets read files whose names do NOT include the year (e.g.
+`D2.4.NADA.csv`, `D5.2.6.EMPL.csv`), so targets may not detect that the
+underlying data changed. To force a full rebuild:
+
+```r
+targets::tar_destroy()   # delete all targets
+targets::tar_make()      # rebuild from scratch
+```
+
+This is the safest way to guarantee a clean run after a vintage change.
+Note that `tar_destroy()` also removes the staged outputs — re-run
+`targets::tar_make()` to regenerate them.
+
+### 6.8 Schema mismatch in a dimension source
+
+Each dimension source is validated against its expected schema (R8). If a
+source file's format changed (e.g. a new column, a renamed column, a
+different type), the pipeline stops with a "SCHEMA MISMATCH" error naming
+the file and the missing/expected columns.
+
+To fix:
+
+1. Read the error message — it lists the missing required columns and the
+   found columns.
+2. Investigate the source download (the format may have changed upstream).
+3. If the format change is legitimate, update the schema check in the
+   relevant `R/` function (or the `source_schema` registry in
+   `config/params.R`).
+4. Re-run `targets::tar_make()` — targets resumes from the failed target.
+
+Never bypass a schema check by editing the source file to match the old
+format — that hides real format changes and silently breaks the estimates.
+
+### 6.9 Reading the pipeline graph
+
+To see the full dependency graph of the pipeline:
+
+```r
+targets::tar_visnetwork()   # interactive graph in the viewer
+```
+
+To see which targets are outdated (need rebuilding) and why:
+
+```r
+targets::tar_outdated()     # names of outdated targets
+targets::tar_manifest()     # why each target is outdated
+```
+
+To inspect a specific target's value:
+
+```r
+targets::tar_read(params)          # the parameters list
+targets::tar_read(spi_data)        # the final SPI data frame
+```
+
+The graph is useful for understanding why a change triggers a rebuild: a
+target rebuilds when any of its dependencies (files or targets) changed.
 
 ## 7. Interpreting Test Results
 

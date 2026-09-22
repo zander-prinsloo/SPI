@@ -57,7 +57,8 @@ verify_odin_data <- function(params) {
   df <- readr::read_csv(file_path, show_col_types = FALSE)
   # The ODIN file uses "Country Code" and "Year" (raw names); the pipeline
   # applies as_tibble(.name_repair = "universal") which converts spaces to
-  # dots. Validate against the RAW names.
+  # dots. Validate against the RAW names. The pipeline also reads the
+  # "Open Data Inventory" score columns (see R/dim2.R score_odin()).
   required <- c("Country Code", "Year")
   missing <- setdiff(required, names(df))
   if (length(missing) > 0) {
@@ -67,6 +68,23 @@ verify_odin_data <- function(params) {
         basename(file_path), paste(missing, collapse = ", "), paste(names(df), collapse = ", ")
       ),
       "The ODIN download format has changed. Investigate before proceeding.",
+      call. = FALSE
+    )
+  }
+
+  # The pipeline's score_odin() reads the "Openness subscore" column (raw
+  # name "Openness subscore" -> "Openness.subscore" after name repair).
+  # Fail loudly if it is missing so the checkpoint catches format changes
+  # that would silently zero the ODIN scores.
+  score_col <- "Openness subscore"
+  if (!(score_col %in% names(df))) {
+    stop(
+      sprintf(
+        "ODIN SCHEMA MISMATCH in '%s':\n  Missing score column: '%s'\n  Found columns: %s\n\n",
+        basename(file_path), score_col, paste(names(df), collapse = ", ")
+      ),
+      "The ODIN download format has changed (score column missing).",
+      "Investigate before proceeding.",
       call. = FALSE
     )
   }
@@ -102,7 +120,10 @@ verify_nada_data <- function(params) {
   }
 
   df <- readr::read_csv(file_path, show_col_types = FALSE)
-  required <- c("iso3c")
+  # The pipeline's score_nada() reads iso3c, NADA, and NADA_text (see
+  # R/dim2.R). Require all three so a format change that would silently
+  # zero the NADA scores is caught.
+  required <- c("iso3c", "NADA", "NADA_text")
   missing <- setdiff(required, names(df))
   if (length(missing) > 0) {
     stop(
@@ -142,7 +163,9 @@ verify_microdata_files <- function(params) {
     file.path(params$raw_dir, "4.1_SOCS", "raw", sprintf("D4.1.5.SVY.AGRI.%d.csv", end_date)),
     file.path(params$raw_dir, "4.1_SOCS", "raw", sprintf("D4.1.6.SVY.LABR.%d.csv", end_date)),
     file.path(params$raw_dir, "4.1_SOCS", "raw", sprintf("D4.1.7.SVY.HLTH.%d.csv", end_date)),
-    file.path(params$raw_dir, "4.1_SOCS", "raw", sprintf("D4.1.8.SVY.BIZZ.%d.csv", end_date))
+    file.path(params$raw_dir, "4.1_SOCS", "raw", sprintf("D4.1.8.SVY.BIZZ.%d.csv", end_date)),
+    # The manual review file for the current vintage is required (R8).
+    file.path(params$raw_dir, "4.1_SOCS", "raw", sprintf("D4.1.Manual.Review.%d.xlsx", end_date))
   )
 
   missing <- expected[!file.exists(expected)]

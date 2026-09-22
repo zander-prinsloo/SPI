@@ -4,59 +4,59 @@ depth: data-risk
 type: standard
 plan: .cg-docs/plans/2026-09-21-targets-pipeline-replication.md
 findings:
-  P1.1: open
-  P1.2: open
-  P1.3: open
-  P1.4: open
-  P1.5: open
+  P1.1: fixed
+  P1.2: fixed
+  P1.3: fixed
+  P1.4: fixed
+  P1.5: fixed
   P1.6: fixed
   P1.7: fixed
-  P1.8: open
-  P1.9: open
+  P1.8: fixed
+  P1.9: fixed
   P1.10: fixed
-  P1.11: open
-  P2.1: open
-  P2.2: open
-  P2.3: open
-  P2.4: open
-  P2.5: open
-  P2.6: open
-  P2.7: open
-  P2.8: open
+  P1.11: fixed
+  P2.1: fixed
+  P2.2: fixed
+  P2.3: fixed
+  P2.4: fixed
+  P2.5: fixed
+  P2.6: fixed
+  P2.7: fixed
+  P2.8: fixed
   P2.9: fixed
-  P2.10: open
-  P2.11: open
-  P2.12: open
+  P2.10: fixed
+  P2.11: fixed
+  P2.12: fixed
   P2.13: fixed
-  P2.14: open
-  P2.15: open
-  P2.16: open
+  P2.14: fixed
+  P2.15: fixed
+  P2.16: fixed
   P2.17: fixed
-  P2.18: open
+  P2.18: fixed
   P2.19: fixed
-  P2.20: open
+  P2.20: fixed
   P2.21: fixed
-  P2.22: open
-  P2.23: open
-  P2.24: open
-  P2.25: open
-  P2.26: open
+  P2.22: fixed
+  P2.23: fixed
+  P2.24: fixed
+  P2.25: fixed
+  P2.26: fixed
   P2.27: fixed
-  P2.28: open
-  P2.29: open
+  P2.28: fixed
+  P2.29: fixed
   P2.30: fixed
   P2.31: fixed
   P3.1: open
   P3.2: open
-  P3.3: open
-  P3.4: open
+  P3.3: fixed
+  P3.4: fixed
   P3.5: fixed
   P3.6: fixed
   P3.7: open
   P3.8: open
   P3.9: open
   P3.10: open
-  P3.11: open
+  P3.11: fixed
   P3.12: open
   P3.13: open
   P3.14: open
@@ -64,8 +64,8 @@ findings:
   P3.16: open
   P3.17: open
   P3.18: open
-  P3.19: open
-  P3.20: open
+  P3.19: fixed
+  P3.20: fixed
   P3.21: open
   P3.22: open
   P3.23: open

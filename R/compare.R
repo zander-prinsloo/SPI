@@ -32,7 +32,11 @@
 #' @param df2       A data frame (the vintage fixture).
 #' @param tolerance Numeric: relative tolerance (default 1e-9).
 #' @param key_cols  Character vector: columns that identify rows (e.g.
-#'                  c("iso3c", "date")) used to align rows for comparison.
+#'                  c("iso3c", "date")). Used to SORT both frames by the
+#'                  keys before comparison (row alignment by position).
+#'                  The keys should be unique in both frames; if they are
+#'                  not, a difference is reported (the alignment is
+#'                  ambiguous).
 #'
 #' @return A list with `identical`, `differences`, and `notes`.
 #' @export
@@ -73,6 +77,19 @@ compare_frames <- function(df1, df2, tolerance = 1e-9, key_cols = NULL) {
 
   # --- Align rows by key columns if provided ---------------------------------
   if (!is.null(key_cols) && all(key_cols %in% names(df1)) && all(key_cols %in% names(df2))) {
+    # P2.10: assert key uniqueness so row alignment is meaningful. If the
+    # keys are not unique, sorting alone cannot align rows -- a silent
+    # misalignment would produce wrong difference reports.
+    dup1 <- any(duplicated(df1[key_cols]))
+    dup2 <- any(duplicated(df2[key_cols]))
+    if (dup1 || dup2) {
+      differences <- c(differences, sprintf(
+        "Key columns %s are NOT unique (new has %d duplicates, vintage has %d). Row alignment is ambiguous.",
+        paste(key_cols, collapse = ", "),
+        sum(duplicated(df1[key_cols])),
+        sum(duplicated(df2[key_cols]))
+      ))
+    }
     df1 <- df1 %>% dplyr::arrange(dplyr::across(dplyr::all_of(key_cols)))
     df2 <- df2 %>% dplyr::arrange(dplyr::across(dplyr::all_of(key_cols)))
   }

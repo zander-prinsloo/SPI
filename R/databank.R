@@ -76,7 +76,11 @@ build_databank <- function(spi_index, spi_data, params) {
   class_df <- read_classifications(params)
 
   # --- Footnotes from RAW data ----------------------------------------------
-  spi_raw <- spi_data %>%
+  # NOTE: read the staged SPI_data.csv (deduplicated by save_spi) rather
+  # than the in-memory spi_data target, which may contain duplicate rows
+  # from the append joins. The original script reads SPI_data.csv from
+  # disk, so this mirrors the CSV round-trip.
+  spi_raw <- readr::read_csv(file.path(params$staging_dir, "SPI_data.csv"), show_col_types = FALSE) %>%
     dplyr::select(country, iso3c, date, dplyr::starts_with("RAW")) %>%
     dplyr::select(-dplyr::ends_with("_text"), -dplyr::ends_with("_nada"))
 

@@ -92,6 +92,10 @@
 # xlsx files
 !/**/**/*.xlsx
 
+# Excel lock files (created while a workbook is open)
+~$*.xlsx
+~$*.xls
+
 # csv files
 !/**/**/*.csv
 !/**/**/*.fst

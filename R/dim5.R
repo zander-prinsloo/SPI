@@ -61,6 +61,64 @@ read_imf_codes <- function(params) {
   readr::read_csv(file.path(params$raw_dir, "metadata", "IMF_country_codes.csv"))
 }
 
+#' Read a base CSV plus per-year update CSVs
+#'
+#' Several D5.2 indicators follow the same pattern: a base CSV (no year
+#' suffix, covers the earliest years with its own date column) plus
+#' per-year update CSVs (D5.2.*.<YEAR>.csv). The per-year files' own date
+#' columns are overwritten with the file's year, matching the original Rmd.
+#'
+#' Historical quirk preserved from the original Rmd: the 2022 file is used
+#' for BOTH 2021 and 2022 (there is no D5.2.*.2021.csv). When a new vintage
+#' is added, the technical lead saves the new year's file as
+#' D5.2.*.<end_date>.csv and the loop picks it up automatically.
+#'
+#' @param params List of pipeline parameters.
+#' @param stem   Character: the file stem (e.g. "D5.2.6.EMPL").
+#' @return A list with two elements:
+#'   - base: the base CSV (has its own date column)
+#'   - yearly: a LIST of per-year tibbles, each with the date column set
+#'     (the 2022 file appears twice: date = 2021 and date = 2022)
+#' @noRd
+.read_base_plus_yearly <- function(params, stem) {
+  end_date <- params$end_date
+  dim5_dir <- file.path(params$raw_dir, "5.2_DISM")
+
+  # Base file (covers the earliest years, has its own date column).
+  base <- readr::read_csv(file.path(dim5_dir, sprintf("%s.csv", stem)))
+
+  # Per-year files. The per-year files' own date columns are overwritten
+  # with the file's year (matching the original Rmd). The 2021-from-2022
+  # quirk is preserved: when the 2022 file exists, it is bound twice
+  # (date = 2021 and date = 2022).
+  yearly <- list()
+  for (y in 2020:end_date) {
+    file_path <- file.path(dim5_dir, sprintf("%s.%d.csv", stem, y))
+    if (!file.exists(file_path)) {
+      # Historical years may be missing (e.g. there is no 2021 file -- the
+      # 2022 file provides the 2021 values). But the CURRENT vintage file
+      # is required -- fail loudly if it is missing (R8).
+      if (y == end_date) {
+        stop(
+          sprintf("DIM5 FILE NOT FOUND: %s\n", file_path),
+          "\nThe current vintage file is required. Save the new year's",
+          sprintf("data as %s.%d.csv in 01_raw_data/5.2_DISM/.", stem, end_date),
+          call. = FALSE
+        )
+      }
+      next
+    }
+    file_y <- readr::read_csv(file_path)
+    yearly[[length(yearly) + 1]] <- file_y %>% dplyr::mutate(date = y)
+    # Historical quirk: the 2022 file also provides the 2021 values.
+    if (y == 2022) {
+      yearly[[length(yearly) + 1]] <- file_y %>% dplyr::mutate(date = 2021)
+    }
+  }
+
+  list(base = base, yearly = yearly)
+}
+
 # =============================================================================
 # 5.1 Legislation and governance
 # =============================================================================
@@ -167,9 +225,27 @@ score_naby <- function(params) {
 #' @return A tibble with iso3c, date, RAW.D5.2.3.CNIN, SPI.D5.2.3.CNIN.
 #' @export
 score_cnin <- function(params) {
+  end_date <- params$end_date
+
   # --- 1) Read in data -------------------------------------------------------
-  D5.2.3.CNIN <- readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.3.CNIN.2024.csv")) %>%
-    tidyr::pivot_longer(cols = c(`2020`:`2024`), names_to = "date", values_to = "CNIN") %>%
+  # The CNIN file is versioned by vintage year (D5.2.3.CNIN.<YEAR>.csv) and
+  # contains one column per year (2020:<end_date>). Fail loudly if the
+  # current vintage file is missing (R8).
+  cnin_path <- file.path(params$raw_dir, "5.2_DISM", sprintf("D5.2.3.CNIN.%d.csv", end_date))
+  if (!file.exists(cnin_path)) {
+    stop(
+      sprintf("CNIN FILE NOT FOUND: %s\n", cnin_path),
+      "\nThe current vintage file is required. Save the new year's data as",
+      sprintf("D5.2.3.CNIN.%d.csv in 01_raw_data/5.2_DISM/.", end_date),
+      call. = FALSE
+    )
+  }
+  D5.2.3.CNIN <- readr::read_csv(cnin_path) %>%
+    tidyr::pivot_longer(
+      cols = dplyr::all_of(as.character(2020:end_date)),
+      names_to = "date",
+      values_to = "CNIN"
+    ) %>%
     dplyr::mutate(
       iso3c = Code,
       date = as.numeric(date)
@@ -235,7 +311,7 @@ score_cnin <- function(params) {
 #' @export
 score_cpiby <- function(params, grid) {
   imf_codes <- read_imf_codes(params)
-  imf_file <- "2025.10_Compiled Data for World Bank.xlsx"
+  imf_file <- params$imf_file
 
   # Previous vintage as starting point
   D5.2.4.CPIBY <- read_previous_vintage_d5(params) %>%
@@ -390,8 +466,9 @@ score_hous <- function(params, grid) {
     dplyr::select(iso3c, RAW.D5.2.5.HOUS.IMF, SPI.D5.2.5.HOUS.IMF)
 
   # --- IMF data: 2024 --------------------------------------------------------
+  # The current vintage file comes from params$imf_file (see config/params.R).
   D5.2.5.HOUS.IMF.2024 <- readxl::read_excel(
-    path = file.path(params$raw_dir, "5.2_DISM", "2025.10_Compiled Data for World Bank.xlsx"),
+    path = file.path(params$raw_dir, "5.2_DISM", params$imf_file),
     sheet = "2. Household Consump Class",
     skip = 1
   ) %>%
@@ -445,30 +522,35 @@ score_hous <- function(params, grid) {
 #' @return A tibble with iso3c, date, RAW.D5.2.6.EMPL, SPI.D5.2.6.EMPL.
 #' @export
 score_empl <- function(params) {
-  readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.6.EMPL.csv")) %>%
-    dplyr::bind_rows(readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.6.EMPL.2020.csv"))) %>%
+  parts <- .read_base_plus_yearly(params, "D5.2.6.EMPL")
+
+  # The base + 2020 files use the EMPL column; 2022+ files use the ISCE
+  # column (different schema -- see the original Rmd "empl" chunk). Split
+  # the yearly files by schema so each is scored with the right column.
+  has_empl <- purrr::map_lgl(parts$yearly, ~ "EMPL" %in% names(.x))
+  empl_files <- parts$yearly[has_empl]
+  isce_files <- parts$yearly[!has_empl]
+
+  # Score the EMPL-schema files (base + 2020).
+  out <- parts$base
+  for (f in empl_files) {
+    out <- out %>% dplyr::bind_rows(f)
+  }
+  out <- out %>%
     dplyr::mutate(
       SPI.D5.2.6.EMPL = dplyr::case_when(
         EMPL == "ICSE-93" | EMPL == "NAICS" ~ 1,
         TRUE ~ 0
       )
-    ) %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.6.EMPL.2022.csv")) %>%
-        dplyr::mutate(date = 2021, SPI.D5.2.6.EMPL = as.numeric(ISCE))
-    ) %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.6.EMPL.2022.csv")) %>%
-        dplyr::mutate(date = 2022, SPI.D5.2.6.EMPL = as.numeric(ISCE))
-    ) %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.6.EMPL.2023.csv")) %>%
-        dplyr::mutate(date = 2023, SPI.D5.2.6.EMPL = as.numeric(ISCE))
-    ) %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.6.EMPL.2024.csv")) %>%
-        dplyr::mutate(date = 2024, SPI.D5.2.6.EMPL = as.numeric(ISCE))
-    ) %>%
+    )
+
+  # Bind the ISCE-schema files (2022+), scoring from the ISCE column.
+  for (f in isce_files) {
+    out <- out %>%
+      dplyr::bind_rows(f %>% dplyr::mutate(SPI.D5.2.6.EMPL = as.numeric(ISCE)))
+  }
+
+  out %>%
     dplyr::mutate(RAW.D5.2.6.EMPL = EMPL) %>%
     dplyr::select(iso3c, date, RAW.D5.2.6.EMPL, SPI.D5.2.6.EMPL) %>%
     dplyr::arrange(date, iso3c)
@@ -522,7 +604,8 @@ score_cgov <- function(params, grid) {
     dplyr::mutate(date = 2022)
   D5.2.7.CGOV.IMF.2023 <- read_cgov_2021_2022("2024.02_Compiled Data for World Bank.xlsx", "5. Cntrl Gct Acct Status", 9) %>%
     dplyr::mutate(date = 2023)
-  D5.2.7.CGOV.IMF.2024 <- read_cgov_2021_2022("2025.10_Compiled Data for World Bank.xlsx", "4. Cntrl Gct Acct Status", 9) %>%
+  # The current vintage file comes from params$imf_file (see config/params.R).
+  D5.2.7.CGOV.IMF.2024 <- read_cgov_2021_2022(params$imf_file, "4. Cntrl Gct Acct Status", 9) %>%
     dplyr::mutate(date = 2024)
 
   D5.2.7.CGOV.IMF <- dplyr::bind_rows(
@@ -563,24 +646,21 @@ score_cgov <- function(params, grid) {
 #' @return A tibble with iso3c, date, RAW.D5.2.8.FINA, SPI.D5.2.8.FINA.
 #' @export
 score_fina <- function(params) {
-  readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.8.FINA.csv")) %>%
-    dplyr::bind_rows(readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.8.FINA.2020.csv"))) %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.8.FINA.2022.csv")) %>%
-        dplyr::mutate(date = 2021, iso3c = Code)
-    ) %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.8.FINA.2022.csv")) %>%
-        dplyr::mutate(date = 2022, iso3c = Code)
-    ) %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.8.FINA.2023.csv")) %>%
-        dplyr::mutate(date = 2023, iso3c = Code)
-    ) %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.8.FINA.2024.csv")) %>%
-        dplyr::mutate(date = 2024, iso3c = Code)
-    ) %>%
+  parts <- .read_base_plus_yearly(params, "D5.2.8.FINA")
+
+  # The 2022+ files use "Code" instead of "iso3c" (different schema -- see
+  # the original Rmd "fina" chunk). Bind incrementally (as the original
+  # Rmd does) so vctrs can coerce the differing auxiliary column types.
+  out <- parts$base
+  for (f in parts$yearly) {
+    if ("Code" %in% names(f)) {
+      out <- out %>% dplyr::bind_rows(f %>% dplyr::mutate(iso3c = Code))
+    } else {
+      out <- out %>% dplyr::bind_rows(f)
+    }
+  }
+
+  out %>%
     dplyr::mutate(
       SPI.D5.2.8.FINA = dplyr::case_when(
         FINA == "2014" | FINA == "ESA 2010" ~ 1,
@@ -674,8 +754,9 @@ score_mony <- function(params, grid) {
     dplyr::select(iso3c, RAW.D5.2.9.MONY.IMF, SPI.D5.2.9.MONY.IMF)
 
   # --- IMF data: 2024 --------------------------------------------------------
+  # The current vintage file comes from params$imf_file (see config/params.R).
   D5.2.9.MONY.IMF.2024 <- readxl::read_excel(
-    path = file.path(params$raw_dir, "5.2_DISM", "2025.10_Compiled Data for World Bank.xlsx"),
+    path = file.path(params$raw_dir, "5.2_DISM", params$imf_file),
     sheet = "6. MFS Compilation status",
     skip = 1
   ) %>%
@@ -735,24 +816,14 @@ score_mony <- function(params, grid) {
 #' @return A tibble with iso3c, date, RAW.D5.2.10.GSBP, SPI.D5.2.10.GSBP.
 #' @export
 score_gsbp <- function(params) {
-  readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.10.GSBP.csv")) %>%
-    dplyr::bind_rows(readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.10.GSBP.2020.csv"))) %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.10.GSBP.2021.csv")) %>%
-        dplyr::mutate(date = 2021)
-    ) %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.10.GSBP.2022.csv")) %>%
-        dplyr::mutate(date = 2022)
-    ) %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.10.GSBP.2023.csv")) %>%
-        dplyr::mutate(date = 2023)
-    ) %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(params$raw_dir, "5.2_DISM", "D5.2.10.GSBP.2024.csv")) %>%
-        dplyr::mutate(date = 2024)
-    ) %>%
+  parts <- .read_base_plus_yearly(params, "D5.2.10.GSBP")
+
+  out <- parts$base
+  for (f in parts$yearly) {
+    out <- out %>% dplyr::bind_rows(f)
+  }
+
+  out %>%
     dplyr::mutate(
       SPI.D5.2.10.GSBP = dplyr::case_when(
         stringr::str_to_lower(GSBP) == "yes" ~ 1,

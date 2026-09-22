@@ -32,7 +32,10 @@ test_params <- function() {
   list(
     raw_dir = here::here("01_raw_data"),
     end_date = 2024,
-    run_downloads = FALSE
+    run_downloads = FALSE,
+    # ILO filenames (from config/params.R) -- needed by checkpoint_ilo_lfp
+    ilo_modelled_file = "EAP_2WAP_SEX_AGE_RT_A-20250923T0014.csv",
+    ilo_survey_file = "EAP_DWAP_SEX_AGE_RT_A-20250923T0014.csv"
   )
 }
 
@@ -165,4 +168,16 @@ test_that("pull targets are no-ops when run_downloads = FALSE", {
   result <- if (isTRUE(params$run_downloads)) fake_pull(params) else NULL
   expect_false(called)
   expect_null(result)
+})
+
+# --- Test: JMP download hard stop (P2.11) -----------------------------------
+
+test_that("jmp_country_download fails loudly on a non-200 response", {
+  # Use an invalid country code that the JMP API will not have. The
+  # function must STOP (not return an NA row) so the pull cannot silently
+  # produce incomplete data.
+  expect_error(
+    jmp_country_download("ZZZ", timeout = 10),
+    "JMP download failed"
+  )
 })

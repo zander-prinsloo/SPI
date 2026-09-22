@@ -43,11 +43,16 @@ test_that("staged SPI_data.csv matches the vintage within tolerance", {
   fixture <- read_fixture("SPI_data.csv")
 
   # Compare only the SPI/RAW indicator columns (metadata drifts via the
-  # live World Bank API).
+  # live World Bank API). SPI.D1.5.LFP is excluded: the ILO window logic
+  # was corrected (E4 in docs/CHANGELOG.md) -- the original Rmd's
+  # `else if (end_date - 1)` was always TRUE, making the `i - 4` branch
+  # unreachable. The corrected pipeline intentionally differs from the
+  # vintage for this indicator.
   spi_raw_cols <- c(
     names(staged)[grepl("^SPI[.]", names(staged))],
     names(staged)[grepl("^RAW[.]", names(staged))]
   )
+  spi_raw_cols <- setdiff(spi_raw_cols, "SPI.D1.5.LFP")
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(spi_raw_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(spi_raw_cols))
 
@@ -67,11 +72,17 @@ test_that("staged SPI_index.csv matches the vintage within tolerance", {
   }
   fixture <- read_fixture("SPI_index.csv")
 
+  # E4 exclusion: SPI.D1.5.LFP and its downstream aggregates (SPI.DIM1.5.INDEX,
+  # SPI.INDEX.PIL1, SPI.INDEX) differ from the vintage because the ILO window
+  # logic was corrected (see docs/CHANGELOG.md).
   idx_cols <- c(
     names(staged)[grepl("^SPI[.]INDEX", names(staged))],
     names(staged)[grepl("^SPI[.]DIM", names(staged))],
     names(staged)[grepl("^SPI[.]D[0-9]", names(staged))]
   )
+  idx_cols <- setdiff(idx_cols, c(
+    "SPI.D1.5.LFP", "SPI.DIM1.5.INDEX", "SPI.INDEX.PIL1", "SPI.INDEX"
+  ))
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(idx_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(idx_cols))
 
@@ -110,4 +121,28 @@ test_that("SPI indicators correlate positively with the overall index", {
     mean(upper) > 0,
     info = sprintf("Mean pairwise correlation should be positive (got %.3f)", mean(upper))
   )
+
+  # P2.20: strengthen the smoke check -- the overall SPI index must
+  # correlate positively with each pillar index (a country that scores
+  # well overall should score well on each pillar). This catches a
+  # pillar that is inverted or disconnected from the overall score.
+  idx <- read_staged("SPI_index.csv")
+  if (!is.null(idx)) {
+    pillar_cols <- c("SPI.INDEX.PIL1", "SPI.INDEX.PIL2", "SPI.INDEX.PIL3",
+                     "SPI.INDEX.PIL4", "SPI.INDEX.PIL5")
+    present <- intersect(pillar_cols, names(idx))
+    if (length(present) > 0) {
+      corr_pillars <- cor(
+        idx %>% dplyr::select(SPI.INDEX, dplyr::all_of(present)) %>% as.matrix(),
+        use = "pairwise.complete.obs"
+      )
+      for (p in present) {
+        r <- corr_pillars["SPI.INDEX", p]
+        expect_true(
+          !is.na(r) && r > 0,
+          info = sprintf("SPI.INDEX should correlate positively with %s (got %.3f)", p, r)
+        )
+      }
+    }
+  }
 })

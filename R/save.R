@@ -2,9 +2,14 @@
 # Overwrite protection for output files
 # =============================================================================
 # Constraint C7: existing historical output files must NEVER be overwritten.
-# The pipeline writes new outputs to the staging/ directory. This helper
-# refuses to write if the target path already exists AND is a tracked
-# historical file (i.e. lives under 03_output_data/).
+# The pipeline writes new outputs to the staging/ directory.
+#
+# NOTE (P2.5/P2.26): C7 is enforced BY CONSTRUCTION -- every save_*()
+# function (R/append.R, R/index.R, R/quantiles.R, R/treemap.R,
+# R/databank.R, R/spl_admin.R) writes to params$staging_dir, never to
+# 03_output_data/. The helpers below are kept as a defensive guard for any
+# future code that might write to an arbitrary path; they are not called by
+# the current pipeline.
 #
 # Created: 2026-09-21
 # =============================================================================

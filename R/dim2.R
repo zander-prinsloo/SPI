@@ -228,23 +228,63 @@ score_odin <- function(odin_data, params) {
 #'
 #' Reads the D2.4.NADA csv files for each year and combines them.
 #'
+#' The NADA files are versioned by vintage year:
+#'   D2.4.NADA.csv        -- base file (covers the earliest years, has its
+#'                            own date column)
+#'   D2.4.NADA.<YEAR>.csv -- per-year files (e.g. D2.4.NADA.2024.csv)
+#'
+#' Historical quirk preserved from the original Rmd: the per-year files'
+#' own date columns are IGNORED and overwritten with the loop year, and the
+#' 2022 file is used for BOTH 2021 and 2022 (there is no
+#' D2.4.NADA.2021.csv). When a new vintage is added, the technical lead
+#' saves the new year's file as D2.4.NADA.<end_date>.csv and the loop picks
+#' it up automatically.
+#'
 #' @param params List of pipeline parameters.
 #' @return A tibble with iso3c, date, RAW.D2.4.NADA, RAW.D2.4.NADA_text,
 #'   SPI.D2.4.NADA.
 #' @export
 score_nada <- function(params) {
-  # Read each year's NADA file, adding the date
-  nada_2020 <- readr::read_csv(file.path(params$raw_dir, "2.4_DSDS", "D2.4.NADA.2020.csv"))
-  nada_2022 <- readr::read_csv(file.path(params$raw_dir, "2.4_DSDS", "D2.4.NADA.2022.csv"))
-  nada_2023 <- readr::read_csv(file.path(params$raw_dir, "2.4_DSDS", "D2.4.NADA.2023.csv"))
-  nada_2024 <- readr::read_csv(file.path(params$raw_dir, "2.4_DSDS", "D2.4.NADA.2024.csv"))
+  end_date <- params$end_date
+  nada_dir <- file.path(params$raw_dir, "2.4_DSDS")
 
-  D2.4_NADA <- readr::read_csv(file.path(params$raw_dir, "2.4_DSDS", "D2.4.NADA.csv")) %>%
-    dplyr::bind_rows(nada_2020) %>%
-    dplyr::bind_rows(nada_2022 %>% dplyr::mutate(date = 2021)) %>%
-    dplyr::bind_rows(nada_2022 %>% dplyr::mutate(date = 2022)) %>%
-    dplyr::bind_rows(nada_2023 %>% dplyr::mutate(date = 2023)) %>%
-    dplyr::bind_rows(nada_2024 %>% dplyr::mutate(date = 2024)) %>%
+  # Base file (covers the earliest years, has its own date column).
+  D2.4_NADA <- readr::read_csv(file.path(nada_dir, "D2.4.NADA.csv"))
+
+  # Per-year files. The per-year files' own date columns are overwritten
+  # with the loop year (matching the original Rmd). The 2021-from-2022
+  # quirk is preserved: when the 2022 file exists, it is bound twice
+  # (date = 2021 and date = 2022).
+  for (y in 2020:end_date) {
+    file_path <- file.path(nada_dir, sprintf("D2.4.NADA.%d.csv", y))
+    if (!file.exists(file_path)) {
+      # Historical years may be missing (e.g. there is no 2021 file -- the
+      # 2022 file provides the 2021 values). But the CURRENT vintage file
+      # is required -- fail loudly if it is missing (R8).
+      if (y == end_date) {
+        stop(
+          sprintf("NADA FILE NOT FOUND: %s\n", file_path),
+          "\nRun the NADA check script to collect the data:",
+          "  02_programs/misc_scripts/nada_check.R",
+          "This checks national statistical office websites for NADA",
+          "installations. Save the result as D2.4.NADA.<YEAR>.csv in",
+          "01_raw_data/2.4_DSDS/.",
+          call. = FALSE
+        )
+      }
+      next
+    }
+    nada_y <- readr::read_csv(file_path)
+    D2.4_NADA <- D2.4_NADA %>%
+      dplyr::bind_rows(nada_y %>% dplyr::mutate(date = y))
+    # Historical quirk: the 2022 file also provides the 2021 values.
+    if (y == 2022) {
+      D2.4_NADA <- D2.4_NADA %>%
+        dplyr::bind_rows(nada_y %>% dplyr::mutate(date = 2021))
+    }
+  }
+
+  D2.4_NADA <- D2.4_NADA %>%
     dplyr::mutate(SPI.D2.4.NADA = dplyr::case_when(
       NADA == 1 ~ 1,
       NADA == 0 ~ 0,

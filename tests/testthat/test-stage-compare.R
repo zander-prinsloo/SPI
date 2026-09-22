@@ -12,6 +12,13 @@
 #   2. Target comparison: compares pipeline targets (via tar_read) against
 #      fixtures. Used during porting for intermediate stages.
 #
+# NOTE (P2.18): the final-file tests SKIP when a staging file is missing.
+# This is intentional -- the harness runs both during porting (when staging
+# may not exist yet) and after a full run. The C7 protection test in
+# test-fixtures.R independently fails loudly if the pipeline ever deletes
+# or modifies historical outputs, so a broken pipeline cannot silently
+# pass the suite.
+#
 # Created: 2026-09-21
 # =============================================================================
 
@@ -50,10 +57,16 @@ test_that("staged SPI_data.csv matches the 202511 vintage", {
   # live World Bank API and drift between vintages (e.g. NRU was renamed
   # "Nauru" -> "Naoero"). The replication gate is about the indicator
   # VALUES, which must match exactly.
+  #
+  # SPI.D1.5.LFP is excluded: the ILO window logic was corrected (E4 in
+  # docs/CHANGELOG.md) -- the original Rmd's `else if (end_date - 1)` was
+  # always TRUE, making the `i - 4` branch unreachable. The corrected
+  # pipeline intentionally differs from the vintage for this indicator.
   spi_raw_cols <- c(
     names(staged)[grepl("^SPI[.]", names(staged))],
     names(staged)[grepl("^RAW[.]", names(staged))]
   )
+  spi_raw_cols <- setdiff(spi_raw_cols, "SPI.D1.5.LFP")
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(spi_raw_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(spi_raw_cols))
 
@@ -76,11 +89,18 @@ test_that("staged SPI_index.csv matches the 202511 vintage", {
   # Compare only the index value columns (SPI.INDEX*, SPI.DIM*, SPI.D*).
   # The metadata columns (country name, income) and population come from the
   # live World Bank API and drift between vintages.
+  #
+  # E4 exclusion: SPI.D1.5.LFP and its downstream aggregates (SPI.DIM1.5.INDEX,
+  # SPI.INDEX.PIL1, SPI.INDEX) differ from the vintage because the ILO window
+  # logic was corrected (see docs/CHANGELOG.md). Excluded from the comparison.
   idx_cols <- c(
     names(staged)[grepl("^SPI[.]INDEX", names(staged))],
     names(staged)[grepl("^SPI[.]DIM", names(staged))],
     names(staged)[grepl("^SPI[.]D[0-9]", names(staged))]
   )
+  idx_cols <- setdiff(idx_cols, c(
+    "SPI.D1.5.LFP", "SPI.DIM1.5.INDEX", "SPI.INDEX.PIL1", "SPI.INDEX"
+  ))
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(idx_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(idx_cols))
 
@@ -106,11 +126,20 @@ test_that("staged SPI_quantiles.csv matches the 202511 vintage", {
   # renamed "Nauru" -> "Naoero", ETH income reclassified, GDP values
   # updated). The replication gate is about the SPI values, which must
   # match exactly.
+  #
+  # E4 exclusion: SPI.INDEX.PIL1 and SPI.INDEX differ from the vintage
+  # because the ILO window logic was corrected (see docs/CHANGELOG.md).
+  # Their quintile columns (SPI.INDEX.quintile, SPI.INDEX.PIL1.quintile)
+  # are derived from those values and differ too.
   value_cols <- c(
     names(staged)[grepl("^SPI[.]INDEX", names(staged))],
     names(staged)[grepl("quintile", names(staged))],
     "fragile_conflict"
   )
+  value_cols <- setdiff(value_cols, c(
+    "SPI.INDEX.PIL1", "SPI.INDEX",
+    "SPI.INDEX.quintile", "SPI.INDEX.PIL1.quintile"
+  ))
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(value_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(value_cols))
 
@@ -162,10 +191,14 @@ test_that("staged SPI_indicators_2024.csv matches the 202511 vintage", {
   # Compare only the SPI value columns and fragile_conflict. The metadata
   # columns (country name, income, population) drift via the live World
   # Bank API.
+  #
+  # E4 exclusion: SPI.D1.5.LFP and SPI.DIM1.5.INDEX differ from the vintage
+  # because the ILO window logic was corrected (see docs/CHANGELOG.md).
   value_cols <- c(
     names(staged)[grepl("^SPI[.]", names(staged))],
     "fragile_conflict"
   )
+  value_cols <- setdiff(value_cols, c("SPI.D1.5.LFP", "SPI.DIM1.5.INDEX"))
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(value_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(value_cols))
 
@@ -267,6 +300,17 @@ test_that("staged databank files match the 202511 vintage", {
     staged_sub <- staged[staged[[code_col]] %in% country_codes, ]
     fixture_sub <- fixture[fixture[[code_col]] %in% country_codes, ]
 
+    # E4 exclusion: the LFP-affected series (SPI.D1.5.LFP and its
+    # downstream aggregates SPI.DIM1.5.INDEX, SPI.INDEX.PIL1, SPI.INDEX)
+    # differ from the vintage because the ILO window logic was corrected
+    # (see docs/CHANGELOG.md). Exclude them from the databank comparison.
+    series_col <- if ("Series" %in% names(staged_sub)) "Series" else "source_id"
+    e4_series <- c("SPI.D1.5.LFP", "SPI.DIM1.5.INDEX", "SPI.INDEX.PIL1", "SPI.INDEX")
+    if (series_col %in% names(staged_sub)) {
+      staged_sub <- staged_sub[!(staged_sub[[series_col]] %in% e4_series), ]
+      fixture_sub <- fixture_sub[!(fixture_sub[[series_col]] %in% e4_series), ]
+    }
+
     # The long format carries a country NAME column that drifts via the
     # live World Bank API (NRU "Nauru" -> "Naoero"). Exclude it from the
     # value comparison (the iso3c code column is the stable key).
@@ -275,7 +319,25 @@ test_that("staged databank files match the 202511 vintage", {
       fixture_sub <- fixture_sub %>% dplyr::select(-country)
     }
 
-    result <- compare_frames(staged_sub, fixture_sub)
+    # CSV round-trip artifact: all-NA columns read back as logical in the
+    # staged file but numeric in the vintage fixture (which was written by
+    # a different tool). Normalize all-NA logical columns to numeric so
+    # the comparison focuses on values, not read-back types.
+    for (nm in names(staged_sub)) {
+      if (is.logical(staged_sub[[nm]]) && all(is.na(staged_sub[[nm]])) &&
+          is.numeric(fixture_sub[[nm]])) {
+        staged_sub[[nm]] <- as.numeric(staged_sub[[nm]])
+      }
+    }
+
+    # Align rows by the natural key (country code, date, series) so the
+    # comparison is order-independent. The databank rows are sorted by the
+    # underlying data, which can differ in order between vintages.
+    key_cols <- intersect(
+      c("iso3c", "Country", "date", "Time", "source_id", "Series"),
+      names(staged_sub)
+    )
+    result <- compare_frames(staged_sub, fixture_sub, key_cols = key_cols)
     expect_true(
       result$identical,
       info = sprintf("%s (country rows): %s", fname, paste(result$differences, collapse = "\n"))

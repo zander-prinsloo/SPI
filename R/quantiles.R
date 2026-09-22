@@ -143,6 +143,12 @@ build_quantiles <- function(spi_index, params) {
 #' SPI_quantiles_2024.csv (with jitter columns) and SPI_indicators_2024.csv
 #' (with human-readable pillar names).
 #'
+#' NOTE (P2.29): the jitter_y/jitter_x columns use rnorm() WITHOUT an
+#' explicit seed. Within the targets pipeline, tar_option_set(seed = 2024)
+#' seeds targets' stochastic steps, so the jitter is reproducible within
+#' the pipeline but differs from the vintage values (documented exception
+#' E2 in docs/CHANGELOG.md).
+#'
 #' @param spi_index The index data frame from build_index(). Retained only
 #'   to create the targets dependency; the values come from the staged CSV
 #'   (see build_quantiles()).

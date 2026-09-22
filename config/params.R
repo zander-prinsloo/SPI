@@ -49,6 +49,23 @@ wgt <- 1
 # Set TRUE only when updating to a new vintage.
 run_downloads <- FALSE
 
+# --- IMF compiled data file --------------------------------------------------
+# The IMF "Compiled Data for World Bank" workbook is downloaded manually
+# from the IMF (it is not available via a public API). The filename encodes
+# the data vintage (e.g. "2025.10_Compiled Data for World Bank.xlsx" is the
+# October 2025 edition, used for the 2024 SPI vintage). When updating to a
+# new vintage, download the new edition and update this filename.
+imf_file <- "2025.10_Compiled Data for World Bank.xlsx"
+
+# --- ILO labour force data files ---------------------------------------------
+# The ILO ILOSTAT bulk files are downloaded manually from the ILO bulk
+# download facility. The filenames encode the download timestamp (e.g.
+# "20250923T0014" is the 2025-09-23 00:14 download, used for the 2024 SPI
+# vintage). When updating to a new vintage, download fresh files and update
+# these filenames.
+ilo_modelled_file <- "EAP_2WAP_SEX_AGE_RT_A-20250923T0014.csv"
+ilo_survey_file <- "EAP_DWAP_SEX_AGE_RT_A-20250923T0014.csv"
+
 # --- Country metadata --------------------------------------------------------
 # The World Bank country list (from wbstats) is used for country matching
 # throughout the pipeline (e.g. filtering to valid iso3c codes).

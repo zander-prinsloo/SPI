@@ -46,10 +46,12 @@ library(dplyr)
 #' @return Invisibly returns the paths to the ILO files.
 #' @export
 checkpoint_ilo_lfp <- function(params) {
-  # The 202511 vintage files (see R/dim1_5.R read_ilo_lfp()).
+  # The current vintage files come from config/params.R (ilo_modelled_file,
+  # ilo_survey_file) so a new vintage's files can be wired in without
+  # touching this code.
   files <- c(
-    modelled = file.path(params$raw_dir, "1.5_DUIO", "EAP_2WAP_SEX_AGE_RT_A-20250923T0014.csv"),
-    survey = file.path(params$raw_dir, "1.5_DUIO", "EAP_DWAP_SEX_AGE_RT_A-20250923T0014.csv")
+    modelled = file.path(params$raw_dir, "1.5_DUIO", params$ilo_modelled_file),
+    survey = file.path(params$raw_dir, "1.5_DUIO", params$ilo_survey_file)
   )
 
   for (nm in names(files)) {

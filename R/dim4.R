@@ -49,6 +49,55 @@ library(dplyr)
   }
 }
 
+#' Read the manual review file for a given vintage
+#'
+#' The manual review file contains manual overrides for the census/survey
+#' indicators, produced during the data review for each vintage. Files are
+#' versioned by vintage year:
+#'
+#'   D4.1.Manual.Review.<YEAR>.xlsx   (e.g. D4.1.Manual.Review.2024.xlsx)
+#'
+#' The file for the CURRENT vintage (params$end_date) is always required.
+#' Historical vintage files (e.g. D4.1.Manual.Review.2023.xlsx) are read
+#' when present so that earlier years keep their manual overrides; they are
+#' optional because the base CSVs already contain the historical values.
+#'
+#' @param params List of pipeline parameters.
+#' @return A tibble with iso3c and the manual override columns.
+#' @noRd
+.read_manual_review <- function(params) {
+  end_date <- params$end_date
+  raw_dir <- params$raw_dir
+  dir_path <- file.path(raw_dir, "4.1_SOCS", "raw")
+
+  # The current vintage file is REQUIRED -- fail loudly if missing (R8).
+  current_path <- file.path(dir_path, sprintf("D4.1.Manual.Review.%d.xlsx", end_date))
+  if (!file.exists(current_path)) {
+    stop(
+      sprintf("MANUAL REVIEW FILE NOT FOUND: %s\n", current_path),
+      "\nThe manual review file for the current vintage is required.",
+      "Create it from the previous vintage's file (e.g. copy",
+      "D4.1.Manual.Review.2024.xlsx to D4.1.Manual.Review.2025.xlsx)",
+      "and update the manual overrides for the new vintage.",
+      call. = FALSE
+    )
+  }
+
+  # Historical vintage files are optional -- read them when present so
+  # earlier years keep their manual overrides.
+  historical_years <- setdiff(2004:end_date, end_date)
+  historical_paths <- file.path(
+    dir_path,
+    sprintf("D4.1.Manual.Review.%d.xlsx", historical_years)
+  )
+  historical_paths <- historical_paths[file.exists(historical_paths)]
+
+  all_paths <- c(current_path, historical_paths)
+  purrr::map_dfr(all_paths, function(p) {
+    readxl::read_xlsx(p)
+  })
+}
+
 #' Combine year strings from base and manual review sources
 #'
 #' Helper used by census_fun. Merges the year lists from two character
@@ -119,11 +168,27 @@ census_fun <- function(data, input_var, params) {
   raw_dir <- params$raw_dir
 
   # --- 0) Read the base CSV --------------------------------------------------
-  base_raw <- readr::read_csv(file.path(raw_dir, "4.1_SOCS", "raw", paste0(data, ".2024.csv")))
+  # The base CSV is versioned by vintage year (e.g. D4.1.1.CEN.POPU.2024.csv),
+  # produced by 02_programs/misc_scripts/preprocess-manual-data-4.1-and-5.2.10.R
+  # from the input/ Excel files. Fail loudly if the current vintage file is
+  # missing (R8) -- the preprocess script must be run first.
+  base_path <- file.path(raw_dir, "4.1_SOCS", "raw", sprintf("%s.%d.csv", data, end_date))
+  if (!file.exists(base_path)) {
+    stop(
+      sprintf("BASE CSV NOT FOUND: %s\n", base_path),
+      "\nRun the preprocess script to generate the current vintage file:",
+      "  02_programs/misc_scripts/preprocess-manual-data-4.1-and-5.2.10.R",
+      "This reads the input/ Excel files and writes the per-year CSVs",
+      sprintf("(e.g. %s.%d.csv).", data, end_date),
+      call. = FALSE
+    )
+  }
+  base_raw <- readr::read_csv(base_path)
 
   # --- 1) Read the manual review file ----------------------------------------
-  manual_path <- file.path(raw_dir, "4.1_SOCS", "raw", "D4.1.Manual.Review.xlsx")
-  manual_raw <- readxl::read_xlsx(manual_path) %>%
+  # Versioned by vintage year (D4.1.Manual.Review.<YEAR>.xlsx). The current
+  # vintage file is required; historical files are read when present.
+  manual_raw <- .read_manual_review(params) %>%
     dplyr::select(iso3c, dplyr::all_of(input_var))
 
   # --- Merge base + manual and combine year strings --------------------------
@@ -223,11 +288,27 @@ survey_fun <- function(data, input_var, params) {
   raw_dir <- params$raw_dir
 
   # --- 0) Read the base CSV --------------------------------------------------
-  base_raw <- readr::read_csv(file.path(raw_dir, "4.1_SOCS", "raw", paste0(data, ".2024.csv")))
+  # The base CSV is versioned by vintage year (e.g. D4.1.4.SVY.HOUS.2024.csv),
+  # produced by 02_programs/misc_scripts/preprocess-manual-data-4.1-and-5.2.10.R
+  # from the input/ Excel files. Fail loudly if the current vintage file is
+  # missing (R8) -- the preprocess script must be run first.
+  base_path <- file.path(raw_dir, "4.1_SOCS", "raw", sprintf("%s.%d.csv", data, end_date))
+  if (!file.exists(base_path)) {
+    stop(
+      sprintf("BASE CSV NOT FOUND: %s\n", base_path),
+      "\nRun the preprocess script to generate the current vintage file:",
+      "  02_programs/misc_scripts/preprocess-manual-data-4.1-and-5.2.10.R",
+      "This reads the input/ Excel files and writes the per-year CSVs",
+      sprintf("(e.g. %s.%d.csv).", data, end_date),
+      call. = FALSE
+    )
+  }
+  base_raw <- readr::read_csv(base_path)
 
   # --- 1) Read the manual review file ----------------------------------------
-  manual_path <- file.path(raw_dir, "4.1_SOCS", "raw", "D4.1.Manual.Review.xlsx")
-  manual_raw <- readxl::read_xlsx(manual_path) %>%
+  # Versioned by vintage year (D4.1.Manual.Review.<YEAR>.xlsx). The current
+  # vintage file is required; historical files are read when present.
+  manual_raw <- .read_manual_review(params) %>%
     dplyr::select(iso3c, dplyr::all_of(input_var))
 
   # --- Merge base + manual and combine year strings --------------------------
