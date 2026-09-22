@@ -67,3 +67,30 @@ The vast majority of code in this repository is written in the R language.  The 
 This repository contains several files from the R package "renv".  The renv package helps manage specific package versions used to produce the results in this repository.  Because package version conflicts can make code that runs on one system not run on another system, it is important to have a list of the specific package versions used and a workflow for accessing these specific packages.  The renv package provides this.  In order to use renv, see the renv documentation here (https://rstudio.github.io/renv/articles/renv.html).  In general, the renv::restore() command should install all packages found in the renv.lock file in this repository, so that version conflicts do not cause errors.  
 
 There may be some issue with a few packages in particular.  These are World Bank specific packages to produce maps that conform with World Bank geospatial boundaries.  These can be downloaded here (https://github.com/worldbank/wbgviz).
+
+# Targets-based estimation pipeline
+
+The repository also contains a `{targets}`-based estimation pipeline that
+replicates the Rmd pipeline exactly (the 2024 vintage / "202511"). It is the
+recommended way to run SPI updates going forward.
+
+- **Pipeline definition**: `_targets.R` (mirrors the Rmd chunk structure)
+- **Functions**: `R/` (one file per dimension or output)
+- **Configuration**: `config/params.R` (edit `end_date` and `run_downloads`
+  for a new update)
+- **User guide**: `docs/user-guide.md` (step-by-step update, source
+  locations, manual checkpoints, troubleshooting)
+- **Tests**: `tests/testthat/` (comparison harness, vintage fixtures,
+  validation rules, download checkpoints)
+
+To run the pipeline:
+
+```r
+renv::restore()          # first time only
+targets::tar_make()      # run the full pipeline
+testthat::test_local()   # run the test suite
+```
+
+The pipeline writes new outputs to `staging/` and **never overwrites** the
+historical outputs in `03_output_data/`. See `docs/user-guide.md` for the
+full update procedure.

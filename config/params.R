@@ -59,10 +59,82 @@ country_metadata <- wbstats::wb_countries()
 # validates every source read against this registry and FAILS LOUDLY on any
 # mismatch, so that source format changes are surfaced to the technical lead
 # instead of silently breaking the estimates.
+#
+# NOTE: most schema checks are defined inline in the R/ functions via
+# read_csv_validated() (see R/schema.R), because each source has a
+# different read path (some need .name_repair, some need col_types). This
+# registry documents the canonical expected columns for each source so the
+# technical lead has a single reference. The registry is used directly by
+# read_iso_codes(); the other entries are documentation.
 source_schema <- list(
+  # --- Metadata --------------------------------------------------------------
   iso_codes = list(
     file = "metadata/iso_codes.csv",
     required_cols = c("country", "geoAreaCode", "iso3c")
+  ),
+  ILO_reference_area = list(
+    file = "metadata/ILO_reference_area.csv",
+    required_cols = c("ref_area", "ref_area.label")
+  ),
+  IMF_country_codes = list(
+    file = "metadata/IMF_country_codes.csv",
+    required_cols = c("iso3c")
+  ),
+  WDI_metadata = list(
+    file = "metadata/WDI_metadata_<YEAR>.csv",
+    required_cols = c("Country Code", "Income Group", "External debt Reporting status")
+  ),
+  # --- Dimension 1.5 ---------------------------------------------------------
+  PIP_comparability = list(
+    file = "1.5_DUIO/PIP_comparability_latest.csv",
+    required_cols = c("survey_acronym", "country_code", "year", "survey_comparability", "survey_coverage")
+  ),
+  UN_IGME_child_mortality = list(
+    file = "1.5_DUIO/UNICEF-CME_DF_2021_WQ-1.0-download.csv",
+    required_cols = c("Indicator", "Sex", "Observation Status", "Series Year", "TIME_PERIOD", "Geographic area", "OBS_VALUE")
+  ),
+  JMP_safely_managed_water = list(
+    file = "1.5_DUIO/Safely_Managed_Water_data.csv",
+    required_cols = c("iso3c", "geo", "year", "data_quality")
+  ),
+  ILO_LFP_modelled = list(
+    file = "1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-<timestamp>.csv",
+    required_cols = c("sex.label", "classif1.label", "ref_area.label", "time", "obs_value")
+  ),
+  ILO_LFP_survey = list(
+    file = "1.5_DUIO/EAP_DWAP_SEX_AGE_RT_A-<timestamp>.csv",
+    required_cols = c("sex.label", "classif1.label", "ref_area.label", "time", "obs_value")
+  ),
+  # --- Dimension 2 -----------------------------------------------------------
+  ODIN = list(
+    file = "2.2_DSOA/ODIN_<YEAR>.csv",
+    required_cols = c("Country Code", "Year")
+  ),
+  NADA = list(
+    file = "2.4_DSDS/D2.4.NADA.<YEAR>.csv",
+    required_cols = c("iso3c")
+  ),
+  # --- Dimension 3 -----------------------------------------------------------
+  UN_SDG_data = list(
+    file = "3_DP/<YEAR>/SPI_D3_UNSD_data_5yr.csv",
+    required_cols = c("iso3c", "date", "SPI.D3.1")
+  ),
+  # --- Dimension 4 -----------------------------------------------------------
+  census_survey = list(
+    file = "4.1_SOCS/raw/D4.1.<n>.<CEN|SVY>.<DATA>.<YEAR>.csv",
+    required_cols = c("iso3c")
+  ),
+  CRVS_birth_registration = list(
+    file = "4.2_SOAD/SG_REG_BRTH90N.csv",
+    required_cols = c("geoAreaCode", "timePeriodStart")
+  ),
+  # --- Dimension 5 -----------------------------------------------------------
+  legislation = list(
+    file = "5.1_DILG/SG_STT_FPOS.csv",
+    required_cols = c("iso3c", "date", "Value")
+  ),
+  finance = list(
+    file = "5.5_DIFI/SG_STT_FIN.csv",
+    required_cols = c("iso3c", "date", "Value")
   )
-  # More entries added as each indicator is ported (Phases 3-6).
 )

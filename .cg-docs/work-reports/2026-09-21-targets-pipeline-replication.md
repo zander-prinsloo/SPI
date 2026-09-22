@@ -209,6 +209,35 @@ status: active
   - User guide section 5 documents all pulls and checkpoints with
     download instructions.
   Full suite: 86 passed, 0 failed, 0 skipped.
+- Phase 7, Step 22 (finalize user guide): COMPLETE. `docs/user-guide.md`
+  completed with:
+  - Pipeline structure table mapping targets to original Rmd chunks.
+  - Full step-by-step SPI update approach from the "Update steps" tab of
+    `SPI updates.xlsx` (before-starting steps, WDI metadata, per-indicator
+    source instructions with files and URLs).
+  - Detailed source instructions for every indicator (PIP, UN IGME, JMP,
+    ILO, SDDS, ODIN, NADA, UN SDG, censuses/surveys, CRVS, geospatial,
+    legislation, standards, finance).
+  - "Next steps" sequence (01 -> 02 -> 03) mapped to pipeline targets.
+  - Data pulls and manual checkpoints (section 5).
+  - Troubleshooting (section 6): checkpoint failures, schema mismatches,
+    source-read failures, stage-compare test failures, renv sync, slow
+    pipeline.
+  - Interpreting test results (section 7): test file table, reading
+    results, replication gate explanation.
+  Documentation checklist (R10, R9, R12) verified complete:
+  - `docs/user-guide.md` -- step-by-step update guide (R10) DONE.
+  - Roxygen2-style comments on all pipeline functions (R9) DONE (prior
+    phases).
+  - `_targets.R` header explaining pipeline structure DONE (Phase 1).
+  - Source-schema registry documentation DONE: `config/params.R`
+    `source_schema` expanded to document all 15 source files with
+    expected columns (metadata, D1.5, D2, D3, D4, D5).
+  - README section pointing to the new pipeline and user guide DONE.
+  - Changelog/notes on what was ported and what was excluded (R12) DONE:
+    `docs/CHANGELOG.md` created with ported/excluded inventory and
+    documented exceptions.
+  Full suite: 86 passed, 0 failed, 0 skipped.
 
 ## Evidence Table
 
@@ -224,7 +253,7 @@ status: active
 | V8 | 5 | Validation expectations as automated tests | PASSED |
 | V9 | 6 | misc_scripts outputs match vintage | PASSED (reproducible value cols) |
 | V10 | 6 | Download targets + manual checkpoints | PASSED (8 targets + 18 smoke tests) |
-| V11 | 7 | User guide complete | pending |
+| V11 | 7 | User guide complete | PASSED (docs/user-guide.md + checklist) |
 | V12 | final | Full pipeline reproduces vintage | pending |
 | V13 | final | Historical outputs unchanged | pending |
 
