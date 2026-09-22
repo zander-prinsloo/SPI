@@ -63,8 +63,6 @@ read_classifications <- function(params) {
 #'   N_obs, value, footnote.
 #' @export
 build_databank <- function(spi_index, spi_data, params) {
-  latest_date <- params$end_date
-
   # Mirror the original script: read the saved index CSV (CSV round-trip).
   SPI <- readr::read_csv(file.path(params$staging_dir, "SPI_index.csv"), show_col_types = FALSE)
 
@@ -72,8 +70,7 @@ build_databank <- function(spi_index, spi_data, params) {
   metadata <- readr::read_csv(file.path(params$raw_dir, "metadata", "SPI_dimensions_sources.csv"))
   metadata_full <- readr::read_csv(file.path(params$raw_dir, "metadata", "SPI_index_sources.csv")) %>%
     dplyr::rename(source_name = descript) %>%
-    dplyr::bind_rows(metadata) %>%
-    dplyr::mutate(short_desc = stringr::str_extract(spi_indicator_description, stringr::boundary("sentence")))
+    dplyr::bind_rows(metadata)
 
   # --- Country classifications ----------------------------------------------
   class_df <- read_classifications(params)

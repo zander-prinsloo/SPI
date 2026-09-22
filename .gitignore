@@ -125,6 +125,12 @@ password.*
 passwords.*
 password/
 passwords/
+# Credential files (defense-in-depth)
+.env
+.env.*
+.Renviron
+*.pem
+*.key
 .Rproj.user
 
 # Compound GPID managed items (junctions + copied file - do not commit)

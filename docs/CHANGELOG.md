@@ -32,6 +32,7 @@ Created: 2026-09-22
 |--------------|----------------------|--------|
 | `compdf`, `compres`, `corrleations` | `tests/testthat/test-vintage-compare.R` | vintage comparison + correlation |
 | `validate::validator()` rules | `tests/testthat/test-validation.R` | expectation checks |
+| `dataCompareR::rCompare()` (replaced) | `R/compare.R` (`compare_frames()`, `expect_frames_match()`) | 1e-9 tolerance comparison harness |
 
 ### Stage D: Misc outputs (from `misc_scripts/`)
 
@@ -68,7 +69,10 @@ Created: 2026-09-22
   the pipeline nor present in the vintage — skills indicator gap). Rule
   kept for exact rule-set fidelity.
 - **E2**: `jitter_y`/`jitter_x` in `SPI_quantiles_2024.csv` are unseeded
-  `rnorm()` values in the original script — inherently non-reproducible.
+  `rnorm()` values in the original Rmd — inherently non-reproducible there.
+  The targets pipeline sets `tar_option_set(seed = 2024)`, so the jitter is
+  reproducible within the pipeline but differs from the vintage values.
+  Excluded from the stage-compare test.
 - **E3**: databank aggregate rows differ at the 2nd decimal from the
   vintage (the vintage databank was generated from an earlier index
   vintage). Country-level values are identical.

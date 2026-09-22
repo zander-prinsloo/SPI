@@ -38,10 +38,14 @@ library(tarchetypes)
 
 # --- Global targets options --------------------------------------------------
 tar_option_set(
-  # Reproducibility: fixed seed so any stochastic step is deterministic
+  # Reproducibility: fixed seed for targets' stochastic steps (tar_rep and
+  # similar). NOTE: this does NOT seed rnorm() inside ordinary target
+  # commands -- the jitter columns in SPI_quantiles_2024.csv use unseeded
+  # rnorm() and are the documented exception E2 (see docs/CHANGELOG.md).
   seed = 2024,
-  # Tidyverse-style: errors surface immediately instead of being swallowed
-  error = "continue"
+  # Fail loudly: stop the pipeline on the first error (R8). A failing
+  # target halts the run so the technical lead sees the error immediately.
+  error = "stop"
 )
 
 # --- Load pipeline functions -------------------------------------------------

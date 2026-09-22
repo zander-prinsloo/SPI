@@ -46,16 +46,23 @@ test_that("fixture files exist and match the manifest", {
 test_that("historical output files are never modified (C7)", {
   for (fname in names(manifest$files)) {
     source_path <- file.path(here::here("03_output_data"), fname)
-    if (file.exists(source_path)) {
-      actual_hash <- sha256_file(source_path)
-      expect_equal(
-        actual_hash,
-        manifest$files[[fname]]$sha256,
-        info = sprintf(
-          "HISTORICAL OUTPUT MODIFIED: %s -- the pipeline must never overwrite 03_output_data/",
-          fname
-        )
+    # Fail loudly if a historical output is missing (deletion is a C7
+    # violation just like modification).
+    expect_true(
+      file.exists(source_path),
+      info = sprintf(
+        "HISTORICAL OUTPUT MISSING: %s -- the pipeline must never delete 03_output_data/ files",
+        fname
       )
-    }
+    )
+    actual_hash <- sha256_file(source_path)
+    expect_equal(
+      actual_hash,
+      manifest$files[[fname]]$sha256,
+      info = sprintf(
+        "HISTORICAL OUTPUT MODIFIED: %s -- the pipeline must never overwrite 03_output_data/",
+        fname
+      )
+    )
   }
 })

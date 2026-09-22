@@ -106,7 +106,6 @@ compare_frames <- function(df1, df2, tolerance = 1e-9, key_cols = NULL) {
     # Numeric comparison with relative tolerance
     if (is.numeric(v1) && is.numeric(v2)) {
       # Compare element-wise, treating NA as equal to NA
-      both_na <- is.na(v1) & is.na(v2)
       na_mismatch <- xor(is.na(v1), is.na(v2))
       if (any(na_mismatch)) {
         idx <- which(na_mismatch)[1]
@@ -132,11 +131,21 @@ compare_frames <- function(df1, df2, tolerance = 1e-9, key_cols = NULL) {
       # Non-numeric: exact comparison
       mismatch <- !identical(v1, v2)
       if (mismatch) {
-        idx <- which(v1 != v2 | (is.na(v1) != is.na(v2)))[1]
-        differences <- c(differences, sprintf(
-          "Column '%s' %s: value differs (new = %s, vintage = %s)",
-          col, row_label(df1, idx), v1[idx], v2[idx]
-        ))
+        idx <- which(v1 != v2 | (is.na(v1) != is.na(v2)))
+        if (length(idx) > 0) {
+          idx <- idx[1]
+          differences <- c(differences, sprintf(
+            "Column '%s' %s: value differs (new = %s, vintage = %s)",
+            col, row_label(df1, idx), v1[idx], v2[idx]
+          ))
+        } else {
+          # identical() is stricter than element-wise equality (e.g. factor
+          # vs character); report the type-level difference.
+          differences <- c(differences, sprintf(
+            "Column '%s': values differ (identical() FALSE, no element-wise mismatch found)",
+            col
+          ))
+        }
       }
     }
   }

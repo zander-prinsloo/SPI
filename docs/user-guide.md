@@ -52,8 +52,10 @@ The pipeline mirrors the original Rmd structure as a sequence of targets:
   ```r
   renv::restore()
   ```
-- Packages: `targets`, `tarchetypes`, `testthat`, `tidyverse`, `wbstats`,
-  `haven`, `httr`, `readr`, `validate` (all in `renv.lock`)
+- Packages: all packages in `renv.lock` (key ones: `targets`, `tarchetypes`,
+  `testthat`, `tidyverse`, `wbstats`, `haven`, `httr`, `readr`, `validate`,
+  `jsonlite`, `readxl`, `stringr`, `tidyr`, `purrr`, `zoo`, `magrittr`,
+  `here`, `dplyr`)
 
 ## 3. How to Run the Pipeline
 
@@ -99,7 +101,7 @@ is documented in its section.
 1. Run the microdata library pull: `02_programs/misc_scripts/microdata_library_pull.Rmd`
 2. Download the new CLASS file:
    `https://databankfiles.worldbank.org/public/ddpext_download/site-content/CLASS.xlsx`
-   and place it in `01_raw_data/misc/CLASS.xlsx`.
+   and place it in `01_raw_data/misc/CLASS.xlsx`. Rename the old CLASS file with "_VINTAGE".
 
 ### 4.2 WDI metadata
 
@@ -114,7 +116,7 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 
 | Indicator | Source | Update procedure |
 |-----------|--------|------------------|
-| 1.5.1 PIP | `pipr` package | Read automatically; QA needed if PIP update delayed |
+| 1.5.1 PIP | Povcalnet PIP comparability | Download `PIP_comparability_latest.csv` to `01_raw_data/1.5_DUIO/`; QA needed if PIP update delayed |
 | 1.5.2 Child mortality | UN IGME | Download from childmortality.org, place in `01_raw_data/1.5_DUIO/` |
 | 1.5.3 Debt service | WDI metadata | Automatic once WDI metadata is updated |
 | 1.5.4 Safely managed water | JMP washdata API | Run through pipeline, save to `1.5_DUIO/Safely_Managed_Water_data.csv` |
@@ -136,7 +138,9 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 
 - **Source**: World Bank Povcalnet PIP comparability metadata.
 - **File**: `01_raw_data/1.5_DUIO/PIP_comparability_latest.csv`
-- **Update**: The `pipr` package reads automatically. If the PIP update is
+- **Update**: Download the latest `PIP_comparability_latest.csv` from
+  Povcalnet and place it in `01_raw_data/1.5_DUIO/`. The pipeline reads it
+  directly (it does not use the `pipr` package). If the PIP update is
   delayed, QA the comparability file manually.
 
 #### 1.5.2 Child mortality (UN IGME)
@@ -167,8 +171,9 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
   (modelled) and `EAP_DWAP_SEX_AGE_RT_A-<timestamp>.csv` (survey).
 - **Update**: Download from
   <https://www.ilo.org/shinyapps/bulkexplorer2/>. Filter sex = Total,
-  classif1 = Age (Youth, adults): 15+. Update the filename in
-  `R/dim1_5.R` (`read_ilo_lfp()`).
+  classif1 = Age (Youth, adults): 15+. Update the filename in BOTH
+  `R/dim1_5.R` (`read_ilo_lfp()`) and `R/pull_ilo.R`
+  (`checkpoint_ilo_lfp()`).
 
 #### 2.1 SDDS
 

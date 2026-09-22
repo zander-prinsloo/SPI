@@ -8,9 +8,11 @@
 #   2. Validates its schema (R8: fail loudly on format changes).
 #   3. Fails with clear download instructions if the file is missing.
 #
-# These checkpoints are OPT-IN targets. Running tar_make() by default does
-# NOT trigger them (they are not in the default target list). The technical
-# lead runs them explicitly when updating to a new vintage:
+# These checkpoints RUN BY DEFAULT: they are in the default target list, so
+# targets::tar_make() verifies every manual source and fails loudly (R8)
+# with download instructions if a file is missing or schema-invalid. Only
+# the API pulls (pull_jmp, pull_unsdg) are opt-in (run_downloads = TRUE).
+# The technical lead can also run a single checkpoint explicitly:
 #   targets::tar_make(checkpoint_odin)
 #   targets::tar_make(checkpoint_nada)
 #   targets::tar_make(checkpoint_microdata)

@@ -1,2 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Pin fixture line endings to LF so SHA-256 hashes in
+# tests/fixtures/manifest.json are stable across platforms
+*.csv text eol=lf

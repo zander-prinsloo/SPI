@@ -30,8 +30,9 @@ validate_schema <- function(df, file_name, required, optional = character()) {
         paste(missing, collapse = ", "),
         paste(names(df), collapse = ", ")
       ),
-      "This means the source file format has changed. Update the schema registry",
-      "in config/params.R (source_schema) or investigate the source download.",
+      "This means the source file format has changed. Update the schema check",
+      "in the R/ function that reads this file (read_csv_validated call), or",
+      "the checkpoint in R/checkpoints.R, or investigate the source download.",
       call. = FALSE
     )
   }

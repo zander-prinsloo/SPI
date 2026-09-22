@@ -48,6 +48,12 @@ We are collecting data on indicators for the 22 dimensions above. For disseminat
 
 # How to use this repository
 
+# How to use this repository
+
+> **For new SPI updates, use the `{targets}` pipeline (see the
+> "Targets-based estimation pipeline" section below). The Rmd workflow
+> described here is the legacy path.**
+
 There are several subfolders in this repository.  Below is a list of the most important files.
 
 Run_SPI.R contains a master file to run the two most important scripts: 01-data_prep.Rmd and 02-SPI_index.Rmd.  If you just want to reproduce the results, then simply execute this file.
@@ -62,7 +68,7 @@ Run_SPI.R contains a master file to run the two most important scripts: 01-data_
 
 # R code
 
-The vast majority of code in this repository is written in the R language.  The R version used was 4.3.1.  
+The vast majority of code in this repository is written in the R language.  The R version is pinned in `renv.lock` (currently R 4.6.1).  
 
 This repository contains several files from the R package "renv".  The renv package helps manage specific package versions used to produce the results in this repository.  Because package version conflicts can make code that runs on one system not run on another system, it is important to have a list of the specific package versions used and a workflow for accessing these specific packages.  The renv package provides this.  In order to use renv, see the renv documentation here (https://rstudio.github.io/renv/articles/renv.html).  In general, the renv::restore() command should install all packages found in the renv.lock file in this repository, so that version conflicts do not cause errors.  
 

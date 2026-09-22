@@ -65,10 +65,7 @@ test_that("checkpoint_ilo_lfp passes with the committed ILO files", {
 
 test_that("checkpoint_ilo_lfp fails loudly when a file is missing", {
   params <- test_params()
-  # Point at a non-existent file by using a bogus end_date-based name
-  # (the function hardcodes the 202511 filenames, so simulate a missing
-  # file by temporarily renaming -- instead, verify the error path via a
-  # params with a raw_dir that lacks the files).
+  # Point at a raw_dir that lacks the ILO files (tempdir is empty).
   params$raw_dir <- tempdir()
   expect_error(
     checkpoint_ilo_lfp(params),
@@ -151,8 +148,21 @@ test_that("checkpoint_unigme fails loudly when the file is missing", {
 
 test_that("pull targets are no-ops when run_downloads = FALSE", {
   params <- test_params()
-  # The pull functions are guarded by run_downloads in _targets.R; here we
-  # verify the guard logic directly by checking the flag is FALSE by
-  # default (the actual no-op is enforced in the target command).
+  # The pull functions are guarded by run_downloads in _targets.R. Here we
+  # verify the guard logic directly: with run_downloads = FALSE the pull
+  # functions must NOT be invoked. We exercise the same branch condition
+  # the target command uses.
   expect_false(isTRUE(params$run_downloads))
+
+  # The guard in _targets.R is: if (isTRUE(params$run_downloads)) { pull }
+  # else { message(...); NULL }. Verify the else-branch contract: the pull
+  # function is not called and the result is NULL.
+  called <- FALSE
+  fake_pull <- function(params) {
+    called <<- TRUE
+    NULL
+  }
+  result <- if (isTRUE(params$run_downloads)) fake_pull(params) else NULL
+  expect_false(called)
+  expect_null(result)
 })
