@@ -83,8 +83,14 @@ Created: 2026-09-22
 - **E4**: `SPI.D1.5.LFP` window logic corrected. The original Rmd had
   `else if (end_date - 1)` which is always TRUE, making the `i - 4` branch
   unreachable. Fixed to `else if (end == end_date - 1)` (user-approved
-  methodology correction). This changes 34 LFP values and drops 70 rows
-  vs the 202511 vintage. Excluded from the stage-compare test.
+  methodology correction). For years 2010-2022, the old code therefore
+  used a six-year inclusive window (`i - 5` through `i`), while the
+  corrected code uses the intended five-year inclusive window (`i - 4`
+  through `i`). The final `SPI_data.csv` comparison shows 102 changed
+  country-year values across 81 countries and 13 years. The affected
+  observations are those where the dropped boundary-year observation
+  changes the accuracy or source component of the LFP score. Excluded from
+  the stage-compare test.
 - **WB API drift**: metadata columns (country name, income, population,
   GDP, last_updated) change between vintages because the World Bank API is
   live. Documented, not a pipeline bug.

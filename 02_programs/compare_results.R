@@ -302,16 +302,36 @@ lfp_changes <- lfp_new %>%
   ) %>%
   dplyr::mutate(
     change = SPI.D1.5.LFP_new - SPI.D1.5.LFP_old,
-    absolute_change = abs(change)
+    absolute_change = abs(change),
+    old_window_start = dplyr::case_when(
+      date == 2024 ~ date - 6,
+      date == 2023 ~ date - 5,
+      TRUE ~ date - 5
+    ),
+    new_window_start = dplyr::case_when(
+      date == 2024 ~ date - 6,
+      date == 2023 ~ date - 5,
+      TRUE ~ date - 4
+    ),
+    boundary_year_removed = dplyr::if_else(
+      old_window_start != new_window_start,
+      old_window_start,
+      as.numeric(NA)
+    ),
+    window_explanation = dplyr::if_else(
+      old_window_start != new_window_start,
+      "Old code included one extra boundary year; corrected code excludes it",
+      "Window length unchanged; investigate if this row appears"
+    )
   ) %>%
   dplyr::arrange(dplyr::desc(absolute_change), date, iso3c)
 
 cat("\nChanged LFP values: ", nrow(lfp_changes), "\n", sep = "")
 cat("Countries affected: ", dplyr::n_distinct(lfp_changes$iso3c), "\n", sep = "")
 cat("Years affected: ", dplyr::n_distinct(lfp_changes$date), "\n", sep = "")
-if (nrow(lfp_changes) != 34) {
+if (nrow(lfp_changes) != 102) {
   cat(
-    "[CHECK] The expected E4 count was 34, but the current final output has ",
+    "[CHECK] The expected E4 count is 102, but the current final output has ",
     nrow(lfp_changes),
     " changed country-year values.\n",
     sep = ""
@@ -397,3 +417,4 @@ global_by_year <- lfp_new %>%
   ) %>%
   dplyr::filter(changed_values > 0)
 print(global_by_year)
+
