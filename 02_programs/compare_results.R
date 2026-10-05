@@ -270,3 +270,130 @@ cat("
 The automated test suite (tests/testthat/) runs the same comparisons and
 is the authoritative gate: 137 tests, 0 failures.
 ")
+
+# =============================================================================
+# 10) E4 detail: SPI.D1.5.LFP changes
+# =============================================================================
+section("10) E4 detail: SPI.D1.5.LFP changes")
+
+# Read the two LFP columns and attach the new pipeline's country metadata.
+# The old file is the former 202511 result; the new file is the current
+# staged result after correcting the ILO window logic.
+lfp_new <- read_new("SPI_data.csv") %>%
+  dplyr::select(
+    iso3c, date, SPI.D1.5.LFP_new = SPI.D1.5.LFP,
+    country, region, income_level, population
+  )
+
+lfp_old <- read_former("SPI_data.csv") %>%
+  dplyr::select(
+    iso3c, date, SPI.D1.5.LFP_old = SPI.D1.5.LFP
+  )
+
+# First filter to rows where the LFP score changed, including NA/value
+# changes. Then calculate signed and absolute changes for sorting.
+lfp_changes <- lfp_new %>%
+  dplyr::left_join(lfp_old, by = c("iso3c", "date")) %>%
+  dplyr::filter(
+    xor(is.na(SPI.D1.5.LFP_new), is.na(SPI.D1.5.LFP_old)) |
+      (!is.na(SPI.D1.5.LFP_new) &
+        !is.na(SPI.D1.5.LFP_old) &
+        SPI.D1.5.LFP_new != SPI.D1.5.LFP_old)
+  ) %>%
+  dplyr::mutate(
+    change = SPI.D1.5.LFP_new - SPI.D1.5.LFP_old,
+    absolute_change = abs(change)
+  ) %>%
+  dplyr::arrange(dplyr::desc(absolute_change), date, iso3c)
+
+cat("\nChanged LFP values: ", nrow(lfp_changes), "\n", sep = "")
+cat("Countries affected: ", dplyr::n_distinct(lfp_changes$iso3c), "\n", sep = "")
+cat("Years affected: ", dplyr::n_distinct(lfp_changes$date), "\n", sep = "")
+if (nrow(lfp_changes) != 34) {
+  cat(
+    "[CHECK] The expected E4 count was 34, but the current final output has ",
+    nrow(lfp_changes),
+    " changed country-year values.\n",
+    sep = ""
+  )
+}
+
+cat("\nEvery changed country-year, ordered by biggest absolute change:\n")
+print(lfp_changes)
+
+# --- Changes by region -------------------------------------------------------
+cat("\nChanges by region:\n")
+changes_by_region <- lfp_changes %>%
+  dplyr::group_by(region) %>%
+  dplyr::summarise(
+    changed_values = dplyr::n(),
+    countries_affected = dplyr::n_distinct(iso3c),
+    years_affected = dplyr::n_distinct(date),
+    old_mean = mean(SPI.D1.5.LFP_old, na.rm = TRUE),
+    new_mean = mean(SPI.D1.5.LFP_new, na.rm = TRUE),
+    mean_change = mean(change, na.rm = TRUE),
+    mean_absolute_change = mean(absolute_change, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  dplyr::arrange(dplyr::desc(changed_values), region)
+print(changes_by_region)
+
+# --- Changes by income group -------------------------------------------------
+cat("\nChanges by income group:\n")
+changes_by_income <- lfp_changes %>%
+  dplyr::group_by(income_level) %>%
+  dplyr::summarise(
+    changed_values = dplyr::n(),
+    countries_affected = dplyr::n_distinct(iso3c),
+    years_affected = dplyr::n_distinct(date),
+    old_mean = mean(SPI.D1.5.LFP_old, na.rm = TRUE),
+    new_mean = mean(SPI.D1.5.LFP_new, na.rm = TRUE),
+    mean_change = mean(change, na.rm = TRUE),
+    mean_absolute_change = mean(absolute_change, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  dplyr::arrange(dplyr::desc(changed_values), income_level)
+print(changes_by_income)
+
+# --- Global impact -----------------------------------------------------------
+# This compares the global mean across ALL country-year observations, not
+# only the changed rows. The population-weighted result uses the population
+# already stored in the new SPI_data output.
+global_lfp <- lfp_new %>%
+  dplyr::left_join(lfp_old, by = c("iso3c", "date")) %>%
+  dplyr::summarise(
+    old_global_mean = mean(SPI.D1.5.LFP_old, na.rm = TRUE),
+    new_global_mean = mean(SPI.D1.5.LFP_new, na.rm = TRUE),
+    global_mean_change = new_global_mean - old_global_mean,
+    old_population_weighted_mean = weighted.mean(
+      SPI.D1.5.LFP_old, population, na.rm = TRUE
+    ),
+    new_population_weighted_mean = weighted.mean(
+      SPI.D1.5.LFP_new, population, na.rm = TRUE
+    ),
+    population_weighted_change =
+      new_population_weighted_mean - old_population_weighted_mean
+  )
+
+cat("\nGlobal impact across all country-year observations:\n")
+print(global_lfp)
+
+cat("\nGlobal impact by year:\n")
+global_by_year <- lfp_new %>%
+  dplyr::left_join(lfp_old, by = c("iso3c", "date")) %>%
+  dplyr::group_by(date) %>%
+  dplyr::summarise(
+    countries = dplyr::n(),
+    changed_values = sum(
+      xor(is.na(SPI.D1.5.LFP_new), is.na(SPI.D1.5.LFP_old)) |
+        (!is.na(SPI.D1.5.LFP_new) &
+          !is.na(SPI.D1.5.LFP_old) &
+          SPI.D1.5.LFP_new != SPI.D1.5.LFP_old)
+    ),
+    old_mean = mean(SPI.D1.5.LFP_old, na.rm = TRUE),
+    new_mean = mean(SPI.D1.5.LFP_new, na.rm = TRUE),
+    mean_change = new_mean - old_mean,
+    .groups = "drop"
+  ) %>%
+  dplyr::filter(changed_values > 0)
+print(global_by_year)
