@@ -59,19 +59,38 @@ un_sdg_data_read <- function(year, params) {
     dplyr::filter(date == year)
 }
 
-#' Combine the UN SDG data for all years
+#' Read collection-produced SDG score inputs.
 #'
-#' Reads the SDG data for each year from 2004 to end_date and binds them
-#' together.
+#' Stops when the collection artifact is absent.
+#'
+#' @param params List of pipeline parameters.
+#' @return A tibble with iso3c, date, and the SPI.D3.* columns.
+#' @export
+read_sdg_collection_scores <- function(params) {
+  path <- file.path(
+    params$raw_dir,
+    "3_DP",
+    "collection",
+    "SPI_D3_UNSD_data_5yr.csv"
+  )
+  if (!file.exists(path)) {
+    stop(
+      "SDG COLLECTION SCORE ARTIFACT NOT FOUND: ", path,
+      "\nRun the data collection pipeline before estimation.",
+      call. = FALSE
+    )
+  }
+
+  readr::read_csv(path, show_col_types = FALSE) %>%
+    dplyr::filter(date %in% params$span) %>%
+    dplyr::select(iso3c, date, dplyr::starts_with("SPI.D3"))
+}
+
+#' Combine the legacy per-year SDG data for all years.
 #'
 #' @param params List of pipeline parameters.
 #' @return A tibble with iso3c, date, and the SPI.D3.* columns.
 #' @export
 combine_dim3 <- function(params) {
-  end_date <- params$end_date
-  span <- params$span
-
-  purrr::map_dfr(span, function(year) {
-    un_sdg_data_read(year, params)
-  })
+  read_sdg_collection_scores(params)
 }

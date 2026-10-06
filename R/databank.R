@@ -64,7 +64,7 @@ read_classifications <- function(params) {
 #' @export
 build_databank <- function(spi_index, spi_data, params) {
   # Mirror the original script: read the saved index CSV (CSV round-trip).
-  SPI <- readr::read_csv(file.path(params$staging_dir, "SPI_index.csv"), show_col_types = FALSE)
+  SPI <- readr::read_csv(file.path(params$estimation_write_dir, "SPI_index.csv"), show_col_types = FALSE)
 
   # --- Series metadata -------------------------------------------------------
   metadata <- readr::read_csv(file.path(params$raw_dir, "metadata", "SPI_dimensions_sources.csv"))
@@ -80,7 +80,7 @@ build_databank <- function(spi_index, spi_data, params) {
   # than the in-memory spi_data target, which may contain duplicate rows
   # from the append joins. The original script reads SPI_data.csv from
   # disk, so this mirrors the CSV round-trip.
-  spi_raw <- readr::read_csv(file.path(params$staging_dir, "SPI_data.csv"), show_col_types = FALSE) %>%
+  spi_raw <- readr::read_csv(file.path(params$estimation_write_dir, "SPI_data.csv"), show_col_types = FALSE) %>%
     dplyr::select(country, iso3c, date, dplyr::starts_with("RAW")) %>%
     dplyr::select(-dplyr::ends_with("_text"), -dplyr::ends_with("_nada"))
 
@@ -146,11 +146,11 @@ build_databank <- function(spi_index, spi_data, params) {
 #' @export
 save_databank <- function(databank_df, params) {
   # Long format with aggregates
-  path1 <- file.path(params$staging_dir, "SPI_databank_country_and_aggregates.csv")
-  readr::write_csv(databank_df, path1)
+  path1 <- file.path(params$estimation_write_dir, "SPI_databank_country_and_aggregates.csv")
+  write_output_csv(databank_df, path1)
 
   # DCS format
-  path2 <- file.path(params$staging_dir, "SPI_databank_country_and_aggregates_DCS.csv")
+  path2 <- file.path(params$estimation_write_dir, "SPI_databank_country_and_aggregates_DCS.csv")
   databank_df %>%
     dplyr::transmute(
       Time = paste0("YR", date),
@@ -160,10 +160,10 @@ save_databank <- function(databank_df, params) {
       Data = value
     ) %>%
     dplyr::mutate(Data = dplyr::if_else(is.na(Data), "", as.character(Data))) %>%
-    readr::write_csv(path2)
+    write_output_csv(path2)
 
   # DCS wide format
-  path3 <- file.path(params$staging_dir, "SPI_databank_country_and_aggregates_DCS_wide.csv")
+  path3 <- file.path(params$estimation_write_dir, "SPI_databank_country_and_aggregates_DCS_wide.csv")
   databank_df %>%
     dplyr::transmute(
       Time = paste0("YR", date),
@@ -178,10 +178,10 @@ save_databank <- function(databank_df, params) {
       values_from = "Data",
       names_sort = TRUE
     ) %>%
-    readr::write_csv(path3)
+    write_output_csv(path3)
 
   # Footnotes
-  path4 <- file.path(params$staging_dir, "SPI_databank_footnotes.csv")
+  path4 <- file.path(params$estimation_write_dir, "SPI_databank_footnotes.csv")
   databank_df %>%
     dplyr::transmute(
       Country = iso3c,
@@ -189,7 +189,7 @@ save_databank <- function(databank_df, params) {
       Time = paste0("YR", date),
       FootNote = footnote
     ) %>%
-    readr::write_csv(path4)
+    write_output_csv(path4)
 
   list(
     aggregates = path1,

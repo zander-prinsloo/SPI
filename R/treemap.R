@@ -39,7 +39,7 @@ library(dplyr)
 #' @export
 build_treemap <- function(spi_index, params) {
   # Mirror the original script: read the saved index CSV (CSV round-trip).
-  SPI <- readr::read_csv(file.path(params$staging_dir, "SPI_index.csv"), show_col_types = FALSE)
+  SPI <- readr::read_csv(file.path(params$estimation_write_dir, "SPI_index.csv"), show_col_types = FALSE)
 
   metadata_card <- readr::read_csv(file.path(params$raw_dir, "metadata", "SPI_card_sources.csv")) %>%
     dplyr::mutate(
@@ -104,7 +104,7 @@ build_treemap <- function(spi_index, params) {
 #' @return The path written.
 #' @export
 save_treemap <- function(treemap_df, params) {
-  path <- file.path(params$staging_dir, "SPI_treemap.csv")
-  readr::write_csv(treemap_df, path)
+  path <- file.path(params$estimation_write_dir, "SPI_treemap.csv")
+  write_output_csv(treemap_df, path)
   path
 }

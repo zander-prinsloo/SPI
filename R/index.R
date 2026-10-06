@@ -123,7 +123,7 @@ build_index <- function(spi_data, params) {
   end_date <- params$end_date
 
   # --- Read the staged SPI_data.csv (CSV round-trip, mirrors the Rmd) -------
-  spi_data <- readr::read_csv(file.path(params$staging_dir, "SPI_data.csv"))
+  spi_data <- readr::read_csv(file.path(params$estimation_write_dir, "SPI_data.csv"))
 
   # --- Add population and weights (from the "data" chunk) --------------------
   # NOTE: default join (no `by`) so that the shared `population` column is
@@ -280,7 +280,7 @@ build_index <- function(spi_data, params) {
 #' @return The path written.
 #' @export
 save_index <- function(spi_index_df, params) {
-  csv_path <- file.path(params$staging_dir, "SPI_index.csv")
-  readr::write_csv(spi_index_df, csv_path)
+  csv_path <- file.path(params$estimation_write_dir, "SPI_index.csv")
+  write_output_csv(spi_index_df, csv_path)
   csv_path
 }
