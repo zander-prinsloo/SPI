@@ -7,7 +7,8 @@
 # compared against the corresponding fixture.
 #
 # The harness has two modes:
-#   1. Final-file comparison: compares staged output files (staging/) against
+#   1. Final-file comparison: compares final output files (03_output_data/)
+#      against
 #      the vintage fixtures. Used once the pipeline produces files.
 #   2. Target comparison: compares pipeline targets (via tar_read) against
 #      fixtures. Used during porting for intermediate stages.
@@ -36,7 +37,11 @@ read_fixture <- function(fname) {
 # --- Helper: read a staged output CSV ----------------------------------------
 
 read_staged <- function(fname) {
-  path <- file.path(here::here("staging"), fname)
+  manifest_path <- file.path(here::here("03_output_data"), "_estimation_manifest.json")
+  if (!file.exists(manifest_path)) {
+    return(NULL)
+  }
+  path <- file.path(here::here("03_output_data"), fname)
   if (!file.exists(path)) {
     return(NULL)  # stage not yet produced
   }
@@ -48,7 +53,7 @@ read_staged <- function(fname) {
 test_that("staged SPI_data.csv matches the 202511 vintage", {
   staged <- read_staged("SPI_data.csv")
   if (is.null(staged)) {
-    skip("staging/SPI_data.csv not yet produced (Phase 3)")
+    skip("03_output_data/SPI_data.csv not yet produced (Phase 5)")
   }
   fixture <- read_fixture("SPI_data.csv")
 
@@ -62,10 +67,15 @@ test_that("staged SPI_data.csv matches the 202511 vintage", {
   # docs/CHANGELOG.md) -- the original Rmd's `else if (end_date - 1)` was
   # always TRUE, making the `i - 4` branch unreachable. The corrected
   # pipeline intentionally differs from the vintage for this indicator.
-  spi_raw_cols <- c(
-    names(staged)[grepl("^SPI[.]", names(staged))],
-    names(staged)[grepl("^RAW[.]", names(staged))]
+  required_spi_raw_cols <- c(
+    names(fixture)[grepl("^SPI[.]", names(fixture))],
+    names(fixture)[grepl("^RAW[.]", names(fixture))]
   )
+  expect_setequal(
+    intersect(required_spi_raw_cols, names(staged)),
+    required_spi_raw_cols
+  )
+  spi_raw_cols <- required_spi_raw_cols
   spi_raw_cols <- setdiff(spi_raw_cols, "SPI.D1.5.LFP")
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(spi_raw_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(spi_raw_cols))
@@ -82,7 +92,7 @@ test_that("staged SPI_data.csv matches the 202511 vintage", {
 test_that("staged SPI_index.csv matches the 202511 vintage", {
   staged <- read_staged("SPI_index.csv")
   if (is.null(staged)) {
-    skip("staging/SPI_index.csv not yet produced (Phase 4)")
+    skip("03_output_data/SPI_index.csv not yet produced (Phase 5)")
   }
   fixture <- read_fixture("SPI_index.csv")
 
@@ -116,7 +126,7 @@ test_that("staged SPI_index.csv matches the 202511 vintage", {
 test_that("staged SPI_quantiles.csv matches the 202511 vintage", {
   staged <- read_staged("SPI_quantiles.csv")
   if (is.null(staged)) {
-    skip("staging/SPI_quantiles.csv not yet produced (Phase 6)")
+    skip("03_output_data/SPI_quantiles.csv not yet produced (Phase 5)")
   }
   fixture <- read_fixture("SPI_quantiles.csv")
 
@@ -155,7 +165,7 @@ test_that("staged SPI_quantiles.csv matches the 202511 vintage", {
 test_that("staged SPI_quantiles_2024.csv matches the 202511 vintage", {
   staged <- read_staged("SPI_quantiles_2024.csv")
   if (is.null(staged)) {
-    skip("staging/SPI_quantiles_2024.csv not yet produced (Phase 6)")
+    skip("03_output_data/SPI_quantiles_2024.csv not yet produced (Phase 5)")
   }
   fixture <- read_fixture("SPI_quantiles_2024.csv")
 
@@ -184,7 +194,7 @@ test_that("staged SPI_quantiles_2024.csv matches the 202511 vintage", {
 test_that("staged SPI_indicators_2024.csv matches the 202511 vintage", {
   staged <- read_staged("SPI_indicators_2024.csv")
   if (is.null(staged)) {
-    skip("staging/SPI_indicators_2024.csv not yet produced (Phase 6)")
+    skip("03_output_data/SPI_indicators_2024.csv not yet produced (Phase 5)")
   }
   fixture <- read_fixture("SPI_indicators_2024.csv")
 
@@ -214,7 +224,7 @@ test_that("staged SPI_indicators_2024.csv matches the 202511 vintage", {
 test_that("staged SPI_treemap.csv matches the 202511 vintage", {
   staged <- read_staged("SPI_treemap.csv")
   if (is.null(staged)) {
-    skip("staging/SPI_treemap.csv not yet produced (Phase 6)")
+    skip("03_output_data/SPI_treemap.csv not yet produced (Phase 5)")
   }
   fixture <- read_fixture("SPI_treemap.csv")
 
@@ -246,7 +256,7 @@ test_that("staged SPI_treemap.csv matches the 202511 vintage", {
 test_that("staged SPL_admin_data_availability.csv matches the 202511 vintage", {
   staged <- read_staged("SPL_admin_data_availability.csv")
   if (is.null(staged)) {
-    skip("staging/SPL_admin_data_availability.csv not yet produced (Phase 6)")
+    skip("03_output_data/SPL_admin_data_availability.csv not yet produced (Phase 5)")
   }
   fixture <- read_fixture("SPL_admin_data_availability.csv")
 
@@ -291,7 +301,7 @@ test_that("staged databank files match the 202511 vintage", {
   )) {
     staged <- read_staged(fname)
     if (is.null(staged)) {
-      skip(sprintf("staging/%s not yet produced (Phase 6)", fname))
+      skip(sprintf("03_output_data/%s not yet produced (Phase 5)", fname))
     }
     fixture <- read_fixture(fname)
 

@@ -20,6 +20,8 @@
 library(testthat)
 
 # Source the checkpoint and pull functions
+source(file.path(here::here("R"), "collection_http.R"))
+source(file.path(here::here("R"), "collection_cache.R"))
 source(file.path(here::here("R"), "checkpoints.R"))
 source(file.path(here::here("R"), "pull_wdi.R"))
 source(file.path(here::here("R"), "pull_ilo.R"))

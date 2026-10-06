@@ -45,47 +45,19 @@ library(dplyr)
 #'   Singapore, which participates in OECD standards but is not a member).
 #' @export
 get_oecd_countries <- function(params) {
-  # Cache filename is versioned: v1 stored country NAMES, v2 stores iso3c
-  # codes. The version bump invalidates any stale v1 cache from earlier
-  # runs (a name-based cache would silently break iso3c matching).
-  cache_path <- file.path(params$staging_dir, "oecd_countries_v2.rds")
-
-  if (file.exists(cache_path)) {
-    return(readr::read_rds(cache_path))
-  }
-
-  # Fetch from the World Bank API (region=OED)
-  query <- httr::GET(
-    url = "https://api.worldbank.org/v2/country?region=OED&format=json",
-    timeout = 60
+  artifact_path <- file.path(
+    params$collection_dir,
+    "world_bank",
+    "oecd_countries.rds"
   )
-  oecd_country_df <- query %>%
-    httr::content(as = "text", encoding = "UTF-8") %>%
-    jsonlite::fromJSON(flatten = TRUE)
-
-  # The API's `id` field is the iso3c code (e.g. "AUS"). Match by iso3c,
-  # not by name, so the adjustment is robust to World Bank API country
-  # renames (e.g. NRU "Nauru" -> "Naoero").
-  country_mod_list <- oecd_country_df[[2]]$id
-  # Singapore participates in OECD standards but is not an OECD member
-  country_mod_list <- c(country_mod_list, "SGP")
-
-  # Fail loudly if the API returned no countries (R8) -- a silent empty
-  # list would silently skip the OECD adjustment for every country.
-  if (length(country_mod_list) == 0) {
+  if (!file.exists(artifact_path)) {
     stop(
-      "OECD country list is EMPTY after fetching the World Bank API.\n",
-      "The OECD high-income adjustment would be silently skipped.\n",
-      "Check the API response (https://api.worldbank.org/v2/country?region=OED&format=json).",
+      "WORLD BANK OECD COLLECTION ARTIFACT NOT FOUND: ", artifact_path,
+      "\nRun the data collection pipeline before estimation.",
       call. = FALSE
     )
   }
-
-  # Cache for reproducibility
-  dir.create(params$staging_dir, recursive = TRUE, showWarnings = FALSE)
-  readr::write_rds(country_mod_list, cache_path)
-
-  country_mod_list
+  readRDS(artifact_path)
 }
 
 # =============================================================================
@@ -105,32 +77,19 @@ get_oecd_countries <- function(params) {
 #' @return A tibble with iso3c, date, population.
 #' @export
 get_population <- function(params) {
-  cache_path <- file.path(
-    params$staging_dir,
+  artifact_path <- file.path(
+    params$collection_dir,
+    "world_bank",
     sprintf("population_%d.rds", params$end_date)
   )
-
-  if (file.exists(cache_path)) {
-    return(readr::read_rds(cache_path))
+  if (!file.exists(artifact_path)) {
+    stop(
+      "WORLD BANK POPULATION COLLECTION ARTIFACT NOT FOUND: ", artifact_path,
+      "\nRun the data collection pipeline before estimation.",
+      call. = FALSE
+    )
   }
-
-  pop_df <- wbstats::wb_data(
-    country = "all",
-    indicator = "SP.POP.TOTL",
-    start_date = 2004,
-    end_date = params$end_date
-  ) %>%
-    dplyr::mutate(
-      date = as.numeric(date),
-      population = SP.POP.TOTL
-    ) %>%
-    dplyr::select(iso3c, date, population)
-
-  # Cache for reproducibility within a vintage
-  dir.create(params$staging_dir, recursive = TRUE, showWarnings = FALSE)
-  readr::write_rds(pop_df, cache_path)
-
-  pop_df
+  readRDS(artifact_path)
 }
 
 # =============================================================================
@@ -223,19 +182,19 @@ append_spi <- function(dims, params, grid) {
 #' @export
 save_spi <- function(spi_df_final, params) {
   # --- Write to CSV ----------------------------------------------------------
-  csv_path <- file.path(params$staging_dir, "SPI_data.csv")
+  csv_path <- file.path(params$estimation_write_dir, "SPI_data.csv")
   spi_df_final %>%
     dplyr::distinct() %>%
     dplyr::mutate(dplyr::across(is.list, as.character)) %>%
-    readr::write_csv(csv_path)
+    write_output_csv(csv_path)
 
   # --- Write to Stata --------------------------------------------------------
-  dta_path <- file.path(params$staging_dir, "SPI_data.dta")
+  dta_path <- file.path(params$estimation_write_dir, "SPI_data.dta")
   spi_df_final %>%
     dplyr::mutate(dplyr::across(is.list, as.character)) %>%
     dplyr::rename_with(~ gsub(".", "_", .x, fixed = TRUE)) %>%
     dplyr::select(-latitude, -longitude) %>%
-    haven::write_dta(dta_path)
+    write_output_dta(dta_path)
 
   list(csv = csv_path, dta = dta_path)
 }

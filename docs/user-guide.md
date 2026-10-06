@@ -2,28 +2,31 @@
 
 **For the SPI Technical Lead**
 
-This guide explains how to run an SPI update using the new `{targets}`
-pipeline. It is populated incrementally as the pipeline is built (per the
-implementation plan).
+This guide explains how the SPI technical team runs an update using the
+collection-first `{targets}` workflow. The collection stage refreshes and
+reports source data before the estimation stage produces final outputs.
 
 ---
 
 ## 1. Overview
 
-The SPI is produced by an estimation pipeline that:
+The SPI update has two explicit stages:
 
-1. Reads raw data from `01_raw_data/` (one folder per dimension).
-2. Cleans and scores each indicator.
-3. Builds the nested SPI index (dimension → pillar → overall).
-4. Validates the results against the previous vintage.
-5. Produces the dissemination files (quantiles, treemap, databank).
+1. **Collection** runs API-backed collectors, validates manual/external inputs,
+  caches raw and normalized artifacts, and writes a status report under
+  `01_raw_data/_collection/`.
+2. **Estimation** consumes only validated collection artifacts, cleans and
+  scores indicators, builds the nested index, and writes final dissemination
+  files to `03_output_data/`.
 
-The new pipeline uses the R `{targets}` package. It produces **identical
-results** to the original R Markdown pipeline (the 2024 vintage / "202511"),
-but with incremental re-runs, schema validation, and automated tests.
+Both stages use the R `{targets}` package. The estimation stage remains
+replication-tested against the original R Markdown pipeline (the 2024 vintage
+/ "202511"), while the collection stage preserves raw and intermediate source
+artifacts for reproducibility.
 
-**Important**: The pipeline writes new outputs to `staging/` and **never
-overwrites** the historical outputs in `03_output_data/`.
+**Important**: Run collection before estimation. Estimation stops when the
+collection status report contains a blocking source issue. Final validated
+outputs are written to `03_output_data/`.
 
 ### Pipeline structure
 
@@ -31,6 +34,7 @@ The pipeline mirrors the original Rmd structure as a sequence of targets:
 
 | Stage | Targets | Source (original) |
 |-------|---------|-------------------|
+| Collection | `source_registry`, `pip_collection`, `world_bank_inputs`, `sdg_collection`, `jmp_collection`, `unsdg_collection`, `manual_checkpoints`, `collection_status` | source downloads and collection scripts |
 | Parameters | `params`, `iso_codes`, `country_grid` | `01-SPI_data_prep.Rmd` "set-parameters" + "spi_df" |
 | Dimension 1.5 | `dim1_5` | "3.1", "aki_3.3", "3.15_debt", "safely_managed_scored", "lfp" |
 | Dimension 2 | `dim2` | "idds", "online_access", "nada" |
@@ -43,7 +47,7 @@ The pipeline mirrors the original Rmd structure as a sequence of targets:
 | Treemap | `treemap` | `misc_scripts/SPI_treemap.R` |
 | Databank | `databank` | `misc_scripts/databank.R` |
 | SPL admin | `spl_admin` | `misc_scripts/` (ASPIRE) |
-| Downloads | `pull_jmp`, `pull_unsdg`, `checkpoint_*` | see section 5 |
+| Collection | `pip_collection`, `world_bank_inputs`, `sdg_collection`, `jmp_collection`, `unsdg_collection`, `manual_checkpoints`, `collection_status` | see section 5 |
 
 ## 2. Prerequisites
 
@@ -57,32 +61,49 @@ The pipeline mirrors the original Rmd structure as a sequence of targets:
   `jsonlite`, `readxl`, `stringr`, `tidyr`, `purrr`, `zoo`, `magrittr`,
   `here`, `dplyr`)
 
-## 3. How to Run the Pipeline
+## 3. How to Run the Pipelines
 
-From R (in the project root):
-
-```r
-targets::tar_make()
-```
-
-From the terminal:
-
-```bash
-Rscript -e "targets::tar_make()"
-```
-
-To see the pipeline graph:
+From R, in the project root, run collection first:
 
 ```r
-targets::tar_manifest()      # list all targets
-targets::tar_visnetwork()    # visualize the dependency graph
+targets::tar_make(
+  script = "_targets_data.R",
+  store = "_targets_data"
+)
 ```
 
-To run the tests:
+Review the generated reports:
 
 ```r
-testthat::test_local()
+read.csv("01_raw_data/_collection/collection_status.csv")
+file.edit("01_raw_data/_collection/collection_status.md")
 ```
+
+Resolve every `blocking` item before running estimation:
+
+```r
+targets::tar_make(
+  script = "_targets.R",
+  store = "_targets"
+)
+```
+
+To inspect either graph:
+
+```r
+targets::tar_manifest(script = "_targets_data.R")
+targets::tar_manifest(script = "_targets.R")
+```
+
+This repository is not an R package, so run the tests with:
+
+```r
+testthat::test_dir("tests/testthat")
+```
+
+The collection target store and estimation target store are separate. Target
+caching does not replace the source-specific freshness checks in the collection
+status report.
 
 To run a single target (e.g. after changing one indicator):
 
@@ -97,6 +118,12 @@ and the original Rmd comments. Each indicator's source and update procedure
 is documented in its section.
 
 ### 4.1 Before starting
+
+Run the collection pipeline and review `01_raw_data/_collection/` before
+starting the estimation stage. The registry in `config/source_registry.R`
+identifies whether each source is API-backed, manual, external, or unavailable.
+Each report row includes the expected vintage rule, age warning, artifact path,
+status, and analyst action.
 
 1. Run the microdata library pull: `02_programs/misc_scripts/microdata_library_pull.Rmd`
 2. Download the new CLASS file:
@@ -116,7 +143,7 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 
 | Indicator | Source | Update procedure |
 |-----------|--------|------------------|
-| 1.5.1 PIP | Povcalnet PIP comparability | Download `PIP_comparability_latest.csv` to `01_raw_data/1.5_DUIO/`; QA needed if PIP update delayed |
+| 1.5.1 PIP | Povcalnet PIP comparability | Run the collection pipeline; the locked `pipr` package writes `PIP_comparability_latest.csv` and its cached provenance artifact |
 | 1.5.2 Child mortality | UN IGME | Download from childmortality.org, place in `01_raw_data/1.5_DUIO/` |
 | 1.5.3 Debt service | WDI metadata | Automatic once WDI metadata is updated |
 | 1.5.4 Safely managed water | JMP washdata API | Run through pipeline, save to `1.5_DUIO/Safely_Managed_Water_data.csv` |
@@ -124,13 +151,13 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 | 2.1 SDDS | WDI metadata (IMF) | Automatic via WDI metadata |
 | 2.2 ODIN | Open Data Watch | Download from odin.opendatawatch.com |
 | 2.4 NADA | NSO websites | Run `02_programs/misc_scripts/nada_check.R` |
-| 3.x UN SDG | UN SDG database | Brian pulls UNSDG results |
+| 3.x UN SDG | UN SDG database | Run the collection pipeline; review raw per-series files, normalized files, binary availability tables, and five-year score inputs |
 | 4.1 Censuses/surveys | Microdata libraries | Run microdata library pull |
-| 4.2.3 CRVS | UN SDG data | Download UNSDG data |
+| 4.2.3 CRVS | UN SDG data | Run the collection pipeline; the status report confirms the normalized CRVS artifact |
 | 4.3 Geospatial | ODIN | Same ODIN file as 2.2 |
-| 5.1 Legislation | UN SDG API | Script in misc_scripts |
+| 5.1 Legislation | UN SDG API | Run the collection pipeline; review the cached API artifact |
 | 5.2 Standards | WDI metadata + IMF | Copy previous vintage's SPI_data.csv to `01_raw_data/previous_vintages/` |
-| 5.5 Finance | UN SDG API | Script in misc_scripts |
+| 5.5 Finance | UN SDG API | Run the collection pipeline; review the cached API artifact |
 
 ### 4.4 Detailed source instructions
 
@@ -138,10 +165,9 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 
 - **Source**: World Bank Povcalnet PIP comparability metadata.
 - **File**: `01_raw_data/1.5_DUIO/PIP_comparability_latest.csv`
-- **Update**: Download the latest `PIP_comparability_latest.csv` from
-  Povcalnet and place it in `01_raw_data/1.5_DUIO/`. The pipeline reads it
-  directly (it does not use the `pipr` package). If the PIP update is
-  delayed, QA the comparability file manually.
+- **Update**: Run the collection pipeline. The locked `pipr` package writes
+  this normalized file and a cached raw/provenance artifact. If PIP changes
+  its schema or is unavailable, collection reports a blocking action.
 
 #### 1.5.2 Child mortality (UN IGME)
 
@@ -160,9 +186,8 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 
 - **Source**: WHO/UNICEF JMP washdata API.
 - **File**: `01_raw_data/1.5_DUIO/Safely_Managed_Water_data.csv`
-- **Update**: Run the `pull_jmp` target (section 5.1) or download manually
-  from <https://washdata.org/data/country/<ISO3C>/household/download> for
-  each country.
+- **Update**: Run the collection pipeline. It downloads and caches the JMP
+  country files before writing the normalized combined source file.
 
 #### 1.5.5 ILO labor force
 
@@ -200,10 +225,14 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 
 #### 3.x UN SDG data products
 
-- **Source**: UN SDG database (pre-computed by Brian's pipeline).
-- **File**: `01_raw_data/3_DP/<YEAR>/SPI_D3_UNSD_data_5yr.csv`
-- **Update**: Brian pulls UNSDG results from the UN Stats SDG Indicators
-  pipeline and places the file in the year folder.
+- **Source**: UN SDG database.
+- **Files**: raw per-series responses under `01_raw_data/3_DP/sdg_data/raw/`,
+  normalized series under `01_raw_data/3_DP/sdg_data/normalized/`, binary
+  availability tables under `01_raw_data/3_DP/availability/`, and the
+  collection score input at `01_raw_data/3_DP/collection/SPI_D3_UNSD_data_5yr.csv`.
+- **Update**: Run collection only after the reviewed
+  `01_raw_data/metadata/SDG_indicator_list.csv` is present. A missing list is
+  a blocking source issue and estimation will stop.
 
 #### 4.1 Censuses and surveys
 
@@ -227,8 +256,8 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 #### 4.2.3 CRVS
 
 - **Source**: UN SDG data.
-- **Update**: Download UNSDG data (birth registration, series
-  SG_REG_BRTH90N).
+- **Update**: Run the collection pipeline; it caches the UN SDG response and
+  writes the normalized CRVS artifact.
 
 #### 4.3 Geospatial
 
@@ -238,8 +267,8 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 
 - **Source**: UN SDG API (series SG_STT_FPOS).
 - **File**: `01_raw_data/5.1_DILG/SG_STT_FPOS.csv`
-- **Update**: Run the `pull_unsdg` target (section 5.1) or Brian's script
-  in misc_scripts.
+- **Update**: Run the collection pipeline; it caches the UN SDG response and
+  writes `SG_STT_FPOS.csv`.
 
 #### 5.2 Standards
 
@@ -251,10 +280,10 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 
 #### 5.5 Finance
 
-- **Source**: UN SDG API (series SG_STT_FIN).
-- **File**: `01_raw_data/5.5_DIFI/SG_STT_FIN.csv`
-- **Update**: Run the `pull_unsdg` target (section 5.1) or Brian's script
-  in misc_scripts.
+- **Source**: UN SDG API (series SG_STT_NSDSFND).
+- **File**: `01_raw_data/5.5_DIFI/SG_STT_NSDSFND.csv`
+- **Update**: Run the collection pipeline; it caches the UN SDG response and
+  writes the normalized finance artifact.
 
 ### 4.5 Next steps (after data prep)
 
@@ -262,60 +291,33 @@ The original Rmd sequence (01 → 02 → 03) maps to the pipeline targets:
 
 | Original step | Pipeline target | Produces |
 |---------------|-----------------|----------|
-| 1. `01_SPI_data_prep.Rmd` | `spi_data` | `staging/SPI_data.csv`, `SPI_data.dta` |
-| 2. `02_SPI_index.Rmd` | `spi_index` | `staging/SPI_index.csv` |
+| 1. `01_SPI_data_prep.Rmd` | `spi_data` | `03_output_data/SPI_data.csv`, `SPI_data.dta` |
+| 2. `02_SPI_index.Rmd` | `spi_index` | `03_output_data/SPI_index.csv` |
 | 3. `03_SPI_data_validation.Rmd` | tests | validation + vintage comparison |
-| 4. `misc_scripts/SPI_quantiles.R` | `quantiles` | `staging/SPI_quantiles*.csv`, `SPI_indicators_2024.csv` |
-| 5. `misc_scripts/SPI_treemap.R` | `treemap` | `staging/SPI_treemap.csv` |
-| 6. `misc_scripts/databank.R` | `databank` | `staging/SPI_databank_*.csv` |
-| 7. `misc_scripts/` (ASPIRE) | `spl_admin` | `staging/SPL_admin_data_availability.csv` |
+| 4. `misc_scripts/SPI_quantiles.R` | `quantiles` | `03_output_data/SPI_quantiles*.csv`, `SPI_indicators_2024.csv` |
+| 5. `misc_scripts/SPI_treemap.R` | `treemap` | `03_output_data/SPI_treemap.csv` |
+| 6. `misc_scripts/databank.R` | `databank` | `03_output_data/SPI_databank_*.csv` |
+| 7. `misc_scripts/` (ASPIRE) | `spl_admin` | `03_output_data/SPL_admin_data_availability.csv` |
 
-After running `targets::tar_make()`, review the staged outputs in
-`staging/`, run the tests (section 7), and copy validated outputs to
-`03_output_data/` only after review.
+After collection passes its status gate, run estimation and review the final
+outputs in `03_output_data/`. The estimation target refuses to proceed while
+blocking collection issues remain.
 
 ## 5. Data Pulls and Manual Checkpoints
 
-The pipeline includes OPT-IN download targets and manual download checkpoints.
-They are **not** triggered by a default `targets::tar_make()` — this keeps the
-replication gate deterministic (the committed raw files in `01_raw_data/` are
-the source of truth for the 202511 vintage).
+The collection command runs API collectors and manual/external checkpoints
+together. It writes the machine-readable status file and human-readable report
+under `01_raw_data/_collection/`. Review every `blocking` row before running
+estimation; `warning` and `informational` rows remain visible for analyst QA.
 
-### 5.1 API pulls (opt-in)
-
-These targets download fresh data from public APIs into `01_raw_data/`. They
-only run when `run_downloads <- TRUE` in `config/params.R`:
-
-```r
-# config/params.R
-run_downloads <- TRUE   # set to TRUE only when updating to a new vintage
-```
-
-Then run:
-
-```r
-targets::tar_make(pull_jmp)      # JMP washdata (safely managed water)
-targets::tar_make(pull_unsdg)    # UN SDG API (legislation, finance, CRVS)
-```
-
-| Target | Source | Writes to | Notes |
-|--------|--------|-----------|-------|
-| `pull_jmp` | JMP washdata API (`washdata.org/data/country/<ISO3C>/household/download`) | `01_raw_data/1.5_DUIO/Safely_Managed_Water_data.csv` | ~200 HTTP requests; takes several minutes |
-| `pull_unsdg` | UN Stats SDG API (`unstats.un.org/SDGAPI`) | `01_raw_data/5.1_DILG/SG_STT_FPOS.csv`, `5.5_DIFI/SG_STT_FIN.csv`, `4.2_SOAD/SG_REG_BRTH90N.csv` | Series: SG_STT_FPOS, SG_STT_FIN, SG_REG_BRTH90N |
-
-### 5.2 Manual download checkpoints
+### 5.1 Manual download checkpoints
 
 These targets verify that manually-downloaded source files are present and
 schema-valid. They run by default and **fail loudly** (R8) with download
 instructions when a file is missing or the format changed:
 
 ```r
-targets::tar_make(checkpoint_wdi)        # WDI metadata (manual download)
-targets::tar_make(checkpoint_ilo)        # ILO ilostat (bulk explorer)
-targets::tar_make(checkpoint_odin)       # ODIN (Open Data Watch)
-targets::tar_make(checkpoint_nada)       # NADA check (NSO websites)
-targets::tar_make(checkpoint_microdata)  # microdata library pull
-targets::tar_make(checkpoint_unigme)     # UN IGME child mortality
+targets::tar_make(script = "_targets_data.R", store = "_targets_data")
 ```
 
 | Target | Source | Expected file | Download instructions |

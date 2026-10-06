@@ -67,7 +67,7 @@ build_quantiles <- function(spi_index, params) {
   # changes binary representations at the 15th significant digit, which
   # flips boundary rounding (e.g. Tanzania PIL4 = 52.95 rounds to 53 from
   # the CSV value but 52.9 from the in-memory value).
-  SPI <- readr::read_csv(file.path(params$staging_dir, "SPI_index.csv"), show_col_types = FALSE) %>%
+  SPI <- readr::read_csv(file.path(params$estimation_write_dir, "SPI_index.csv"), show_col_types = FALSE) %>%
     dplyr::mutate(
       fragile_conflict = dplyr::case_when(
         country %in% .fragile_conflict_list$conflict ~ "Conflict",
@@ -76,12 +76,20 @@ build_quantiles <- function(spi_index, params) {
       )
     )
 
-  # Add GDP per capita from the World Bank
-  gdp_df <- wbstats::wb_data(
-    indicator = "NY.GDP.PCAP.PP.KD",
-    start_date = 2004,
-    end_date = params$end_date
+  # Add GDP per capita from the collection artifact.
+  gdp_path <- file.path(
+    params$collection_dir,
+    "world_bank",
+    sprintf("gdp_%d.rds", params$end_date)
   )
+  if (!file.exists(gdp_path)) {
+    stop(
+      "WORLD BANK GDP COLLECTION ARTIFACT NOT FOUND: ", gdp_path,
+      "\nRun the data collection pipeline before estimation.",
+      call. = FALSE
+    )
+  }
+  gdp_df <- readRDS(gdp_path)
 
   # Add quintiles of SPI.INDEX and pillar scores as categorical variables
   SPI_quantiles <- SPI %>%
@@ -128,10 +136,7 @@ build_quantiles <- function(spi_index, params) {
     dplyr::select(country, region, income, fragile_conflict, iso3c, date,
       dplyr::starts_with("SPI.INDEX"), population
     ) %>%
-    # Default join (no `by`): gdp_df shares country/iso2c/iso3c/date with
-    # the SPI data, so the shared columns are used as join keys (matching
-    # values) instead of creating .x/.y suffixes.
-    dplyr::left_join(gdp_df) %>%
+    dplyr::left_join(gdp_df, by = c("iso3c", "date")) %>%
     dplyr::ungroup()
 
   SPI_quantiles
@@ -174,7 +179,7 @@ build_quantiles_2024 <- function(spi_index, quantiles, params) {
   # NOTE: the original script writes the full SPI index (which includes
   # fragile_conflict from the quantiles step) with renamed pillar columns.
   # It reads SPI_index.csv from disk, so we mirror that CSV round-trip.
-  indicators_2024 <- readr::read_csv(file.path(params$staging_dir, "SPI_index.csv"), show_col_types = FALSE) %>%
+  indicators_2024 <- readr::read_csv(file.path(params$estimation_write_dir, "SPI_index.csv"), show_col_types = FALSE) %>%
     dplyr::mutate(
       fragile_conflict = dplyr::case_when(
         country %in% .fragile_conflict_list$conflict ~ "Conflict",
@@ -210,12 +215,12 @@ build_quantiles_2024 <- function(spi_index, quantiles, params) {
 #' @export
 save_quantiles <- function(quantiles, quantiles_2024, indicators_2024, params) {
   paths <- c(
-    file.path(params$staging_dir, "SPI_quantiles.csv"),
-    file.path(params$staging_dir, "SPI_quantiles_2024.csv"),
-    file.path(params$staging_dir, "SPI_indicators_2024.csv")
+    file.path(params$estimation_write_dir, "SPI_quantiles.csv"),
+    file.path(params$estimation_write_dir, sprintf("SPI_quantiles_%d.csv", params$end_date)),
+    file.path(params$estimation_write_dir, sprintf("SPI_indicators_%d.csv", params$end_date))
   )
-  readr::write_csv(quantiles, paths[1])
-  readr::write_csv(quantiles_2024, paths[2])
-  readr::write_csv(indicators_2024, paths[3])
+  write_output_csv(quantiles, paths[1])
+  write_output_csv(quantiles_2024, paths[2])
+  write_output_csv(indicators_2024, paths[3])
   paths
 }

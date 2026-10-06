@@ -24,8 +24,7 @@
 #    commented so the technical lead can read and understand them.
 # 2. Fail loudly (R8): source reads are schema-validated; any format change
 #    stops the pipeline with a clear report.
-# 3. Historical outputs are never overwritten (C7): the pipeline writes to
-#    staging/ only.
+# 3. Collection validation must pass before final outputs are written.
 # 4. Estimation only (R12): visualization chunks and commented-out blocks
 #    from the Rmds are NOT ported.
 #
@@ -94,18 +93,64 @@ pipeline_targets <- function() {
     format = "rds"
   )
 
+  collection_status_file <- tar_target(
+    name = "collection_status_file",
+    command = params$collection_status_file,
+    format = "file"
+  )
+  collection_run_file <- tar_target(
+    name = "collection_run_file",
+    command = params$collection_run_file,
+    format = "file"
+  )
+  source_registry_file <- tar_target(
+    name = "estimation_source_registry_file",
+    command = params$source_registry_file,
+    format = "file"
+  )
+  estimation_source_registry <- tar_target(
+    name = "estimation_source_registry",
+    command = load_source_registry(source_registry_file),
+    format = "rds"
+  )
+  collection_gate <- tar_target(
+    name = "collection_gate",
+    command = validate_collection_status(
+      collection_status_file,
+      expected_source_ids = estimation_source_registry$source_id,
+      run_path = collection_run_file,
+      parameters_hash = collection_parameters_hash(params)
+    ),
+    format = "rds"
+  )
+  output_prepare <- tar_target(
+    name = "output_prepare",
+    command = {
+      collection_gate
+      prepare_output_candidate(params$estimation_write_dir)
+    },
+    format = "rds",
+    cue = tar_cue(mode = "always")
+  )
+
   # --- Stage A: Data prep ----------------------------------------------------
 
   # Country x year grid (from the "spi_df" chunk of 01-SPI_data_prep.Rmd)
   iso_codes <- tar_target(
     name = "iso_codes",
-    command = read_iso_codes(params),
+    command = {
+      collection_gate
+      read_iso_codes(params)
+    },
     format = "rds"
   )
 
   country_grid <- tar_target(
     name = "country_grid",
-    command = build_country_grid(params),
+    command = {
+      collection_gate
+      build_country_grid(params)
+    },
     format = "rds"
   )
 
@@ -114,7 +159,10 @@ pipeline_targets <- function() {
   # and "aki_combine" chunks of 01-SPI_data_prep.Rmd)
   dim1_5 <- tar_target(
     name = "dim1_5",
-    command = combine_dim1_5(params, country_grid),
+    command = {
+      collection_gate
+      combine_dim1_5(params, country_grid)
+    },
     format = "rds"
   )
 
@@ -122,7 +170,10 @@ pipeline_targets <- function() {
   # (from the "idds", "online_access", and "nada" chunks)
   dim2 <- tar_target(
     name = "dim2",
-    command = combine_dim2(params, country_grid),
+    command = {
+      collection_gate
+      combine_dim2(params, country_grid)
+    },
     format = "rds"
   )
 
@@ -130,7 +181,10 @@ pipeline_targets <- function() {
   # (from the "unstats" chunk)
   dim3 <- tar_target(
     name = "dim3",
-    command = combine_dim3(params),
+    command = {
+      collection_gate
+      combine_dim3(params)
+    },
     format = "rds"
   )
 
@@ -138,7 +192,10 @@ pipeline_targets <- function() {
   # (from the "cs", "crvs", and "geo" chunks)
   dim4 <- tar_target(
     name = "dim4",
-    command = combine_dim4(params, country_grid),
+    command = {
+      collection_gate
+      combine_dim4(params, country_grid)
+    },
     format = "rds"
   )
 
@@ -148,7 +205,10 @@ pipeline_targets <- function() {
   # and "finance" chunks)
   dim5 <- tar_target(
     name = "dim5",
-    command = combine_dim5(params, country_grid),
+    command = {
+      collection_gate
+      combine_dim5(params, country_grid)
+    },
     format = "rds"
   )
 
@@ -156,10 +216,11 @@ pipeline_targets <- function() {
   # (from the "append" and "save" chunks of 01-SPI_data_prep.Rmd)
   # Combines all dimensions, adds population, carries forward SPI values,
   # applies the OECD high-income adjustment, and writes SPI_data.csv/.dta
-  # to the staging directory (constraint C7).
+  # to 03_output_data/ after collection validation.
   spi_data <- tar_target(
     name = "spi_data",
     command = {
+      output_prepare
       dims <- list(dim1_5, dim2, dim3, dim4, dim5)
       final <- append_spi(dims, params, country_grid)
       save_spi(final, params)
@@ -172,7 +233,7 @@ pipeline_targets <- function() {
   # (from the "data", "index_weights", "index", and "saver" chunks of
   # 02-SPI_index.Rmd)
   # Builds the nested index (dimension -> pillar -> overall) and writes
-  # SPI_index.csv to the staging directory (constraint C7).
+  # SPI_index.csv to 03_output_data/ after collection validation.
   spi_index <- tar_target(
     name = "spi_index",
     command = {
@@ -226,9 +287,29 @@ pipeline_targets <- function() {
   spl_admin <- tar_target(
     name = "spl_admin",
     command = {
+      output_prepare
       s <- build_spl_admin(params)
       save_spl_admin(s, params)
       s
+    },
+    format = "rds"
+  )
+
+  output_manifest <- tar_target(
+    name = "output_manifest",
+    command = {
+      spi_data
+      spi_index
+      quantiles
+      treemap
+      databank
+      spl_admin
+      validate_output_manifest(params$estimation_write_dir, params$end_date)
+      promote_output_set(
+        params$estimation_write_dir,
+        params$output_dir,
+        params$end_date
+      )
     },
     format = "rds"
   )
@@ -241,6 +322,12 @@ pipeline_targets <- function() {
   list(
     params_file,
     params,
+    collection_status_file,
+    collection_run_file,
+    source_registry_file,
+    estimation_source_registry,
+    collection_gate,
+    output_prepare,
     iso_codes,
     country_grid,
     dim1_5,
@@ -254,8 +341,9 @@ pipeline_targets <- function() {
     treemap,
     databank,
     spl_admin,
-    # Download/checkpoint targets (see download_targets() below)
-    download_targets()
+    output_manifest
+    # Collection-stage API and manual checkpoints are defined in
+    # `_targets_data.R`; estimation consumes their validated artifacts.
   )
 }
 
@@ -264,48 +352,15 @@ pipeline_targets <- function() {
 # =============================================================================
 # These targets download or verify external data sources.
 #
-# The API PULL targets (pull_jmp, pull_unsdg) write fresh data to
-# 01_raw_data/ and are OPT-IN: they only run when the technical lead sets
-# run_downloads = TRUE in config/params.R (or passes it explicitly). By
-# default they are no-ops, so tar_make() keeps the replication gate
-# deterministic (the committed raw files are the source of truth for the
-# 202511 vintage).
-#
 # The CHECKPOINT targets (checkpoint_*) verify that manually-downloaded
 # source files are present and schema-valid. They run by default and fail
 # loudly (R8) with download instructions when a file is missing or the
 # format changed.
 #
-# To run the API pulls for a new vintage:
-#   config/params.R: run_downloads <- TRUE
-#   targets::tar_make(pull_jmp, pull_unsdg)
+# API extraction targets live in `_targets_data.R` and are not part of
+# estimation.
 download_targets <- function() {
   list(
-    # --- API pulls (write fresh data to 01_raw_data/; opt-in) ----------------
-    tar_target(
-      name = "pull_jmp",
-      command = {
-        if (isTRUE(params$run_downloads)) {
-          pull_jmp_water(params)
-        } else {
-          message("pull_jmp skipped (run_downloads = FALSE). Set run_downloads = TRUE in config/params.R to download fresh JMP data.")
-          NULL
-        }
-      },
-      format = "rds"
-    ),
-    tar_target(
-      name = "pull_unsdg",
-      command = {
-        if (isTRUE(params$run_downloads)) {
-          download_unsdg_series(params)
-        } else {
-          message("pull_unsdg skipped (run_downloads = FALSE). Set run_downloads = TRUE in config/params.R to download fresh UN SDG data.")
-          NULL
-        }
-      },
-      format = "rds"
-    ),
     # --- Manual download checkpoints (fail loudly with instructions) --------
     tar_target(
       name = "checkpoint_wdi",

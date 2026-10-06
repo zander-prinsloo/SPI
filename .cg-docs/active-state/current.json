@@ -1,32 +1,29 @@
 {
   "schemaVersion": "compound-gpid-active-state-v1",
-  "updatedAt": "2026-09-22T00:00:00Z",
+  "updatedAt": "2026-10-05T21:30:00Z",
   "workflow": "/cg-work",
-  "status": "completed",
+  "status": "blocked",
   "branch": "pipeline-refactor",
-  "plan": ".cg-docs/plans/2026-09-21-targets-pipeline-replication.md",
-  "executionReport": ".cg-docs/work-reports/2026-09-21-targets-pipeline-replication.md",
-  "currentPhase": null,
+  "plan": ".cg-docs/plans/2026-10-05-spi-data-collection-pipeline.md",
+  "executionReport": ".cg-docs/work-reports/2026-10-05-spi-data-collection-pipeline.md",
+  "currentPhase": 5,
   "evidenceStatus": [
-    {"id": "V1", "status": "passed", "artifact": "renv.lock"},
-    {"id": "V2", "status": "passed", "artifact": "_targets.R"},
-    {"id": "V3", "status": "passed", "artifact": "tests/testthat/test-compare.R"},
-    {"id": "V4", "status": "passed", "artifact": "tests/fixtures/manifest.json"},
-    {"id": "V5", "status": "passed", "artifact": "staging/SPI_data.csv"},
-    {"id": "V6", "status": "passed", "artifact": "staging/SPI_data.dta"},
-    {"id": "V7", "status": "passed", "artifact": "staging/SPI_index.csv"},
-    {"id": "V8", "status": "passed", "artifact": "tests/testthat/test-validation.R"},
-    {"id": "V9", "status": "passed", "artifact": "staging/SPI_quantiles.csv"},
-    {"id": "V10", "status": "passed", "artifact": "_targets.R (download targets)"},
-    {"id": "V11", "status": "passed", "artifact": "docs/user-guide.md"},
-    {"id": "V12", "status": "passed", "artifact": "full test suite (86 passed)"},
-    {"id": "V13", "status": "passed", "artifact": "tests/fixtures/manifest.json (hash verified)"}
+    {"id": "V1", "status": "passed", "artifact": "tests/testthat/test-source-registry.R; docs/source-runtime-audit.md"},
+    {"id": "V2", "status": "passed", "artifact": "tests/testthat/test-collection-cache.R; tests/testthat/test-collection-status.R"},
+    {"id": "V3", "status": "passed", "artifact": "tests/testthat/test-sdg-collection.R; R/dim3.R"},
+    {"id": "V4", "status": "passed", "artifact": "_targets_data.R manifest; 01_raw_data/_collection/collection_status.csv"},
+    {"id": "V5", "status": "blocked", "artifact": "estimation gate stops on 5 collection blockers; output manifest unit tests pass"},
+    {"id": "V6", "status": "pending", "artifact": "end-to-end test suite"},
+    {"id": "V7", "status": "pending", "artifact": "docs/user-guide.md"}
   ],
   "unresolvedDecisions": [
-    {"id": "D1", "summary": "renv bootstrap approved (Option 1) - renv::init() + targets/tarchetypes", "blocking": false}
+    {"id": "D1", "summary": "Confirm pipr collector or documented external fallback during Phase 1", "blocking": false},
+    {"id": "D2", "summary": "Provide reviewed SDG_indicator_list.csv or approve a documented UN SDG API list collector", "blocking": true}
   ],
   "artifactRefs": [
-    {"kind": "execution-report", "path": ".cg-docs/work-reports/2026-09-21-targets-pipeline-replication.md", "status": "active"}
+    {"kind": "plan", "path": ".cg-docs/plans/2026-10-05-spi-data-collection-pipeline.md", "status": "active"},
+    {"kind": "execution-report", "path": ".cg-docs/work-reports/2026-10-05-spi-data-collection-pipeline.md", "status": "active"},
+    {"kind": "audit", "path": "docs/source-runtime-audit.md", "status": "complete"}
   ],
-  "nextCommand": "/cg-review standard"
+  "nextCommand": "/cg-work phase5"
 }

@@ -59,7 +59,7 @@ build_spl_admin <- function(params) {
 #' @return The path written.
 #' @export
 save_spl_admin <- function(spl_admin_df, params) {
-  path <- file.path(params$staging_dir, "SPL_admin_data_availability.csv")
-  readr::write_csv(spl_admin_df, path)
+  path <- file.path(params$estimation_write_dir, "SPL_admin_data_availability.csv")
+  write_output_csv(spl_admin_df, path)
   path
 }

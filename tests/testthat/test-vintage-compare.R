@@ -22,7 +22,11 @@ source(file.path(here::here("R"), "compare.R"))
 # --- Helper: read staged / fixture files -------------------------------------
 
 read_staged <- function(fname) {
-  path <- file.path(here::here("staging"), fname)
+  manifest_path <- file.path(here::here("03_output_data"), "_estimation_manifest.json")
+  if (!file.exists(manifest_path)) {
+    return(NULL)
+  }
+  path <- file.path(here::here("03_output_data"), fname)
   if (!file.exists(path)) {
     return(NULL)
   }
@@ -38,7 +42,7 @@ read_fixture <- function(fname) {
 test_that("staged SPI_data.csv matches the vintage within tolerance", {
   staged <- read_staged("SPI_data.csv")
   if (is.null(staged)) {
-    skip("staging/SPI_data.csv not yet produced (Phase 3)")
+    skip("03_output_data/SPI_data.csv not yet produced (Phase 5)")
   }
   fixture <- read_fixture("SPI_data.csv")
 
@@ -68,7 +72,7 @@ test_that("staged SPI_data.csv matches the vintage within tolerance", {
 test_that("staged SPI_index.csv matches the vintage within tolerance", {
   staged <- read_staged("SPI_index.csv")
   if (is.null(staged)) {
-    skip("staging/SPI_index.csv not yet produced (Phase 4)")
+    skip("03_output_data/SPI_index.csv not yet produced (Phase 5)")
   }
   fixture <- read_fixture("SPI_index.csv")
 
@@ -98,7 +102,7 @@ test_that("staged SPI_index.csv matches the vintage within tolerance", {
 test_that("SPI indicators correlate positively with the overall index", {
   staged <- read_staged("SPI_data.csv")
   if (is.null(staged)) {
-    skip("staging/SPI_data.csv not yet produced (Phase 3)")
+    skip("03_output_data/SPI_data.csv not yet produced (Phase 5)")
   }
 
   # SPI indicators should be positively correlated with each other (a

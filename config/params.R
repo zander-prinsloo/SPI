@@ -26,16 +26,21 @@ window <- 5
 span <- c(2004:end_date)
 
 # --- Directory layout --------------------------------------------------------
-# The pipeline reads raw data from 01_raw_data/ (unchanged from the Rmd
-# pipeline) and writes NEW outputs to the staging/ directory.
+# The collection pipeline writes source artifacts under 01_raw_data/ and the
+# estimation pipeline writes final outputs to 03_output_data/.
 #
-# IMPORTANT (constraint C7): the pipeline NEVER writes directly to
-# 03_output_data/. Historical output files must never be overwritten.
-# The technical lead reviews staged outputs and copies them to
-# 03_output_data/ only after validation.
+# The collection status gate must pass before estimation writes final outputs.
 raw_dir    <- here::here("01_raw_data")
-output_dir <- here::here("03_output_data")   # historical outputs (read-only)
-staging_dir <- here::here("staging")         # new pipeline outputs (writable)
+output_dir <- here::here("03_output_data")   # validated final outputs
+staging_dir <- here::here("staging")         # legacy compatibility cache
+estimation_write_dir <- file.path(output_dir, ".candidate")
+collection_dir <- here::here("01_raw_data", "_collection")
+collection_status_file <- file.path(collection_dir, "collection_status.csv")
+collection_run_file <- file.path(collection_dir, "collection_run.json")
+collection_age_warning_days <- 365
+source_registry_file <- here::here("config", "source_registry.R")
+sdg_indicator_list_file <- here::here("01_raw_data", "metadata", "SDG_indicator_list.csv")
+sdg_collection_dir <- here::here("01_raw_data", "3_DP", "collection")
 
 # --- Weights -----------------------------------------------------------------
 # wgt controls whether index estimates are weighted by population (2) or
@@ -67,9 +72,9 @@ ilo_modelled_file <- "EAP_2WAP_SEX_AGE_RT_A-20250923T0014.csv"
 ilo_survey_file <- "EAP_DWAP_SEX_AGE_RT_A-20250923T0014.csv"
 
 # --- Country metadata --------------------------------------------------------
-# The World Bank country list (from wbstats) is used for country matching
-# throughout the pipeline (e.g. filtering to valid iso3c codes).
-country_metadata <- wbstats::wb_countries()
+# The country metadata snapshot is collected before estimation. `load_params()`
+# hydrates this field from the collection artifact when it exists.
+country_metadata <- NULL
 
 # --- Source schema registry --------------------------------------------------
 # (Phase 2) Expected column names/types per source file. The pipeline

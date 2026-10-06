@@ -97,6 +97,9 @@ targets::tar_make()      # run the full pipeline
 testthat::test_local()   # run the test suite
 ```
 
-The pipeline writes new outputs to `staging/` and **never overwrites** the
-historical outputs in `03_output_data/`. See `docs/user-guide.md` for the
-full update procedure.
+Run the collection pipeline before estimation. Collection artifacts, raw
+responses, normalized inputs, availability tables, and status reports are kept
+under `01_raw_data/` (including `01_raw_data/_collection/`). The estimation
+pipeline writes the validated final output set directly to `03_output_data/`
+after the collection gate passes. See `docs/user-guide.md` for the full
+technical-team update procedure.
