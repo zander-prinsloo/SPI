@@ -100,6 +100,14 @@
 !/**/**/*.csv
 !/**/**/*.fst
 
+# Collection raw/provenance artifacts and run reports
+!01_raw_data/_collection/
+!01_raw_data/_collection/**
+!01_raw_data/1.5_DUIO/raw/
+!01_raw_data/1.5_DUIO/raw/**
+!01_raw_data/3_DP/sdg_data/raw/
+!01_raw_data/3_DP/sdg_data/raw/**
+
 # png files
 !/02_programs/*.png
 

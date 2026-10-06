@@ -26,6 +26,16 @@ load_params <- function(params_file = here::here("config", "params.R")) {
   # Source the config file in a clean environment and capture its objects
   env <- new.env(parent = globalenv())
   sys.source(params_file, envir = env)
+  country_metadata_path <- file.path(
+    env$collection_dir,
+    "world_bank",
+    "country_metadata.rds"
+  )
+  if (file.exists(country_metadata_path)) {
+    env$country_metadata <- readRDS(country_metadata_path)
+  } else {
+    env$country_metadata <- data.frame()
+  }
   as.list(env, all.names = TRUE)
 }
 

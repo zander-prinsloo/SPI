@@ -28,6 +28,55 @@
 # this file, matching the tidyverse style of the original Rmds.
 library(dplyr)
 
+#' Return the JMP country download URL.
+#'
+#' @param iso3c Character country code.
+#' @return Character URL.
+#' @export
+jmp_country_url <- function(iso3c) {
+  if (iso3c == "XKX") {
+    return("https://washdata.org/data/country/SRB/household/download")
+  }
+  sprintf("https://washdata.org/data/country/%s/household/download", iso3c)
+}
+
+#' Download raw JMP bytes for one country.
+#'
+#' @param iso3c Character country code.
+#' @param timeout Numeric HTTP timeout.
+#' @return Raw response bytes.
+#' @export
+jmp_country_raw_download <- function(iso3c, timeout = 60) {
+  url <- jmp_country_url(iso3c)
+  resp <- with_http_retry(function() httr::GET(url, httr::timeout(timeout)))
+  if (httr::status_code(resp) != 200) {
+    stop(
+      sprintf("JMP download failed for %s: HTTP %d\n  %s\n", iso3c, httr::status_code(resp), url),
+      "The JMP washdata API did not return the expected file.",
+      call. = FALSE
+    )
+  }
+  httr::content(resp, as = "raw")
+}
+
+#' Normalize JMP household data.
+#'
+#' @param df Raw JMP data frame.
+#' @return Normalized JMP data.
+#' @export
+normalize_jmp_data <- function(df) {
+  tibble::as_tibble(df, .name_repair = "universal") %>%
+    dplyr::mutate(
+      source = as.character(source),
+      type = as.character(type),
+      year = as.numeric(year),
+      geo = as.character(geo),
+      data_available = as.numeric(data_available),
+      data_quality = as.numeric(data_quality),
+      data_value = as.numeric(data_value)
+    )
+}
+
 #' Download one country's JMP household data
 #'
 #' Fetches the JMP country CSV and normalizes it to the columns used by the
@@ -39,45 +88,10 @@ library(dplyr)
 #' @return A tibble with the normalized JMP data.
 #' @export
 jmp_country_download <- function(iso3c, timeout = 60) {
-  url <- sprintf("https://washdata.org/data/country/%s/household/download", iso3c)
-
-  # Kosovo has no JMP page; the original Rmd uses Serbia's data.
-  if (iso3c == "XKX") {
-    url <- "https://washdata.org/data/country/SRB/household/download"
-  }
-
-  # HARD STOP (R8): a failed download must abort the pull, never silently
-  # produce an NA row. A missing country file is a data problem that the
-  # technical lead must investigate -- the pipeline must not proceed with
-  # incomplete JMP data.
-  resp <- httr::GET(url, httr::timeout(timeout))
-  if (httr::status_code(resp) != 200) {
-    stop(
-      sprintf("JMP download failed for %s: HTTP %d\n  %s\n", iso3c, httr::status_code(resp), url),
-      "\nThe JMP washdata API did not return the expected file.",
-      "Investigate before proceeding -- the pipeline must not run with",
-      "incomplete JMP data.",
-      call. = FALSE
-    )
-  }
-  df <- readr::read_csv(httr::content(resp, as = "text", encoding = "UTF-8"),
+  normalize_jmp_data(readr::read_csv(
+    textConnection(rawToChar(jmp_country_raw_download(iso3c, timeout))),
     show_col_types = FALSE
-  ) %>%
-    tibble::as_tibble(.name_repair = "universal")
-
-  # Normalize to the pipeline's expected columns. The JMP CSV has
-  # columns like source, type, year, geo, data_available, data_quality,
-  # data_value (with possible name variations).
-  df %>%
-    dplyr::mutate(
-      source = as.character(source),
-      type = as.character(type),
-      year = as.numeric(year),
-      geo = as.character(geo),
-      data_available = as.numeric(data_available),
-      data_quality = as.numeric(data_quality),
-      data_value = as.numeric(data_value)
-    )
+  ))
 }
 
 #' Download all JMP country files and combine them
@@ -90,12 +104,40 @@ jmp_country_download <- function(iso3c, timeout = 60) {
 #' @return A tibble of combined JMP data.
 #' @export
 pull_jmp_water <- function(params) {
-  country_metadata <- params$country_metadata %>%
+  country_metadata <- params$country_metadata
+  if (is.null(country_metadata) || nrow(country_metadata) == 0L) {
+    country_path <- file.path(
+      params$collection_dir,
+      "world_bank",
+      "country_metadata.rds"
+    )
+    if (!file.exists(country_path)) {
+      stop(
+        "WORLD BANK COUNTRY COLLECTION ARTIFACT NOT FOUND: ", country_path,
+        "\nRun world bank collection before JMP collection.",
+        call. = FALSE
+      )
+    }
+    country_metadata <- readRDS(country_path)
+  }
+
+  country_metadata <- country_metadata %>%
     dplyr::filter(region != "Aggregates")
 
   # Download all countries (this takes a while -- ~200 HTTP requests).
   message("Downloading JMP water data for ", nrow(country_metadata), " countries...")
-  data_list <- purrr::map(country_metadata$iso3c, jmp_country_download)
+  data_list <- purrr::map(country_metadata$iso3c, function(iso3c) {
+    record <- collect_cached_raw(
+      cache_dir = file.path(params$raw_dir, "1.5_DUIO", "raw", "jmp"),
+      source_id = paste0("jmp_", iso3c),
+      request = list(endpoint = jmp_country_url(iso3c), iso3c = iso3c),
+      vintage = params$end_date,
+      collector_version = "jmp-v1",
+      fetch = function() jmp_country_raw_download(iso3c),
+      max_age_days = params$collection_age_warning_days
+    )
+    normalize_jmp_data(readr::read_csv(record$raw_path, show_col_types = FALSE))
+  })
 
   combined <- dplyr::bind_rows(data_list) %>%
     dplyr::mutate(type = as.character(type))
