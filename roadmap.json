@@ -32,6 +32,20 @@
           "plan": null
         }
       ]
+    },
+    {
+      "id": "data-collection-pipeline",
+      "title": "Build a registry-driven API-backed data collection pipeline before SPI estimation",
+      "objective": "Create a two-command collection-first workflow that refreshes 01_raw_data, runs feasible API extraction, caches raw and normalized artifacts, produces availability/provenance/status reports for all 22 dimensions, and feeds the estimation pipeline that writes complete 03_output_data outputs.",
+      "status": "planned",
+      "features": [
+        {
+          "id": "api-backed-data-collection-pipeline-for-all-spi-indicators",
+          "title": "API-backed data collection pipeline for all SPI indicators",
+          "status": "active",
+          "plan": ".cg-docs/plans/2026-10-05-spi-data-collection-pipeline.md"
+        }
+      ]
     }
   ]
 }
