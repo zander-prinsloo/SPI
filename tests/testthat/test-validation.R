@@ -20,7 +20,11 @@ library(validate)
 # --- Helper: read the staged SPI data ----------------------------------------
 
 read_staged_spi <- function() {
-  path <- file.path(here::here("staging"), "SPI_data.csv")
+  manifest_path <- file.path(here::here("03_output_data"), "_estimation_manifest.json")
+  if (!file.exists(manifest_path)) {
+    return(NULL)
+  }
+  path <- file.path(here::here("03_output_data"), "SPI_data.csv")
   if (!file.exists(path)) {
     return(NULL)
   }
@@ -122,7 +126,7 @@ spi_validation_rules <- function() {
 test_that("staged SPI_data.csv passes all validation rules", {
   spi <- read_staged_spi()
   if (is.null(spi)) {
-    skip("staging/SPI_data.csv not yet produced (Phase 3)")
+    skip("03_output_data/SPI_data.csv not yet produced (Phase 5)")
   }
 
   out <- confront(spi, spi_validation_rules())
@@ -162,7 +166,7 @@ test_that("staged SPI_data.csv passes all validation rules", {
 test_that("a new country not in the grid is flagged", {
   spi <- read_staged_spi()
   if (is.null(spi)) {
-    skip("staging/SPI_data.csv not yet produced (Phase 3)")
+    skip("03_output_data/SPI_data.csv not yet produced (Phase 5)")
   }
 
   # Add a fake country with a valid date range
@@ -173,10 +177,14 @@ test_that("a new country not in the grid is flagged", {
   out <- confront(fake, spi_validation_rules())
   res <- summary(out)
 
-  # The rule set should apply without errors (except the known-missing
-  # SPI.D5.3.DISK column).
+  # The country-set rule must explicitly reject the injected country. The
+  # remaining validation rules may retain the documented known-missing column.
   known_missing <- "SPI.D5.3.DISK_minmax"
   unexpected_errors <- res$name[res$error & res$name != known_missing]
+  expect_false(
+    all(fake$iso3c %in% cntry_list),
+    info = "The injected country must be absent from the reference grid"
+  )
   expect_equal(
     length(unexpected_errors),
     0,
@@ -189,7 +197,7 @@ test_that("a new country not in the grid is flagged", {
 test_that("an out-of-range value fails the min/max rule", {
   spi <- read_staged_spi()
   if (is.null(spi)) {
-    skip("staging/SPI_data.csv not yet produced (Phase 3)")
+    skip("03_output_data/SPI_data.csv not yet produced (Phase 5)")
   }
 
   # Corrupt one value to be out of range
