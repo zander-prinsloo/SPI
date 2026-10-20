@@ -28,6 +28,25 @@ artifacts for reproducibility.
 collection status report contains a blocking source issue. Final validated
 outputs are written to `03_output_data/`.
 
+### 202611 update identity
+
+The **SPI 202611 update** is the update released in **November 2026**. Its
+reference year is **2025**, so `config/params.R` must use:
+
+```r
+end_date <- 2025
+```
+
+This produces the 2004--2025 SPI span. The `end_date + 1` WDI input for this
+update is `01_raw_data/metadata/WDI_metadata_2026.csv`. The previous official
+SPI vintage is 202511, with reference year 2024; preserve its approved
+`SPI_data.csv` as `01_raw_data/previous_vintages/SPI_data_2024.csv` for the
+D5.2 carry-forward inputs.
+
+ODIN is delayed for this update. The previous ODIN vintage may be used only as
+an explicitly labelled provisional stand-in. It must be replaced and the ODIN-
+dependent outputs rebuilt before the 202611 results are released.
+
 ### Pipeline structure
 
 The pipeline mirrors the original Rmd structure as a sequence of targets:
@@ -144,20 +163,41 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 | Indicator | Source | Update procedure |
 |-----------|--------|------------------|
 | 1.5.1 PIP | Povcalnet PIP comparability | Run the collection pipeline; the locked `pipr` package writes `PIP_comparability_latest.csv` and its cached provenance artifact |
-| 1.5.2 Child mortality | UN IGME | Download from childmortality.org, place in `01_raw_data/1.5_DUIO/` |
-| 1.5.3 Debt service | WDI metadata | Automatic once WDI metadata is updated |
+| 1.5.2 Child mortality | UN IGME | Use `UN IGME 2025.csv` from childmortality.org and place it in `01_raw_data/1.5_DUIO/` |
+| 1.5.3 Debt service | WDI metadata | Use `WDI_metadata_2026.csv` for the 202611 update |
 | 1.5.4 Safely managed water | JMP washdata API | Run through pipeline, save to `1.5_DUIO/Safely_Managed_Water_data.csv` |
-| 1.5.5 ILO labor force | ILO ilostat | Download modelled (2WAP) and survey (DWAP) estimates |
+| 1.5.5 ILO labor force | ILO ilostat | Use the 2026-10-06 modelled (2WAP) and survey (DWAP) Excel downloads |
 | 2.1 SDDS | WDI metadata (IMF) | Automatic via WDI metadata |
-| 2.2 ODIN | Open Data Watch | Download from odin.opendatawatch.com |
+| 2.2 ODIN | Open Data Watch | Use the documented provisional stand-in until the 2025 release arrives |
 | 2.4 NADA | NSO websites | Run `02_programs/misc_scripts/nada_check.R` |
-| 3.x UN SDG | UN SDG database | Run the collection pipeline; review raw per-series files, normalized files, binary availability tables, and five-year score inputs |
-| 4.1 Censuses/surveys | Microdata libraries | Run microdata library pull |
-| 4.2.3 CRVS | UN SDG data | Run the collection pipeline; the status report confirms the normalized CRVS artifact |
-| 4.3 Geospatial | ODIN | Same ODIN file as 2.2 |
+| 3.x UN SDG | UN SDG database | Provide the reviewed indicator list, then run collection and review all SDG artifacts and five-year score inputs |
+| 4.1 Censuses/surveys | Microdata libraries | Create the eight 2025 current-vintage files and `D4.1.Manual.Review.2025.xlsx` |
+| 4.2.3 CRVS | UN SDG data | Refresh both birth and death registration series through the collection pipeline |
+| 4.3 Geospatial | ODIN | Same provisional or official ODIN inputs as 2.2 |
 | 5.1 Legislation | UN SDG API | Run the collection pipeline; review the cached API artifact |
-| 5.2 Standards | WDI metadata + IMF | Copy previous vintage's SPI_data.csv to `01_raw_data/previous_vintages/` |
+| 5.2 Standards | WDI metadata + IMF + annual inputs | Copy `SPI_data_2024.csv` to `previous_vintages/`, verify IMF 2025.10, and add the 2025 D5.2 files |
 | 5.5 Finance | UN SDG API | Run the collection pipeline; review the cached API artifact |
+
+#### 4.3.1 202611 source map
+
+The confirmed source-to-indicator mapping for the November 2026 update is:
+
+| 202611 source or change | SPI indicator(s) | Required action |
+|---|---|---|
+| `PIP_comparability_latest.csv` and its `pipr` provenance cache | `SPI.D1.5.POV` | Refresh or explicitly verify the accepted PIP release |
+| `UN IGME 2025.csv` | `SPI.D1.5.CHLD.MORT` | Validate the detailed IGME metadata file and run the checkpoint |
+| `WDI_metadata_2026.csv` | `SPI.D1.5.DT.TDS.DPPF.XP.ZS`, `SPI.D2.1.GDDS`, the WDI CRVS supplement, and WDI-backed D5.2 inputs | Preserve the raw file and run the WDI checkpoint |
+| JMP country downloads and `Safely_Managed_Water_data.csv` | `SPI.D1.5.SAFE.MAN.WATER` | Run the JMP collector; the normalized output must retain country codes |
+| ILO 2WAP and DWAP Excel files dated 2026-10-06 | `SPI.D1.5.LFP` | Validate both files, filters, source labels, and coverage |
+| UN SDG indicator list and series collection | `SPI.D3.1.*` through `SPI.D3.4.*` | Provide the reviewed list, collect raw/normalized/availability files, and build the five-year score input |
+| UN SDG CRVS series | `SPI.D4.2.3.CRVS` | Refresh both birth and death registration inputs |
+| Microdata library extracts and manual review | `SPI.D4.1.*` | Produce all eight 2025 CSVs and the 2025 review workbook |
+| IMF compiled workbook plus D5.2 annual files | `SPI.D5.2.*` | Verify the IMF workbook, previous-vintage baseline, and current-year annual files |
+| ODIN 2024 carry-forward, pending official 2025 release | `SPI.D2.2.*`, `SPI.D4.3.GEO.*` | Use only as provisional input; replace before final release |
+
+The ILO Excel reader and checkpoint, the configurable IGME checkpoint, and the
+JMP country-code normalization are collection-pipeline changes supporting these
+inputs; they do not introduce additional SPI indicators.
 
 ### 4.4 Detailed source instructions
 
@@ -168,19 +208,45 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 - **Update**: Run the collection pipeline. The locked `pipr` package writes
   this normalized file and a cached raw/provenance artifact. If PIP changes
   its schema or is unavailable, collection reports a blocking action.
+- **Required columns**: `survey_acronym`, `country_code`, `year`,
+  `survey_comparability`, and `survey_coverage`. `year` must be numeric, and
+  country/year/survey rows must be unique. The estimator excludes the `CPHS`
+  survey for `IND` because it is not produced by the statistical system.
 
 #### 1.5.2 Child mortality (UN IGME)
 
 - **Source**: <https://childmortality.org>
-- **File**: `01_raw_data/1.5_DUIO/UNICEF-CME_DF_2021_WQ-1.0-download.csv`
-- **Update**: Download the UNICEF CME data file (with wealth quintile
-  breakdown). The latest data for the 2024 version (data up to 2023) was
-  released 25 March 2025.
+- **File**: `01_raw_data/1.5_DUIO/UN IGME 2025.csv`
+- **Choose the detailed metadata CSV**, not a country-rates workbook,
+  report-only spreadsheet, or a summary table. The filename above is the
+  filename expected by the pipeline; rename the downloaded file only after
+  verifying that its contents match the checklist below.
+- **Required columns** (exact raw names, including spaces and capitalization):
+  `Indicator`, `Sex`, `Observation Status`, `Series Year`, `REF_DATE`,
+  `Geographic area`, and `OBS_VALUE`. The file may contain additional UN IGME
+  metadata columns; do not delete them before running the pipeline.
+- **Required records**: the file must contain rows where
+  `Indicator == "Under-five mortality rate"`, `Sex == "Total"`, and
+  `Observation Status == "Included in IGME"`. The reader uses the first four
+  characters of `Series Year` and `REF_DATE` as years, so both fields must
+  contain year-like values. `OBS_VALUE` must be numeric.
+- **Country matching**: `Geographic area` is joined to the `country` column in
+  `01_raw_data/metadata/iso_codes.csv`; retain the published country names.
+  Côte d'Ivoire is handled by an explicit `CIV` mapping in the code.
+- **Update**: Download the current UNICEF CME file with the wealth-quintile
+  metadata, verify the columns and record values above, save it under the
+  expected filename, and rerun collection. The checkpoint stops with a schema
+  error if a different IGME download is selected.
 
 #### 1.5.3 Debt service (WDI)
 
 - **Source**: WDI metadata.
-- **Update**: Automatic once the WDI metadata file is updated (section 4.2).
+- **File**: `01_raw_data/metadata/WDI_metadata_<end_date+1>.csv`.
+- **Required columns**: `Country Code`, `Income Group`, `External debt Reporting status`,
+  and `National accounts reference year`. Some vintages use `Code` instead of
+  `Country Code`; preserve the raw file and let the reader normalize it.
+- **Update**: Download the metadata file for `end_date + 1`, preserve all
+  columns, and run the collection checkpoint.
 
 #### 1.5.4 Safely managed water (JMP)
 
@@ -188,17 +254,28 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 - **File**: `01_raw_data/1.5_DUIO/Safely_Managed_Water_data.csv`
 - **Update**: Run the collection pipeline. It downloads and caches the JMP
   country files before writing the normalized combined source file.
+- **Required normalized columns**: `iso3c`, `geo`, `year`, and `data_quality`.
+  The collector also preserves `source`, `type`, `data_available`, and
+  `data_value`. `geo` must contain the `Rural`, `Urban`, or `National`
+  categories used by the score.
 
 #### 1.5.5 ILO labor force
 
 - **Source**: ILO ILOSTAT bulk explorer.
-- **Files**: `01_raw_data/1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-<timestamp>.csv`
-  (modelled) and `EAP_DWAP_SEX_AGE_RT_A-<timestamp>.csv` (survey).
+- **Current files**: `01_raw_data/1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-20261006T1235.xlsx`
+  (modelled) and `EAP_DWAP_SEX_AGE_RT_A-20261006T1234.xlsx` (survey).
+  For future vintages, retain the same 2WAP/DWAP filename pattern with the
+  download timestamp.
 - **Update**: Download from
   <https://www.ilo.org/shinyapps/bulkexplorer2/>. Filter sex = Total,
   classif1 = Age (Youth, adults): 15+. Update the filename in BOTH
   `R/dim1_5.R` (`read_ilo_lfp()`) and `R/pull_ilo.R`
-  (`checkpoint_ilo_lfp()`).
+  (`checkpoint_ilo_lfp()`). CSV exports with the same columns remain supported.
+- **Required columns in both files**: `sex.label`, `classif1.label`,
+  `ref_area.label`, `time`, and `obs_value`. Select `sex.label = Total` and
+  `classif1.label = Age (Youth, adults): 15+`. The 2WAP file must be the
+  `ILO - Modelled Estimates` source; the DWAP file is the survey-source file
+  and its `source.label` values identify records such as `LFS - ...`.
 
 #### 2.1 SDDS
 
@@ -212,6 +289,10 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 - **Update**: Download from <https://odin.opendatawatch.com>. Select
   Data > Select All regions/countries/years > Show standard scores > csv
   output > data categories as rows > Include subscores.
+- **Required raw columns**: `Country Code`, `Year`, `Data categories`,
+  `Openness subscore`, `Machine readable`, `Non-proprietary`,
+  `Download options`, `Metadata available`, and `Terms of use`. The reader
+  keeps the `All Categories` row and converts the score columns to numeric.
 
 #### 2.4 NADA
 
@@ -222,6 +303,8 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
   saves. For invalid responses, manually check if the site works with a
   different URL or if the NSO created a new website. The output becomes
   next year's input.
+- **Required columns**: `iso3c`, `NADA`, and `NADA_text`. Keep `NADA_text`
+  because it is used for databank footnotes.
 
 #### 3.x UN SDG data products
 
@@ -238,7 +321,7 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 
 - **Source**: National microdata libraries.
 - **Files**: `01_raw_data/4.1_SOCS/raw/D4.1.*.<YEAR>.csv` (8 files, where
-  `<YEAR>` is the vintage year, e.g. `D4.1.1.CEN.POPU.2024.csv`). The
+  `<YEAR>` is the vintage year, e.g. `D4.1.1.CEN.POPU.2025.csv` for 202611). The
   pipeline reads the files for the CURRENT vintage (`end_date` in
   `config/params.R`) and fails loudly if they are missing.
 - **Manual review**: `01_raw_data/4.1_SOCS/raw/D4.1.Manual.Review.<YEAR>.xlsx`
@@ -252,12 +335,22 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
   the ILO catalog, download `sources_en.csv` from
   <https://ilostat.ilo.org/data/national-sources-catalogue/> and rename to
   `ilo_sources_catalog.csv` in `01_raw_data/`.
+- **Required CSV structure**: each current-vintage file must contain `iso3c`
+  and its indicator-specific year field (for example `POP.CENSUS`, `AGRI.CENSUS`,
+  `BIZZ.CENSUS`, `HOUS.SVY`, `AGRI.SVY`, `LABR.SVY`, `HLTH.SVY`, or
+  `BIZZ.SVY`). The corresponding `D4.1.Manual.Review.<YEAR>.xlsx` must contain
+  `iso3c` and the same indicator columns. NADA companion files must contain
+  `country` plus the indicator date fields used by the matching census/survey
+  function.
 
 #### 4.2.3 CRVS
 
 - **Source**: UN SDG data.
 - **Update**: Run the collection pipeline; it caches the UN SDG response and
   writes the normalized CRVS artifact.
+- **Required normalized columns**: `iso3c`, `date`, and `Value` in both
+  `SG_REG_BRTH90N.csv` and `SG_REG_DETH75N.csv`. The estimator uses `Value`
+  for the birth and death registration completeness indicators.
 
 #### 4.3 Geospatial
 
@@ -273,10 +366,15 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 #### 5.2 Standards
 
 - **Source**: WDI metadata + IMF.
-- **Update**: Copy the previous vintage's `SPI_data.csv` to
-  `01_raw_data/previous_vintages/SPI_data_<YEAR>.csv`. The D5.2 indicators
-  (SNA, base years, classifications) come from the WDI metadata and IMF
-  data.
+- **202611 reference**: set `end_date <- 2025`, retain
+  `WDI_metadata_2026.csv`, and copy the approved 202511 output to
+  `01_raw_data/previous_vintages/SPI_data_2024.csv`.
+- **IMF inputs**: verify `2025.10_Compiled Data for World Bank.xlsx` for the
+  IMF-backed D5.2.4, D5.2.5, D5.2.7, and D5.2.9 indicators.
+- **Annual inputs**: create the current-vintage D5.2.3, D5.2.6, D5.2.8, and
+  D5.2.10 files for 2025, plus any required reviewed metadata.
+- **Update**: the D5.2 indicators combine previous-vintage values with WDI,
+  IMF, and annual source inputs; do not overwrite the previous-vintage file.
 
 #### 5.5 Finance
 
@@ -294,7 +392,7 @@ The original Rmd sequence (01 → 02 → 03) maps to the pipeline targets:
 | 1. `01_SPI_data_prep.Rmd` | `spi_data` | `03_output_data/SPI_data.csv`, `SPI_data.dta` |
 | 2. `02_SPI_index.Rmd` | `spi_index` | `03_output_data/SPI_index.csv` |
 | 3. `03_SPI_data_validation.Rmd` | tests | validation + vintage comparison |
-| 4. `misc_scripts/SPI_quantiles.R` | `quantiles` | `03_output_data/SPI_quantiles*.csv`, `SPI_indicators_2024.csv` |
+| 4. `misc_scripts/SPI_quantiles.R` | `quantiles` | `03_output_data/SPI_quantiles*.csv`, `SPI_indicators_<YEAR>.csv` |
 | 5. `misc_scripts/SPI_treemap.R` | `treemap` | `03_output_data/SPI_treemap.csv` |
 | 6. `misc_scripts/databank.R` | `databank` | `03_output_data/SPI_databank_*.csv` |
 | 7. `misc_scripts/` (ASPIRE) | `spl_admin` | `03_output_data/SPL_admin_data_availability.csv` |
@@ -323,11 +421,11 @@ targets::tar_make(script = "_targets_data.R", store = "_targets_data")
 | Target | Source | Expected file | Download instructions |
 |--------|--------|---------------|----------------------|
 | `checkpoint_wdi` | WDI catalog | `01_raw_data/metadata/WDI_metadata_<YEAR>.csv` | <https://datacatalog.worldbank.org/int/search/dataset/0037712> |
-| `checkpoint_ilo` | ILO bulk explorer | `01_raw_data/1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-*.csv` + `EAP_DWAP_SEX_AGE_RT_A-*.csv` | <https://www.ilo.org/shinyapps/bulkexplorer2/> (modelled + survey, sex=Total, age 15+) |
+| `checkpoint_ilo` | ILO bulk explorer | `01_raw_data/1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-20261006T1235.xlsx` + `EAP_DWAP_SEX_AGE_RT_A-20261006T1234.xlsx` | <https://www.ilo.org/shinyapps/bulkexplorer2/> (modelled + survey, sex=Total, age 15+) |
 | `checkpoint_odin` | Open Data Watch | `01_raw_data/2.2_DSOA/ODIN_<YEAR>.csv` | <https://odin.opendatawatch.com> |
 | `checkpoint_nada` | NSO websites | `01_raw_data/2.4_DSDS/D2.4.NADA.<YEAR>.csv` | Run `02_programs/misc_scripts/nada_check.R` |
 | `checkpoint_microdata` | Microdata libraries | `01_raw_data/4.1_SOCS/raw/D4.1.*.<YEAR>.csv` (8 files) | Run `02_programs/misc_scripts/microdata_library_pull.Rmd` |
-| `checkpoint_unigme` | UN IGME | `01_raw_data/1.5_DUIO/UNICEF-CME_DF_2021_WQ-1.0-download.csv` | <https://childmortality.org> |
+| `checkpoint_unigme` | UN IGME | `01_raw_data/1.5_DUIO/UN IGME 2025.csv` | <https://childmortality.org> |
 
 When a checkpoint fails, read the error message — it contains the exact
 download instructions for that source.
