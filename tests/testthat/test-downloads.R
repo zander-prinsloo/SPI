@@ -36,8 +36,9 @@ test_params <- function() {
     end_date = 2024,
     run_downloads = FALSE,
     # ILO filenames (from config/params.R) -- needed by checkpoint_ilo_lfp
-    ilo_modelled_file = "EAP_2WAP_SEX_AGE_RT_A-20250923T0014.csv",
-    ilo_survey_file = "EAP_DWAP_SEX_AGE_RT_A-20250923T0014.csv"
+    ilo_modelled_file = "EAP_2WAP_SEX_AGE_RT_A-20261006T1235.xlsx",
+    ilo_survey_file = "EAP_DWAP_SEX_AGE_RT_A-20261006T1234.xlsx",
+    unigme_file = "UN IGME 2025.csv"
   )
 }
 

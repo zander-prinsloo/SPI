@@ -11,6 +11,7 @@ source(file.path(here::here("R"), "collection_io.R"))
 source(file.path(here::here("R"), "collection_cache.R"))
 source(file.path(here::here("R"), "collect_pip.R"))
 source(file.path(here::here("R"), "collect_world_bank.R"))
+source(file.path(here::here("R"), "pull_jmp.R"))
 
 test_that("PIP collector writes the normalized comparability artifact", {
   root <- tempfile("pip-collector-")
@@ -92,4 +93,21 @@ test_that("World Bank collectors reject duplicate country-year rows", {
     ),
     "KEY VIOLATION"
   )
+})
+
+test_that("JMP normalization attaches the requested country code", {
+  result <- normalize_jmp_data(
+    data.frame(
+      source = "AAA_2020_CEN",
+      type = "Census",
+      year = 2020,
+      geo = "National",
+      data_available = 1,
+      data_quality = 1,
+      data_value = 10
+    ),
+    iso3c = "AAA"
+  )
+  expect_equal(result$iso3c, "AAA")
+  expect_true(all(c("geo", "year", "data_quality") %in% names(result)))
 })
