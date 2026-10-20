@@ -68,8 +68,9 @@ imf_file <- "2025.10_Compiled Data for World Bank.xlsx"
 # "20250923T0014" is the 2025-09-23 00:14 download, used for the 2024 SPI
 # vintage). When updating to a new vintage, download fresh files and update
 # these filenames.
-ilo_modelled_file <- "EAP_2WAP_SEX_AGE_RT_A-20250923T0014.csv"
-ilo_survey_file <- "EAP_DWAP_SEX_AGE_RT_A-20250923T0014.csv"
+ilo_modelled_file <- "EAP_2WAP_SEX_AGE_RT_A-20261006T1235.xlsx"
+ilo_survey_file <- "EAP_DWAP_SEX_AGE_RT_A-20261006T1234.xlsx"
+unigme_file <- "UN IGME 2025.csv"
 
 # --- Country metadata --------------------------------------------------------
 # The country metadata snapshot is collected before estimation. `load_params()`
@@ -112,19 +113,19 @@ source_schema <- list(
     required_cols = c("survey_acronym", "country_code", "year", "survey_comparability", "survey_coverage")
   ),
   UN_IGME_child_mortality = list(
-    file = "1.5_DUIO/UNICEF-CME_DF_2021_WQ-1.0-download.csv",
-    required_cols = c("Indicator", "Sex", "Observation Status", "Series Year", "TIME_PERIOD", "Geographic area", "OBS_VALUE")
+    file = "1.5_DUIO/UN IGME 2025.csv",
+    required_cols = c("Indicator", "Sex", "Observation Status", "Series Year", "REF_DATE", "Geographic area", "OBS_VALUE")
   ),
   JMP_safely_managed_water = list(
     file = "1.5_DUIO/Safely_Managed_Water_data.csv",
     required_cols = c("iso3c", "geo", "year", "data_quality")
   ),
   ILO_LFP_modelled = list(
-    file = "1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-<timestamp>.csv",
+    file = "1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-<timestamp>.xlsx",
     required_cols = c("sex.label", "classif1.label", "ref_area.label", "time", "obs_value")
   ),
   ILO_LFP_survey = list(
-    file = "1.5_DUIO/EAP_DWAP_SEX_AGE_RT_A-<timestamp>.csv",
+    file = "1.5_DUIO/EAP_DWAP_SEX_AGE_RT_A-<timestamp>.xlsx",
     required_cols = c("sex.label", "classif1.label", "ref_area.label", "time", "obs_value")
   ),
   # --- Dimension 2 -----------------------------------------------------------

@@ -144,10 +144,10 @@ source_registry <- rbind(
       "https://www.ilo.org/ilostat-files/"
     ),
     input_path = c(
-      "1.5_DUIO/UNICEF-CME_DF_2021_WQ-1.0-download.csv",
+      "1.5_DUIO/UN IGME 2025.csv",
       "metadata/WDI_metadata_<END_DATE_PLUS_ONE>.csv",
       "1.5_DUIO/Safely_Managed_Water_data.csv",
-      "1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-<timestamp>.csv|EAP_DWAP_SEX_AGE_RT_A-<timestamp>.csv"
+      "1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-<timestamp>.xlsx|EAP_DWAP_SEX_AGE_RT_A-<timestamp>.xlsx"
     ),
     raw_path = c(
       "1.5_DUIO/raw/igme/",
@@ -156,10 +156,10 @@ source_registry <- rbind(
       "1.5_DUIO/raw/ilo/"
     ),
     normalized_path = c(
-      "1.5_DUIO/UNICEF-CME_DF_2021_WQ-1.0-download.csv",
+      "1.5_DUIO/UN IGME 2025.csv",
       "metadata/WDI_metadata_<END_DATE_PLUS_ONE>.csv",
       "1.5_DUIO/Safely_Managed_Water_data.csv",
-      "1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-<timestamp>.csv|EAP_DWAP_SEX_AGE_RT_A-<timestamp>.csv"
+      "1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-<timestamp>.xlsx|EAP_DWAP_SEX_AGE_RT_A-<timestamp>.xlsx"
     ),
     availability_path = rep(NA, 4),
     expected_vintage_rule = c("latest_release", "end_date_plus_one", "latest_release", "latest_release"),

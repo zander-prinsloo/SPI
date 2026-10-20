@@ -64,8 +64,8 @@ jmp_country_raw_download <- function(iso3c, timeout = 60) {
 #' @param df Raw JMP data frame.
 #' @return Normalized JMP data.
 #' @export
-normalize_jmp_data <- function(df) {
-  tibble::as_tibble(df, .name_repair = "universal") %>%
+normalize_jmp_data <- function(df, iso3c = NULL) {
+  normalized <- tibble::as_tibble(df, .name_repair = "universal") %>%
     dplyr::mutate(
       source = as.character(source),
       type = as.character(type),
@@ -75,6 +75,10 @@ normalize_jmp_data <- function(df) {
       data_quality = as.numeric(data_quality),
       data_value = as.numeric(data_value)
     )
+  if (!"iso3c" %in% names(normalized) && !is.null(iso3c)) {
+    normalized$iso3c <- iso3c
+  }
+  normalized
 }
 
 #' Download one country's JMP household data
@@ -136,7 +140,10 @@ pull_jmp_water <- function(params) {
       fetch = function() jmp_country_raw_download(iso3c),
       max_age_days = params$collection_age_warning_days
     )
-    normalize_jmp_data(readr::read_csv(record$raw_path, show_col_types = FALSE))
+    normalize_jmp_data(
+      readr::read_csv(record$raw_path, show_col_types = FALSE),
+      iso3c = iso3c
+    )
   })
 
   combined <- dplyr::bind_rows(data_list) %>%

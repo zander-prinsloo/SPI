@@ -147,24 +147,30 @@ score_poverty_comparability <- function(pip_data, params, grid) {
 
 #' Read the UN IGME child mortality data
 #'
-#' Reads UNICEF-CME_DF_2021_WQ-1.0-download.csv, keeping only under-5
+#' Reads the configured UN IGME file, keeping only under-5
 #' mortality observations included in the IGME estimation model.
 #'
 #' @param params List of pipeline parameters.
 #' @return A tibble of child mortality source records.
 #' @export
 read_child_mortality_data <- function(params) {
-  file_path <- file.path(params$raw_dir, "1.5_DUIO", "UNICEF-CME_DF_2021_WQ-1.0-download.csv")
+  file_path <- file.path(params$raw_dir, "1.5_DUIO", params$unigme_file)
 
   # NOTE: the raw file uses column names with spaces (e.g. "Geographic area").
   # The Rmd applies as_tibble(.name_repair = "universal") which converts
   # spaces to dots. We validate against the RAW names, then repair.
-  read_csv_validated(
+  mortality_raw <- read_csv_validated(
     file_path,
     schema = list(
-      required_cols = c("Indicator", "Sex", "Observation Status", "Series Year", "TIME_PERIOD", "Geographic area", "OBS_VALUE")
+      required_cols = c("Indicator", "Sex", "Observation Status", "Series Year", "Geographic area", "OBS_VALUE")
     )
-  ) %>%
+  )
+  date_column <- if ("REF_DATE" %in% names(mortality_raw)) "REF_DATE" else "TIME_PERIOD"
+  if (!date_column %in% names(mortality_raw)) {
+    stop("UN IGME input must contain REF_DATE or TIME_PERIOD.", call. = FALSE)
+  }
+
+  mortality_raw %>%
     tibble::as_tibble(.name_repair = "universal") %>%
     # Keep only under-5 mortality, both sexes, overall wealth quintile
     dplyr::filter(Indicator == "Under-five mortality rate" & Sex == "Total") %>%
@@ -172,7 +178,7 @@ read_child_mortality_data <- function(params) {
     dplyr::filter(Observation.Status == "Included in IGME") %>%
     dplyr::mutate(
       date     = as.numeric(stringr::str_extract(Series.Year, "^.{4}")),
-      ind_date = as.numeric(stringr::str_extract(TIME_PERIOD, "^.{4}")),
+      ind_date = as.numeric(stringr::str_extract(.data[[date_column]], "^.{4}")),
       country  = Geographic.area,
       D3.CHLD.MORT = OBS_VALUE
     ) %>%
@@ -420,6 +426,16 @@ score_safely_managed_water <- function(water_data, params) {
 #' @param params List of pipeline parameters.
 #' @return A tibble with iso3c, date, estimate_diff, lfs_source.
 #' @export
+read_ilo_bulk_file <- function(path) {
+  extension <- tolower(tools::file_ext(path))
+  if (extension %in% c("xlsx", "xls")) {
+    return(readxl::read_excel(path, .name_repair = "universal"))
+  }
+  readr::read_csv(path, show_col_types = FALSE) %>%
+    tibble::as_tibble(.name_repair = "universal")
+}
+
+#' @export
 read_ilo_lfp <- function(params) {
   # ILO reference areas (for country name matching)
   ilo_ref_area <- readr::read_csv(file.path(params$raw_dir, "metadata", "ILO_reference_area.csv")) %>%
@@ -435,8 +451,7 @@ read_ilo_lfp <- function(params) {
   # iso3c lookup from the UN country codes
   iso3c_lookup <- readr::read_csv(file.path(params$raw_dir, "metadata", "iso_codes.csv"))
 
-  lfp_estimated <- readr::read_csv(fn_modelled) %>%
-    tibble::as_tibble(.name_repair = "universal") %>%
+  lfp_estimated <- read_ilo_bulk_file(fn_modelled) %>%
     dplyr::filter(sex.label == "Total", classif1.label == "Age (Youth, adults): 15+") %>%
     dplyr::mutate(ref_area.label = ifelse(stringr::str_detect(ref_area.label, "Tanzania"),
       "United Republic of Tanzania",
@@ -452,8 +467,7 @@ read_ilo_lfp <- function(params) {
     dplyr::left_join(ilo_ref_area, by = "iso3c") %>%
     dplyr::select(iso3c, date, estimated_value)
 
-  lfp_reported <- readr::read_csv(fn_survey) %>%
-    tibble::as_tibble(.name_repair = "universal") %>%
+  lfp_reported <- read_ilo_bulk_file(fn_survey) %>%
     dplyr::filter(sex.label == "Total", classif1.label == "Age (Youth, adults): 15+") %>%
     dplyr::mutate(ref_area.label = ifelse(stringr::str_detect(ref_area.label, "Tanzania"),
       "United Republic of Tanzania",

@@ -196,7 +196,7 @@ verify_microdata_files <- function(params) {
 #' @return Invisibly returns the path to the IGME file.
 #' @export
 verify_unigme_data <- function(params) {
-  file_path <- file.path(params$raw_dir, "1.5_DUIO", "UNICEF-CME_DF_2021_WQ-1.0-download.csv")
+  file_path <- file.path(params$raw_dir, "1.5_DUIO", params$unigme_file)
 
   if (!file.exists(file_path)) {
     stop(
@@ -204,14 +204,14 @@ verify_unigme_data <- function(params) {
       "\nDownload the child mortality data from:",
       "  https://childmortality.org",
       "Select the UNICEF CME data file (with wealth quintile breakdown)",
-      "and save it as UNICEF-CME_DF_2021_WQ-1.0-download.csv in",
+      "and save it as ", params$unigme_file, " in",
       "01_raw_data/1.5_DUIO/.",
       call. = FALSE
     )
   }
 
   df <- readr::read_csv(file_path, show_col_types = FALSE)
-  required <- c("Indicator", "Sex", "Observation Status", "Series Year", "TIME_PERIOD", "Geographic area", "OBS_VALUE")
+  required <- c("Indicator", "Sex", "Observation Status", "Series Year", "Geographic area", "OBS_VALUE")
   missing <- setdiff(required, names(df))
   if (length(missing) > 0) {
     stop(
@@ -220,6 +220,12 @@ verify_unigme_data <- function(params) {
         basename(file_path), paste(missing, collapse = ", "), paste(names(df), collapse = ", ")
       ),
       "The UN IGME download format has changed. Investigate before proceeding.",
+      call. = FALSE
+    )
+  }
+  if (!("REF_DATE" %in% names(df) || "TIME_PERIOD" %in% names(df))) {
+    stop(
+      sprintf("UN IGME SCHEMA MISMATCH in '%s': expected REF_DATE or TIME_PERIOD", basename(file_path)),
       call. = FALSE
     )
   }

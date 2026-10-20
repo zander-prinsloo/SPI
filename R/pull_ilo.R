@@ -11,7 +11,7 @@
 # The original Rmd downloads these from the ILO bulk explorer:
 #   https://www.ilo.org/shinyapps/bulkexplorer2/
 # and saves them to 01_raw_data/1.5_DUIO/ with a timestamped filename
-# (e.g. EAP_2WAP_SEX_AGE_RT_A-20250923T0014.csv).
+# (e.g. EAP_2WAP_SEX_AGE_RT_A-20261006T1235.xlsx).
 #
 # ILOSTAT also provides a public API (https://www.ilo.org/ilostat-api/),
 # but the bulk explorer CSV is the format the pipeline reads. This target
@@ -32,6 +32,15 @@
 # dplyr functions (if_else, case_when, etc.) are used unqualified throughout
 # this file, matching the tidyverse style of the original Rmds.
 library(dplyr)
+
+read_ilo_bulk_file <- function(path) {
+  extension <- tolower(tools::file_ext(path))
+  if (extension %in% c("xlsx", "xls")) {
+    return(readxl::read_excel(path, .name_repair = "universal"))
+  }
+  readr::read_csv(path, show_col_types = FALSE) %>%
+    tibble::as_tibble(.name_repair = "universal")
+}
 
 #' Checkpoint: ILO LFP files present and schema-valid
 #'
@@ -70,7 +79,7 @@ checkpoint_ilo_lfp <- function(params) {
       )
     }
 
-    df <- readr::read_csv(fp, show_col_types = FALSE)
+    df <- read_ilo_bulk_file(fp)
     required <- c("sex.label", "classif1.label", "ref_area.label", "time", "obs_value")
     missing <- setdiff(required, names(df))
     if (length(missing) > 0) {
