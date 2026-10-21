@@ -1,29 +1,29 @@
 {
   "schemaVersion": "compound-gpid-active-state-v1",
-  "updatedAt": "2026-10-05T21:30:00Z",
+  "updatedAt": "2026-10-20T14:17:55Z",
   "workflow": "/cg-work",
   "status": "blocked",
-  "branch": "pipeline-refactor",
-  "plan": ".cg-docs/plans/2026-10-05-spi-data-collection-pipeline.md",
-  "executionReport": ".cg-docs/work-reports/2026-10-05-spi-data-collection-pipeline.md",
-  "currentPhase": 5,
+  "branch": "feat/d41-manual-collection-pipeline",
+  "plan": ".cg-docs/plans/2026-10-20-d41-manual-collection-pipeline.md",
+  "executionReport": ".cg-docs/work-reports/2026-10-20-d41-manual-collection-pipeline.md",
+  "currentPhase": 3,
   "evidenceStatus": [
-    {"id": "V1", "status": "passed", "artifact": "tests/testthat/test-source-registry.R; docs/source-runtime-audit.md"},
-    {"id": "V2", "status": "passed", "artifact": "tests/testthat/test-collection-cache.R; tests/testthat/test-collection-status.R"},
-    {"id": "V3", "status": "passed", "artifact": "tests/testthat/test-sdg-collection.R; R/dim3.R"},
-    {"id": "V4", "status": "passed", "artifact": "_targets_data.R manifest; 01_raw_data/_collection/collection_status.csv"},
-    {"id": "V5", "status": "blocked", "artifact": "estimation gate stops on 5 collection blockers; output manifest unit tests pass"},
-    {"id": "V6", "status": "pending", "artifact": "end-to-end test suite"},
-    {"id": "V7", "status": "pending", "artifact": "docs/user-guide.md"}
+    {"id": "V1", "status": "passed", "artifact": "tests/testthat/test-pipeline-contract.R"},
+    {"id": "V2", "status": "passed", "artifact": "tests/testthat/test-dim4-collection.R"},
+    {"id": "V3", "status": "passed", "artifact": "tests/testthat/test-dim4-collection.R"},
+    {"id": "V4", "status": "passed", "artifact": "tests/testthat/test-dim4-collection.R"},
+    {"id": "V5", "status": "blocked", "artifact": "D4.1.4.SVY.HOUS_NADA.csv has 16 unmapped country rows"},
+    {"id": "V6", "status": "blocked", "artifact": "d41_manifest target stops at companion validation"},
+    {"id": "V8", "status": "passed", "artifact": "tests/testthat/test-pipeline-contract.R"},
+    {"id": "V10", "status": "passed", "artifact": "docs/user-guide.md; README.md"}
   ],
   "unresolvedDecisions": [
-    {"id": "D1", "summary": "Confirm pipr collector or documented external fallback during Phase 1", "blocking": false},
-    {"id": "D2", "summary": "Provide reviewed SDG_indicator_list.csv or approve a documented UN SDG API list collector", "blocking": true}
+    {"id": "D1", "summary": "Identify or approve exclusion for three blank-country labour companion rows dated 2019, 2020, and 2023", "blocking": true}
   ],
   "artifactRefs": [
-    {"kind": "plan", "path": ".cg-docs/plans/2026-10-05-spi-data-collection-pipeline.md", "status": "active"},
-    {"kind": "execution-report", "path": ".cg-docs/work-reports/2026-10-05-spi-data-collection-pipeline.md", "status": "active"},
-    {"kind": "audit", "path": "docs/source-runtime-audit.md", "status": "complete"}
+    {"kind": "plan", "path": ".cg-docs/plans/2026-10-20-d41-manual-collection-pipeline.md", "status": "active"},
+    {"kind": "execution-report", "path": ".cg-docs/work-reports/2026-10-20-d41-manual-collection-pipeline.md", "status": "active"},
+    {"kind": "prior-plan", "path": ".cg-docs/plans/2026-10-05-spi-data-collection-pipeline.md", "status": "blocked"}
   ],
-  "nextCommand": "/cg-work phase5"
+  "nextCommand": "/cg-work phase3"
 }
