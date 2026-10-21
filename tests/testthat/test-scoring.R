@@ -22,6 +22,7 @@ library(testthat)
 # Source the functions under test
 source(file.path(here::here("R"), "dim1_5.R"))
 source(file.path(here::here("R"), "dim2.R"))
+source(file.path(here::here("R"), "collect_dim4_1.R"))
 source(file.path(here::here("R"), "dim4.R"))
 source(file.path(here::here("R"), "dim5.R"))
 source(file.path(here::here("R"), "index.R"))
@@ -235,7 +236,7 @@ test_that("census_fun: census within 10 years scores 1", {
   manual <- tibble::tibble(
     iso3c = c("AFG"),
     country = c("Afghanistan"),
-    POP.CENSUS = c(NA_character_),
+    POP.CENSUS = c("2016"),
     AGRI.CENSUS = c(NA_character_),
     BIZZ.CENSUS = c(NA_character_),
     HOUS.SURVEYS = c(NA_character_),
@@ -264,6 +265,8 @@ test_that("census_fun: census within 10 years scores 1", {
   result <- census_fun("D4.1.1.CEN.POPU", "POP.CENSUS", params)
   # 2015 census is within 10 years of 2024
   expect_equal(result$indicator[result$date == 2024], 1)
+  expect_match(result$input_var[result$date == 2024], "2015")
+  expect_match(result$input_var[result$date == 2024], "2016")
 })
 
 test_that("survey_fun: 3 surveys within window scores 1, 2 scores 0.67, 1 scores 0.33", {
