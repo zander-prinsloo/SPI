@@ -176,17 +176,21 @@ source_registry <- rbind(
   data.frame(
     source_id = "d3_sdg_indicator_list",
     dimension_id = "3.1",
-    source_type = "external",
+    source_type = "manual",
     indicator_ids = "SDG indicator series list",
     source_url = "https://unstats.un.org/SDGAPI/",
     input_path = "metadata/SDG_indicator_list.csv",
-    raw_path = "metadata/raw/SDG_indicator_list.csv",
+    raw_path = NA_character_,
     normalized_path = "metadata/SDG_indicator_list.csv",
     availability_path = NA,
-    expected_vintage_rule = "latest_release",
-    age_warning_days = 365,
+    expected_vintage_rule = "manual_attestation",
+    # Frozen methodology input: file age is not a staleness signal.
+    age_warning_days = Inf,
     status_if_missing = "blocking",
-    analyst_action = "Provide the reviewed SDG indicator list or run its documented collection step.",
+    analyst_action = paste(
+      "Provide the frozen SPI SDG indicator list (methodology input defining",
+      "scored series and goal mapping); do not refresh it per vintage."
+    ),
     stringsAsFactors = FALSE
   ),
   data.frame(
