@@ -170,7 +170,7 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 | 2.1 SDDS | WDI metadata (IMF) | Automatic via WDI metadata |
 | 2.2 ODIN | Open Data Watch | Use the documented provisional stand-in until the 2025 release arrives |
 | 2.4 NADA | NSO websites | Run `02_programs/misc_scripts/nada_check.R` |
-| 3.x UN SDG | UN SDG database | Provide the reviewed indicator list, then run collection and review all SDG artifacts and five-year score inputs |
+| 3.x UN SDG | UN SDG database | Confirm the frozen `SDG_indicator_list.csv` methodology input is present, then run collection and review all SDG artifacts and five-year score inputs |
 | 4.1 Censuses/surveys | Microdata libraries | Create the eight 2025 current-vintage files and `D4.1.Manual.Review.2025.xlsx` |
 | 4.2.3 CRVS | UN SDG data | Refresh both birth and death registration series through the collection pipeline |
 | 4.3 Geospatial | ODIN | Same provisional or official ODIN inputs as 2.2 |
@@ -189,7 +189,7 @@ The confirmed source-to-indicator mapping for the November 2026 update is:
 | `WDI_metadata_2026.csv` | `SPI.D1.5.DT.TDS.DPPF.XP.ZS`, `SPI.D2.1.GDDS`, the WDI CRVS supplement, and WDI-backed D5.2 inputs | Preserve the raw file and run the WDI checkpoint |
 | JMP country downloads and `Safely_Managed_Water_data.csv` | `SPI.D1.5.SAFE.MAN.WATER` | Run the JMP collector; the normalized output must retain country codes |
 | ILO 2WAP and DWAP Excel files dated 2026-10-06 | `SPI.D1.5.LFP` | Validate both files, filters, source labels, and coverage |
-| UN SDG indicator list and series collection | `SPI.D3.1.*` through `SPI.D3.4.*` | Provide the reviewed list, collect raw/normalized/availability files, and build the five-year score input |
+| UN SDG series collection (scope set by the frozen indicator list) | `SPI.D3.1.*` through `SPI.D3.17.*` (D3.14 excluded) | Confirm the indicator list is present, collect raw/normalized/availability files, and build the five-year score input |
 | UN SDG CRVS series | `SPI.D4.2.3.CRVS` | Refresh both birth and death registration inputs |
 | Microdata library extracts and manual review | `SPI.D4.1.*` | Produce all eight 2025 CSVs and the 2025 review workbook |
 | IMF compiled workbook plus D5.2 annual files | `SPI.D5.2.*` | Verify the IMF workbook, previous-vintage baseline, and current-year annual files |
@@ -313,9 +313,14 @@ inputs; they do not introduce additional SPI indicators.
   normalized series under `01_raw_data/3_DP/sdg_data/normalized/`, binary
   availability tables under `01_raw_data/3_DP/availability/`, and the
   collection score input at `01_raw_data/3_DP/collection/SPI_D3_UNSD_data_5yr.csv`.
-- **Update**: Run collection only after the reviewed
-  `01_raw_data/metadata/SDG_indicator_list.csv` is present. A missing list is
-  a blocking source issue and estimation will stop.
+- **Indicator list (methodology input)**:
+  `01_raw_data/metadata/SDG_indicator_list.csv` is not produced by the SPI and
+  is not refreshed each vintage. It defines which SDG series are scored
+  (`code1`, Tier 1 via `Tier_Nov2020`) and maps each series to its `goal`. It
+  is kept fixed so scores stay comparable over time; change it only as a
+  deliberate, documented methodology revision.
+- **Update**: Run collection only after the indicator list is present. A
+  missing list is a blocking source issue and estimation will stop.
 
 #### 4.1 Censuses and surveys
 
