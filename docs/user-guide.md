@@ -320,6 +320,20 @@ inputs; they do not introduce additional SPI indicators.
 #### 4.1 Censuses and surveys
 
 - **Source**: National microdata libraries.
+- **Collection ownership**: the SPI technical lead runs the collection and
+  country economists review the source evidence and record adjustments in the
+  manual-review workbook. The Excel structures are preserved unchanged.
+- **Manual input workbooks**: update the eight files under
+  `01_raw_data/4.1_SOCS/raw/input/`:
+  `D2.1.CEN.POPU.xlsx`, `D2.2.CEN.AGRI.xlsx`, `D2.3.CEN.BIZZ.xlsx`,
+  `D2.4.SVY.HOUS.xlsx`, `D2.5.SVY.AGRI.xlsx`, `D2.6.SVY.LABR.xlsx`,
+  `D2.7.SVY.HLTH.xlsx`, and `D2.8.SVY.BIZZ.xlsx`.
+- **Manual review**: update
+  `01_raw_data/4.1_SOCS/raw/D4.1.Manual.Review.<YEAR>.xlsx`. Country-
+  economist adjustments in this workbook are the authoritative additive
+  evidence layer: reviewed values are merged with source evidence and do not
+  silently replace it. Provenance and review counts are recorded in the
+  collection manifest rather than by changing the workbook layout.
 - **Files**: `01_raw_data/4.1_SOCS/raw/D4.1.*.<YEAR>.csv` (8 files, where
   `<YEAR>` is the vintage year, e.g. `D4.1.1.CEN.POPU.2025.csv` for 202611). The
   pipeline reads the files for the CURRENT vintage (`end_date` in
@@ -335,6 +349,31 @@ inputs; they do not introduce additional SPI indicators.
   the ILO catalog, download `sources_en.csv` from
   <https://ilostat.ilo.org/data/national-sources-catalogue/> and rename to
   `ilo_sources_catalog.csv` in `01_raw_data/`.
+- **Targets collection**: the collection pipeline now validates the eight
+  workbooks and review workbook, runs the parameterized D4.1 preprocessing,
+  validates the D4.1 catalogue companion files, and writes
+  `01_raw_data/4.1_SOCS/collection/D4.1_collection_manifest.json`. Run the
+  focused collection target with:
+
+  ```r
+  targets::tar_make(
+    names = "d41_manifest",
+    script = "_targets_data.R",
+    store = "_targets_data"
+  )
+  ```
+
+  The generated manifest is a blocking estimation input. A changed workbook,
+  review file, `end_date`, or preprocessing function invalidates the derived
+  artifacts. Missing files, invalid sheets or columns, duplicate country keys,
+  missing country metadata, stale derived files, and invalid companion files
+  stop the collection run with an action for the technical lead.
+- **Catalogue companions**: D4.1 uses files such as
+  `01_raw_data/4.1_SOCS/D4.1.*_NADA.csv` as catalogue evidence for the eight
+  census/survey indicators. These are distinct from the Dimension 2.4
+  `D2.4.NADA.<YEAR>.csv` indicator. Existing companions are validated by
+  default; programmatic refresh is an explicit external/opt-in operation and
+  must complete before the manifest can pass.
 - **Required CSV structure**: each current-vintage file must contain `iso3c`
   and its indicator-specific year field (for example `POP.CENSUS`, `AGRI.CENSUS`,
   `BIZZ.CENSUS`, `HOUS.SVY`, `AGRI.SVY`, `LABR.SVY`, `HLTH.SVY`, or

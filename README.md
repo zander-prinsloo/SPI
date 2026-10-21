@@ -86,6 +86,10 @@ recommended way to run SPI updates going forward.
   for a new update)
 - **User guide**: `docs/user-guide.md` (step-by-step update, source
   locations, manual checkpoints, troubleshooting)
+- **Dimension 4.1 collection**: the collection graph validates the eight
+  `raw/input/*.xlsx` workbooks, the current manual-review workbook, and the
+  D4.1 catalogue companions before writing
+  `01_raw_data/4.1_SOCS/collection/D4.1_collection_manifest.json`.
 - **Tests**: `tests/testthat/` (comparison harness, vintage fixtures,
   validation rules, download checkpoints)
 
