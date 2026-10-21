@@ -15,7 +15,7 @@
 #   - The 2024 vintage (also called "202511" for the Nov 2025 update) uses
 #     end_date = 2024.
 #   - When running a new update, change this to the new reference year.
-end_date <- 2024
+end_date <- 2025
 
 # window is the moving-average window used by several indicators
 # (e.g. the 5-year window for SDG data availability).
