@@ -353,7 +353,24 @@ inputs; they do not introduce additional SPI indicators.
   which reads the `input/` Excel files and writes the per-year CSVs. For
   the ILO catalog, download `sources_en.csv` from
   <https://ilostat.ilo.org/data/national-sources-catalogue/> and rename to
-  `ilo_sources_catalog.csv` in `01_raw_data/`.
+  `ilo_sources_catalog.csv` in `01_raw_data/4.1_SOCS/`. The microdata pull
+  reads this file to build the labour-force survey companion
+  (`D4.1.6.SVY.LABR_NADA.csv`). Keep the prior vintage copies alongside it for
+  provenance: `ilo_sources_catalog_2024.csv` (the input to the 2024 SPI update)
+  and `ilo_sources_catalog_2023.csv`. No current script reads the dated copies.
+  The catalogue also feeds dimension 5.2.6 (EMPL), but this link is **not yet
+  in the pipeline**. The `ISCE` flag in
+  `01_raw_data/5.2_DISM/D5.2.6.EMPL.<YEAR>.csv` is built from the
+  labour-force survey rows of this file by the manual IMF DSBB notebook
+  (`02_programs/misc_scripts/imf_dsbb_scrape.ipynb`, cell 10). That cell
+  reads a hardcoded 2024 SharePoint path and filters on
+  `Source type == "Labour force survey"`. The microdata pull filters on
+  `Source == "Labour Force Survey"`, a different column. The R pipeline
+  (`R/dim5.R`, `score_empl()`) scores the resulting `ISCE` column but does not
+  read the catalogue. Consequently the 5.2.6 flags for the current vintage have
+  not been regenerated from the new download. Until this is wired into the
+  pipeline, refresh them by re-running the notebook logic against the current
+  `ilo_sources_catalog.csv`.
 - **Targets collection**: the collection pipeline now validates the eight
   workbooks and review workbook, runs the parameterized D4.1 preprocessing,
   validates the D4.1 catalogue companion files, and writes

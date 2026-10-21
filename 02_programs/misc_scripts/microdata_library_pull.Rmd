@@ -429,7 +429,8 @@ countries_ilo <- study_df_ilo %>%
   ungroup() %>%
   select(Country, iso3c)
 
-# read in data sources file from ILO as well
+# read in ILO national sources catalogue (current vintage download; the dated
+# copies ilo_sources_catalog_2024.csv / _2023.csv are archival and not read here)
 ilo_sources_catalog_final <- read_csv(paste(output_dir, "ilo_sources_catalog.csv", sep = "")) %>%
   filter(Source == "Labour Force Survey") %>%
   mutate(
