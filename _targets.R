@@ -50,9 +50,7 @@ tar_option_set(
 # --- Load pipeline functions -------------------------------------------------
 # All functions live in R/ and are sourced here so targets can call them.
 # (targets also supports tar_source() for this purpose.)
-for (f in list.files("R", pattern = "[.]R$", full.names = TRUE)) {
-  source(f)
-}
+tar_source(here::here("R"))
 
 # =============================================================================
 # PIPELINE STAGES
@@ -89,7 +87,7 @@ pipeline_targets <- function() {
   )
   params <- tar_target(
     name = "params",
-    command = load_params(params_file),
+    command = load_params(params_file, require_country_metadata = TRUE),
     format = "rds"
   )
 
@@ -101,6 +99,11 @@ pipeline_targets <- function() {
   collection_run_file <- tar_target(
     name = "collection_run_file",
     command = params$collection_run_file,
+    format = "file"
+  )
+  d41_manifest_file <- tar_target(
+    name = "d41_manifest_file",
+    command = params$dim4_1_manifest_file,
     format = "file"
   )
   source_registry_file <- tar_target(
@@ -194,7 +197,13 @@ pipeline_targets <- function() {
     name = "dim4",
     command = {
       collection_gate
-      combine_dim4(params, country_grid)
+      manifest <- jsonlite::read_json(d41_manifest_file, simplifyVector = FALSE)
+      validate_dim4_1_manifest(
+        d41_manifest_file,
+        raw_dir = params$raw_dir,
+        end_date = params$end_date
+      )
+      combine_dim4(params, country_grid, d41_manifest = manifest)
     },
     format = "rds"
   )
@@ -324,6 +333,7 @@ pipeline_targets <- function() {
     params,
     collection_status_file,
     collection_run_file,
+    d41_manifest_file,
     source_registry_file,
     estimation_source_registry,
     collection_gate,

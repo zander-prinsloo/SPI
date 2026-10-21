@@ -18,6 +18,24 @@ test_that("collection pipeline exposes a separate target graph", {
 
   expect_true(exists("collection_targets", envir = collection_env, inherits = FALSE))
   expect_type(collection_env$collection_targets(), "list")
+
+  manifest <- targets::tar_manifest(
+    script = file.path(project_root, "_targets_data.R")
+  )
+  expect_true(all(c(
+    "d41_input_files",
+    "d41_manual_review_file",
+    "d41_manual_validation",
+    "d41_preprocess",
+    "d41_catalogue_collection",
+    "d41_manifest",
+    "d41_manifest_file"
+  ) %in% manifest$name))
+
+  estimation_manifest <- targets::tar_manifest(
+    script = file.path(project_root, "_targets.R")
+  )
+  expect_true("d41_manifest_file" %in% estimation_manifest$name)
 })
 
 test_that("estimation pipeline exposes a collection status gate", {

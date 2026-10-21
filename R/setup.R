@@ -22,7 +22,8 @@
 #'   is sourced regardless.
 #' @return A list of pipeline parameters.
 #' @export
-load_params <- function(params_file = here::here("config", "params.R")) {
+load_params <- function(params_file = here::here("config", "params.R"),
+                        require_country_metadata = FALSE) {
   # Source the config file in a clean environment and capture its objects
   env <- new.env(parent = globalenv())
   sys.source(params_file, envir = env)
@@ -33,6 +34,13 @@ load_params <- function(params_file = here::here("config", "params.R")) {
   )
   if (file.exists(country_metadata_path)) {
     env$country_metadata <- readRDS(country_metadata_path)
+  } else if (isTRUE(require_country_metadata)) {
+    stop(
+      "WORLD BANK COUNTRY METADATA COLLECTION ARTIFACT NOT FOUND: ",
+      country_metadata_path,
+      "\nRun the collection pipeline before estimation.",
+      call. = FALSE
+    )
   } else {
     env$country_metadata <- data.frame()
   }

@@ -41,6 +41,12 @@ collection_age_warning_days <- 365
 source_registry_file <- here::here("config", "source_registry.R")
 sdg_indicator_list_file <- here::here("01_raw_data", "metadata", "SDG_indicator_list.csv")
 sdg_collection_dir <- here::here("01_raw_data", "3_DP", "collection")
+dim4_1_manifest_file <- file.path(
+  raw_dir,
+  "4.1_SOCS",
+  "collection",
+  "D4.1_collection_manifest.json"
+)
 
 # --- Weights -----------------------------------------------------------------
 # wgt controls whether index estimates are weighted by population (2) or

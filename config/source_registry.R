@@ -218,3 +218,87 @@ source_registry <- rbind(
     stringsAsFactors = FALSE
   )
 )
+
+source_registry <- rbind(
+  source_registry,
+  data.frame(
+    source_id = "d4_1_collection_manifest",
+    dimension_id = "4.1",
+    source_type = "external",
+    indicator_ids = "SPI.D4.1.*",
+    source_url = NA_character_,
+    input_path = paste(
+      "4.1_SOCS/raw/input/*.xlsx",
+      "4.1_SOCS/raw/D4.1.Manual.Review.<END_DATE>.xlsx",
+      sep = "|"
+    ),
+    raw_path = "4.1_SOCS/collection/",
+    normalized_path = "4.1_SOCS/collection/D4.1_collection_manifest.json",
+    availability_path = NA_character_,
+    expected_vintage_rule = "end_date",
+    age_warning_days = 365,
+    status_if_missing = "blocking",
+    analyst_action = "Run the D4.1 collection target and resolve manual-review or artifact validation failures.",
+    stringsAsFactors = FALSE
+  )
+)
+
+source_registry <- rbind(
+  source_registry,
+  data.frame(
+    source_id = c(
+      "d4_1_input_population_census",
+      "d4_1_input_agriculture_census",
+      "d4_1_input_business_census",
+      "d4_1_input_household_survey",
+      "d4_1_input_agriculture_survey",
+      "d4_1_input_labor_survey",
+      "d4_1_input_health_survey",
+      "d4_1_input_business_survey",
+      "d4_1_manual_review"
+    ),
+    dimension_id = rep("4.1", 9),
+    source_type = rep("manual", 9),
+    indicator_ids = c(
+      "SPI.D4.1.1.POPU", "SPI.D4.1.2.AGRI", "SPI.D4.1.3.BIZZ",
+      "SPI.D4.1.4.HOUS", "SPI.D4.1.5.AGSVY", "SPI.D4.1.6.LABR",
+      "SPI.D4.1.7.HLTH", "SPI.D4.1.8.BZSVY", "SPI.D4.1.*"
+    ),
+    source_url = rep(NA_character_, 9),
+    input_path = c(
+      "4.1_SOCS/raw/input/D2.1.CEN.POPU.xlsx",
+      "4.1_SOCS/raw/input/D2.2.CEN.AGRI.xlsx",
+      "4.1_SOCS/raw/input/D2.3.CEN.BIZZ.xlsx",
+      "4.1_SOCS/raw/input/D2.4.SVY.HOUS.xlsx",
+      "4.1_SOCS/raw/input/D2.5.SVY.AGRI.xlsx",
+      "4.1_SOCS/raw/input/D2.6.SVY.LABR.xlsx",
+      "4.1_SOCS/raw/input/D2.7.SVY.HLTH.xlsx",
+      "4.1_SOCS/raw/input/D2.8.SVY.BIZZ.xlsx",
+      "4.1_SOCS/raw/D4.1.Manual.Review.<END_DATE>.xlsx"
+    ),
+    raw_path = c(
+      rep("4.1_SOCS/raw/input/", 8),
+      "4.1_SOCS/raw/"
+    ),
+    normalized_path = c(
+      "4.1_SOCS/raw/input/D2.1.CEN.POPU.xlsx",
+      "4.1_SOCS/raw/input/D2.2.CEN.AGRI.xlsx",
+      "4.1_SOCS/raw/input/D2.3.CEN.BIZZ.xlsx",
+      "4.1_SOCS/raw/input/D2.4.SVY.HOUS.xlsx",
+      "4.1_SOCS/raw/input/D2.5.SVY.AGRI.xlsx",
+      "4.1_SOCS/raw/input/D2.6.SVY.LABR.xlsx",
+      "4.1_SOCS/raw/input/D2.7.SVY.HLTH.xlsx",
+      "4.1_SOCS/raw/input/D2.8.SVY.BIZZ.xlsx",
+      "4.1_SOCS/raw/D4.1.Manual.Review.<END_DATE>.xlsx"
+    ),
+    availability_path = rep(NA_character_, 9),
+    expected_vintage_rule = c(rep("manual_attestation", 8), "end_date"),
+    age_warning_days = rep(365, 9),
+    status_if_missing = rep("blocking", 9),
+    analyst_action = c(
+      rep("Update and validate the current 4.1 source workbook.", 8),
+      "Complete country-economist review and save the current-vintage workbook."
+    ),
+    stringsAsFactors = FALSE
+  )
+)

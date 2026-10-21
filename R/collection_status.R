@@ -118,6 +118,7 @@ evaluate_collection_status <- function(registry, collection_root, end_date,
       expected_rule,
       end_date = as.character(end_date),
       end_date_plus_one = as.character(end_date + 1),
+      manual_attestation = "attested",
       not_measured = NA_character_,
       latest_release = "unverified",
       "unverified"

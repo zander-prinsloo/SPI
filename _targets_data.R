@@ -16,9 +16,7 @@ tar_option_set(
   error = "stop"
 )
 
-for (f in list.files("R", pattern = "[.]R$", full.names = TRUE)) {
-  source(f)
-}
+tar_source(here::here("R"))
 
 collection_targets <- function() {
   params_file <- tar_target(
@@ -29,7 +27,40 @@ collection_targets <- function() {
 
   params <- tar_target(
     name = "collection_params",
-    command = load_params(params_file),
+    command = load_params(collection_params_file),
+    format = "rds"
+  )
+
+  d41_input_files <- tar_target(
+    name = "d41_input_files",
+    command = unname(
+      dim4_1_artifact_paths(
+        collection_params$raw_dir,
+        collection_params$end_date
+      )$input_files
+    ),
+    format = "file"
+  )
+
+  d41_manual_review_file <- tar_target(
+    name = "d41_manual_review_file",
+    command = dim4_1_artifact_paths(
+      collection_params$raw_dir,
+      collection_params$end_date
+    )$review_file,
+    format = "file"
+  )
+
+  d41_manual_validation <- tar_target(
+    name = "d41_manual_validation",
+    command = {
+      d41_input_files
+      d41_manual_review_file
+      validate_dim4_1_workbooks(
+        raw_dir = collection_params$raw_dir,
+        end_date = collection_params$end_date
+      )
+    },
     format = "rds"
   )
 
@@ -48,7 +79,7 @@ collection_targets <- function() {
 
   source_registry <- tar_target(
     name = "source_registry",
-    command = load_source_registry(registry_file),
+    command = load_source_registry(source_registry_file),
     format = "rds"
   )
 
@@ -72,6 +103,68 @@ collection_targets <- function() {
       collect_world_bank_inputs(collection_params)
     },
     format = "rds"
+  )
+
+  d41_preprocess <- tar_target(
+    name = "d41_preprocess",
+    command = {
+      d41_manual_validation
+      wb <- world_bank_inputs
+      country_metadata <- readRDS(wb$countries)
+      preprocess_dim4_1(
+        raw_dir = collection_params$raw_dir,
+        end_date = collection_params$end_date,
+        country_metadata = country_metadata
+      )
+    },
+    format = "file"
+  )
+
+  d41_catalogue_collection <- tar_target(
+    name = "d41_catalogue_collection",
+    command = {
+      d41_preprocess
+      d41_manual_review_file
+      wb <- world_bank_inputs
+      collection_params$country_metadata <- readRDS(wb$countries)
+      collect_dim4_1_catalogue(collection_params)
+    },
+    format = "rds",
+    cue = tar_cue(mode = "always")
+  )
+
+  d41_manifest <- tar_target(
+    name = "d41_manifest",
+    command = {
+      collection_run_start
+      d41_preprocess
+      catalogue <- d41_catalogue_collection
+      wb <- world_bank_inputs
+      country_metadata <- readRDS(wb$countries)
+      manifest <- dim4_1_build_manifest(
+        raw_dir = collection_params$raw_dir,
+        end_date = collection_params$end_date,
+        country_metadata = country_metadata
+      )
+      manifest$catalogue <- catalogue
+      write_dim4_1_manifest(
+        manifest,
+        collection_params$dim4_1_manifest_file
+      )
+      manifest
+    },
+    format = "rds",
+    cue = tar_cue(mode = "always")
+  )
+
+  d41_manifest_file <- tar_target(
+    name = "d41_manifest_file",
+    command = {
+      d41_manifest
+      collection_params$dim4_1_manifest_file
+    },
+    format = "file",
+    cue = tar_cue(mode = "always")
   )
 
   manual_checkpoints <- tar_target(
@@ -116,6 +209,8 @@ collection_targets <- function() {
     name = "collection_status",
     command = {
       run <- collection_run_start
+      d41_manifest
+      d41_manifest_file
       pip_collection
       world_bank_inputs
       manual_checkpoints
@@ -144,11 +239,18 @@ collection_targets <- function() {
   list(
     params_file,
     params,
+    d41_input_files,
+    d41_manual_review_file,
+    d41_manual_validation,
     collection_run_start,
     registry_file,
     source_registry,
     pip_collection,
     world_bank_inputs,
+    d41_preprocess,
+    d41_catalogue_collection,
+    d41_manifest,
+    d41_manifest_file,
     manual_checkpoints,
     jmp_collection,
     unsdg_collection,
