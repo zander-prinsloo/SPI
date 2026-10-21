@@ -42,11 +42,23 @@ library(dplyr)
 #' @return The current metadata name (or the input if no alias applies).
 #' @noRd
 .map_nada_country <- function(name) {
+  if (exists("dim4_1_canonical_country", mode = "function")) {
+    return(dim4_1_canonical_country(name))
+  }
   if (name %in% names(.country_name_aliases)) {
     .country_name_aliases[[name]]
   } else {
     name
   }
+}
+
+.filter_d41_companion_exclusions <- function(data, path, d41_manifest) {
+  if (is.null(d41_manifest$exclusions)) return(data)
+  exclusion <- d41_manifest$exclusions[[basename(path)]]
+  if (is.null(exclusion)) return(data)
+  keep <- !is.na(data$country) &
+    !(as.numeric(data$indicator_date) %in% as.numeric(exclusion$dates))
+  data[keep, , drop = FALSE]
 }
 
 #' Read the manual review file for a given vintage
@@ -65,13 +77,17 @@ library(dplyr)
 #' @param params List of pipeline parameters.
 #' @return A tibble with iso3c and the manual override columns.
 #' @noRd
-.read_manual_review <- function(params) {
+.read_manual_review <- function(params, review_path = NULL) {
   end_date <- params$end_date
   raw_dir <- params$raw_dir
   dir_path <- file.path(raw_dir, "4.1_SOCS", "raw")
 
   # The current vintage file is REQUIRED -- fail loudly if missing (R8).
-  current_path <- file.path(dir_path, sprintf("D4.1.Manual.Review.%d.xlsx", end_date))
+  current_path <- if (is.null(review_path)) {
+    file.path(dir_path, sprintf("D4.1.Manual.Review.%d.xlsx", end_date))
+  } else {
+    review_path
+  }
   if (!file.exists(current_path)) {
     stop(
       sprintf("MANUAL REVIEW FILE NOT FOUND: %s\n", current_path),
@@ -108,6 +124,9 @@ library(dplyr)
 #' @return A sorted, comma-separated string of years.
 #' @noRd
 .combine_years_register <- function(a, b) {
+  if (exists("dim4_1_merge_review_values", mode = "function")) {
+    return(dim4_1_merge_review_values(a, b, register_based = TRUE))
+  }
   ax <- if (is.na(a)) "" else trimws(a)
   bx <- if (is.na(b)) "" else trimws(b)
 
@@ -140,6 +159,9 @@ library(dplyr)
 #' @return A sorted, comma-separated string of years.
 #' @noRd
 .combine_years <- function(a, b) {
+  if (exists("dim4_1_merge_review_values", mode = "function")) {
+    return(dim4_1_merge_review_values(a, b, register_based = FALSE))
+  }
   ax <- if (is.na(a)) "" else a
   bx <- if (is.na(b)) "" else b
   yrs <- c(
@@ -163,7 +185,8 @@ library(dplyr)
 #' @param params    List of pipeline parameters.
 #' @return A tibble with iso3c, date, input_var, nada_dates, indicator.
 #' @export
-census_fun <- function(data, input_var, params) {
+census_fun <- function(data, input_var, params, review_path = NULL,
+                       d41_manifest = NULL) {
   end_date <- params$end_date
   raw_dir <- params$raw_dir
 
@@ -188,7 +211,7 @@ census_fun <- function(data, input_var, params) {
   # --- 1) Read the manual review file ----------------------------------------
   # Versioned by vintage year (D4.1.Manual.Review.<YEAR>.xlsx). The current
   # vintage file is required; historical files are read when present.
-  manual_raw <- .read_manual_review(params) %>%
+  manual_raw <- .read_manual_review(params, review_path = review_path) %>%
     dplyr::select(iso3c, dplyr::all_of(input_var))
 
   # --- Merge base + manual and combine year strings --------------------------
@@ -228,6 +251,10 @@ census_fun <- function(data, input_var, params) {
   cs_df <- cs_df %>%
     dplyr::bind_rows(
       readr::read_csv(file.path(raw_dir, "4.1_SOCS", paste0(data, "_NADA.csv"))) %>%
+        .filter_d41_companion_exclusions(
+          file.path(raw_dir, "4.1_SOCS", paste0(data, "_NADA.csv")),
+          d41_manifest
+        ) %>%
         dplyr::mutate(country = purrr::map_chr(country, .map_nada_country)) %>%
         dplyr::left_join(params$country_metadata, by = "country") %>%
         dplyr::select(iso3c, indicator_date, nada_dates)
@@ -235,7 +262,10 @@ census_fun <- function(data, input_var, params) {
     dplyr::group_by(iso3c, indicator_date) %>%
     dplyr::summarise(
       input_var = dplyr::first(stats::na.omit(input_var)),
-      nada_dates = dplyr::first(stats::na.omit(nada_dates)),
+      nada_dates = paste(
+        unique(stats::na.omit(nada_dates)),
+        collapse = "; "
+      ),
       .groups = "drop"
     ) %>%
     dplyr::mutate(indicator_date = if_else(is.na(indicator_date), -99, indicator_date))
@@ -283,7 +313,8 @@ census_fun <- function(data, input_var, params) {
 #' @param params    List of pipeline parameters.
 #' @return A tibble with iso3c, date, input_var, nada_dates, indicator.
 #' @export
-survey_fun <- function(data, input_var, params) {
+survey_fun <- function(data, input_var, params, review_path = NULL,
+                       d41_manifest = NULL) {
   end_date <- params$end_date
   raw_dir <- params$raw_dir
 
@@ -308,7 +339,7 @@ survey_fun <- function(data, input_var, params) {
   # --- 1) Read the manual review file ----------------------------------------
   # Versioned by vintage year (D4.1.Manual.Review.<YEAR>.xlsx). The current
   # vintage file is required; historical files are read when present.
-  manual_raw <- .read_manual_review(params) %>%
+  manual_raw <- .read_manual_review(params, review_path = review_path) %>%
     dplyr::select(iso3c, dplyr::all_of(input_var))
 
   # --- Merge base + manual and combine year strings --------------------------
@@ -351,6 +382,10 @@ survey_fun <- function(data, input_var, params) {
         file.path(raw_dir, "4.1_SOCS", paste0(data, "_NADA.csv")),
         col_types = list(readr::col_character(), readr::col_double(), readr::col_character())
       ) %>%
+        .filter_d41_companion_exclusions(
+          file.path(raw_dir, "4.1_SOCS", paste0(data, "_NADA.csv")),
+          d41_manifest
+        ) %>%
         dplyr::mutate(country = purrr::map_chr(country, .map_nada_country)) %>%
         dplyr::left_join(params$country_metadata, by = "country") %>%
         dplyr::select(iso3c, indicator_date, nada_dates)
@@ -401,9 +436,15 @@ survey_fun <- function(data, input_var, params) {
 #' @param grid   The country x year grid.
 #' @return A tibble with iso3c, date, and the D4.1 columns.
 #' @export
-combine_censuses_surveys <- function(params, grid) {
+combine_censuses_surveys <- function(params, grid, d41_manifest = NULL) {
+  review_path <- if (is.null(d41_manifest)) {
+    NULL
+  } else {
+    d41_manifest$review$path
+  }
+
   # Population census
-  cs1_df <- census_fun("D4.1.1.CEN.POPU", "POP.CENSUS", params) %>%
+  cs1_df <- census_fun("D4.1.1.CEN.POPU", "POP.CENSUS", params, review_path, d41_manifest) %>%
     dplyr::rename(
       RAW.D4.1.1.POPU = input_var,
       SPI.D4.1.1.POPU = indicator
@@ -411,7 +452,7 @@ combine_censuses_surveys <- function(params, grid) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Agriculture census
-  cs2_df <- census_fun("D4.1.2.CEN.AGRI", "AGRI.CENSUS", params) %>%
+  cs2_df <- census_fun("D4.1.2.CEN.AGRI", "AGRI.CENSUS", params, review_path, d41_manifest) %>%
     dplyr::rename(
       RAW.D4.1.2.AGRI = input_var,
       SPI.D4.1.2.AGRI = indicator
@@ -419,7 +460,7 @@ combine_censuses_surveys <- function(params, grid) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Business/establishment census
-  cs3_df <- census_fun("D4.1.3.CEN.BIZZ", "BIZZ.CENSUS", params) %>%
+  cs3_df <- census_fun("D4.1.3.CEN.BIZZ", "BIZZ.CENSUS", params, review_path, d41_manifest) %>%
     dplyr::rename(
       RAW.D4.1.3.BIZZ = input_var,
       RAW.D4.1.3.BIZZ.CENSUS_nada = nada_dates,
@@ -428,7 +469,7 @@ combine_censuses_surveys <- function(params, grid) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Household survey
-  cs4_df <- survey_fun("D4.1.4.SVY.HOUS", "HOUS.SURVEYS", params) %>%
+  cs4_df <- survey_fun("D4.1.4.SVY.HOUS", "HOUS.SURVEYS", params, review_path, d41_manifest) %>%
     dplyr::rename(
       RAW.D4.1.4.HOUS = input_var,
       RAW.D4.1.4.HOUS.SURVEYS_nada = nada_dates,
@@ -437,7 +478,7 @@ combine_censuses_surveys <- function(params, grid) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Agriculture survey
-  cs5_df <- survey_fun("D4.1.5.SVY.AGRI", "AGRI.SURVEYS", params) %>%
+  cs5_df <- survey_fun("D4.1.5.SVY.AGRI", "AGRI.SURVEYS", params, review_path, d41_manifest) %>%
     dplyr::rename(
       RAW.D4.1.5.AGSVY = input_var,
       RAW.D4.1.5.AGRI.SURVEYS_nada = nada_dates,
@@ -446,7 +487,7 @@ combine_censuses_surveys <- function(params, grid) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Labor force survey
-  cs6_df <- survey_fun("D4.1.6.SVY.LABR", "LABR.SURVEYS", params) %>%
+  cs6_df <- survey_fun("D4.1.6.SVY.LABR", "LABR.SURVEYS", params, review_path, d41_manifest) %>%
     dplyr::rename(
       RAW.D4.1.6.LABR = input_var,
       RAW.D4.1.6.LABR.SURVEYS_nada = nada_dates,
@@ -455,7 +496,7 @@ combine_censuses_surveys <- function(params, grid) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Health/Demographic survey
-  cs7_df <- survey_fun("D4.1.7.SVY.HLTH", "HLTH.SURVEYS", params) %>%
+  cs7_df <- survey_fun("D4.1.7.SVY.HLTH", "HLTH.SURVEYS", params, review_path, d41_manifest) %>%
     dplyr::rename(
       RAW.D4.1.7.HLTH = input_var,
       RAW.D4.1.7.HLTH.SURVEYS_nada = nada_dates,
@@ -464,7 +505,7 @@ combine_censuses_surveys <- function(params, grid) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Business/establishment survey
-  cs8_df <- survey_fun("D4.1.8.SVY.BIZZ", "BIZZ.SURVEYS", params) %>%
+  cs8_df <- survey_fun("D4.1.8.SVY.BIZZ", "BIZZ.SURVEYS", params, review_path, d41_manifest) %>%
     dplyr::rename(
       RAW.D4.1.8.BZSVY = input_var,
       RAW.D4.1.8.BIZZ.SURVEYS_nada = nada_dates,
@@ -674,10 +715,10 @@ score_geospatial <- function(params) {
 #' @param grid   The country x year grid.
 #' @return A tibble with iso3c, date, and the D4 indicator columns.
 #' @export
-combine_dim4 <- function(params, grid) {
+combine_dim4 <- function(params, grid, d41_manifest = NULL) {
   wdi_metadata <- read_wdi_metadata(params)
 
-  cs <- combine_censuses_surveys(params, grid)
+  cs <- combine_censuses_surveys(params, grid, d41_manifest = d41_manifest)
   crvs <- score_crvs(wdi_metadata, params, grid)
   geo <- score_geospatial(params)
 
