@@ -36,7 +36,9 @@ test_params <- function(end_date = 2024) {
     window = 5,
     raw_dir = here::here("01_raw_data"),
     staging_dir = here::here("staging"),
-    wgt = 1
+    wgt = 1,
+    imf_file = "2026.10_Compiled Data for World Bank - Sep 2026 - Final.xlsx",
+    imf_file_2024 = "2025.10_Compiled Data for World Bank.xlsx"
   )
 }
 
@@ -451,6 +453,34 @@ test_that("score_gsbp: yes scores 1, no scores 0", {
   result <- score_gsbp(params)
   expect_equal(result$SPI.D5.2.10.GSBP[result$iso3c == "AFG" & result$date == 2016], 1)
   expect_equal(result$SPI.D5.2.10.GSBP[result$iso3c == "USA" & result$date == 2016], 0)
+})
+
+# =============================================================================
+# Current-vintage IMF year scoping
+# =============================================================================
+
+test_that("score_cpiby: current IMF workbook updates only the latest year", {
+  params <- test_params(end_date = 2025)
+  params$imf_file <- "2026.10_Compiled Data for World Bank - Sep 2026 - Final.xlsx"
+  grid <- tibble::tibble(
+    iso3c = c("AFG", "AFG", "USA", "USA"),
+    country = c("Afghanistan", "Afghanistan", "United States", "United States"),
+    date = c(2024, 2025, 2024, 2025)
+  )
+
+  result <- score_cpiby(params, grid)
+  previous <- read_previous_vintage_d5(params) %>%
+    dplyr::filter(iso3c %in% c("AFG", "USA"), date == 2024) %>%
+    dplyr::select(iso3c, RAW.D5.2.4.CPIBY, SPI.D5.2.4.CPIBY) %>%
+    dplyr::arrange(iso3c)
+  observed <- result %>%
+    dplyr::filter(iso3c %in% c("AFG", "USA"), date == 2024) %>%
+    dplyr::select(iso3c, RAW.D5.2.4.CPIBY, SPI.D5.2.4.CPIBY) %>%
+    dplyr::arrange(iso3c)
+
+  expect_true(all(c(2024, 2025) %in% unique(result$date)))
+  expect_lte(max(result$date), 2025)
+  expect_equal(observed, previous)
 })
 
 # =============================================================================

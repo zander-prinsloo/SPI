@@ -312,6 +312,7 @@ score_cnin <- function(params) {
 score_cpiby <- function(params, grid) {
   imf_codes <- read_imf_codes(params)
   imf_file <- params$imf_file
+  end_date <- params$end_date
 
   # Previous vintage as starting point
   D5.2.4.CPIBY <- read_previous_vintage_d5(params) %>%
@@ -331,17 +332,24 @@ score_cpiby <- function(params, grid) {
       IMF_code = Code,
       IMF_country = Country
     ) %>%
+    dplyr::rename_with(
+      ~ "last_change",
+      .cols = dplyr::matches("^As[.]of[.]")
+    ) %>%
     dplyr::mutate(IMF_code = as.numeric(IMF_code)) %>%
     dplyr::left_join(imf_codes, by = "IMF_code")
 
   # CPI reference period
   D5.2.4.CPI.REF <- readxl::read_excel(
     path = file.path(params$raw_dir, "5.2_DISM", imf_file),
-    sheet = "1. CPI Reference Period",
-    skip = 1
+    sheet = "2. CPI Reference Period",
+    skip = 2
   ) %>%
     tibble::as_tibble(.name_repair = "universal") %>%
-    dplyr::rename(IMF_country = Country) %>%
+    dplyr::rename(
+      IMF_country = Country,
+      Common.Reference.Period = `...3`
+    ) %>%
     dplyr::left_join(D5.2.4.COICOP.WGT, by = "IMF_country")
 
   # Calculate annual chain linking / base year
@@ -356,7 +364,7 @@ score_cpiby <- function(params, grid) {
     ) %>%
     dplyr::mutate(
       RAW.D5.2.4.CPIBY.IMF = dplyr::if_else(
-        (CPI_weight_change >= 2024 & CPI_ref_period <= 2024),
+        (CPI_weight_change >= end_date & CPI_ref_period <= end_date),
         "annual chained",
         as.character(CPI_ref_period),
         as.character(CPI_ref_period)
@@ -371,20 +379,75 @@ score_cpiby <- function(params, grid) {
       )
     )
 
-  # Score 2015:end_date
-  D5.2.4.CPIBY.IMF <- purrr::map_dfr(2015:params$end_date, function(i) {
-    D5.2.4.CPIBY.IMF.RAW %>%
-      dplyr::mutate(date = i) %>%
-      dplyr::mutate(
-        SPI.D5.2.4.CPIBY.IMF = dplyr::case_when(
-          RAW.D5.2.4.CPIBY.IMF == "annual chained" ~ 1,
-          (date - as.numeric(RAW.D5.2.4.CPIBY.IMF)) <= 10 ~ 0.5,
-          TRUE ~ 0
-        )
-      ) %>%
-      dplyr::select(iso3c, date, RAW.D5.2.4.CPIBY.IMF, SPI.D5.2.4.CPIBY.IMF) %>%
-      dplyr::arrange(date, iso3c)
-  })
+  # Historical IMF data through the 2024 reference year. This workbook uses
+  # the prior sheet/header layout and must not be replaced by the current file.
+  D5.2.4.COICOP.WGT.2024 <- readxl::read_excel(
+    path = file.path(params$raw_dir, "5.2_DISM", params$imf_file_2024),
+    sheet = "3. COICOP Month_Last Change",
+    skip = 3
+  ) %>%
+    tibble::as_tibble(.name_repair = "universal") %>%
+    dplyr::rename(IMF_code = Code, IMF_country = Country) %>%
+    dplyr::mutate(IMF_code = as.numeric(IMF_code)) %>%
+    dplyr::left_join(imf_codes, by = "IMF_code")
+
+  D5.2.4.CPI.REF.2024 <- readxl::read_excel(
+    path = file.path(params$raw_dir, "5.2_DISM", params$imf_file_2024),
+    sheet = "1. CPI Reference Period",
+    skip = 1
+  ) %>%
+    tibble::as_tibble(.name_repair = "universal") %>%
+    dplyr::rename(IMF_country = Country) %>%
+    dplyr::left_join(D5.2.4.COICOP.WGT.2024, by = "IMF_country")
+
+  D5.2.4.CPIBY.IMF.RAW.2024 <- D5.2.4.CPI.REF.2024 %>%
+    dplyr::filter(!is.na(iso3c)) %>%
+    dplyr::mutate(
+      CPI_ref_period = stringr::str_sub(Common.Reference.Period, 1, 4),
+      CPI_ref_period = as.numeric(CPI_ref_period),
+      CPI_weight_change = stringr::str_sub(last_change, 1, 4),
+      CPI_weight_change = as.numeric(CPI_weight_change),
+      iso3c = dplyr::if_else(iso3c == "KOS", "XKX", iso3c)
+    ) %>%
+    dplyr::mutate(
+      RAW.D5.2.4.CPIBY.IMF = dplyr::if_else(
+        (CPI_weight_change >= (end_date - 1L) & CPI_ref_period <= (end_date - 1L)),
+        "annual chained",
+        as.character(CPI_ref_period),
+        as.character(CPI_ref_period)
+      )
+    ) %>%
+    dplyr::mutate(
+      RAW.D5.2.4.CPIBY.IMF = dplyr::if_else(
+        (iso3c == "AUS" | iso3c == "NZL"),
+        "annual chained",
+        as.character(RAW.D5.2.4.CPIBY.IMF),
+        as.character(RAW.D5.2.4.CPIBY.IMF)
+      )
+    )
+
+  score_cpiby_imf <- function(raw, years) {
+    purrr::map_dfr(years, function(i) {
+      raw %>%
+        dplyr::mutate(
+          date = i,
+          SPI.D5.2.4.CPIBY.IMF = dplyr::case_when(
+            RAW.D5.2.4.CPIBY.IMF == "annual chained" ~ 1,
+            (date - as.numeric(RAW.D5.2.4.CPIBY.IMF)) <= 10 ~ 0.5,
+            TRUE ~ 0
+          )
+        ) %>%
+        dplyr::select(iso3c, date, RAW.D5.2.4.CPIBY.IMF, SPI.D5.2.4.CPIBY.IMF) %>%
+        dplyr::arrange(date, iso3c)
+    })
+  }
+
+  # Score only the current reference year. Historical years remain sourced
+  # from the previous-vintage baseline above.
+  D5.2.4.CPIBY.IMF <- dplyr::bind_rows(
+    score_cpiby_imf(D5.2.4.CPIBY.IMF.RAW.2024, 2015:(end_date - 1L)),
+    score_cpiby_imf(D5.2.4.CPIBY.IMF.RAW, end_date)
+  )
 
   # Update with IMF data when previous vintage value is missing
   D5.2.4.CPIBY %>%
@@ -403,10 +466,32 @@ score_cpiby <- function(params, grid) {
 # Source: previous vintage + IMF COICOP data.
 # Score: 1 for COICOP, 0 otherwise.
 
+read_current_imf_status_sheet <- function(params, sheet, skip, pattern) {
+  data <- readxl::read_excel(
+    path = file.path(params$raw_dir, "5.2_DISM", params$imf_file),
+    sheet = sheet,
+    skip = skip
+  ) %>%
+    tibble::as_tibble(.name_repair = "universal")
+  status_cols <- names(data)[grepl(pattern, names(data))]
+  if (length(status_cols) != 1L) {
+    stop(
+      sprintf(
+        "IMF STATUS COLUMN MISMATCH in sheet '%s': found %d match(es)",
+        sheet,
+        length(status_cols)
+      ),
+      call. = FALSE
+    )
+  }
+  data$IMF_status <- data[[status_cols[[1L]]]]
+  data
+}
+
 #' Score the HOUS indicator
 #'
 #' Mirrors the "hous" chunk. Starts from the previous vintage, then updates
-#' with IMF COICOP data for 2021-2024.
+#' with IMF COICOP data through the configured reference year.
 #'
 #' @param params List of pipeline parameters.
 #' @param grid   The country x year grid.
@@ -466,9 +551,8 @@ score_hous <- function(params, grid) {
     dplyr::select(iso3c, RAW.D5.2.5.HOUS.IMF, SPI.D5.2.5.HOUS.IMF)
 
   # --- IMF data: 2024 --------------------------------------------------------
-  # The current vintage file comes from params$imf_file (see config/params.R).
   D5.2.5.HOUS.IMF.2024 <- readxl::read_excel(
-    path = file.path(params$raw_dir, "5.2_DISM", params$imf_file),
+    path = file.path(params$raw_dir, "5.2_DISM", params$imf_file_2024),
     sheet = "2. Household Consump Class",
     skip = 1
   ) %>%
@@ -488,12 +572,36 @@ score_hous <- function(params, grid) {
     dplyr::mutate(iso3c = dplyr::if_else(iso3c == "KOS", "XKX", iso3c)) %>%
     dplyr::select(iso3c, RAW.D5.2.5.HOUS.IMF, SPI.D5.2.5.HOUS.IMF)
 
+  # --- IMF data: current reference year --------------------------------------
+  # The current vintage file comes from params$imf_file (see config/params.R).
+  D5.2.5.HOUS.IMF.current <- read_current_imf_status_sheet(
+    params,
+    sheet = "2. Household Consump Class",
+    skip = 0,
+    pattern = "^As[.]of[.]"
+  ) %>%
+    dplyr::rename(IMF_code = Code, IMF_country = Country) %>%
+    dplyr::mutate(
+      SPI.D5.2.5.HOUS.IMF = dplyr::case_when(
+        IMF_status == "COICOP" ~ 1,
+        IMF_status == "COICOP." ~ 1,
+        IMF_status == "COICOP 2018" ~ 1,
+        TRUE ~ 0
+      ),
+      RAW.D5.2.5.HOUS.IMF = IMF_status
+    ) %>%
+    dplyr::mutate(IMF_code = as.numeric(IMF_code)) %>%
+    dplyr::left_join(imf_codes, by = "IMF_code") %>%
+    dplyr::mutate(iso3c = dplyr::if_else(iso3c == "KOS", "XKX", iso3c)) %>%
+    dplyr::select(iso3c, RAW.D5.2.5.HOUS.IMF, SPI.D5.2.5.HOUS.IMF)
+
   # Combine IMF data
   D5.2.5.HOUS.IMF <- D5.2.5.HOUS.IMF.2022 %>%
     dplyr::bind_rows(D5.2.5.HOUS.IMF.2022 %>% dplyr::mutate(date = 2021)) %>%
     dplyr::mutate(date = dplyr::if_else(!is.na(date), 2022, 2021)) %>%
     dplyr::bind_rows(D5.2.5.HOUS.IMF.2023 %>% dplyr::mutate(date = 2023)) %>%
     dplyr::bind_rows(D5.2.5.HOUS.IMF.2024 %>% dplyr::mutate(date = 2024)) %>%
+    dplyr::bind_rows(D5.2.5.HOUS.IMF.current %>% dplyr::mutate(date = params$end_date)) %>%
     dplyr::filter(!is.na(iso3c))
 
   # Update with IMF data when previous vintage value is missing
@@ -563,7 +671,8 @@ score_empl <- function(params) {
 #' Score the CGOV indicator
 #'
 #' Mirrors the "cgov" chunk. Starts from the previous vintage, updates with
-#' IMF data for 2021-2024, and carries forward missing values.
+#' IMF data through the configured reference year, and carries forward missing
+#' values.
 #'
 #' @param params List of pipeline parameters.
 #' @param grid   The country x year grid.
@@ -604,15 +713,18 @@ score_cgov <- function(params, grid) {
     dplyr::mutate(date = 2022)
   D5.2.7.CGOV.IMF.2023 <- read_cgov_2021_2022("2024.02_Compiled Data for World Bank.xlsx", "5. Cntrl Gct Acct Status", 9) %>%
     dplyr::mutate(date = 2023)
-  # The current vintage file comes from params$imf_file (see config/params.R).
-  D5.2.7.CGOV.IMF.2024 <- read_cgov_2021_2022(params$imf_file, "4. Cntrl Gct Acct Status", 9) %>%
+  D5.2.7.CGOV.IMF.2024 <- read_cgov_2021_2022(params$imf_file_2024, "4. Cntrl Gct Acct Status", 9) %>%
     dplyr::mutate(date = 2024)
+  # The current vintage file comes from params$imf_file (see config/params.R).
+  D5.2.7.CGOV.IMF.current <- read_cgov_2021_2022(params$imf_file, "4. Cntrl Gct Acct Status", 9) %>%
+    dplyr::mutate(date = params$end_date)
 
   D5.2.7.CGOV.IMF <- dplyr::bind_rows(
     D5.2.7.CGOV.IMF.2021,
     D5.2.7.CGOV.IMF.2022,
     D5.2.7.CGOV.IMF.2023,
-    D5.2.7.CGOV.IMF.2024
+    D5.2.7.CGOV.IMF.2024,
+    D5.2.7.CGOV.IMF.current
   ) %>%
     dplyr::filter(!is.na(iso3c))
 
@@ -680,7 +792,7 @@ score_fina <- function(params) {
 #' Score the MONY indicator
 #'
 #' Mirrors the "mony" chunk. Starts from the previous vintage, updates with
-#' IMF data for 2020-2024.
+#' IMF data through the configured reference year.
 #'
 #' @param params List of pipeline parameters.
 #' @param grid   The country x year grid.
@@ -754,9 +866,8 @@ score_mony <- function(params, grid) {
     dplyr::select(iso3c, RAW.D5.2.9.MONY.IMF, SPI.D5.2.9.MONY.IMF)
 
   # --- IMF data: 2024 --------------------------------------------------------
-  # The current vintage file comes from params$imf_file (see config/params.R).
   D5.2.9.MONY.IMF.2024 <- readxl::read_excel(
-    path = file.path(params$raw_dir, "5.2_DISM", params$imf_file),
+    path = file.path(params$raw_dir, "5.2_DISM", params$imf_file_2024),
     sheet = "6. MFS Compilation status",
     skip = 1
   ) %>%
@@ -773,12 +884,33 @@ score_mony <- function(params, grid) {
     dplyr::left_join(imf_codes, by = "IMF_code") %>%
     dplyr::select(iso3c, RAW.D5.2.9.MONY.IMF, SPI.D5.2.9.MONY.IMF)
 
+  # --- IMF data: current reference year --------------------------------------
+  # The current vintage file comes from params$imf_file (see config/params.R).
+  D5.2.9.MONY.IMF.current <- read_current_imf_status_sheet(
+    params,
+    sheet = "6. MFS Compilation status",
+    skip = 0,
+    pattern = "^Monetary[.]and[.]Financial[.]Statistics.*Reporting[.]Status"
+  ) %>%
+    dplyr::rename(IMF_code = Code, IMF_country = Country) %>%
+    dplyr::mutate(
+      SPI.D5.2.9.MONY.IMF = dplyr::case_when(
+        grepl("MFSM 2000", IMF_status) ~ 1,
+        TRUE ~ 0
+      ),
+      RAW.D5.2.9.MONY.IMF = IMF_status
+    ) %>%
+    dplyr::mutate(IMF_code = as.numeric(IMF_code)) %>%
+    dplyr::left_join(imf_codes, by = "IMF_code") %>%
+    dplyr::select(iso3c, RAW.D5.2.9.MONY.IMF, SPI.D5.2.9.MONY.IMF)
+
   # Combine IMF data
   D5.2.9.MONY.IMF <- D5.2.9.MONY.IMF %>%
     dplyr::bind_rows(D5.2.9.MONY.IMF.2022 %>% dplyr::mutate(date = 2021)) %>%
     dplyr::bind_rows(D5.2.9.MONY.IMF.2022 %>% dplyr::mutate(date = 2022)) %>%
     dplyr::bind_rows(D5.2.9.MONY.IMF.2023 %>% dplyr::mutate(date = 2023)) %>%
     dplyr::bind_rows(D5.2.9.MONY.IMF.2024 %>% dplyr::mutate(date = 2024)) %>%
+    dplyr::bind_rows(D5.2.9.MONY.IMF.current %>% dplyr::mutate(date = params$end_date)) %>%
     dplyr::filter(!is.na(iso3c))
 
   # Update with IMF data when previous vintage value is missing

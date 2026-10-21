@@ -6,8 +6,8 @@
 # These tests verify:
 #   1. The checkpoint functions fail loudly (R8) when a source file is
 #      missing or schema-invalid.
-#   2. The checkpoint functions pass when the expected files are present
-#      (the 202511 vintage raw files are committed in 01_raw_data/).
+#   2. The checkpoint functions pass when the expected committed source files
+#      are present in 01_raw_data/.
 #   3. The API pull functions are no-ops when run_downloads = FALSE.
 #
 # The tests use a temporary params list pointing at the real raw data
@@ -25,6 +25,7 @@ source(file.path(here::here("R"), "collection_cache.R"))
 source(file.path(here::here("R"), "checkpoints.R"))
 source(file.path(here::here("R"), "pull_wdi.R"))
 source(file.path(here::here("R"), "pull_ilo.R"))
+source(file.path(here::here("R"), "pull_imf.R"))
 source(file.path(here::here("R"), "pull_jmp.R"))
 source(file.path(here::here("R"), "pull_unsdg.R"))
 
@@ -38,9 +39,33 @@ test_params <- function() {
     # ILO filenames (from config/params.R) -- needed by checkpoint_ilo_lfp
     ilo_modelled_file = "EAP_2WAP_SEX_AGE_RT_A-20261006T1235.xlsx",
     ilo_survey_file = "EAP_DWAP_SEX_AGE_RT_A-20261006T1234.xlsx",
+    imf_file = "2026.10_Compiled Data for World Bank - Sep 2026 - Final.xlsx",
+    imf_file_2024 = "2025.10_Compiled Data for World Bank.xlsx",
     unigme_file = "UN IGME 2025.csv"
   )
 }
+
+test_that("checkpoint_imf_workbook passes with the 202611 workbook", {
+  params <- test_params()
+  result <- checkpoint_imf_workbook(params)
+  expect_true(is.character(result))
+  expect_true(file.exists(result))
+})
+
+test_that("checkpoint_imf_workbook fails loudly when filename is wrong", {
+  params <- test_params()
+  params$imf_file <- "missing-imf-workbook.xlsx"
+  expect_error(checkpoint_imf_workbook(params), "IMF WORKBOOK NOT FOUND")
+})
+
+test_that("checkpoint_imf_workbook requires the historical 2024 workbook", {
+  params <- test_params()
+  params$imf_file_2024 <- "missing-historical-imf-workbook.xlsx"
+  expect_error(
+    checkpoint_imf_workbook(params),
+    "historical 2024"
+  )
+})
 
 # --- Test: WDI metadata checkpoint ------------------------------------------
 

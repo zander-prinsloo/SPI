@@ -175,7 +175,7 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 | 4.2.3 CRVS | UN SDG data | Refresh both birth and death registration series through the collection pipeline |
 | 4.3 Geospatial | ODIN | Same provisional or official ODIN inputs as 2.2 |
 | 5.1 Legislation | UN SDG API | Run the collection pipeline; review the cached API artifact |
-| 5.2 Standards | WDI metadata + IMF + annual inputs | Copy `SPI_data_2024.csv` to `previous_vintages/`, verify IMF 2025.10, and add the 2025 D5.2 files |
+| 5.2 Standards | WDI metadata + IMF + annual inputs | Copy `SPI_data_2024.csv` to `previous_vintages/`, verify the 2026.10 IMF workbook, and add the 2025 D5.2 files |
 | 5.5 Finance | UN SDG API | Run the collection pipeline; review the cached API artifact |
 
 #### 4.3.1 202611 source map
@@ -408,8 +408,27 @@ inputs; they do not introduce additional SPI indicators.
 - **202611 reference**: set `end_date <- 2025`, retain
   `WDI_metadata_2026.csv`, and copy the approved 202511 output to
   `01_raw_data/previous_vintages/SPI_data_2024.csv`.
-- **IMF inputs**: verify `2025.10_Compiled Data for World Bank.xlsx` for the
-  IMF-backed D5.2.4, D5.2.5, D5.2.7, and D5.2.9 indicators.
+- **IMF input**: place `2026.10_Compiled Data for World Bank - Sep 2026 - Final.xlsx`
+  in `01_raw_data/5.2_DISM/`. This is the IMF workbook for the 202611 release
+  using 2025 as the reference year, so `config/params.R` must set
+  `end_date <- 2025` and the same filename in `imf_file`.
+- **Historical IMF inputs**: retain `2020.11.04_Compiled Data for World Bank.xlsx`
+  for 2020, `2022.10_Compiled Data for World Bank.xlsx` for 2021-2022,
+  `2024.02_Compiled Data for World Bank.xlsx` for 2023, and
+  `2025.10_Compiled Data for World Bank.xlsx` for 2024. The latter is configured
+  as `imf_file_2024`; it must not be replaced by the current workbook.
+- **Validated IMF sheets**: the collection checkpoint requires `2. CPI Reference
+  Period` (header row after `skip = 2`), `2. Household Consump Class`,
+  `3. COICOP Month_Last Change` (header row after `skip = 3`),
+  `4. Cntrl Gct Acct Status` (header row after `skip = 9`), and
+  `6. MFS Compilation status`. Release-date columns are identified from their
+  `As of ...` headers rather than hard-coded month names.
+- **IMF-backed indicators**: the workbook supplies D5.2.4, D5.2.5, D5.2.7,
+  and D5.2.9 for the 2025 reference-year observation only. Historical years
+  remain sourced from the previous vintage or their year-specific historical
+  IMF workbooks.
+  Run the collection checkpoint before estimation; it fails loudly when the
+  exact filename, sheet, or required header is missing.
 - **Annual inputs**: create the current-vintage D5.2.3, D5.2.6, D5.2.8, and
   D5.2.10 files for 2025, plus any required reviewed metadata.
 - **Update**: the D5.2 indicators combine previous-vintage values with WDI,

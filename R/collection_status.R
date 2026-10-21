@@ -14,6 +14,7 @@ collection_parameters_hash <- function(params) {
     end_date = params$end_date,
     span = params$span,
     imf_file = params$imf_file,
+    imf_file_2024 = params$imf_file_2024,
     ilo_modelled_file = params$ilo_modelled_file,
     ilo_survey_file = params$ilo_survey_file,
     registry = params$source_registry_file

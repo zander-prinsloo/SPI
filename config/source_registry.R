@@ -190,30 +190,34 @@ source_registry <- rbind(
     stringsAsFactors = FALSE
   ),
   data.frame(
-    source_id = c("d5_2_wdi_metadata", "d5_2_imf_workbook"),
-    dimension_id = c("5.2", "5.2"),
-    source_type = c("manual", "manual"),
-    indicator_ids = c("SPI.D1.5.DT.TDS.DPPF.XP.ZS|SPI.D5.2.*", "SPI.D5.2.*"),
+    source_id = c("d5_2_wdi_metadata", "d5_2_imf_workbook", "d5_2_imf_workbook_2024"),
+    dimension_id = c("5.2", "5.2", "5.2"),
+    source_type = c("manual", "manual", "manual"),
+    indicator_ids = c("SPI.D1.5.DT.TDS.DPPF.XP.ZS|SPI.D5.2.*", "SPI.D5.2.*", "SPI.D5.2.*"),
     source_url = c(
       "https://datacatalog.worldbank.org/int/search/dataset/0037712",
+      "https://www.imf.org/en/Data",
       "https://www.imf.org/en/Data"
     ),
     input_path = c(
       "metadata/WDI_metadata_<END_DATE_PLUS_ONE>.csv",
+      "5.2_DISM/2026.10_Compiled Data for World Bank - Sep 2026 - Final.xlsx",
       "5.2_DISM/2025.10_Compiled Data for World Bank.xlsx"
     ),
-    raw_path = c("metadata/raw/", "5.2_DISM/raw/"),
+    raw_path = c("metadata/raw/", "5.2_DISM/raw/", "5.2_DISM/raw/"),
     normalized_path = c(
       "metadata/WDI_metadata_<END_DATE_PLUS_ONE>.csv",
+      "5.2_DISM/2026.10_Compiled Data for World Bank - Sep 2026 - Final.xlsx",
       "5.2_DISM/2025.10_Compiled Data for World Bank.xlsx"
     ),
-    availability_path = c(NA, NA),
-    expected_vintage_rule = c("end_date_plus_one", "latest_release"),
-    age_warning_days = c(365, 365),
-    status_if_missing = c("blocking", "blocking"),
+    availability_path = c(NA, NA, NA),
+    expected_vintage_rule = c("end_date_plus_one", "latest_release", "latest_release"),
+    age_warning_days = c(365, 365, 365),
+    status_if_missing = c("blocking", "blocking", "blocking"),
     analyst_action = c(
       "Download WDI metadata for end_date + 1.",
-      "Place the current IMF compiled workbook in 01_raw_data/5.2_DISM/."
+      "Place the current IMF compiled workbook in 01_raw_data/5.2_DISM/.",
+      "Retain the 2025.10 IMF workbook for the 2024 reference-year observation."
     ),
     stringsAsFactors = FALSE
   )

@@ -62,11 +62,14 @@ run_downloads <- FALSE
 
 # --- IMF compiled data file --------------------------------------------------
 # The IMF "Compiled Data for World Bank" workbook is downloaded manually
-# from the IMF (it is not available via a public API). The filename encodes
-# the data vintage (e.g. "2025.10_Compiled Data for World Bank.xlsx" is the
-# October 2025 edition, used for the 2024 SPI vintage). When updating to a
-# new vintage, download the new edition and update this filename.
-imf_file <- "2025.10_Compiled Data for World Bank.xlsx"
+# from the IMF (it is not available via a public API). The configured 202611
+# release uses the September 2026 edition and 2025 as its reference year.
+# When updating to a new vintage, download the new edition and update this
+# filename.
+imf_file <- "2026.10_Compiled Data for World Bank - Sep 2026 - Final.xlsx"
+# Keep the prior IMF vintage explicit: it supplies the 2024 observation while
+# the current workbook supplies only the 2025 observation.
+imf_file_2024 <- "2025.10_Compiled Data for World Bank.xlsx"
 
 # --- ILO labour force data files ---------------------------------------------
 # The ILO ILOSTAT bulk files are downloaded manually from the ILO bulk

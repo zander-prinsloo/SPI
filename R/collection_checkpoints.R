@@ -11,6 +11,7 @@
 #' @export
 run_collection_checkpoints <- function(params) {
   list(
+    imf = checkpoint_imf_workbook(params),
     wdi = checkpoint_wdi_metadata(params),
     ilo = checkpoint_ilo_lfp(params),
     odin = verify_odin_data(params),
