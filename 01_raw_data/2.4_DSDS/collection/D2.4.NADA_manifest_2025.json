@@ -1,0 +1,486 @@
+{
+  "indicator": "SPI.D2.4.NADA",
+  "end_date": 2025,
+  "created_at": "2026-10-21 21:04:09 UTC",
+  "output": {
+    "path": "01_raw_data/2.4_DSDS/D2.4.NADA.2025.csv",
+    "role": "normalized_vintage",
+    "sha256": "04693dbf5b41f06302497b83d0268c526916b7c51f5e6c0765432f300d9b3e0a"
+  },
+  "evidence": {
+    "path": "01_raw_data/2.4_DSDS/collection/D2.4.NADA.url_evidence.2025.csv",
+    "role": "url_evidence",
+    "sha256": "99cb7b6651af45745563e54930e64193fb5dd36f2f17a78247a4c4b4ad2c549f"
+  },
+  "previous": {
+    "path": "01_raw_data/2.4_DSDS/D2.4.NADA.2024.csv",
+    "role": "previous_vintage",
+    "sha256": "04475ef6c1baba7f5b500883ad93921f09ad5dba93de4e7ae13c11f5e95a5e50"
+  },
+  "review": {
+    "path": "01_raw_data/2.4_DSDS/D2.4.NADA.Manual.Review.2025.xlsx",
+    "sha256": "1a34fe49d89a12ffed010a253b04bec8079e2c9f96bee0f6969b47c973e3bff1",
+    "rows": 65,
+    "override_count": 65
+  },
+  "rows": 190,
+  "auto_zero": [],
+  "overrides": [
+    {
+      "iso3c": "AFG",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [nsia.gov.af]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "AGO",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 500)."
+    },
+    {
+      "iso3c": "ALB",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [databaza.instat.gov.al]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "BEN",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "BFA",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Could not resolve hostname [nada.insd.bf]:\nCould not resolve host: nada.insd.bf)."
+    },
+    {
+      "iso3c": "BGD",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [data.bbs.gov.bd]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "BIH",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 410)."
+    },
+    {
+      "iso3c": "BTN",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [www.nsb.gov.bt]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "CAF",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 503)."
+    },
+    {
+      "iso3c": "CHL",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (SSL peer certificate or SSH remote key was not OK [datosabiertos.ine.cl]:\nSSL: no alternative certificate subject name matches target hostname 'datosabiertos.ine.cl')."
+    },
+    {
+      "iso3c": "CIV",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "CMR",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Could not resolve hostname [slmp-550-104.slc.westdc.net]:\nCould not resolve host: slmp-550-104.slc.westdc.net)."
+    },
+    {
+      "iso3c": "COD",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "CRI",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "DOM",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "DZA",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (missing URL in source artifact)."
+    },
+    {
+      "iso3c": "ECU",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "EGY",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Could not resolve hostname [censusinfo.capmas.gov.eg]:\nCould not resolve host: censusinfo.capmas.gov.eg)."
+    },
+    {
+      "iso3c": "ETH",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Could not resolve hostname [www.statsethiopia.gov.et]:\nCould not resolve host: www.statsethiopia.gov.et)."
+    },
+    {
+      "iso3c": "GHA",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "GTM",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [datos.ine.gob.gt]:\nOperation timed out after 60002 milliseconds with 0 bytes received)."
+    },
+    {
+      "iso3c": "GUY",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "HND",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "HRV",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 500)."
+    },
+    {
+      "iso3c": "IND",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [microdata.gov.in]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "IRN",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (SSL connect error [www.amar.org.ir]:\nTLS connect error: error:00000000:lib(0):func(0):reason(0))."
+    },
+    {
+      "iso3c": "KHM",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "LBN",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "MEX",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [www3.inegi.org.mx]:\nConnection timed out after 10001 milliseconds)."
+    },
+    {
+      "iso3c": "MLI",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "MRT",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Could not connect to server [ons.mr]:\nFailed to connect to ons.mr port 443 after 238 ms: Could not connect to server)."
+    },
+    {
+      "iso3c": "MWI",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "NER",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "NGA",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "NIC",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "NPL",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [microdata.nsonepal.gov.np]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "PAK",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "PER",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [webinei.inei.gob.pe]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "PHL",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "ROU",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "RUS",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (SSL peer certificate or SSH remote key was not OK [rosstat.gov.ru]:\nSSL certificate problem: unable to get local issuer certificate)."
+    },
+    {
+      "iso3c": "SDN",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [196.29.166.241]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "SRB",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "SWZ",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [www.gov.sz]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "TGO",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Could not connect to server [160.242.193.218]:\nFailed to connect to 160.242.193.218 port 8082 after 422 ms: Could not connect to server)."
+    },
+    {
+      "iso3c": "THA",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 418)."
+    },
+    {
+      "iso3c": "TZA",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "UGA",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "UZB",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "VCT",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "VNM",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Could not resolve hostname [datacollection.gso.gov.vn]:\nCould not resolve host: datacollection.gso.gov.vn)."
+    },
+    {
+      "iso3c": "XKX",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Could not resolve hostname [askdata.rks-gov.net]:\nCould not resolve host: askdata.rks-gov.net)."
+    },
+    {
+      "iso3c": "GRC",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [www.statistics.gr]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "LTU",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "SAU",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "ARE",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "AUS",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 503)."
+    },
+    {
+      "iso3c": "BRN",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "DEU",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [www.forschungsdatenzentrum.de]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "EST",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    },
+    {
+      "iso3c": "ISR",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [www.cbs.gov.il]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "ITA",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "MLT",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 403)."
+    },
+    {
+      "iso3c": "QAT",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (Timeout was reached [www.psa.gov.qa]:\nConnection timed out after 10002 milliseconds)."
+    },
+    {
+      "iso3c": "SGP",
+      "column": "NADA",
+      "old": "1",
+      "new": "1",
+      "Evidence": "Technical lead review 2026-10-21: retain NADA=1 from the 2024 vintage because the current URL check was unresolved (status 404)."
+    }
+  ],
+  "warnings": []
+}

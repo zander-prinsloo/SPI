@@ -1,0 +1,15 @@
+{
+  "source_id": "world_bank_population",
+  "request": {
+    "indicator": "SP.POP.TOTL",
+    "start_date": 2004,
+    "end_date": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "world-bank-v1",
+  "retrieved_at": "2026-10-21 20:27:31 UTC",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/_collection/world_bank/raw/world_bank_population-175ebc281584c60ea27378c1147de06b063a309f57e8c03efa86b5f3a390b1ff.rds",
+  "bytes": 158196,
+  "sha256": "ad525efcfab7866393d1e32b32412100cf6140cd114288c39118e5a79efadfde",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/_collection/world_bank/raw/world_bank_population-175ebc281584c60ea27378c1147de06b063a309f57e8c03efa86b5f3a390b1ff.rds.json"
+}

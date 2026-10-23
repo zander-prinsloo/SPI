@@ -1,0 +1,13 @@
+{
+  "source_id": "world_bank_oecd",
+  "request": {
+    "endpoint": "country?region=OED"
+  },
+  "vintage": 2025,
+  "collector_version": "world-bank-v1",
+  "retrieved_at": "2026-10-21 20:27:34 UTC",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/_collection/world_bank/raw/world_bank_oecd-613e4c63e70ff6c223b0b4bb2b1ee2332e995753ca358d2fd90a1dabbe404bf1.rds",
+  "bytes": 460,
+  "sha256": "5bb8c9f73c74435966aabdd7b63b3aa02e80e38e1bdd672955906a0a5d55edff",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/_collection/world_bank/raw/world_bank_oecd-613e4c63e70ff6c223b0b4bb2b1ee2332e995753ca358d2fd90a1dabbe404bf1.rds.json"
+}

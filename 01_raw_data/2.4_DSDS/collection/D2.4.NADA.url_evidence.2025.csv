@@ -1,0 +1,219 @@
+iso3c,url,status_code,NADA_working,error_message,checked_at,attempts
+AFG,http://nsia.gov.af/info/surveys-projects,NA,NA,"Timeout was reached [nsia.gov.af]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:28:14 UTC,3
+AGO,https://www.ine.gov.ao/publicacoes,500,FALSE,NA,2026-10-21 20:28:23 UTC,3
+ALB,http://databaza.instat.gov.al/pxweb/sq/DST/?rxid=e65fcbe6-b47b-4ca2-bf23-798157a1ad87,NA,NA,"Timeout was reached [databaza.instat.gov.al]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:29:01 UTC,3
+ARG,https://www.indec.gob.ar/indec/web/Institucional-Indec-BasesDeDatos,200,TRUE,NA,2026-10-21 20:29:09 UTC,1
+ARM,https://www.armstat.am/en/?nid=15,200,TRUE,NA,2026-10-21 20:29:24 UTC,1
+ATG,https://statistics.gov.ag/surveys/list-of-surveys,200,TRUE,NA,2026-10-21 20:29:32 UTC,1
+AZE,NA,NA,NA,NADA URL MISSING,2026-10-21 20:29:32 UTC,0
+BDI,https://isteebu.bi/nada/index.php/accueil,404,FALSE,NA,2026-10-21 20:29:38 UTC,1
+BEN,http://nada.insae-bj.org/index.php/catalog,404,FALSE,NA,2026-10-21 20:29:44 UTC,1
+BFA,https://nada.insd.bf/index.php/home,NA,NA,"Could not resolve hostname [nada.insd.bf]:
+Could not resolve host: nada.insd.bf",2026-10-21 20:29:52 UTC,3
+BGD,http://data.bbs.gov.bd/index.php/catalog/HIES,NA,NA,"Timeout was reached [data.bbs.gov.bd]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:30:30 UTC,3
+BGR,https://www.nsi.bg/en/node/11223,200,TRUE,NA,2026-10-21 20:30:37 UTC,1
+BIH,http://www.bhas.ba/?option=com_content&view=article&id=113=en,410,FALSE,NA,2026-10-21 20:30:43 UTC,1
+BLR,NA,NA,NA,NADA URL MISSING,2026-10-21 20:30:43 UTC,0
+BLZ,https://sib.org.bz/data-portals/microdata/,200,TRUE,NA,2026-10-21 20:30:50 UTC,1
+BOL,https://anda.ine.gob.bo/index.php/home,200,TRUE,NA,2026-10-21 20:30:56 UTC,1
+BRA,https://www.ibge.gov.br/en/statistics/full-list-statistics.html,200,TRUE,NA,2026-10-21 20:31:03 UTC,1
+BTN,https://www.nsb.gov.bt/metadata/2020-lfs/,NA,NA,"Timeout was reached [www.nsb.gov.bt]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:31:41 UTC,3
+BWA,https://microdata.statsbots.org.bw/index.php/catalog,200,TRUE,NA,2026-10-21 20:31:47 UTC,1
+CAF,https://icasees.org/nada/index.php/catalog,503,FALSE,NA,2026-10-21 20:31:57 UTC,3
+CHL,https://datosabiertos.ine.cl/search/,NA,NA,"SSL peer certificate or SSH remote key was not OK [datosabiertos.ine.cl]:
+SSL: no alternative certificate subject name matches target hostname 'datosabiertos.ine.cl'",2026-10-21 20:32:07 UTC,3
+CHN,NA,NA,NA,NADA URL MISSING,2026-10-21 20:32:07 UTC,0
+CIV,http://www.ins.ci/n/nada/index.php/accueil,404,FALSE,NA,2026-10-21 20:32:14 UTC,1
+CMR,http://slmp-550-104.slc.westdc.net/~stat54/nada/index.php/catalog,NA,NA,"Could not resolve hostname [slmp-550-104.slc.westdc.net]:
+Could not resolve host: slmp-550-104.slc.westdc.net",2026-10-21 20:32:23 UTC,3
+COD,http://ins.mkbco.pro/Enquetes,404,FALSE,NA,2026-10-21 20:32:29 UTC,1
+COG,NA,NA,NA,NADA URL MISSING,2026-10-21 20:32:29 UTC,0
+COL,https://microdatos.dane.gov.co/index.php/catalog/central/about,200,TRUE,NA,2026-10-21 20:32:36 UTC,1
+COM,http://www.inseed.km/index.php/publications/bases-de-donnees,NA,NA,"Timeout was reached [www.inseed.km]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:33:14 UTC,3
+CPV,NA,NA,NA,NADA URL MISSING,2026-10-21 20:33:14 UTC,0
+CRI,https://inec.cr/estadisticas-fuentes/encuestas,403,FALSE,NA,2026-10-21 20:33:19 UTC,1
+DJI,NA,NA,NA,NADA URL MISSING,2026-10-21 20:33:19 UTC,0
+DMA,NA,NA,NA,NADA URL MISSING,2026-10-21 20:33:19 UTC,0
+DOM,https://www.one.gob.do/datos-y-estadisticas/,403,FALSE,NA,2026-10-21 20:33:25 UTC,1
+DZA,NA,NA,NA,NADA URL MISSING,2026-10-21 20:33:25 UTC,0
+ECU,https://anda.inec.gob.ec/anda/index.php/catalog,404,FALSE,NA,2026-10-21 20:33:34 UTC,1
+EGY,https://censusinfo.capmas.gov.eg/Metadata-ar-v4.2/index.php/catalog,NA,NA,"Could not resolve hostname [censusinfo.capmas.gov.eg]:
+Could not resolve host: censusinfo.capmas.gov.eg",2026-10-21 20:33:43 UTC,3
+ERI,NA,NA,NA,NADA URL MISSING,2026-10-21 20:33:43 UTC,0
+ETH,https://www.statsethiopia.gov.et/our-survey-reports/,NA,NA,"Could not resolve hostname [www.statsethiopia.gov.et]:
+Could not resolve host: www.statsethiopia.gov.et",2026-10-21 20:33:51 UTC,3
+FJI,https://www.statsfiji.gov.fj/census-surveys/household-income-and-expenditure-survey/,200,TRUE,NA,2026-10-21 20:34:07 UTC,1
+FSM,https://microdata.pacificdata.org/index.php/catalog/FSM/about,200,TRUE,NA,2026-10-21 20:34:15 UTC,1
+GAB,NA,NA,NA,NADA URL MISSING,2026-10-21 20:34:15 UTC,0
+GEO,https://www.geostat.ge/ka/modules/categories/127/monatsemta-bazebi,200,TRUE,NA,2026-10-21 20:34:22 UTC,1
+GHA,https://statsghana.gov.gh/gsspublications.php?category=MTAwMjg3Mzk3NC4zMDc=/webstats/1opr93rn57,404,FALSE,NA,2026-10-21 20:34:28 UTC,1
+GIN,http://www.stat-guinee.org/nada/index.php/catalog,404,FALSE,NA,2026-10-21 20:34:35 UTC,1
+GMB,https://www.gbosdata.org/downloads/microdata-and-survey-documentations-77,200,TRUE,NA,2026-10-21 20:34:42 UTC,1
+GNB,https://www.stat-guinebissau.com/nada41/index.php,500,FALSE,NA,2026-10-21 20:34:51 UTC,3
+GNQ,NA,NA,NA,NADA URL MISSING,2026-10-21 20:34:51 UTC,0
+GRD,NA,NA,NA,NADA URL MISSING,2026-10-21 20:34:51 UTC,0
+GTM,https://datos.ine.gob.gt/organization/departamento-de-censos-y-encuestas,NA,NA,"Timeout was reached [datos.ine.gob.gt]:
+Operation timed out after 60002 milliseconds with 0 bytes received",2026-10-21 20:37:59 UTC,3
+GUY,https://statisticsguyana.gov.gy/surveys/,403,FALSE,NA,2026-10-21 20:38:06 UTC,1
+HND,https://ine.gob.hn/v4/ephpm/,404,FALSE,NA,2026-10-21 20:38:12 UTC,1
+HRV,https://podaci.dzs.hr/en/mikropodaci-obrazovne-svrhe/,500,FALSE,NA,2026-10-21 20:38:22 UTC,3
+HTI,NA,NA,NA,NADA URL MISSING,2026-10-21 20:38:22 UTC,0
+IDN,https://perpustakaan.bps.go.id/opac/,200,TRUE,NA,2026-10-21 20:38:33 UTC,1
+IND,http://microdata.gov.in/nada43/index.php/home,NA,NA,"Timeout was reached [microdata.gov.in]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:39:11 UTC,3
+IRN,https://www.amar.org.ir/english/Metadata/Statistical-Survey/Labor-Force,NA,NA,"SSL connect error [www.amar.org.ir]:
+TLS connect error: error:00000000:lib(0):func(0):reason(0)",2026-10-21 20:39:24 UTC,3
+IRQ,https://cosit.gov.iq/ar/2018-12-20-05-52-15,200,TRUE,NA,2026-10-21 20:39:33 UTC,1
+JAM,https://statinja.gov.jm/Methodology.aspx#METH,200,TRUE,NA,2026-10-21 20:39:41 UTC,1
+JOR,http://www.erfdataportal.com/index.php/,200,TRUE,NA,2026-10-21 20:39:47 UTC,1
+KAZ,https://stat.gov.kz/en/methodology/25847/,200,TRUE,NA,2026-10-21 20:39:54 UTC,1
+KEN,https://statistics.knbs.or.ke/nada/index.php/home,200,TRUE,NA,2026-10-21 20:39:59 UTC,1
+KGZ,NA,NA,NA,NADA URL MISSING,2026-10-21 20:39:59 UTC,0
+KHM,http://nada.nis.gov.kh/index.php/home/,403,FALSE,NA,2026-10-21 20:40:06 UTC,1
+KIR,https://microdata.pacificdata.org/index.php/catalog/KIR/about,200,TRUE,NA,2026-10-21 20:40:13 UTC,1
+KNA,NA,NA,NA,NADA URL MISSING,2026-10-21 20:40:13 UTC,0
+LAO,https://laosis.lsb.gov.la/board/BoardList.do?rootId=2103000&menuId=2103101&lang=lo&bbs_bbsid=B404&keyword=&searchType=undefined,200,TRUE,NA,2026-10-21 20:40:21 UTC,1
+LBN,http://www.cas.gov.lb/index.php/library-en,404,FALSE,NA,2026-10-21 20:40:30 UTC,1
+LBR,https://www.lisgis.gov.lr/surveys.php,200,TRUE,NA,2026-10-21 20:40:37 UTC,1
+LBY,https://bsc.ly/social_statistics/,200,TRUE,NA,2026-10-21 20:40:44 UTC,1
+LCA,https://stats.gov.lc/methods/metadata/,200,TRUE,NA,2026-10-21 20:40:51 UTC,1
+LKA,http://nada.statistics.gov.lk/index.php/catalog/central,200,TRUE,NA,2026-10-21 20:40:58 UTC,1
+LSO,http://www.bos.gov.ls/microdata/,404,FALSE,NA,2026-10-21 20:41:04 UTC,1
+MAR,https://www.hcp.ma/Micro-donnees-Open-data_r632.html,200,TRUE,NA,2026-10-21 20:41:10 UTC,1
+MDA,https://statistica.gov.md/pageview.php?l=en&idc=430&,200,TRUE,NA,2026-10-21 20:41:18 UTC,1
+MDG,https://instat.mg/statistiques/enquetes-et-recensements,200,TRUE,NA,2026-10-21 20:41:31 UTC,2
+MDV,http://statisticsmaldives.gov.mv/,200,TRUE,NA,2026-10-21 20:41:39 UTC,1
+MEX,http://www3.inegi.org.mx/rnm/index.php/catalog,NA,NA,"Timeout was reached [www3.inegi.org.mx]:
+Connection timed out after 10001 milliseconds",2026-10-21 20:42:17 UTC,3
+MHL,https://microdata.pacificdata.org/index.php/catalog/MHL/about,200,TRUE,NA,2026-10-21 20:42:24 UTC,1
+MKD,http://www.stat.gov.mk/PublikaciiPoOblasti_en.aspx,200,TRUE,NA,2026-10-21 20:42:32 UTC,1
+MLI,http://www.instat-mali.org/nada/index.php/catalog,403,FALSE,NA,2026-10-21 20:42:38 UTC,1
+MMR,https://www.csostat.gov.mm/InformationAndReport/SurveyReport,200,TRUE,NA,2026-10-21 20:42:45 UTC,1
+MNE,http://www.monstat.org/eng/page.php?id=1001&pageid=1001,200,TRUE,NA,2026-10-21 20:42:51 UTC,1
+MNG,http://web.nso.mn/nada/index.php/catalog,200,TRUE,NA,2026-10-21 20:42:58 UTC,1
+MOZ,https://mozdata.ine.gov.mz/index.php/home,200,TRUE,NA,2026-10-21 20:43:04 UTC,1
+MRT,https://ons.mr/anadrim/index.php/catalog,NA,NA,"Could not connect to server [ons.mr]:
+Failed to connect to ons.mr port 443 after 238 ms: Could not connect to server",2026-10-21 20:43:12 UTC,3
+MUS,https://statsmauritius.govmu.org/Pages/Censuses%20and%20Surveys/CensusandSurveys.aspx,200,TRUE,NA,2026-10-21 20:43:18 UTC,1
+MWI,http://www.nada.nsomalawi.mw/home,404,FALSE,NA,2026-10-21 20:43:24 UTC,1
+MYS,https://www.dosm.gov.my/portal-main/census-surveys-category,200,TRUE,NA,2026-10-21 20:43:32 UTC,1
+NAM,https://nada.nsa.org.na/index.php/catalog,200,TRUE,NA,2026-10-21 20:43:38 UTC,1
+NER,https://www.stat-niger.org/anado/index.php/catalog,403,FALSE,NA,2026-10-21 20:43:44 UTC,1
+NGA,http://www.nigerianstat.gov.ng/nada/index.php/catalog,404,FALSE,NA,2026-10-21 20:43:51 UTC,1
+NIC,https://www.inide.gob.ni/endesa/Endesa11_12/BaseEndesa11.html,404,FALSE,NA,2026-10-21 20:43:57 UTC,1
+NPL,https://microdata.nsonepal.gov.np/index.php/home,NA,NA,"Timeout was reached [microdata.nsonepal.gov.np]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:44:28 UTC,3
+NRU,https://microdata.pacificdata.org/index.php/catalog/NRU/about,200,TRUE,NA,2026-10-21 20:44:36 UTC,1
+PAK,http://www.pbs.gov.pk/content/microdata,404,FALSE,NA,2026-10-21 20:44:44 UTC,1
+PAN,https://www.inec.gob.pa/aplicaciones/Default2.aspx?ID_CATEGORIA_APLICACIONES=1&ID_IDIOMA=1,200,TRUE,NA,2026-10-21 20:44:51 UTC,1
+PER,http://webinei.inei.gob.pe/anda_inei/index.php/catalog,NA,NA,"Timeout was reached [webinei.inei.gob.pe]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:45:29 UTC,3
+PHL,http://psada.psa.gov.ph/index.php/catalog,403,FALSE,NA,2026-10-21 20:45:36 UTC,1
+PLW,https://microdata.pacificdata.org/index.php/catalog/PLW/about,200,TRUE,NA,2026-10-21 20:45:43 UTC,1
+PNG,https://www.nso.gov.pg/census-surveys/demographic-and-health-survey/,200,TRUE,NA,2026-10-21 20:45:53 UTC,1
+POL,https://stat.gov.pl/publikacje/publikacje-a-z/,200,TRUE,NA,2026-10-21 20:46:00 UTC,1
+PRY,https://www.ine.gov.py/microdatos/microdatos.php,200,TRUE,NA,2026-10-21 20:46:10 UTC,1
+PSE,https://www.pcbs.gov.ps/PCBS-Metadata-ar-v5.2/index.php/catalog/?page=1&ps=15,200,TRUE,NA,2026-10-21 20:46:19 UTC,1
+ROU,https://insse.ro/cms/ro/content/chestionare-statistice,403,FALSE,NA,2026-10-21 20:46:25 UTC,1
+RUS,https://rosstat.gov.ru/itog_inspect,NA,NA,"SSL peer certificate or SSH remote key was not OK [rosstat.gov.ru]:
+SSL certificate problem: unable to get local issuer certificate",2026-10-21 20:46:35 UTC,3
+RWA,https://microdata.statistics.gov.rw/index.php/catalog,200,TRUE,NA,2026-10-21 20:46:42 UTC,1
+SDN,http://196.29.166.241/CBS-Metadata-en-v4.2/index.php/catalog,NA,NA,"Timeout was reached [196.29.166.241]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:47:20 UTC,3
+SEN,http://anads.ansd.sn/index.php/catalog,200,TRUE,NA,2026-10-21 20:47:27 UTC,1
+SLB,https://microdata.pacificdata.org/index.php/collections/SLB,200,TRUE,NA,2026-10-21 20:47:33 UTC,1
+SLE,https://www.statistics.sl/index.php/surveys/completed-surveys.html,200,TRUE,NA,2026-10-21 20:47:41 UTC,1
+SLV,https://onec.bcr.gob.sv/metadatos/index.php/home,200,TRUE,NA,2026-10-21 20:47:48 UTC,1
+SOM,https://microdata.nbs.gov.so/index.php/home,200,TRUE,NA,2026-10-21 20:47:55 UTC,1
+SRB,https://www.stat.gov.rs/en-us/istrazivanja/referentni-metapodaci/,403,FALSE,NA,2026-10-21 20:48:02 UTC,1
+SSD,NA,NA,NA,NADA URL MISSING,2026-10-21 20:48:02 UTC,0
+STP,https://www.ine.st/index.php/informacoes-estatisticas/inqueritos/mics,200,TRUE,NA,2026-10-21 20:48:09 UTC,1
+SUR,https://statistics-suriname.org/nl/huishoudonderzoeken-in-suriname/,200,TRUE,NA,2026-10-21 20:48:18 UTC,1
+SWZ,https://www.gov.sz/index.php/component/content/article/124-economic-planning-a-development/1835-central-statistical-reports,NA,NA,"Timeout was reached [www.gov.sz]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:48:56 UTC,3
+SYC,https://www.nbs.gov.sc/downloads,200,TRUE,NA,2026-10-21 20:49:04 UTC,1
+SYR,NA,NA,NA,NADA URL MISSING,2026-10-21 20:49:04 UTC,0
+TCD,http://anad.inseed.td/index.php/catalog,200,TRUE,NA,2026-10-21 20:49:10 UTC,1
+TGO,http://160.242.193.218:8082/nada/index.php/catalog,NA,NA,"Could not connect to server [160.242.193.218]:
+Failed to connect to 160.242.193.218 port 8082 after 422 ms: Could not connect to server",2026-10-21 20:49:20 UTC,3
+THA,https://www.nso.go.th/nsoweb/nso/survey,418,FALSE,NA,2026-10-21 20:49:26 UTC,1
+TJK,http://nada.stat.tj/index.php/home,200,TRUE,NA,2026-10-21 20:49:42 UTC,1
+TKM,NA,NA,NA,NADA URL MISSING,2026-10-21 20:49:42 UTC,0
+TLS,https://inetl-ip.gov.tl/household-income-and-expenditure-surveys/,200,TRUE,NA,2026-10-21 20:49:49 UTC,1
+TON,https://microdata.pacificdata.org/index.php/collections/TON,200,TRUE,NA,2026-10-21 20:49:55 UTC,1
+TTO,https://cso.gov.tt/household-budgetary-survey-hbs/,200,TRUE,NA,2026-10-21 20:50:04 UTC,1
+TUN,https://www.ins.tn/enquetes,200,TRUE,NA,2026-10-21 20:50:10 UTC,1
+TUR,https://www.tuik.gov.tr/Kurumsal/Mikro_Veri,200,TRUE,NA,2026-10-21 20:50:18 UTC,1
+TUV,https://microdata.pacificdata.org/index.php/catalog/TUV/about,200,TRUE,NA,2026-10-21 20:50:24 UTC,1
+TZA,https://www.nbs.go.tz/tnada/index.php/catalog,404,FALSE,NA,2026-10-21 20:50:31 UTC,1
+UGA,http://www.ubos.org/unda/index.php/catalog,404,FALSE,NA,2026-10-21 20:50:45 UTC,1
+UKR,NA,NA,NA,NADA URL MISSING,2026-10-21 20:50:45 UTC,0
+URY,https://www4.ine.gub.uy/Anda5/index.php/catalog,200,TRUE,NA,2026-10-21 20:50:53 UTC,1
+UZB,https://stat.uz/en/default/surveyss/3926-sample-household-survey,403,FALSE,NA,2026-10-21 20:51:00 UTC,1
+VCT,http://stats.gov.vc/stats/?page_id=409,404,FALSE,NA,2026-10-21 20:51:06 UTC,1
+VEN,http://www.ine.gov.ve/anda4/index.php/catalog/central,NA,NA,"Could not resolve hostname [www.ine.gov.ve]:
+Could not resolve host: www.ine.gov.ve",2026-10-21 20:51:39 UTC,3
+VNM,https://datacollection.gso.gov.vn/,NA,NA,"Could not resolve hostname [datacollection.gso.gov.vn]:
+Could not resolve host: datacollection.gso.gov.vn",2026-10-21 20:51:47 UTC,3
+VUT,https://microdata.pacificdata.org/index.php/catalog/VUT,200,TRUE,NA,2026-10-21 20:51:55 UTC,2
+WSM,https://microdata.pacificdata.org/index.php/collections/WSM,200,TRUE,NA,2026-10-21 20:52:01 UTC,1
+XKX,https://askdata.rks-gov.net/pxweb/en/ASKdata/,NA,NA,"Could not resolve hostname [askdata.rks-gov.net]:
+Could not resolve host: askdata.rks-gov.net",2026-10-21 20:52:33 UTC,3
+YEM,NA,NA,NA,NADA URL MISSING,2026-10-21 20:52:33 UTC,0
+ZAF,https://www.datafirst.uct.ac.za/dataportal/index.php/catalog/central,200,TRUE,NA,2026-10-21 20:52:39 UTC,1
+ZMB,https://www.zamstats.gov.zm/index.php/publications,200,TRUE,NA,2026-10-21 20:52:50 UTC,1
+ZWE,https://nada.zimstat.co.zw/index.php/catalog/central/about,200,TRUE,NA,2026-10-21 20:52:55 UTC,1
+BHR,NA,NA,NA,NADA URL MISSING,2026-10-21 20:52:55 UTC,0
+BRB,https://stats.gov.bb/surveys/list-of-surveys/,200,TRUE,NA,2026-10-21 20:53:03 UTC,1
+CZE,https://www.czso.cz/csu/vykazy/setreni_u_domacnosti,200,TRUE,NA,2026-10-21 20:53:11 UTC,1
+GRC,https://www.statistics.gr/en/public-use-files,NA,NA,"Timeout was reached [www.statistics.gr]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:53:49 UTC,3
+HUN,http://www.ksh.hu/data_access_safe_centre_access,200,TRUE,NA,2026-10-21 20:53:58 UTC,1
+LTU,https://osp.stat.gov.lt/statistikos-leidiniu-katalogas,403,FALSE,NA,2026-10-21 20:54:05 UTC,1
+LVA,https://stat.gov.lv/en/research/directory,200,TRUE,NA,2026-10-21 20:54:12 UTC,1
+OMN,https://data.gov.om/,200,TRUE,NA,2026-10-21 20:54:21 UTC,1
+SAU,https://www.stats.gov.sa/ar/1211,404,FALSE,NA,2026-10-21 20:54:29 UTC,1
+SVK,https://zber.statistics.sk/en/home,200,TRUE,NA,2026-10-21 20:54:36 UTC,1
+AND,https://www.estadistica.ad/portal/apps/sites/#/estadistica-en/pages/enquestes-i-iniciatives,200,TRUE,NA,2026-10-21 20:54:43 UTC,1
+ARE,https://fcsc.gov.ae/en-us/Pages/Statistics/Statistics-by-Subject.aspx,403,FALSE,NA,2026-10-21 20:54:49 UTC,1
+AUS,https://www.abs.gov.au/statistics/microdata-tablebuilder/available-microdata-tablebuilder/longitudinal-labour-force-australia,503,FALSE,NA,2026-10-21 20:55:00 UTC,3
+AUT,https://statcube.at/statistik.at/ext/statcube/jsf/dataCatalogueExplorer.xhtml,200,TRUE,NA,2026-10-21 20:55:07 UTC,1
+BEL,https://statbel.fgov.be/nl/over-statbel/privacy/microdata-voor-onderzoek/gegevenscatalogus,200,TRUE,NA,2026-10-21 20:55:13 UTC,1
+BHS,NA,NA,NA,NADA URL MISSING,2026-10-21 20:55:13 UTC,0
+BRN,http://www.deps.gov.bn/SitePages/Census%20and%20Survey.aspx,404,FALSE,NA,2026-10-21 20:55:22 UTC,1
+CAN,https://www150.statcan.gc.ca/n1/en/type/surveys,200,TRUE,NA,2026-10-21 20:55:29 UTC,1
+CHE,https://www.bfs.admin.ch/bfs/en/home/basics/surveys.html,200,TRUE,NA,2026-10-21 20:55:36 UTC,1
+CYP,https://www.cystat.gov.cy/en/DataCollection,200,TRUE,NA,2026-10-21 20:55:43 UTC,1
+DEU,http://www.forschungsdatenzentrum.de/de/alle-daten,NA,NA,"Timeout was reached [www.forschungsdatenzentrum.de]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:56:21 UTC,3
+DNK,https://www.dst.dk/en/Statistik/dokumentation/documentationofstatistics,200,TRUE,NA,2026-10-21 20:56:27 UTC,1
+ESP,https://www.ine.es/en/prodyser/microdatos_en.htm,200,TRUE,NA,2026-10-21 20:56:33 UTC,1
+EST,https://www.stat.ee/en/submit-data/about-data-submission/personal-survey,404,FALSE,NA,2026-10-21 20:56:40 UTC,1
+FIN,https://www.stat.fi/en/surveys,200,TRUE,NA,2026-10-21 20:56:48 UTC,1
+FRA,https://www.insee.fr/en/metadonnees/sources,200,TRUE,NA,2026-10-21 20:56:54 UTC,1
+GBR,https://www.ons.gov.uk/surveys/informationforbusinesses/businesssurveys/staticlist,200,TRUE,NA,2026-10-21 20:57:00 UTC,1
+IRL,https://www.cso.ie/en/surveys/,200,TRUE,NA,2026-10-21 20:57:07 UTC,1
+ISL,NA,NA,NA,NADA URL MISSING,2026-10-21 20:57:07 UTC,0
+ISR,https://www.cbs.gov.il/en/subjects/Pages/default.aspx,NA,NA,"Timeout was reached [www.cbs.gov.il]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:57:45 UTC,3
+ITA,https://www.istat.it/en/analysis-and-products/microdata-files#public_use_file,403,FALSE,NA,2026-10-21 20:57:54 UTC,1
+JPN,https://www.stat.go.jp/info/kouhou/index.html,200,TRUE,NA,2026-10-21 20:58:01 UTC,1
+KOR,https://mdis.kostat.go.kr/index.do,200,TRUE,NA,2026-10-21 20:58:15 UTC,1
+KWT,https://www.csb.gov.kw/Pages/Statistics_en?ID=64&ParentCatID=1,200,TRUE,NA,2026-10-21 20:58:22 UTC,1
+LUX,https://statistiques.public.lu/fr/enquetes/enquetes-particuliers.html,200,TRUE,NA,2026-10-21 20:58:29 UTC,1
+MLT,https://nso.gov.mt/taking-part-in-a-survey/,403,FALSE,NA,2026-10-21 20:58:34 UTC,1
+NLD,https://www.cbs.nl/nl-nl/onze-diensten/maatwerk-en-microdata/microdata-zelf-onderzoek-doen/catalogus-microdata,200,TRUE,NA,2026-10-21 20:58:41 UTC,1
+NOR,https://www.ssb.no/data-til-forskning/utlan-av-data-til-forskere/variabellister,200,TRUE,NA,2026-10-21 20:58:50 UTC,1
+NZL,https://www.stats.govt.nz/help-with-surveys/list-of-stats-nz-surveys/,200,TRUE,NA,2026-10-21 20:58:59 UTC,1
+PRT,https://www.ine.pt/xportal/xmain?xpid=INE&xpgid=ine_pufs&menuBOUI=13707095&contexto=up&selTab=tab5&xlang=pt,200,TRUE,NA,2026-10-21 20:59:06 UTC,1
+QAT,https://www.psa.gov.qa/en/statistics1/StatisticsSite/Pages/StatisticsSurveysandPolls.aspx,NA,NA,"Timeout was reached [www.psa.gov.qa]:
+Connection timed out after 10002 milliseconds",2026-10-21 20:59:44 UTC,3
+SGP,https://www.singstat.gov.sg/our-services-tools-surveys/amap,404,FALSE,NA,2026-10-21 20:59:50 UTC,1
+SVN,https://www.stat.si/StatWeb/en/StaticPages/Index/For-Researchers,200,TRUE,NA,2026-10-21 20:59:58 UTC,1
+SWE,https://www.scb.se/en/data-collection/,200,TRUE,NA,2026-10-21 21:00:06 UTC,1
+USA,https://www.census.gov/programs-surveys/surveys-programs.html,200,TRUE,NA,2026-10-21 21:00:08 UTC,1

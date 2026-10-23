@@ -1,0 +1,15 @@
+{
+  "source_id": "world_bank_gdp",
+  "request": {
+    "indicator": "NY.GDP.PCAP.PP.KD",
+    "start_date": 2004,
+    "end_date": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "world-bank-v1",
+  "retrieved_at": "2026-10-21 20:27:36 UTC",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/_collection/world_bank/raw/world_bank_gdp-92235bee54f0c66fd067da9f56fd4d989d5d07162009674e94de182e784b5059.rds",
+  "bytes": 414513,
+  "sha256": "b137334c024c42d3d47093f4dd506665b4c74c6680d19e86ad955b3728951b9f",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/_collection/world_bank/raw/world_bank_gdp-92235bee54f0c66fd067da9f56fd4d989d5d07162009674e94de182e784b5059.rds.json"
+}

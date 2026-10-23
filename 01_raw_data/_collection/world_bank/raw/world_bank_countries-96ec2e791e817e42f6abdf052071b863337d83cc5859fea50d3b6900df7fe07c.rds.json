@@ -1,0 +1,13 @@
+{
+  "source_id": "world_bank_countries",
+  "request": {
+    "operation": "wb_countries"
+  },
+  "vintage": 2025,
+  "collector_version": "world-bank-v1",
+  "retrieved_at": "2026-10-21 20:27:33 UTC",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/_collection/world_bank/raw/world_bank_countries-96ec2e791e817e42f6abdf052071b863337d83cc5859fea50d3b6900df7fe07c.rds",
+  "bytes": 73278,
+  "sha256": "36cfdef9841a75c4564b167c95e6ade8ee1860c7aef6186123d445b6334b75de",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/_collection/world_bank/raw/world_bank_countries-96ec2e791e817e42f6abdf052071b863337d83cc5859fea50d3b6900df7fe07c.rds.json"
+}
