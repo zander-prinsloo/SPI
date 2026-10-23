@@ -1,29 +1,31 @@
 {
   "schemaVersion": "compound-gpid-active-state-v1",
-  "updatedAt": "2026-10-20T14:17:55Z",
+  "updatedAt": "2026-10-21T00:00:00Z",
   "workflow": "/cg-work",
   "status": "blocked",
   "branch": "feat/d41-manual-collection-pipeline",
-  "plan": ".cg-docs/plans/2026-10-20-d41-manual-collection-pipeline.md",
-  "executionReport": ".cg-docs/work-reports/2026-10-20-d41-manual-collection-pipeline.md",
-  "currentPhase": 3,
+  "plan": ".cg-docs/plans/2026-10-21-nada-gsbp-collection-pipeline.md",
+  "executionReport": ".cg-docs/work-reports/2026-10-21-nada-gsbp-collection-pipeline.md",
+  "currentPhase": 1,
   "evidenceStatus": [
-    {"id": "V1", "status": "passed", "artifact": "tests/testthat/test-pipeline-contract.R"},
-    {"id": "V2", "status": "passed", "artifact": "tests/testthat/test-dim4-collection.R"},
-    {"id": "V3", "status": "passed", "artifact": "tests/testthat/test-dim4-collection.R"},
-    {"id": "V4", "status": "passed", "artifact": "tests/testthat/test-dim4-collection.R"},
-    {"id": "V5", "status": "blocked", "artifact": "D4.1.4.SVY.HOUS_NADA.csv has 16 unmapped country rows"},
-    {"id": "V6", "status": "blocked", "artifact": "d41_manifest target stops at companion validation"},
-    {"id": "V8", "status": "passed", "artifact": "tests/testthat/test-pipeline-contract.R"},
-    {"id": "V10", "status": "passed", "artifact": "docs/user-guide.md; README.md"}
+    {"id": "V1", "status": "passed", "artifact": "tests/testthat/test-manual-review.R (20 passed)"},
+    {"id": "V2", "status": "passed", "artifact": "tests/testthat/test-nada-collection.R (20 passed)"},
+    {"id": "V3", "status": "pending", "artifact": "tests/testthat/test-gsbp-collection.R"},
+    {"id": "V4", "status": "pending", "artifact": "NADA/GSBP regression tests"},
+    {"id": "V5", "status": "passed", "artifact": "299 passed; 0 failed; 200 warnings; 12 skips"},
+    {"id": "V6", "status": "passed", "artifact": "NADA output rebuilt; 190/190 evidence; zero auto-zeros"},
+    {"id": "V7", "status": "blocked", "artifact": "collection_status stops at missing 2025 D4.1 microdata"},
+    {"id": "V8", "status": "pending", "artifact": "git diff constraint check"},
+    {"id": "V9", "status": "pending", "artifact": "docs/user-guide.md"}
   ],
   "unresolvedDecisions": [
-    {"id": "D1", "summary": "Identify or approve exclusion for three blank-country labour companion rows dated 2019, 2020, and 2023", "blocking": true}
+    {"id": "D1", "summary": "Provide eight missing 2025 D4.1 microdata files before full collection certification", "blocking": true}
   ],
   "artifactRefs": [
-    {"kind": "plan", "path": ".cg-docs/plans/2026-10-20-d41-manual-collection-pipeline.md", "status": "active"},
-    {"kind": "execution-report", "path": ".cg-docs/work-reports/2026-10-20-d41-manual-collection-pipeline.md", "status": "active"},
-    {"kind": "prior-plan", "path": ".cg-docs/plans/2026-10-05-spi-data-collection-pipeline.md", "status": "blocked"}
+    {"kind": "plan", "path": ".cg-docs/plans/2026-10-21-nada-gsbp-collection-pipeline.md", "status": "active"},
+    {"kind": "execution-report", "path": ".cg-docs/work-reports/2026-10-21-nada-gsbp-collection-pipeline.md", "status": "active"},
+    {"kind": "review", "path": ".cg-docs/reviews/2026-10-21-nada-gsbp-collection-pipeline-review.md", "status": "open"},
+    {"kind": "prior-plan", "path": ".cg-docs/plans/2026-10-20-d41-manual-collection-pipeline.md", "status": "blocked"}
   ],
-  "nextCommand": "/cg-work phase3"
+  "nextCommand": "/cg-work phase1"
 }

@@ -1,7 +1,6 @@
 {
-  "run_id": "20261005T221354Z-fe4881dbf152",
-  "collection_state": "complete",
-  "started_at": "2026-10-05 22:13:54 UTC",
-  "parameters_hash": "fe4881dbf152c896cd25658a797f710dbab4182e650fec33407029873e31d7ea",
-  "completed_at": "2026-10-05 22:13:54 UTC"
+  "run_id": "20261021T210748Z-708f6bb66480",
+  "collection_state": "started",
+  "started_at": "2026-10-21 21:07:48 UTC",
+  "parameters_hash": "708f6bb66480d397e345a838669b5cc666e62f1d4a9af3f0cee5e0455dee439d"
 }

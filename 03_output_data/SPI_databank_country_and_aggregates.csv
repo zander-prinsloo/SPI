@@ -34,7 +34,7 @@
 "AFE","Africa Eastern and Southern",2004,"SPI.D4.1.3.BIZZ","Business/establishment census",26,26,0.08,NA
 "AFE","Africa Eastern and Southern",2004,"SPI.D4.1.4.HOUS","Household Survey on income, etc",26,26,0.59,NA
 "AFE","Africa Eastern and Southern",2004,"SPI.D4.1.5.AGSVY","Agriculture survey",26,26,0.12,NA
-"AFE","Africa Eastern and Southern",2004,"SPI.D4.1.6.LABR","Labor Force Survey",26,26,0.21,NA
+"AFE","Africa Eastern and Southern",2004,"SPI.D4.1.6.LABR","Labor Force Survey",26,26,0.2,NA
 "AFE","Africa Eastern and Southern",2004,"SPI.D4.1.7.HLTH","Health/Demographic survey",26,26,0.74,NA
 "AFE","Africa Eastern and Southern",2004,"SPI.D4.1.8.BZSVY","Business/establishment survey",26,26,0.08,NA
 "AFE","Africa Eastern and Southern",2004,"SPI.D4.2.3.CRVS","CRVS (WDI)",26,26,0,NA
@@ -1569,7 +1569,7 @@
 "AFW","Africa Western and Central",2004,"SPI.D4.1.5.AGSVY","Agriculture survey",22,22,0.08,NA
 "AFW","Africa Western and Central",2004,"SPI.D4.1.6.LABR","Labor Force Survey",22,22,0.03,NA
 "AFW","Africa Western and Central",2004,"SPI.D4.1.7.HLTH","Health/Demographic survey",22,22,0.79,NA
-"AFW","Africa Western and Central",2004,"SPI.D4.1.8.BZSVY","Business/establishment survey",22,22,0.02,NA
+"AFW","Africa Western and Central",2004,"SPI.D4.1.8.BZSVY","Business/establishment survey",22,22,0.01,NA
 "AFW","Africa Western and Central",2004,"SPI.D4.2.3.CRVS","CRVS (WDI)",22,22,0,NA
 "AFW","Africa Western and Central",2004,"SPI.D4.3.GEO.first.admin.level","Geospatial data available at 1st Admin Level",22,0,NA,NA
 "AFW","Africa Western and Central",2004,"SPI.D5.1.DILG","Legislation Indicator based on PARIS21 indicators on SDG 17.18.2",22,0,NA,NA
@@ -1932,7 +1932,7 @@
 "AFW","Africa Western and Central",2009,"SPI.D4.1.3.BIZZ","Business/establishment census",22,22,0.14,NA
 "AFW","Africa Western and Central",2009,"SPI.D4.1.4.HOUS","Household Survey on income, etc",22,22,0.61,NA
 "AFW","Africa Western and Central",2009,"SPI.D4.1.5.AGSVY","Agriculture survey",22,22,0.21,NA
-"AFW","Africa Western and Central",2009,"SPI.D4.1.6.LABR","Labor Force Survey",22,22,0.07,NA
+"AFW","Africa Western and Central",2009,"SPI.D4.1.6.LABR","Labor Force Survey",22,22,0.08,NA
 "AFW","Africa Western and Central",2009,"SPI.D4.1.7.HLTH","Health/Demographic survey",22,22,0.83,NA
 "AFW","Africa Western and Central",2009,"SPI.D4.1.8.BZSVY","Business/establishment survey",22,22,0.26,NA
 "AFW","Africa Western and Central",2009,"SPI.D4.2.3.CRVS","CRVS (WDI)",22,22,0,NA
@@ -7698,7 +7698,7 @@
 "EAP","East Asia & Pacific (excluding high income)",2004,"SPI.D4.1.2.AGRI","Agriculture census",24,22,0.45,NA
 "EAP","East Asia & Pacific (excluding high income)",2004,"SPI.D4.1.3.BIZZ","Business/establishment census",24,22,0,NA
 "EAP","East Asia & Pacific (excluding high income)",2004,"SPI.D4.1.4.HOUS","Household Survey on income, etc",24,22,0.56,NA
-"EAP","East Asia & Pacific (excluding high income)",2004,"SPI.D4.1.5.AGSVY","Agriculture survey",24,22,0.02,NA
+"EAP","East Asia & Pacific (excluding high income)",2004,"SPI.D4.1.5.AGSVY","Agriculture survey",24,22,0.01,NA
 "EAP","East Asia & Pacific (excluding high income)",2004,"SPI.D4.1.6.LABR","Labor Force Survey",24,22,0.21,NA
 "EAP","East Asia & Pacific (excluding high income)",2004,"SPI.D4.1.7.HLTH","Health/Demographic survey",24,22,0.36,NA
 "EAP","East Asia & Pacific (excluding high income)",2004,"SPI.D4.1.8.BZSVY","Business/establishment survey",24,22,0.12,NA
@@ -8940,7 +8940,7 @@
 "EAP","East Asia & Pacific (excluding high income)",2021,"SPI.D4.1.3.BIZZ","Business/establishment census",24,22,0.59,NA
 "EAP","East Asia & Pacific (excluding high income)",2021,"SPI.D4.1.4.HOUS","Household Survey on income, etc",24,22,0.7,NA
 "EAP","East Asia & Pacific (excluding high income)",2021,"SPI.D4.1.5.AGSVY","Agriculture survey",24,22,0.15,NA
-"EAP","East Asia & Pacific (excluding high income)",2021,"SPI.D4.1.6.LABR","Labor Force Survey",24,22,0.52,NA
+"EAP","East Asia & Pacific (excluding high income)",2021,"SPI.D4.1.6.LABR","Labor Force Survey",24,22,0.51,NA
 "EAP","East Asia & Pacific (excluding high income)",2021,"SPI.D4.1.7.HLTH","Health/Demographic survey",24,22,0.42,NA
 "EAP","East Asia & Pacific (excluding high income)",2021,"SPI.D4.1.8.BZSVY","Business/establishment survey",24,22,0.38,NA
 "EAP","East Asia & Pacific (excluding high income)",2021,"SPI.D4.2.3.CRVS","CRVS (WDI)",24,24,0.29,NA
@@ -10107,7 +10107,7 @@
 "EAR","Early-demographic dividend",2016,"SPI.D4.1.2.AGRI","Agriculture census",62,62,0.7,NA
 "EAR","Early-demographic dividend",2016,"SPI.D4.1.3.BIZZ","Business/establishment census",62,62,0.13,NA
 "EAR","Early-demographic dividend",2016,"SPI.D4.1.4.HOUS","Household Survey on income, etc",62,62,0.79,NA
-"EAR","Early-demographic dividend",2016,"SPI.D4.1.5.AGSVY","Agriculture survey",62,62,0.29,NA
+"EAR","Early-demographic dividend",2016,"SPI.D4.1.5.AGSVY","Agriculture survey",62,62,0.28,NA
 "EAR","Early-demographic dividend",2016,"SPI.D4.1.6.LABR","Labor Force Survey",62,62,0.61,NA
 "EAR","Early-demographic dividend",2016,"SPI.D4.1.7.HLTH","Health/Demographic survey",62,62,0.7,NA
 "EAR","Early-demographic dividend",2016,"SPI.D4.1.8.BZSVY","Business/establishment survey",62,62,0.58,NA
@@ -14841,7 +14841,7 @@
 "ECS","Europe & Central Asia",2018,"SPI.D3.17.PTNS","GOAL 17: Partnerships to achieve the Goal",58,56,0.47,NA
 "ECS","Europe & Central Asia",2018,"SPI.D3.2.HNGR","GOAL 2: Zero Hunger",58,56,0.65,NA
 "ECS","Europe & Central Asia",2018,"SPI.D3.3.HLTH","GOAL 3: Good Health and Well-being",58,56,0.76,NA
-"ECS","Europe & Central Asia",2018,"SPI.D3.4.EDUC","GOAL 4: Quality Education",58,56,0.46,NA
+"ECS","Europe & Central Asia",2018,"SPI.D3.4.EDUC","GOAL 4: Quality Education",58,56,0.45,NA
 "ECS","Europe & Central Asia",2018,"SPI.D3.5.GEND","GOAL 5: Gender Equality",58,56,0.34,NA
 "ECS","Europe & Central Asia",2018,"SPI.D3.6.WTRS","GOAL 6: Clean Water and Sanitation",58,56,0.77,NA
 "ECS","Europe & Central Asia",2018,"SPI.D3.7.ENRG","GOAL 7: Affordable and Clean Energy",58,56,0.72,NA
@@ -21026,7 +21026,7 @@
 "HIC","High income",2019,"SPI.D1.5.CHLD.MORT","Availability of Mortality rate, under-5 (per 1,000 live births) data meeting quality standards according to UN IGME",80,80,0.62,NA
 "HIC","High income",2019,"SPI.D1.5.DT.TDS.DPPF.XP.ZS","Quality of Debt service data according to World Bank",80,80,0.99,NA
 "HIC","High income",2019,"SPI.D1.5.LFP","Labor force participation rate by sex and age (%)",80,80,0.73,NA
-"HIC","High income",2019,"SPI.D1.5.POV","Availability of Comparable Poverty headcount ratio at $2.15 a day",80,80,0.52,NA
+"HIC","High income",2019,"SPI.D1.5.POV","Availability of Comparable Poverty headcount ratio at $2.15 a day",80,80,0.53,NA
 "HIC","High income",2019,"SPI.D1.5.SAFE.MAN.WATER","Safely Managed Drinking Water",80,80,0.94,NA
 "HIC","High income",2019,"SPI.D2.1.GDDS","SDDS/e-GDDS subscription",80,80,0.62,NA
 "HIC","High income",2019,"SPI.D2.2.Download.options","Download Options Score",80,53,0.56,NA
@@ -21099,7 +21099,7 @@
 "HIC","High income",2020,"SPI.D1.5.CHLD.MORT","Availability of Mortality rate, under-5 (per 1,000 live births) data meeting quality standards according to UN IGME",80,80,0.59,NA
 "HIC","High income",2020,"SPI.D1.5.DT.TDS.DPPF.XP.ZS","Quality of Debt service data according to World Bank",80,80,1,NA
 "HIC","High income",2020,"SPI.D1.5.LFP","Labor force participation rate by sex and age (%)",80,80,0.73,NA
-"HIC","High income",2020,"SPI.D1.5.POV","Availability of Comparable Poverty headcount ratio at $2.15 a day",80,80,0.52,NA
+"HIC","High income",2020,"SPI.D1.5.POV","Availability of Comparable Poverty headcount ratio at $2.15 a day",80,80,0.53,NA
 "HIC","High income",2020,"SPI.D1.5.SAFE.MAN.WATER","Safely Managed Drinking Water",80,80,0.94,NA
 "HIC","High income",2020,"SPI.D2.1.GDDS","SDDS/e-GDDS subscription",80,80,0.63,NA
 "HIC","High income",2020,"SPI.D2.2.Download.options","Download Options Score",80,58,0.57,NA
@@ -21172,7 +21172,7 @@
 "HIC","High income",2021,"SPI.D1.5.CHLD.MORT","Availability of Mortality rate, under-5 (per 1,000 live births) data meeting quality standards according to UN IGME",80,80,0.59,NA
 "HIC","High income",2021,"SPI.D1.5.DT.TDS.DPPF.XP.ZS","Quality of Debt service data according to World Bank",80,80,0.98,NA
 "HIC","High income",2021,"SPI.D1.5.LFP","Labor force participation rate by sex and age (%)",80,80,0.71,NA
-"HIC","High income",2021,"SPI.D1.5.POV","Availability of Comparable Poverty headcount ratio at $2.15 a day",80,80,0.52,NA
+"HIC","High income",2021,"SPI.D1.5.POV","Availability of Comparable Poverty headcount ratio at $2.15 a day",80,80,0.53,NA
 "HIC","High income",2021,"SPI.D1.5.SAFE.MAN.WATER","Safely Managed Drinking Water",80,80,0.95,NA
 "HIC","High income",2021,"SPI.D2.1.GDDS","SDDS/e-GDDS subscription",80,80,0.63,NA
 "HIC","High income",2021,"SPI.D2.2.Download.options","Download Options Score",80,58,0.57,NA
@@ -21242,7 +21242,7 @@
 "HIC","High income",2021,"SPI.INDEX.PIL3","Pillar 3 - Data Products - Score",80,79,62.1,NA
 "HIC","High income",2021,"SPI.INDEX.PIL4","Pillar 4 - Data Sources - Score",80,53,75.12,NA
 "HIC","High income",2021,"SPI.INDEX.PIL5","Pillar 5 - Data Infrastructure - Score",80,57,81.32,NA
-"HIC","High income",2022,"SPI.D1.5.CHLD.MORT","Availability of Mortality rate, under-5 (per 1,000 live births) data meeting quality standards according to UN IGME",80,80,0.68,NA
+"HIC","High income",2022,"SPI.D1.5.CHLD.MORT","Availability of Mortality rate, under-5 (per 1,000 live births) data meeting quality standards according to UN IGME",80,80,0.67,NA
 "HIC","High income",2022,"SPI.D1.5.DT.TDS.DPPF.XP.ZS","Quality of Debt service data according to World Bank",80,80,1,NA
 "HIC","High income",2022,"SPI.D1.5.LFP","Labor force participation rate by sex and age (%)",80,80,0.68,NA
 "HIC","High income",2022,"SPI.D1.5.POV","Availability of Comparable Poverty headcount ratio at $2.15 a day",80,80,0.52,NA
@@ -21315,7 +21315,7 @@
 "HIC","High income",2022,"SPI.INDEX.PIL3","Pillar 3 - Data Products - Score",80,79,58.22,NA
 "HIC","High income",2022,"SPI.INDEX.PIL4","Pillar 4 - Data Sources - Score",80,56,73.92,NA
 "HIC","High income",2022,"SPI.INDEX.PIL5","Pillar 5 - Data Infrastructure - Score",80,57,81.84,NA
-"HIC","High income",2023,"SPI.D1.5.CHLD.MORT","Availability of Mortality rate, under-5 (per 1,000 live births) data meeting quality standards according to UN IGME",80,80,0.68,NA
+"HIC","High income",2023,"SPI.D1.5.CHLD.MORT","Availability of Mortality rate, under-5 (per 1,000 live births) data meeting quality standards according to UN IGME",80,80,0.67,NA
 "HIC","High income",2023,"SPI.D1.5.DT.TDS.DPPF.XP.ZS","Quality of Debt service data according to World Bank",80,80,1,NA
 "HIC","High income",2023,"SPI.D1.5.LFP","Labor force participation rate by sex and age (%)",80,80,0.67,NA
 "HIC","High income",2023,"SPI.D1.5.POV","Availability of Comparable Poverty headcount ratio at $2.15 a day",80,80,0.52,NA
@@ -23323,7 +23323,7 @@
 "IBD","IBRD only",2008,"SPI.D4.1.5.AGSVY","Agriculture survey",70,70,0.17,NA
 "IBD","IBRD only",2008,"SPI.D4.1.6.LABR","Labor Force Survey",70,70,0.56,NA
 "IBD","IBRD only",2008,"SPI.D4.1.7.HLTH","Health/Demographic survey",70,70,0.67,NA
-"IBD","IBRD only",2008,"SPI.D4.1.8.BZSVY","Business/establishment survey",70,70,0.4,NA
+"IBD","IBRD only",2008,"SPI.D4.1.8.BZSVY","Business/establishment survey",70,70,0.39,NA
 "IBD","IBRD only",2008,"SPI.D4.2.3.CRVS","CRVS (WDI)",70,70,0,NA
 "IBD","IBRD only",2008,"SPI.D4.3.GEO.first.admin.level","Geospatial data available at 1st Admin Level",70,0,NA,NA
 "IBD","IBRD only",2008,"SPI.D5.1.DILG","Legislation Indicator based on PARIS21 indicators on SDG 17.18.2",70,3,1,NA
@@ -31197,7 +31197,7 @@
 "LAC","Latin America & Caribbean (excluding high income)",2011,"SPI.D3.5.GEND","GOAL 5: Gender Equality",24,24,0.29,NA
 "LAC","Latin America & Caribbean (excluding high income)",2011,"SPI.D3.6.WTRS","GOAL 6: Clean Water and Sanitation",24,24,0.72,NA
 "LAC","Latin America & Caribbean (excluding high income)",2011,"SPI.D3.7.ENRG","GOAL 7: Affordable and Clean Energy",24,24,0.87,NA
-"LAC","Latin America & Caribbean (excluding high income)",2011,"SPI.D3.8.WORK","GOAL 8: Decent Work and Economic Growth",24,24,0.46,NA
+"LAC","Latin America & Caribbean (excluding high income)",2011,"SPI.D3.8.WORK","GOAL 8: Decent Work and Economic Growth",24,24,0.45,NA
 "LAC","Latin America & Caribbean (excluding high income)",2011,"SPI.D3.9.INDY","GOAL 9: Industry, Innovation and Infrastructure",24,24,0.41,NA
 "LAC","Latin America & Caribbean (excluding high income)",2011,"SPI.D3.NA",NA,24,0,NA,NA
 "LAC","Latin America & Caribbean (excluding high income)",2011,"SPI.D4.1.1.POPU","Population & Housing census",24,23,1,NA
@@ -33225,7 +33225,7 @@
 "LCN","Latin America & Caribbean",2018,"SPI.D2.2.Metadata.available","Metadata Available Score",42,28,0.46,NA
 "LCN","Latin America & Caribbean",2018,"SPI.D2.2.Non.proprietary","Non-Proprietary format Score",42,28,0.62,NA
 "LCN","Latin America & Caribbean",2018,"SPI.D2.2.Openness.subscore","ODIN Open Data Openness score",42,28,0.42,NA
-"LCN","Latin America & Caribbean",2018,"SPI.D2.2.Terms.of.use","Terms of Use Score",42,28,0.14,NA
+"LCN","Latin America & Caribbean",2018,"SPI.D2.2.Terms.of.use","Terms of Use Score",42,28,0.13,NA
 "LCN","Latin America & Caribbean",2018,"SPI.D2.4.NADA","NADA metadata",42,32,0.84,NA
 "LCN","Latin America & Caribbean",2018,"SPI.D3.1.POV","GOAL 1: No Poverty",42,42,0.48,NA
 "LCN","Latin America & Caribbean",2018,"SPI.D3.10.NEQL","GOAL 10: Reduced Inequality",42,42,0.38,NA
@@ -34125,7 +34125,7 @@
 "LDC","Least developed countries: UN classification",2009,"SPI.D4.1.3.BIZZ","Business/establishment census",46,46,0.09,NA
 "LDC","Least developed countries: UN classification",2009,"SPI.D4.1.4.HOUS","Household Survey on income, etc",46,46,0.62,NA
 "LDC","Least developed countries: UN classification",2009,"SPI.D4.1.5.AGSVY","Agriculture survey",46,46,0.18,NA
-"LDC","Least developed countries: UN classification",2009,"SPI.D4.1.6.LABR","Labor Force Survey",46,46,0.2,NA
+"LDC","Least developed countries: UN classification",2009,"SPI.D4.1.6.LABR","Labor Force Survey",46,46,0.19,NA
 "LDC","Least developed countries: UN classification",2009,"SPI.D4.1.7.HLTH","Health/Demographic survey",46,46,0.77,NA
 "LDC","Least developed countries: UN classification",2009,"SPI.D4.1.8.BZSVY","Business/establishment survey",46,46,0.29,NA
 "LDC","Least developed countries: UN classification",2009,"SPI.D4.2.3.CRVS","CRVS (WDI)",46,46,0,NA
@@ -35146,7 +35146,7 @@
 "LDC","Least developed countries: UN classification",2023,"SPI.D4.1.2.AGRI","Agriculture census",46,46,0.47,NA
 "LDC","Least developed countries: UN classification",2023,"SPI.D4.1.3.BIZZ","Business/establishment census",46,46,0.45,NA
 "LDC","Least developed countries: UN classification",2023,"SPI.D4.1.4.HOUS","Household Survey on income, etc",46,46,0.72,NA
-"LDC","Least developed countries: UN classification",2023,"SPI.D4.1.5.AGSVY","Agriculture survey",46,46,0.36,NA
+"LDC","Least developed countries: UN classification",2023,"SPI.D4.1.5.AGSVY","Agriculture survey",46,46,0.35,NA
 "LDC","Least developed countries: UN classification",2023,"SPI.D4.1.6.LABR","Labor Force Survey",46,46,0.52,NA
 "LDC","Least developed countries: UN classification",2023,"SPI.D4.1.7.HLTH","Health/Demographic survey",46,46,0.68,NA
 "LDC","Least developed countries: UN classification",2023,"SPI.D4.1.8.BZSVY","Business/establishment survey",46,46,0.39,NA
@@ -35219,7 +35219,7 @@
 "LDC","Least developed countries: UN classification",2024,"SPI.D4.1.2.AGRI","Agriculture census",46,46,0.47,NA
 "LDC","Least developed countries: UN classification",2024,"SPI.D4.1.3.BIZZ","Business/establishment census",46,46,0.49,NA
 "LDC","Least developed countries: UN classification",2024,"SPI.D4.1.4.HOUS","Household Survey on income, etc",46,46,0.72,NA
-"LDC","Least developed countries: UN classification",2024,"SPI.D4.1.5.AGSVY","Agriculture survey",46,46,0.36,NA
+"LDC","Least developed countries: UN classification",2024,"SPI.D4.1.5.AGSVY","Agriculture survey",46,46,0.35,NA
 "LDC","Least developed countries: UN classification",2024,"SPI.D4.1.6.LABR","Labor Force Survey",46,46,0.54,NA
 "LDC","Least developed countries: UN classification",2024,"SPI.D4.1.7.HLTH","Health/Demographic survey",46,46,0.68,NA
 "LDC","Least developed countries: UN classification",2024,"SPI.D4.1.8.BZSVY","Business/establishment survey",46,46,0.45,NA
@@ -37850,7 +37850,7 @@
 "LMC","Lower middle income",2018,"SPI.D4.1.5.AGSVY","Agriculture survey",54,54,0.23,NA
 "LMC","Lower middle income",2018,"SPI.D4.1.6.LABR","Labor Force Survey",54,54,0.63,NA
 "LMC","Lower middle income",2018,"SPI.D4.1.7.HLTH","Health/Demographic survey",54,54,0.69,NA
-"LMC","Lower middle income",2018,"SPI.D4.1.8.BZSVY","Business/establishment survey",54,54,0.6,NA
+"LMC","Lower middle income",2018,"SPI.D4.1.8.BZSVY","Business/establishment survey",54,54,0.61,NA
 "LMC","Lower middle income",2018,"SPI.D4.2.3.CRVS","CRVS (WDI)",54,54,0.31,NA
 "LMC","Lower middle income",2018,"SPI.D4.3.GEO.first.admin.level","Geospatial data available at 1st Admin Level",54,53,0.2,NA
 "LMC","Lower middle income",2018,"SPI.D5.1.DILG","Legislation Indicator based on PARIS21 indicators on SDG 17.18.2",54,0,NA,NA
@@ -38156,7 +38156,7 @@
 "LMC","Lower middle income",2022,"SPI.D5.2.7.CGOV","Central government accounting status",54,54,0.19,NA
 "LMC","Lower middle income",2022,"SPI.D5.2.8.FINA","Compilation of government finance statistics",54,54,0.25,NA
 "LMC","Lower middle income",2022,"SPI.D5.2.9.MONY","Compilation of monetary and financial statistics",54,54,0.87,NA
-"LMC","Lower middle income",2022,"SPI.D5.5.DIFI","Finance Indicator based on PARIS21 indicators on SDG 17.18.3 & SDG 17.19.1",54,40,0.48,NA
+"LMC","Lower middle income",2022,"SPI.D5.5.DIFI","Finance Indicator based on PARIS21 indicators on SDG 17.18.3 & SDG 17.19.1",54,40,0.47,NA
 "LMC","Lower middle income",2022,"SPI.DIM1.5.INDEX","Dimension 1.5: Data use by international organizations",54,54,0.77,NA
 "LMC","Lower middle income",2022,"SPI.DIM2.1.INDEX","Dimension 2.1: Data Releases",54,54,0.62,NA
 "LMC","Lower middle income",2022,"SPI.DIM2.2.INDEX","Dimension 2.2: Online access",54,53,0.44,NA
@@ -38171,7 +38171,7 @@
 "LMC","Lower middle income",2022,"SPI.DIM4.3.INDEX","Dimension 4.3: Geospatial Data",54,53,0.28,NA
 "LMC","Lower middle income",2022,"SPI.DIM5.1.INDEX","Dimension 5.1: Legislation and governance",54,45,0.71,NA
 "LMC","Lower middle income",2022,"SPI.DIM5.2.INDEX","Dimension 5.2: Standards and Methods",54,54,0.52,NA
-"LMC","Lower middle income",2022,"SPI.DIM5.5.INDEX","Dimension 5.5: Finance",54,40,0.48,NA
+"LMC","Lower middle income",2022,"SPI.DIM5.5.INDEX","Dimension 5.5: Finance",54,40,0.47,NA
 "LMC","Lower middle income",2022,"SPI.INDEX","SPI Overall Score",54,53,63.05,NA
 "LMC","Lower middle income",2022,"SPI.INDEX.PIL1","Pillar 1  - Data Use - Score",54,54,77.03,NA
 "LMC","Lower middle income",2022,"SPI.INDEX.PIL2","Pillar 2 - Data Services - Score",54,53,64.32,NA
@@ -48418,7 +48418,7 @@
 "OED","OECD members",2016,"SPI.D3.13.CLMT","GOAL 13: Climate Action",75,75,0.68,NA
 "OED","OECD members",2016,"SPI.D3.15.LAND","GOAL 15: Life on Land",75,75,0.83,NA
 "OED","OECD members",2016,"SPI.D3.16.INST","GOAL 16: Peace and Justice Strong Institutions",75,75,0.69,NA
-"OED","OECD members",2016,"SPI.D3.17.PTNS","GOAL 17: Partnerships to achieve the Goal",75,75,0.46,NA
+"OED","OECD members",2016,"SPI.D3.17.PTNS","GOAL 17: Partnerships to achieve the Goal",75,75,0.45,NA
 "OED","OECD members",2016,"SPI.D3.2.HNGR","GOAL 2: Zero Hunger",75,75,0.7,NA
 "OED","OECD members",2016,"SPI.D3.3.HLTH","GOAL 3: Good Health and Well-being",75,75,0.82,NA
 "OED","OECD members",2016,"SPI.D3.4.EDUC","GOAL 4: Quality Education",75,75,0.6,NA
@@ -51114,7 +51114,7 @@
 "PRE","Pre-demographic dividend",2011,"SPI.D2.4.NADA","NADA metadata",37,0,NA,NA
 "PRE","Pre-demographic dividend",2011,"SPI.D3.1.POV","GOAL 1: No Poverty",37,37,0.72,NA
 "PRE","Pre-demographic dividend",2011,"SPI.D3.10.NEQL","GOAL 10: Reduced Inequality",37,37,0.45,NA
-"PRE","Pre-demographic dividend",2011,"SPI.D3.11.CITY","GOAL 11: Sustainable Cities and Communities",37,37,0.46,NA
+"PRE","Pre-demographic dividend",2011,"SPI.D3.11.CITY","GOAL 11: Sustainable Cities and Communities",37,37,0.45,NA
 "PRE","Pre-demographic dividend",2011,"SPI.D3.12.CNSP","GOAL 12: Responsible Consumption and Production",37,37,0.39,NA
 "PRE","Pre-demographic dividend",2011,"SPI.D3.13.CLMT","GOAL 13: Climate Action",37,37,0.59,NA
 "PRE","Pre-demographic dividend",2011,"SPI.D3.15.LAND","GOAL 15: Life on Land",37,37,0.99,NA
@@ -54931,7 +54931,7 @@
 "PST","Post-demographic dividend",2021,"SPI.D4.1.4.HOUS","Household Survey on income, etc",38,35,0.94,NA
 "PST","Post-demographic dividend",2021,"SPI.D4.1.5.AGSVY","Agriculture survey",38,35,0.81,NA
 "PST","Post-demographic dividend",2021,"SPI.D4.1.6.LABR","Labor Force Survey",38,36,0.98,NA
-"PST","Post-demographic dividend",2021,"SPI.D4.1.7.HLTH","Health/Demographic survey",38,36,0.71,NA
+"PST","Post-demographic dividend",2021,"SPI.D4.1.7.HLTH","Health/Demographic survey",38,36,0.7,NA
 "PST","Post-demographic dividend",2021,"SPI.D4.1.8.BZSVY","Business/establishment survey",38,36,0.93,NA
 "PST","Post-demographic dividend",2021,"SPI.D4.2.3.CRVS","CRVS (WDI)",38,38,1,NA
 "PST","Post-demographic dividend",2021,"SPI.D4.3.GEO.first.admin.level","Geospatial data available at 1st Admin Level",38,37,0.37,NA
@@ -55077,7 +55077,7 @@
 "PST","Post-demographic dividend",2023,"SPI.D4.1.4.HOUS","Household Survey on income, etc",38,35,0.93,NA
 "PST","Post-demographic dividend",2023,"SPI.D4.1.5.AGSVY","Agriculture survey",38,35,0.81,NA
 "PST","Post-demographic dividend",2023,"SPI.D4.1.6.LABR","Labor Force Survey",38,36,0.99,NA
-"PST","Post-demographic dividend",2023,"SPI.D4.1.7.HLTH","Health/Demographic survey",38,36,0.71,NA
+"PST","Post-demographic dividend",2023,"SPI.D4.1.7.HLTH","Health/Demographic survey",38,36,0.7,NA
 "PST","Post-demographic dividend",2023,"SPI.D4.1.8.BZSVY","Business/establishment survey",38,36,0.93,NA
 "PST","Post-demographic dividend",2023,"SPI.D4.2.3.CRVS","CRVS (WDI)",38,38,1,NA
 "PST","Post-demographic dividend",2023,"SPI.D4.3.GEO.first.admin.level","Geospatial data available at 1st Admin Level",38,38,0.37,NA
@@ -61270,7 +61270,7 @@
 "SST","Small states",2024,"SPI.D3.2.HNGR","GOAL 2: Zero Hunger",50,50,0.5,NA
 "SST","Small states",2024,"SPI.D3.3.HLTH","GOAL 3: Good Health and Well-being",50,50,0.61,NA
 "SST","Small states",2024,"SPI.D3.4.EDUC","GOAL 4: Quality Education",50,50,0.69,NA
-"SST","Small states",2024,"SPI.D3.5.GEND","GOAL 5: Gender Equality",50,50,0.48,NA
+"SST","Small states",2024,"SPI.D3.5.GEND","GOAL 5: Gender Equality",50,50,0.49,NA
 "SST","Small states",2024,"SPI.D3.6.WTRS","GOAL 6: Clean Water and Sanitation",50,50,0.73,NA
 "SST","Small states",2024,"SPI.D3.7.ENRG","GOAL 7: Affordable and Clean Energy",50,50,0.87,NA
 "SST","Small states",2024,"SPI.D3.8.WORK","GOAL 8: Decent Work and Economic Growth",50,50,0.66,NA
@@ -66831,7 +66831,7 @@
 "TMN","Middle East & North Africa (IDA & IBRD)",2016,"SPI.D4.1.5.AGSVY","Agriculture survey",12,12,0.08,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2016,"SPI.D4.1.6.LABR","Labor Force Survey",12,12,0.58,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2016,"SPI.D4.1.7.HLTH","Health/Demographic survey",12,12,0.78,NA
-"TMN","Middle East & North Africa (IDA & IBRD)",2016,"SPI.D4.1.8.BZSVY","Business/establishment survey",12,12,0.3,NA
+"TMN","Middle East & North Africa (IDA & IBRD)",2016,"SPI.D4.1.8.BZSVY","Business/establishment survey",12,12,0.31,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2016,"SPI.D4.2.3.CRVS","CRVS (WDI)",12,12,0.46,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2016,"SPI.D4.3.GEO.first.admin.level","Geospatial data available at 1st Admin Level",12,11,0.2,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2016,"SPI.D5.1.DILG","Legislation Indicator based on PARIS21 indicators on SDG 17.18.2",12,0,NA,NA
@@ -66904,7 +66904,7 @@
 "TMN","Middle East & North Africa (IDA & IBRD)",2017,"SPI.D4.1.5.AGSVY","Agriculture survey",12,12,0.08,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2017,"SPI.D4.1.6.LABR","Labor Force Survey",12,12,0.58,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2017,"SPI.D4.1.7.HLTH","Health/Demographic survey",12,12,0.58,NA
-"TMN","Middle East & North Africa (IDA & IBRD)",2017,"SPI.D4.1.8.BZSVY","Business/establishment survey",12,12,0.3,NA
+"TMN","Middle East & North Africa (IDA & IBRD)",2017,"SPI.D4.1.8.BZSVY","Business/establishment survey",12,12,0.31,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2017,"SPI.D4.2.3.CRVS","CRVS (WDI)",12,12,0.46,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2017,"SPI.D4.3.GEO.first.admin.level","Geospatial data available at 1st Admin Level",12,12,0.15,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2017,"SPI.D5.1.DILG","Legislation Indicator based on PARIS21 indicators on SDG 17.18.2",12,0,NA,NA
@@ -66977,7 +66977,7 @@
 "TMN","Middle East & North Africa (IDA & IBRD)",2018,"SPI.D4.1.5.AGSVY","Agriculture survey",12,12,0.11,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2018,"SPI.D4.1.6.LABR","Labor Force Survey",12,12,0.58,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2018,"SPI.D4.1.7.HLTH","Health/Demographic survey",12,12,0.56,NA
-"TMN","Middle East & North Africa (IDA & IBRD)",2018,"SPI.D4.1.8.BZSVY","Business/establishment survey",12,12,0.3,NA
+"TMN","Middle East & North Africa (IDA & IBRD)",2018,"SPI.D4.1.8.BZSVY","Business/establishment survey",12,12,0.31,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2018,"SPI.D4.2.3.CRVS","CRVS (WDI)",12,12,0.46,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2018,"SPI.D4.3.GEO.first.admin.level","Geospatial data available at 1st Admin Level",12,12,0.18,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2018,"SPI.D5.1.DILG","Legislation Indicator based on PARIS21 indicators on SDG 17.18.2",12,0,NA,NA
@@ -67338,7 +67338,7 @@
 "TMN","Middle East & North Africa (IDA & IBRD)",2023,"SPI.D4.1.1.POPU","Population & Housing census",12,12,0.67,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2023,"SPI.D4.1.2.AGRI","Agriculture census",12,12,0.38,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2023,"SPI.D4.1.3.BIZZ","Business/establishment census",12,12,0.46,NA
-"TMN","Middle East & North Africa (IDA & IBRD)",2023,"SPI.D4.1.4.HOUS","Household Survey on income, etc",12,12,0.56,NA
+"TMN","Middle East & North Africa (IDA & IBRD)",2023,"SPI.D4.1.4.HOUS","Household Survey on income, etc",12,12,0.55,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2023,"SPI.D4.1.5.AGSVY","Agriculture survey",12,12,0.22,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2023,"SPI.D4.1.6.LABR","Labor Force Survey",12,12,0.58,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2023,"SPI.D4.1.7.HLTH","Health/Demographic survey",12,12,0.39,NA
@@ -67411,7 +67411,7 @@
 "TMN","Middle East & North Africa (IDA & IBRD)",2024,"SPI.D4.1.1.POPU","Population & Housing census",12,12,0.67,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2024,"SPI.D4.1.2.AGRI","Agriculture census",12,12,0.38,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2024,"SPI.D4.1.3.BIZZ","Business/establishment census",12,12,0.46,NA
-"TMN","Middle East & North Africa (IDA & IBRD)",2024,"SPI.D4.1.4.HOUS","Household Survey on income, etc",12,12,0.56,NA
+"TMN","Middle East & North Africa (IDA & IBRD)",2024,"SPI.D4.1.4.HOUS","Household Survey on income, etc",12,12,0.55,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2024,"SPI.D4.1.5.AGSVY","Agriculture survey",12,12,0.22,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2024,"SPI.D4.1.6.LABR","Labor Force Survey",12,12,0.58,NA
 "TMN","Middle East & North Africa (IDA & IBRD)",2024,"SPI.D4.1.7.HLTH","Health/Demographic survey",12,12,0.39,NA
