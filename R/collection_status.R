@@ -4,6 +4,13 @@
 # Created: 2026-10-05
 # =============================================================================
 
+.collection_hash_or_na <- function(path) {
+  if (is.null(path) || length(path) == 0L || !file.exists(path)) {
+    return(NA_character_)
+  }
+  digest::digest(path, algo = "sha256", file = TRUE)
+}
+
 #' Hash the collection-relevant parameter identity.
 #'
 #' @param params Pipeline parameter list.
@@ -17,7 +24,28 @@ collection_parameters_hash <- function(params) {
     imf_file_2024 = params$imf_file_2024,
     ilo_modelled_file = params$ilo_modelled_file,
     ilo_survey_file = params$ilo_survey_file,
-    registry = params$source_registry_file
+    first_collected_vintage = params$first_collected_vintage,
+    nada_url_max_age_days = params$nada_url_max_age_days,
+    refresh_nada_urls = params$refresh_nada_urls,
+    nada_url_delay_seconds = params$nada_url_delay_seconds,
+    registry_path = params$source_registry_file,
+    registry_hash = .collection_hash_or_na(params$source_registry_file),
+    nada_previous_hash = .collection_hash_or_na(file.path(
+      params$raw_dir,
+      "2.4_DSDS",
+      sprintf("D2.4.NADA.%d.csv", params$end_date - 1L)
+    )),
+    nada_review_hash = .collection_hash_or_na(file.path(
+      params$raw_dir,
+      "2.4_DSDS",
+      sprintf("D2.4.NADA.Manual.Review.%d.xlsx", params$end_date)
+    )),
+    gsbp_desk_review_hash = .collection_hash_or_na(file.path(
+      params$raw_dir,
+      "5.2_DISM",
+      "raw",
+      "D1.12.MSC.csv"
+    ))
   )
   digest::digest(
     jsonlite::toJSON(identity, auto_unbox = TRUE, null = "null"),
@@ -64,17 +92,26 @@ complete_collection_run <- function(params, run) {
 #' @param end_date Current reference year.
 #' @return A matching path or NA when no path is configured.
 #' @export
-resolve_collection_artifact_path <- function(relative_path, collection_root, end_date) {
+resolve_collection_artifact_paths <- function(relative_path, collection_root, end_date) {
   if (length(relative_path) == 0L || is.na(relative_path) || !nzchar(relative_path)) {
-    return(NA_character_)
+    return(character())
   }
 
-  relative_path <- gsub("<YEAR>", as.character(end_date), relative_path, fixed = TRUE)
-  relative_path <- gsub("<END_DATE>", as.character(end_date), relative_path, fixed = TRUE)
-  relative_path <- gsub("<END_DATE_PLUS_ONE>", as.character(end_date + 1), relative_path, fixed = TRUE)
-  candidate <- file.path(collection_root, relative_path)
-  matches <- Sys.glob(candidate)
-  if (length(matches) > 0L) matches[[1]] else candidate
+  paths <- strsplit(relative_path, "|", fixed = TRUE)[[1]]
+  unname(unlist(lapply(paths, function(path) {
+    path <- gsub("<YEAR>", as.character(end_date), path, fixed = TRUE)
+    path <- gsub("<END_DATE>", as.character(end_date), path, fixed = TRUE)
+    path <- gsub("<END_DATE_PLUS_ONE>", as.character(end_date + 1), path, fixed = TRUE)
+    path <- gsub("<timestamp>", "*", path, fixed = TRUE)
+    candidate <- file.path(collection_root, path)
+    matches <- Sys.glob(candidate)
+    if (length(matches) > 0L) matches[[1]] else candidate
+  })))
+}
+
+resolve_collection_artifact_path <- function(relative_path, collection_root, end_date) {
+  paths <- resolve_collection_artifact_paths(relative_path, collection_root, end_date)
+  if (length(paths) == 0L) NA_character_ else paste(paths, collapse = "|")
 }
 
 #' Evaluate registry sources and classify collection status.
@@ -113,7 +150,12 @@ evaluate_collection_status <- function(registry, collection_root, end_date,
         NA_character_
       }
     }
-    artifact_path <- resolve_collection_artifact_path(relative_path, collection_root, end_date)
+    artifact_paths <- resolve_collection_artifact_paths(relative_path, collection_root, end_date)
+    artifact_path <- if (length(artifact_paths) == 0L) {
+      NA_character_
+    } else {
+      paste(artifact_paths, collapse = "|")
+    }
     expected_rule <- source$expected_vintage_rule[[1]]
     observed_vintage <- switch(
       expected_rule,
@@ -129,17 +171,21 @@ evaluate_collection_status <- function(registry, collection_root, end_date,
       status <- "informational"
       reason <- "source_unavailable_by_design"
       age_days <- NA_real_
-    } else if (is.na(artifact_path) || !file.exists(artifact_path)) {
+    } else if (length(artifact_paths) == 0L || !all(file.exists(artifact_paths))) {
       status <- source$status_if_missing[[1]]
       reason <- "artifact_missing"
       age_days <- NA_real_
     } else if (identical(observed_vintage, "unverified")) {
       status <- source$status_if_missing[[1]]
       reason <- "source_vintage_unverified"
-      age_days <- as.numeric(difftime(now, file.info(artifact_path)$mtime, units = "days"))
+      age_days <- max(as.numeric(difftime(
+        now,
+        file.info(artifact_paths)$mtime,
+        units = "days"
+      )))
     } else {
-      modified <- file.info(artifact_path)$mtime
-      age_days <- as.numeric(difftime(now, modified, units = "days"))
+      modified <- file.info(artifact_paths)$mtime
+      age_days <- max(as.numeric(difftime(now, modified, units = "days")))
       if (!is.na(age_days) && age_days > source$age_warning_days[[1]]) {
         status <- if (source$status_if_missing[[1]] == "blocking") "blocking" else "warning"
         reason <- "artifact_age_exceeds_warning_threshold"

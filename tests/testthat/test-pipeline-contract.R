@@ -29,7 +29,11 @@ test_that("collection pipeline exposes a separate target graph", {
     "d41_preprocess",
     "d41_catalogue_collection",
     "d41_manifest",
-    "d41_manifest_file"
+    "d41_manifest_file",
+    "nada_previous_file",
+    "nada_review_file",
+    "nada_url_evidence",
+    "nada_output"
   ) %in% manifest$name))
 
   estimation_manifest <- targets::tar_manifest(

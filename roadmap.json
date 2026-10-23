@@ -50,6 +50,12 @@
           "title": "Integrate Dimension 4.1 Manual Collection into the SPI Collection Pipeline",
           "status": "active",
           "plan": ".cg-docs/plans/2026-10-20-d41-manual-collection-pipeline.md"
+        },
+        {
+          "id": "integrate-d2-4-nada-and-d5-2-10-gsbp-into-the-spi-collection-pipeline",
+          "title": "Integrate D2.4 NADA and D5.2.10 GSBP into the SPI Collection Pipeline",
+          "status": "active",
+          "plan": ".cg-docs/plans/2026-10-21-nada-gsbp-collection-pipeline.md"
         }
       ]
     }

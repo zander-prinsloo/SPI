@@ -298,13 +298,35 @@ inputs; they do not introduce additional SPI indicators.
 
 - **Source**: National statistical office websites.
 - **File**: `01_raw_data/2.4_DSDS/D2.4.NADA.<YEAR>.csv`
-- **Update**: Run `02_programs/misc_scripts/nada_check.R`. It reads last
-  year's spreadsheet, checks if each URL returns a valid response, and
-  saves. For invalid responses, manually check if the site works with a
-  different URL or if the NSO created a new website. The output becomes
-  next year's input.
-- **Required columns**: `iso3c`, `NADA`, and `NADA_text`. Keep `NADA_text`
-  because it is used for databank footnotes.
+- **Update**: The collection target reads the previous vintage, checks the
+  `NADA_text` URLs, and writes the current-vintage file only after the current
+  review workbook has been validated. Run:
+  `targets::tar_make(names = "nada_output", script = "_targets_data.R",
+  store = "_targets_data")`.
+- **Manual review**: Complete
+  `D2.4.NADA.Manual.Review.<YEAR>.xlsx` before running the current target.
+  It must contain `iso3c`, `country`, `NADA`, `NADA_text`, and `Evidence`.
+  Blank value cells mean no override; every non-blank override requires an
+  evidence note. Country keys must match the current World Bank country
+  metadata.
+- **URL evidence**: The target writes
+  `2.4_DSDS/collection/D2.4.NADA.url_evidence.<YEAR>.csv` and reuses it while
+  fresh. Set `refresh_nada_urls <- TRUE` in `config/params.R` to force a new
+  check. The evidence records URL, HTTP status, transport errors, timestamp,
+  and retry count.
+- **Failure handling**: HTTP errors, timeouts, missing URLs, incomplete
+  evidence, and duplicate keys do not prove that a NADA catalogue is absent.
+  Positive values with unresolved URL evidence block collection and require an
+  explicit manual-review value. The pipeline does not silently auto-zero them.
+- **Provenance**: The target writes
+  `2.4_DSDS/collection/D2.4.NADA_manifest_<YEAR>.json`, which records the
+  input/output hashes, review hash, evidence hash, overrides, and warnings.
+  The collection status gate validates these hashes before estimation.
+- **Legacy script**: `02_programs/misc_scripts/nada_check.R` is retained as a
+  historical reference. It is not the reproducible collection entry point.
+- **Required output columns**: `iso3c`, `NADA`, and `NADA_text`. Keep
+  `NADA_text` because it is used for databank footnotes; the generated file
+  also carries URL-check evidence columns for provenance.
 
 #### 3.x UN SDG data products
 

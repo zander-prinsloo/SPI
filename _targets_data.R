@@ -105,6 +105,73 @@ collection_targets <- function() {
     format = "rds"
   )
 
+  nada_previous_file <- tar_target(
+    name = "nada_previous_file",
+    command = nada_artifact_paths(
+      collection_params$raw_dir,
+      collection_params$end_date
+    )$previous,
+    format = "file"
+  )
+
+  nada_review_file <- tar_target(
+    name = "nada_review_file",
+    command = nada_artifact_paths(
+      collection_params$raw_dir,
+      collection_params$end_date
+    )$review,
+    format = "file"
+  )
+
+  nada_url_evidence <- tar_target(
+    name = "nada_url_evidence",
+    command = {
+      nada_previous_file
+      nada_review_file
+      wb <- world_bank_inputs
+      country_metadata <- readRDS(wb$countries)
+      collect_nada_url_evidence(
+        collection_params,
+        valid_iso3c = country_metadata$iso3c
+      )
+    },
+    format = "file"
+  )
+
+  nada_output <- tar_target(
+    name = "nada_output",
+    command = {
+      nada_previous_file
+      nada_review_file
+      nada_url_evidence
+      wb <- world_bank_inputs
+      country_metadata <- readRDS(wb$countries)
+      paths <- nada_artifact_paths(
+        collection_params$raw_dir,
+        collection_params$end_date
+      )
+      previous <- .read_nada_file(paths$previous, "NADA PREVIOUS VINTAGE")
+      review <- read_manual_review(paths$review, nada_review_spec())
+      evidence <- readr::read_csv(paths$evidence, show_col_types = FALSE)
+      result <- build_nada_vintage(
+        previous = previous,
+        evidence = evidence,
+        review = review,
+        end_date = collection_params$end_date,
+        first_collected_vintage = collection_params$first_collected_vintage,
+        valid_iso3c = country_metadata$iso3c
+      )
+      written <- write_nada_vintage(
+        result = result,
+        paths = paths,
+        end_date = collection_params$end_date,
+        first_collected_vintage = collection_params$first_collected_vintage
+      )
+      written$output
+    },
+    format = "file"
+  )
+
   d41_preprocess <- tar_target(
     name = "d41_preprocess",
     command = {
@@ -212,7 +279,17 @@ collection_targets <- function() {
       d41_manifest
       d41_manifest_file
       pip_collection
-      world_bank_inputs
+      wb <- world_bank_inputs
+      nada_output
+      validate_nada_collection_artifact(
+        collection_params,
+        valid_iso3c = readRDS(wb$countries)$iso3c
+      )
+      nada_paths <- nada_artifact_paths(
+        collection_params$raw_dir,
+        collection_params$end_date
+      )
+      nada_warnings <- read_nada_manifest_warnings(nada_paths$manifest)
       manual_checkpoints
       jmp_collection
       unsdg_collection
@@ -227,7 +304,8 @@ collection_targets <- function() {
       write_collection_status_report(
         status,
         csv_path = collection_params$collection_status_file,
-        markdown_path = file.path(collection_params$collection_dir, "collection_status.md")
+        markdown_path = file.path(collection_params$collection_dir, "collection_status.md"),
+        warnings = nada_warnings
       )
       complete_collection_run(collection_params, run)
       status
@@ -247,6 +325,10 @@ collection_targets <- function() {
     source_registry,
     pip_collection,
     world_bank_inputs,
+    nada_previous_file,
+    nada_review_file,
+    nada_url_evidence,
+    nada_output,
     d41_preprocess,
     d41_catalogue_collection,
     d41_manifest,

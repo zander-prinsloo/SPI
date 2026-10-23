@@ -15,7 +15,6 @@ run_collection_checkpoints <- function(params) {
     wdi = checkpoint_wdi_metadata(params),
     ilo = checkpoint_ilo_lfp(params),
     odin = verify_odin_data(params),
-    nada = verify_nada_data(params),
     microdata = verify_microdata_files(params),
     unigme = verify_unigme_data(params)
   )

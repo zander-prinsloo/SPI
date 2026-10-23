@@ -9,9 +9,11 @@
 #' @param status A data frame returned by evaluate_collection_status().
 #' @param csv_path CSV destination.
 #' @param markdown_path Markdown destination.
+#' @param warnings Optional data frame with `source_id` and `message` columns.
 #' @return Invisibly returns both paths.
 #' @export
-write_collection_status_report <- function(status, csv_path, markdown_path) {
+write_collection_status_report <- function(status, csv_path, markdown_path,
+                                           warnings = NULL) {
   required <- c("source_id", "status", "reason", "analyst_action")
   missing <- setdiff(required, names(status))
   if (length(missing) > 0L) {
@@ -48,6 +50,29 @@ write_collection_status_report <- function(status, csv_path, markdown_path) {
   })
   lines <- c(lines, rows, "", "## Counts", "")
   lines <- c(lines, paste0("- `", names(status_counts), "`: ", as.integer(status_counts)))
+  if (!is.null(warnings) && nrow(warnings) > 0L) {
+    required_warnings <- c("source_id", "message")
+    missing_warnings <- setdiff(required_warnings, names(warnings))
+    if (length(missing_warnings) > 0L) {
+      stop(
+        "COLLECTION REPORT WARNINGS MISMATCH: missing column(s): ",
+        paste(missing_warnings, collapse = ", "),
+        call. = FALSE
+      )
+    }
+    warning_rows <- apply(warnings, 1, function(row) {
+      paste0("| ", row[["source_id"]], " | ", row[["message"]], " |")
+    })
+    lines <- c(
+      lines,
+      "",
+      "## Collection warnings",
+      "",
+      "| Source | Warning |",
+      "|---|---|",
+      warning_rows
+    )
+  }
   writeLines(lines, markdown_path)
 
   invisible(c(csv = csv_path, markdown = markdown_path))

@@ -38,6 +38,10 @@ collection_dir <- here::here("01_raw_data", "_collection")
 collection_status_file <- file.path(collection_dir, "collection_status.csv")
 collection_run_file <- file.path(collection_dir, "collection_run.json")
 collection_age_warning_days <- 365
+first_collected_vintage <- 2025
+nada_url_max_age_days <- 30
+refresh_nada_urls <- FALSE
+nada_url_delay_seconds <- 5
 source_registry_file <- here::here("config", "source_registry.R")
 sdg_indicator_list_file <- here::here("01_raw_data", "metadata", "SDG_indicator_list.csv")
 sdg_collection_dir <- here::here("01_raw_data", "3_DP", "collection")

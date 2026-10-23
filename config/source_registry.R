@@ -125,6 +125,56 @@ source_registry <- data.frame(
   stringsAsFactors = FALSE
 )
 
+source_registry$input_path[source_registry$source_id == "d2_4_nada"] <- paste(
+  "2.4_DSDS/D2.4.NADA.<YEAR>.csv",
+  "2.4_DSDS/D2.4.NADA.Manual.Review.<END_DATE>.xlsx",
+  sep = "|"
+)
+
+source_registry <- rbind(
+  source_registry,
+  data.frame(
+    source_id = c(
+      "d2_4_nada_review",
+      "d2_4_nada_url_evidence",
+      "d2_4_nada_manifest"
+    ),
+    dimension_id = rep("2.4", 3),
+    source_type = c("manual", "external", "external"),
+    indicator_ids = rep("SPI.D2.4.NADA", 3),
+    source_url = c(
+      NA_character_,
+      "https://www.nada.ihsn.org/",
+      "https://www.nada.ihsn.org/"
+    ),
+    input_path = c(
+      "2.4_DSDS/D2.4.NADA.Manual.Review.<END_DATE>.xlsx",
+      "2.4_DSDS/collection/D2.4.NADA.url_evidence.<END_DATE>.csv",
+      "2.4_DSDS/collection/D2.4.NADA_manifest_<END_DATE>.json"
+    ),
+    raw_path = c(
+      "2.4_DSDS/",
+      "2.4_DSDS/collection/",
+      "2.4_DSDS/collection/"
+    ),
+    normalized_path = c(
+      "2.4_DSDS/D2.4.NADA.Manual.Review.<END_DATE>.xlsx",
+      "2.4_DSDS/collection/D2.4.NADA.url_evidence.<END_DATE>.csv",
+      "2.4_DSDS/collection/D2.4.NADA_manifest_<END_DATE>.json"
+    ),
+    availability_path = rep(NA_character_, 3),
+    expected_vintage_rule = rep("end_date", 3),
+    age_warning_days = c(365, 30, 365),
+    status_if_missing = c("blocking", "warning", "blocking"),
+    analyst_action = c(
+      "Complete and validate the current NADA manual review workbook.",
+      "Refresh the cached NADA URL evidence or investigate collection errors.",
+      "Validate the current NADA output, evidence, and provenance hashes."
+    ),
+    stringsAsFactors = FALSE
+  )
+)
+
 source_registry <- rbind(
   source_registry,
   data.frame(

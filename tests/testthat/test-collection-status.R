@@ -40,6 +40,22 @@ test_that("collection status classifies present, missing, and unavailable source
   expect_equal(status$status[status$source_id == "unavailable"], "informational")
 })
 
+test_that("collection status checks every composite artifact path", {
+  root <- tempfile("composite-status-")
+  dir.create(root, recursive = TRUE)
+  file.create(file.path(root, "first.csv"))
+  file.create(file.path(root, "second.csv"))
+  registry <- status_registry()[1, , drop = FALSE]
+  registry$normalized_path <- "first.csv|second.csv"
+
+  status <- evaluate_collection_status(registry, root, end_date = 2024)
+  expect_equal(status$status, "informational")
+
+  unlink(file.path(root, "second.csv"))
+  status <- evaluate_collection_status(registry, root, end_date = 2024)
+  expect_equal(status$status, "blocking")
+})
+
 test_that("collection status report writes machine and human outputs", {
   root <- tempfile("collection-report-")
   dir.create(root, recursive = TRUE)
@@ -48,13 +64,20 @@ test_that("collection status report writes machine and human outputs", {
 
   csv_path <- file.path(root, "collection_status.csv")
   md_path <- file.path(root, "collection_status.md")
-  write_collection_status_report(status, csv_path, md_path)
+  warnings <- data.frame(
+    source_id = "d2_4_nada_url_evidence",
+    message = "Auto-zeroed NADA for: AAA",
+    stringsAsFactors = FALSE
+  )
+  write_collection_status_report(status, csv_path, md_path, warnings = warnings)
 
   expect_true(file.exists(csv_path))
   expect_true(file.exists(md_path))
   expect_equal(nrow(readr::read_csv(csv_path, show_col_types = FALSE)), 3)
   expect_match(paste(readLines(md_path), collapse = "\n"), "Collection Status Report")
   expect_match(paste(readLines(md_path), collapse = "\n"), "blocking")
+  expect_match(paste(readLines(md_path), collapse = "\n"), "Collection warnings")
+  expect_match(paste(readLines(md_path), collapse = "\n"), "Auto-zeroed NADA")
 })
 
 test_that("status gate requires a complete current run and registry coverage", {
