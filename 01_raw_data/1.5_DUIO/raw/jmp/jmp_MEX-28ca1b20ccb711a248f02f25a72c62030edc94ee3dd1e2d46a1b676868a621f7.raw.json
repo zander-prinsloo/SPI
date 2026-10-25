@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_MEX",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/MEX/household/download",
+    "iso3c": "MEX",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:24:06 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/MEX/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5114/download",
+  "workbook_sha256": "c0a0c161b6cace5fbdef8011eea205965e7570d977530d68493c931626f22c5a",
+  "workbook_bytes": 7041478,
+  "jmp_release": null,
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_MEX-28ca1b20ccb711a248f02f25a72c62030edc94ee3dd1e2d46a1b676868a621f7.raw",
+  "bytes": 131764,
+  "sha256": "2bef8783f3d0f21c65e7d37ddcd38e5721a312c92b0f6df06acb699eb4b47334",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_MEX-28ca1b20ccb711a248f02f25a72c62030edc94ee3dd1e2d46a1b676868a621f7.raw.json"
+}

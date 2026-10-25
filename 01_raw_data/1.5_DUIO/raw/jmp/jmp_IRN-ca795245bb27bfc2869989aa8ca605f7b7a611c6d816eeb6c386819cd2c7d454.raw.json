@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_IRN",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/IRN/household/download",
+    "iso3c": "IRN",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:21:06 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/IRN/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5079/download",
+  "workbook_sha256": "eaec8d477f10ff679e2823a7c17a4fbce9d0b7ba7f9e23417d2931c8f0d9dacc",
+  "workbook_bytes": 6470885,
+  "jmp_release": "Updated August 2025",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_IRN-ca795245bb27bfc2869989aa8ca605f7b7a611c6d816eeb6c386819cd2c7d454.raw",
+  "bytes": 89886,
+  "sha256": "265f936716a247afb32e80e53597290ac94135e64792d470f54341fb6e26af34",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_IRN-ca795245bb27bfc2869989aa8ca605f7b7a611c6d816eeb6c386819cd2c7d454.raw.json"
+}

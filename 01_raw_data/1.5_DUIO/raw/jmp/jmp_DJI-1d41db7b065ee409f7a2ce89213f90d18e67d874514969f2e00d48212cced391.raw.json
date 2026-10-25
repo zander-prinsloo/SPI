@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_DJI",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/DJI/household/download",
+    "iso3c": "DJI",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:16:23 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/DJI/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5034/download",
+  "workbook_sha256": "d0acda74af9dd914cf1934cad1eed6d3e5b502461c6b9fd843bbc9b3f26ef9f2",
+  "workbook_bytes": 6025419,
+  "jmp_release": null,
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_DJI-1d41db7b065ee409f7a2ce89213f90d18e67d874514969f2e00d48212cced391.raw",
+  "bytes": 79605,
+  "sha256": "fff979a594f87b5abd7921d03debe962eb4b77ffc8159e40f94220970a304232",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_DJI-1d41db7b065ee409f7a2ce89213f90d18e67d874514969f2e00d48212cced391.raw.json"
+}

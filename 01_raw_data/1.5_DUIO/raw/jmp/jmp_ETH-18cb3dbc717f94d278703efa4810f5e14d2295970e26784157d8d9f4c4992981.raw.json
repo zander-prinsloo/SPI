@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_ETH",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/ETH/household/download",
+    "iso3c": "ETH",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:17:27 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/ETH/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5045/download",
+  "workbook_sha256": "5d2174539d20b52f4d891bf24ac8ce991588f0db7b3fca79233a0850666e54f4",
+  "workbook_bytes": 6139923,
+  "jmp_release": "Updated August 2025",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_ETH-18cb3dbc717f94d278703efa4810f5e14d2295970e26784157d8d9f4c4992981.raw",
+  "bytes": 91839,
+  "sha256": "6345a47e2941b6c49b34521d0bafd2c876305961c66b1aa50f637e41788b92b1",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_ETH-18cb3dbc717f94d278703efa4810f5e14d2295970e26784157d8d9f4c4992981.raw.json"
+}

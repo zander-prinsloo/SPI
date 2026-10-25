@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_EGY",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/EGY/household/download",
+    "iso3c": "EGY",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:16:43 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/EGY/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5040/download",
+  "workbook_sha256": "bcb0a1105f99d82deabe5d14bcbffdb4ff481a53800f79fe32bdd17b6546ac26",
+  "workbook_bytes": 6591529,
+  "jmp_release": null,
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_EGY-3ca949840bb5f7db6b2a939df7ad0ccdf34c4f626263080ad6747342a087b0bf.raw",
+  "bytes": 104036,
+  "sha256": "281d56e9809d5667879a43b727b24d24e12192612b9da824d0538ca1da595d0f",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_EGY-3ca949840bb5f7db6b2a939df7ad0ccdf34c4f626263080ad6747342a087b0bf.raw.json"
+}

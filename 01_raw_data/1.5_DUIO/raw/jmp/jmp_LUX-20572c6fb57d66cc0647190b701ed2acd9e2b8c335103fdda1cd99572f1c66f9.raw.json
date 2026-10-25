@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_LUX",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/LUX/household/download",
+    "iso3c": "LUX",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:23:36 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/LUX/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5105/download",
+  "workbook_sha256": "b00cd2c7e693d621bed8058d277edccbae891cbad87a8540ecb956190003e80e",
+  "workbook_bytes": 6425114,
+  "jmp_release": null,
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_LUX-20572c6fb57d66cc0647190b701ed2acd9e2b8c335103fdda1cd99572f1c66f9.raw",
+  "bytes": 95711,
+  "sha256": "b7f5db5c6bc4399b371546a84338f119b14f609d1515496b5e50d884f48ce26f",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_LUX-20572c6fb57d66cc0647190b701ed2acd9e2b8c335103fdda1cd99572f1c66f9.raw.json"
+}

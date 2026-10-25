@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_ECU",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/ECU/household/download",
+    "iso3c": "ECU",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:16:39 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/ECU/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5039/download",
+  "workbook_sha256": "d8de6775aeebb83b32818de54eb6f84bb194f59db920511eb2bc5797f2019035",
+  "workbook_bytes": 6331385,
+  "jmp_release": null,
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_ECU-cc0487715dbdcc95ec005eb5fd9a8aed19b9b44d37974f93ced2a6b9134bd607.raw",
+  "bytes": 98873,
+  "sha256": "f0c0ae72dac8770de6536f659318aedd2c92ec5a2e7d26746f8ae5d66873bf32",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_ECU-cc0487715dbdcc95ec005eb5fd9a8aed19b9b44d37974f93ced2a6b9134bd607.raw.json"
+}

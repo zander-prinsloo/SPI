@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_VGB",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/VGB/household/download",
+    "iso3c": "VGB",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:29:32 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/VGB/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5205/download",
+  "workbook_sha256": "1425e14f259f7789049ec8f520e6f804ffc9fb98a18be999513d557ddf052585",
+  "workbook_bytes": 5687596,
+  "jmp_release": "Updated August 2025",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_VGB-34ddfcdb12695f1042dc1de19049fa0bcc944433f76165f716eb97d57a7ad2dc.raw",
+  "bytes": 68119,
+  "sha256": "d4bce96a7eeda3d6700fc92e1e7a739cf13658af91e5bd22a914597ff961f982",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_VGB-34ddfcdb12695f1042dc1de19049fa0bcc944433f76165f716eb97d57a7ad2dc.raw.json"
+}

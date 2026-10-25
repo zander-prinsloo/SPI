@@ -1,0 +1,14 @@
+{
+  "source_id": "pip_comparability",
+  "request": {
+    "source": "pipr::get_stats",
+    "version": "20260922_2021_01_02_PROD"
+  },
+  "vintage": 2025,
+  "collector_version": "pipr-v2",
+  "retrieved_at": "2026-10-24 00:11:02 UTC",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/pip/pip_comparability-63186bc91db153eeca40a9db49e54bd225e6fff2c2e92468bd3546a00f0ee0c7.rds",
+  "bytes": 1128255,
+  "sha256": "de15a84c9dfdb4c8f7d098b752e7d99494d4a04aa940781cff8ce39d6b2beb27",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/pip/pip_comparability-63186bc91db153eeca40a9db49e54bd225e6fff2c2e92468bd3546a00f0ee0c7.rds.json"
+}

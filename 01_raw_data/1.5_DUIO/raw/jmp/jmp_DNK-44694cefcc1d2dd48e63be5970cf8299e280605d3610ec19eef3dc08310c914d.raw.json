@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_DNK",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/DNK/household/download",
+    "iso3c": "DNK",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:16:28 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/DNK/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5036/download",
+  "workbook_sha256": "2928576d116c174dab8e9bbad42c1d75b427fb8c29ba31b1b03b364b32a3d352",
+  "workbook_bytes": 6381262,
+  "jmp_release": "Updated August 2025",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_DNK-44694cefcc1d2dd48e63be5970cf8299e280605d3610ec19eef3dc08310c914d.raw",
+  "bytes": 95803,
+  "sha256": "2b8b825745964de5c5e9064f8f545462ea2a357bd81d876a71da9d45ea8be820",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_DNK-44694cefcc1d2dd48e63be5970cf8299e280605d3610ec19eef3dc08310c914d.raw.json"
+}

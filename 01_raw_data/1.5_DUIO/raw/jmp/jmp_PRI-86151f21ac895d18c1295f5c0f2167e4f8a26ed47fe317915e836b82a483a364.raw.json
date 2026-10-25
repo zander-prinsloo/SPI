@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_PRI",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/PRI/household/download",
+    "iso3c": "PRI",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:26:40 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/PRI/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5150/download",
+  "workbook_sha256": "3b6e15b8bead0ed38509bb6bfab10655e3ee01237a1e2340446669562ad69716",
+  "workbook_bytes": 6013338,
+  "jmp_release": null,
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_PRI-86151f21ac895d18c1295f5c0f2167e4f8a26ed47fe317915e836b82a483a364.raw",
+  "bytes": 80888,
+  "sha256": "1fc2934885895cd4989d4731e1b6042f84f2985bb4f33a8848ebf0a538f90436",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_PRI-86151f21ac895d18c1295f5c0f2167e4f8a26ed47fe317915e836b82a483a364.raw.json"
+}

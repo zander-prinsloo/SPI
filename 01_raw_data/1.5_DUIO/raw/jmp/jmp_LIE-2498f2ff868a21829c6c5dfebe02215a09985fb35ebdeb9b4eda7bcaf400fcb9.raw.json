@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_LIE",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/LIE/household/download",
+    "iso3c": "LIE",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:23:25 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/LIE/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5101/download",
+  "workbook_sha256": "5517ff22573261928fc11e08f25afc7d732fd874f29c12116eff984bba7a2cf4",
+  "workbook_bytes": 5826401,
+  "jmp_release": "Updated August 2025",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_LIE-2498f2ff868a21829c6c5dfebe02215a09985fb35ebdeb9b4eda7bcaf400fcb9.raw",
+  "bytes": 70954,
+  "sha256": "69010938ca42a65058190038fed0f37256528b2222aec7d97e3ae24a389a8b18",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_LIE-2498f2ff868a21829c6c5dfebe02215a09985fb35ebdeb9b4eda7bcaf400fcb9.raw.json"
+}

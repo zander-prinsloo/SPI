@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_TUR",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/TUR/household/download",
+    "iso3c": "TUR",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:28:47 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/TUR/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5194/download",
+  "workbook_sha256": "0a421742d0709edf16ede3e245e3fd0b347f863e901357c1c339b245d8cbb4c2",
+  "workbook_bytes": 6257448,
+  "jmp_release": "Updated August 2025",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_TUR-d733210c1b03ca309c6e537af65b5f70957540a8422de91cdce43ab291546fff.raw",
+  "bytes": 88521,
+  "sha256": "acc8306df6c6a09ce33af3fa05e19f793544756392fe8533ec02cb22fdb9f78f",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_TUR-d733210c1b03ca309c6e537af65b5f70957540a8422de91cdce43ab291546fff.raw.json"
+}

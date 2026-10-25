@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_SSD",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/SSD/household/download",
+    "iso3c": "SSD",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:27:33 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/SSD/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5173/download",
+  "workbook_sha256": "c227ce7fddb52c6db5e6696c299e07c639723b86e51921cfec7acd72c17201a4",
+  "workbook_bytes": 5835319,
+  "jmp_release": "Updated August 2025",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_SSD-291ba43af4b03df6cd80ee0883f677670b886f9d4b26650c817adcbe23fcc451.raw",
+  "bytes": 73855,
+  "sha256": "8c2c99ec54ead6f773135d272abdb0ce81b520d73f6918a8b2231480c5106aef",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_SSD-291ba43af4b03df6cd80ee0883f677670b886f9d4b26650c817adcbe23fcc451.raw.json"
+}

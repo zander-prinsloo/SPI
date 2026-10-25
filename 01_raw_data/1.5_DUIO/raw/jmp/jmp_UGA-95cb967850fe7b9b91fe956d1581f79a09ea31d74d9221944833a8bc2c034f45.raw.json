@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_UGA",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/UGA/household/download",
+    "iso3c": "UGA",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:28:54 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/UGA/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5197/download",
+  "workbook_sha256": "b3372c1890ef4e3e9bdbcf71e332e699b9db6b81154214d8c0301404484a6d41",
+  "workbook_bytes": 6599025,
+  "jmp_release": "Updated August 2025",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_UGA-95cb967850fe7b9b91fe956d1581f79a09ea31d74d9221944833a8bc2c034f45.raw",
+  "bytes": 110240,
+  "sha256": "64eb7ae098544d9bf383a778b4158a5914f89a81348babc8ebffc26db281b61a",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_UGA-95cb967850fe7b9b91fe956d1581f79a09ea31d74d9221944833a8bc2c034f45.raw.json"
+}

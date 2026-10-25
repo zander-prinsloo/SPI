@@ -1,0 +1,22 @@
+{
+  "source_id": "jmp_CPV",
+  "request": {
+    "endpoint": "https://washdata.org/data/country/CPV/household/download",
+    "iso3c": "CPV",
+    "sheet": "Data Summary"
+  },
+  "vintage": 2025,
+  "collector_version": "jmp-data-summary-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:16:01 UTC",
+  "sheet": "Data Summary",
+  "workbook_url": "https://washdata.org/data/country/CPV/household/download",
+  "workbook_effective_url": "https://washdata.org/media/5026/download",
+  "workbook_sha256": "c5752aa0f21e8463b599681448f396eaaf39100c3e07e7106a7d76e063b3fb0b",
+  "workbook_bytes": 6277215,
+  "jmp_release": "Updated August 2025",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_CPV-db1abe77ee8ef66ab29aeefb33847a47c22aef3d9c1a9be0f56b1c2ac48a3bc5.raw",
+  "bytes": 87317,
+  "sha256": "d2b10ba10a19dd3a5e2fa81151fa7fd4b153fc978899cb4be880ee42fe175c58",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/1.5_DUIO/raw/jmp/jmp_CPV-db1abe77ee8ef66ab29aeefb33847a47c22aef3d9c1a9be0f56b1c2ac48a3bc5.raw.json"
+}
