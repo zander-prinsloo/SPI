@@ -4,7 +4,8 @@
 # This file defines the {targets} pipeline for the Statistical Performance
 # Indicators (SPI). It mirrors the estimation logic of the original Rmd
 # pipeline (01-SPI_data_prep.Rmd, 02-SPI_index.Rmd, 03_SPI_data_validation.Rmd)
-# so that the new pipeline produces IDENTICAL results.
+# with explicit historical exceptions and reviewed corrections documented in
+# docs/CHANGELOG.md. See docs/pipeline-architecture.md for the active graph.
 #
 # HOW TO RUN
 # ----------
@@ -62,12 +63,13 @@ tar_source(here::here("R"))
 #   Stage B (index, from 02-SPI_index.Rmd):
 #     SPI_data.csv -> nested index -> SPI_index.csv
 #   Stage C (validation, from 03_SPI_data_validation.Rmd):
-#     staged outputs vs vintage fixtures + expectation checks
+#     candidate validation, vintage policy, and fixture/contract tests
 #   Stage D (misc outputs, from misc_scripts/):
 #     quantiles, treemap, databank files
 #
-# Phases 3-6 of the plan populate the indicator targets below. The skeleton
-# currently defines the foundational targets (params, grid, iso codes).
+# The graph is implemented below. Writers use 03_output_data/.candidate/;
+# output_manifest promotes the validated set to 03_output_data/. Historical
+# plans and test results are scoped records, not current release approvals.
 # =============================================================================
 
 # The targets are defined inside a function so that the target objects do not
@@ -87,7 +89,8 @@ pipeline_targets <- function() {
     format = "file"
   )
   # `odin_status` is read separately and removed from `params`, so switching
-  # it to "official" in December reruns only the output manifest.
+  # it to "official" updates labelling/revision outputs and invokes the
+  # approved official-release-record check without changing scoring inputs.
   params <- tar_target(
     name = "params",
     command = {
@@ -229,7 +232,7 @@ pipeline_targets <- function() {
   # --- Dimension 2: Data services --------------------------------------------
   # (from the "idds", "online_access", and "nada" chunks). The ODIN files are
   # file targets read once (`odin_data`) for D2.2 and D4.3, so replacing
-  # ODIN_<end_date>.csv (the December swap) reruns only the ODIN targets and
+  # ODIN_<end_date>.csv invalidates the ODIN scoring targets and
   # their downstream outputs.
   odin_files <- tar_target(
     name = "odin_files",

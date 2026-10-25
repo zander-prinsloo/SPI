@@ -1,21 +1,21 @@
 # =============================================================================
 # Overwrite protection for output files
 # =============================================================================
-# Constraint C7: existing historical output files must NEVER be overwritten.
-# The estimation pipeline writes validated final outputs to 03_output_data/.
-#
-# NOTE (P2.5/P2.26): C7 is enforced BY CONSTRUCTION -- every save_*()
-# function (R/append.R, R/index.R, R/quantiles.R, R/treemap.R,
-# R/databank.R, R/spl_admin.R) writes to params$output_dir. The helpers below
-# keep individual writes atomic so a failed write does not truncate a target.
+# Individual writers use params$estimation_write_dir (the candidate folder).
+# The complete validated set is later promoted to params$output_dir by
+# output_manifest. Preserve historical fixtures, approved prior vintages, and
+# release archives separately; current output files can be replaced by promotion.
+# The helpers below keep each individual file replacement atomic so a failed
+# write does not truncate that file. Multi-file promotion is a separate step.
 #
 # Created: 2026-09-21
 # =============================================================================
 
 #' Check whether a path is a protected historical output
 #'
-#' Historical outputs live under 03_output_data/. The pipeline must never
-#' write to them.
+#' Identify paths under 03_output_data/ for legacy callers. This predicate
+#' does not itself enforce write protection; active candidate/promotion gates
+#' determine when designated current outputs may be replaced.
 #'
 #' @param path Character: the file path to check.
 #' @return Logical: TRUE if the path is under the historical output dir.

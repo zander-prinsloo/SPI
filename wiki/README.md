@@ -1,26 +1,35 @@
 # Statistical Performance Indicators (SPI)
 
 <!-- cg:auto:overview -->
-The Statistical Performance Indicators (SPI) build on the SCI, which the World Bank has regularly published since 2004. The SPI monitors how well countries' statistical systems are meeting the purpose of helping users make better decisions. By helping countries and development partners identify the strengths and weaknesses of national statistical systems, the SPI supports policy advice for countries, investment decisions for donors including the World Bank, benchmarking of national statistical systems, and advocacy for national statistics.
+The Statistical Performance Indicators (SPI) measure national statistical
+systems through five pillars and 22 dimensions. This is an R analysis
+repository with separate collection (`_targets_data.R`) and estimation
+(`_targets.R`) graphs. Source artifacts live under `01_raw_data/`, candidate
+outputs under `03_output_data/.candidate/`, and validated promoted outputs
+under `03_output_data/`.
 
-The SPI framework covers five pillars — data use, data services, data products, data sources, and data infrastructure — spanning 22 dimensions of national statistical performance.
-
-This repository is a reproducible R analysis pipeline. Raw data flows from `01_raw_data/` through cleaning and index construction in `02_programs/` to final outputs in `03_output_data/`. A Shiny dashboard in `SPI_data_viz/` supports dissemination.
+Start with the [documentation index](../docs/README.md) and
+[202611 status](../docs/update-status-202611.md). The preliminary review files
+are in `replication/spi-rep/preview-p0p1/`; the main output CSVs still contain
+the previous release through 2024. `SPI_data_viz/` contains the Shiny app.
 <!-- cg:auto:end -->
 
 ## Contents
+
 - [Data Sources](data-sources.md)
 - [Replication](replication.md)
 - [Results](results.md)
 
 <!-- cg:auto:methodology -->
-The SPI is constructed from indicators across the 22 dimensions of the framework. The methodology is transparent and uses only publicly accessible data. Key characteristics of the SPI are: (i) uses only publicly accessible data; (ii) transparent methodology; (iii) easily replicable; (iv) provides a long-time series to track progress in performance; (v) captures outcomes and supporting elements; (vi) reflects the SDGs; (vii) facilitates at-a-glance comparisons on a global scale.
+SPI combines indicator, dimension, and pillar scores into an overall index.
+The source-specific [user guide](../docs/user-guide.md) explains preparation
+and scoring inputs; the [architecture](../docs/pipeline-architecture.md)
+explains orchestration and validation.
 
-The estimation pipeline is implemented in R Markdown/Quarto:
-
-- `01-SPI_data_prep.Rmd` — cleans raw indicator data and auto-writes the technical methodology document
-- `02-SPI_index.Rmd` — creates the overall and dimension indices
-- `03_SPI_data_validation.Rmd` — validates the prepared data
-
-A `{targets}`-based pipeline is under development to replicate the Rmd results exactly.
+The original R Markdown files under `02_programs/` remain reference
+implementations. The active targets pipeline has documented corrections and
+replication exceptions; see [CHANGELOG](../docs/CHANGELOG.md). A source refresh,
+methodology approval, and release approval are separate decisions. Most data
+sources are public, but the D4.1 internal library requires World Bank network
+access and some manual inputs require separate acquisition.
 <!-- cg:auto:end -->

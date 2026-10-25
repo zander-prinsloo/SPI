@@ -106,14 +106,14 @@ load_index_weights <- function() {
 #' index (dimension -> pillar -> overall).
 #'
 #' NOTE: the original 02-SPI_index.Rmd reads SPI_data.csv from DISK
-#' (line 129). We mirror that CSV round-trip: the staged SPI_data.csv is
+#' (line 129). We mirror that CSV round-trip: the candidate SPI_data.csv is
 #' deduplicated by save_spi() (dplyr::distinct()), so reading the CSV
 #' guarantees the same row set the vintage used. The in-memory spi_data
 #' target may contain duplicate rows from the append joins.
 #'
 #' @param spi_data The final SPI data frame (from append_spi()). Retained
 #'   only to create the targets dependency; the values come from the
-#'   staged CSV.
+#'   candidate CSV.
 #' @param params   List of pipeline parameters.
 #' @return A tibble with country, iso3c, date, SPI.INDEX.*, SPI.DIM*.*,
 #'   the SPI indicators, income, region, weights, population.
@@ -122,7 +122,7 @@ build_index <- function(spi_data, params) {
   wgt <- params$wgt
   end_date <- params$end_date
 
-  # --- Read the staged SPI_data.csv (CSV round-trip, mirrors the Rmd) -------
+  # --- Read the candidate SPI_data.csv (CSV round-trip, mirrors the Rmd) -------
   spi_data <- readr::read_csv(file.path(params$estimation_write_dir, "SPI_data.csv"))
 
   # --- Add population and weights (from the "data" chunk) --------------------
@@ -272,8 +272,8 @@ build_index <- function(spi_data, params) {
 
 #' Save the SPI index to CSV
 #'
-#' Mirrors the "saver" chunk. Writes SPI_index.csv to the staging directory
-#' (constraint C7: never overwrite 03_output_data/).
+#' Mirrors the "saver" chunk. Writes SPI_index.csv to the candidate
+#' directory; the output-manifest target validates and promotes the set.
 #'
 #' @param spi_index_df The index data frame from build_index().
 #' @param params       List of pipeline parameters.

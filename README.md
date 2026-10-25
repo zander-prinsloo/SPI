@@ -1,115 +1,132 @@
-Statistical Performance Indicators
-================
-The primary purpose of the statistical system is to help users of statistics make better decisions or to hold those decision makers accountable. In the words of Principle 1 of the Fundamental Principles of Official Statistics, the statistics must “meet the test of practical utility”, serving “the Government, the economy and the public with data about the economic, demographic, social and environmental situation.”
+# Statistical Performance Indicators (SPI)
 
-The new Statistical Performance Indicators (SPI) builds on the SCI, which the World Bank has regularly published since 2004.  Our new SPI will cover many of the same elements as the SCI, such as statistical methodology, source data, and periodicity, but will also expand into new areas. The goals are to offer a framework that is forward looking, measures less mature statistical systems as well as advanced systems, covers the entire national statistical system, not just the National Statistical Office (NSO), and gives countries incentives to build a modern statistical system.  We also are committing to making our project open data and open code to build confidence in our work.
+The SPI measures the performance of national statistical systems across five
+pillars: data use, data services, data products, data sources, and data
+infrastructure. Its 22 dimensions support country benchmarking, diagnosis of
+strengths and weaknesses, and tracking progress over time.
 
-The new Statistical Performance Indicators (SPI) are designed to monitor how well countries' statistical systems are meeting this purpose. By helping countries and development partners identify the strengths and weaknesses of national statistical systems the SPI can support policy advice for countries about their national statistical systems, investment decisions for donors including the World Bank, benchmarking of national statistical systems, and advocacy for national statistics.  
+This repository contains the R code, source artifacts, validation evidence,
+and country-level outputs used to prepare an SPI update. The active workflow
+uses **two `{targets}` pipelines**: collection in `_targets_data.R`, followed
+by estimation in `_targets.R`. The original notebooks in `02_programs/` are
+retained as reference implementations.
 
-We identify five key pillars of a country’s statistical performance. These are data use, data services, data products, data sources, and data infrastructure. These pillars can be presented in the form of a dashboard that can help countries identify areas for development in their statistical system. Improvements in performance can be represented as a virtuous data cycle that can become self-sustaining.
+## Start here
 
-<p align = "center">
-<img src = "02_programs/SPI_cycle.PNG" width = "700">
-</p>
+| Task | Documentation |
+|---|---|
+| Find the 202611 review files and outstanding work | [Current update status](docs/update-status-202611.md) |
+| Set up R, collect sources, review inputs, and estimate SPI | [Technical lead user guide](docs/user-guide.md) |
+| Understand targets, dependencies, validation, and output promotion | [Pipeline architecture](docs/pipeline-architecture.md) |
+| Reproduce or inspect a preliminary run | [Replication and review artifacts](replication/README.md) |
+| Replace provisional ODIN data and finalize the release | [Delayed ODIN workflow](docs/odin-delayed-update.md) |
+| Review historical revisions and Working Group decisions | [202611 revision report](docs/revisions/202611-revision-report.md) |
+| Browse the documentation and contributor guidance | [Documentation index](docs/README.md) |
 
+## Current 202611 update
 
-Statistics have no value unless they are used. The first pillar of the SPI is therefore data use. A successful statistical system is one that produces data products that are highly used.
+The update identifier **202611** refers to the planned November 2026 update;
+its **reference year is 2025**, with a 2004–2025 span. It is not a statement
+that the update has been released.
 
-In order to meet user needs, the statistical system must develop a range of services that connect data users and producers and facilitate dialogue between them. The second pillar of the SPI is therefore data services that are trusted by users. A successful statistical system is one with highly valued and well used statistical services.
+The preliminary review files are
+[`SPI_data.csv`](replication/spi-rep/preview-p0p1/SPI_data.csv) and
+[`SPI_index.csv`](replication/spi-rep/preview-p0p1/SPI_index.csv).
+They use **provisional ODIN data** and precede completed source attestations
+and reviewer workbooks. The `03_output_data/` copies still contain the
+previous release through 2024. See the dated [status](docs/update-status-202611.md)
+for the retained preview, collection-run mismatch, approval requirements,
+and evidence that needs to be refreshed before release.
 
-The dialogue between users and suppliers in turn drives the design of statistical products that are to be created including the quality of product needed for the country requirement. This will incorporate accuracy, timeliness, frequency, comparability and levels of disaggregation. The third pillar of the SPI is therefore data products. A successful statistical system is one that generates high quality statistical indicators that can also track progress for the Sustainable Development Goals (SDGs).
+## Set up and run
 
-In order to create the products required, the statistical system needs to make use of a variety of sources from both inside and outside the government. This will include making use of typical data collection methods like censuses and surveys, but also administrative data, geospatial data, and data generated from the private sector and from citizens.  The fourth pillar of the SPI is therefore data sources.  A successful statistical system is one which draws on all types of data sources relevant to the indicators that are to be produced.
+Use R **4.6.1**, as recorded in `renv.lock`, and run commands from the project
+root. Restore the recorded environment with `renv::restore()`; check
+`renv::status()` rather than changing the lockfile to clear a warning.
+World Bank packages and the internal D4.1 catalogue can require additional
+access; see the [prerequisites](docs/user-guide.md#2-prerequisites).
 
-For the cycle to be complete, capability needs continuously to be reviewed to ensure that it is enough to deliver the products, services and ultimately data use required. The fifth pillar of the SPI is therefore data infrastructure. A successful statistical system is one that develops both hard infrastructure (legislation, governance, standards) and soft infrastructure (skills, partnerships) and has the financial resources to deliver.
-The 5 pillars and associated 22 dimensions of the SPI are as shown in Figure 1 below.
+The oversized manual source `01_raw_data/1.5_DUIO/UN IGME 2025.csv` is
+**local-only and Git-ignored**. Obtain it separately before running this
+update. Other IGME vintages remain tracked. The
+[exclusion record](docs/revisions/202611/git-history-file-exclusion-2026-10-25.md)
+records its checksum and the rewritten unpublished commit IDs.
 
-*Figure 1: The Dimensions and Pillars that Construct the New SPI*
-<p align = "center">
-<img src = "02_programs/SPI_dashboard.PNG" width = "700">
-</p>
+Keep temporary files inside the repository by setting these variables before
+starting R or Rscript:
 
-
-A score against each element would facilitate:    
-
-  1. Understanding of the maturity of the national statistical system in relation to others eg quintile groups of countries could be shown against each dimension    
-
-  2. This in turn would highlight relative strengths and weaknesses of the system and give an indication of the extent to which the official statistics could be relied upon  
-
-  3. It would also point to which other countries the country in question could learn from as it seeks to improve and create incentives to develop in a forward looking rather than backward looking way   
-
-  4. Time series would allow assessments to be made of progress of the system and a start point for assessments of return on investment for funding given for capacity building
-
-  5. A dynamic view encouraging continuous improvement. As countries improve the bar for what good looks like would get higher     
-
-
-Key characteristics of the SPI are: (i) uses only publicly accessible data; (ii) transparent methodology; (iii) easily replicable; (iv) provides a long-time series to track progress in performance; (v) captures outcomes and supporting elements; (vi) reflects the SDGs; (vii) facilitates at-a-glance comparisons on a global scale.
-We are collecting data on indicators for the 22 dimensions above. For dissemination, the SPI will be presented both in the dashboard format above and as an index for each country. Further details on the construction of the new SPI are provided in the remainder of the document.
-
-# How to use this repository
-
-# How to use this repository
-
-> **For new SPI updates, use the `{targets}` pipeline (see the
-> "Targets-based estimation pipeline" section below). The Rmd workflow
-> described here is the legacy path.**
-
-There are several subfolders in this repository.  Below is a list of the most important files.
-
-Run_SPI.R contains a master file to run the two most important scripts: 01-data_prep.Rmd and 02-SPI_index.Rmd.  If you just want to reproduce the results, then simply execute this file.
-
-  1. 01_raw_data contains the raw data for the project for each indicator. This folder contains several subfolders linked to the 22 dimensions in our framework.
-
-  2. 02_programs contains the cleaning code to clean each indicator. This code is consolidated into a single R Markdown file, 01-data_prep.Rmd, which also automatically writes a technical document for the indicators.  Inside this technical document, one can find the detailed description and methodology behind each indicator.  The folder also contains code to create an overall index to compare country performance.  The code to create the index is 02-SPI_index.Rmd.
-
-  3. 03_output_data.  This folder contains a number of final output files in either csv or stata .dta format. The most important of these files are the SPI_data.csv, which contains the data for each country containing the final indicator values for each of our Statistical Performance Indicators.  The SPI_index.csv file contains this data as well, but also includes a set of indices, including an overall score for countries, based on the values of their indicators.  
-
-
-
-# R code
-
-The vast majority of code in this repository is written in the R language.  The R version is pinned in `renv.lock` (currently R 4.6.1).  
-
-This repository contains several files from the R package "renv".  The renv package helps manage specific package versions used to produce the results in this repository.  Because package version conflicts can make code that runs on one system not run on another system, it is important to have a list of the specific package versions used and a workflow for accessing these specific packages.  The renv package provides this.  In order to use renv, see the renv documentation here (https://rstudio.github.io/renv/articles/renv.html).  In general, the renv::restore() command should install all packages found in the renv.lock file in this repository, so that version conflicts do not cause errors.  
-
-There may be some issue with a few packages in particular.  These are World Bank specific packages to produce maps that conform with World Bank geospatial boundaries.  These can be downloaded here (https://github.com/worldbank/wbgviz).
-
-# Targets-based estimation pipeline
-
-The repository also contains a `{targets}`-based estimation pipeline that
-replicates the Rmd pipeline exactly (the 2024 vintage / "202511"). It is the
-recommended way to run SPI updates going forward.
-
-- **Pipeline definition**: `_targets.R` (mirrors the Rmd chunk structure)
-- **Functions**: `R/` (one file per dimension or output)
-- **Configuration**: `config/params.R` (edit `end_date` and `run_downloads`
-  for a new update)
-- **User guide**: `docs/user-guide.md` (step-by-step update, source
-  locations, manual checkpoints, troubleshooting)
-- **Dimension 4.1 collection**: the collection graph validates the eight
-  `raw/input/*.xlsx` workbooks, the current manual-review workbook, and the
-  D4.1 catalogue companions before writing
-  `01_raw_data/4.1_SOCS/collection/D4.1_collection_manifest.json`.
-- **Tests**: `tests/testthat/` (comparison harness, vintage fixtures,
-  validation rules, download checkpoints)
-
-To run the pipeline:
-
-```r
-renv::restore()                              # first time only
-targets::tar_make(script = "_targets_data.R", store = "_targets_data")  # collection
-targets::tar_make()                          # estimation
-testthat::test_dir("tests/testthat")         # test suite (not an R package)
+```sh
+mkdir -p replication/.scratch
+export TMPDIR="$PWD/replication/.scratch"
+export TMP="$TMPDIR"
+export TEMP="$TMPDIR"
 ```
 
-Run the collection pipeline before estimation. Collection artifacts, raw
-responses, normalized inputs, availability tables, and status reports are kept
-under `01_raw_data/` (including `01_raw_data/_collection/`). The estimation
-pipeline writes the validated final output set directly to `03_output_data/`
-after the collection gate passes. See `docs/user-guide.md` for the full
-technical-team update procedure, including the 202611 run order (section 3):
-review candidates and workbooks, attestations, the vintage-diff report for
-frozen history, and the provisional ODIN marker (`docs/odin-delayed-update.md`).
-Revisions to published values, and the method and process changes behind
-them, are reported to the SPI Working Group in
-`docs/revisions/202611-revision-report.md`.
+Then, in R:
+
+```r
+renv::restore()  # Initial environment setup.
+
+targets::tar_make(script = "_targets_data.R", store = "_targets_data")
+# Inspect collection_run.json and collection_status.csv under
+# 01_raw_data/_collection/. Complete reviews and source attestations,
+# then rerun collection until the current run is complete and unblocked.
+
+targets::tar_make(script = "_targets.R", store = "_targets")
+```
+
+Collection completion and source acceptance are separate checks. Estimation
+requires a completed, matching, hash-bound collection report with no blocking
+rows. It writes to `03_output_data/.candidate/`, applies revision and release
+checks, then promotes the complete validated output set to `03_output_data/`.
+There is no manual copy from the old root `staging/` folder.
+
+`run_downloads <- FALSE` does **not** disable all network access: it controls
+the opt-in D4.1 catalogue refresh. Other collectors use their source caches
+and may fetch missing or stale responses. Read the source-specific procedures
+before running collection.
+
+## Repository layout
+
+| Path | Role |
+|---|---|
+| `config/params.R` | Reference year, filenames, directories, ODIN status, and refresh settings |
+| `config/source_registry.R` | Source identities, paths, freshness rules, and required analyst actions |
+| `R/` | Collection, scoring, output, provenance, and validation functions |
+| `01_raw_data/` | Manual sources, cached responses, normalized inputs, and collection reports |
+| `01_raw_data/previous_vintages/` | Approved prior SPI outputs and their baseline manifest |
+| `02_programs/`, `Run_SPI.R` | Legacy scripts and master runner; preserve for reference |
+| `03_output_data/.candidate/` | Working output set before promotion |
+| `03_output_data/` | Most recently promoted outputs; inspect the manifest to identify the vintage |
+| `03_output_data/releases/` | Approved output archives referenced by release locks |
+| `replication/` | Review snapshots, historical runs, audits, and local scratch folders |
+| `staging/` | Legacy compatibility files; not the current candidate or review folder |
+| `_targets_data/`, `_targets/` | Separate collection and estimation dependency stores |
+| `tests/` | Unit/contract tests, immutable vintage fixtures, and replication tools |
+| `docs/`, `wiki/` | Operational reference and concise navigation |
+| `.cg-docs/` | Dated plans, reviews, execution evidence, and active-state metadata |
+| `SPI_data_viz/` | Shiny dissemination application |
+
+The two review CSVs, their supporting evidence, and the relocation inventory
+are versioned. Recovered bulk runs, probes, logs, and scratch folders remain
+local inside `replication/` and are ignored by Git. They are not supplied by a
+fresh clone. See [replication](replication/README.md) for details.
+
+## Validation and reproducibility
+
+The legacy notebooks and the immutable **202511 / reference-year 2024**
+fixtures provide the replication reference. Comparisons have documented
+exceptions and a pre-existing differential-replication limitation; the new
+pipeline is not an unconditional byte-for-byte reproduction of every legacy
+output. See the [test guide](docs/user-guide.md#7-interpreting-test-results)
+and [changelog](docs/CHANGELOG.md).
+
+Strict vintage tests require a complete estimation manifest. Development
+runs may explicitly use `SPI_COMPARISON_MODE=porting` to skip unavailable
+comparison outputs; that mode is not release evidence. Use the isolated 2024
+replication harness for vintage comparisons rather than comparing a 2025
+output set directly with the 2024 fixtures.
+
+For changes to the pipeline, add or update relevant tests, preserve the raw
+source and approved baselines, and document the effect on estimates. See
+[contributor guidance](docs/contributing.md).

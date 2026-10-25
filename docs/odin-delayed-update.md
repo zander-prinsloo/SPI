@@ -1,318 +1,205 @@
 ---
 title: "Running an SPI Update When ODIN Is Delayed"
 created: "2026-10-20"
+updated: "2026-10-25"
 status: "operational guidance"
 ---
 
-# Running an SPI Update When ODIN Is Delayed
+# Running an SPI update when ODIN is delayed
 
-## Purpose
+A delayed Open Data Inventory (ODIN) release can be represented by an explicitly
+labelled carry-forward input for internal review. It does not establish that
+the new ODIN vintage exists or that the SPI result is final. The
+[202611 status](update-status-202611.md) identifies the retained preview and
+outstanding source/release decisions.
 
-This document describes how to prepare an SPI update when the Open Data
-Inventory (ODIN) release is not yet available. It covers the use of the
-previous ODIN vintage as a temporary stand-in, how the `{targets}` pipeline
-tracks and labels it, and the steps required when the official release
-arrives.
+For 202611, `end_date <- 2025` and `odin_status <- "provisional"`.
+The update label is a planned release identifier. Earlier plans anticipated
+7 December 2026 for the official ODIN file; actual receipt, review, and the
+approved release record determine readiness, not that calendar date.
 
-The stand-in produces a **provisional** SPI result. It must not be presented as
-the final SPI vintage or as evidence that the new ODIN data were available.
+## Dependency and output contract
 
-## 202611 context
-
-The **SPI 202611 update** is released in November 2026 and uses 2025 as its
-reference year. Set `end_date <- 2025` for this update. The previous official
-ODIN inputs are therefore the 2024 files, and any 2025 carry-forward must be
-labelled provisional until the official 2025 ODIN release is available.
-
-## Short answer
-
-The ODIN files are explicit `{targets}` file dependencies (`odin_files`), read
-once (`odin_data`) and scored in their own targets (`dim2_odin` for D2.2,
-`dim4_geo` for D4.3). Replacing `ODIN_<end_date>.csv` therefore reruns only
-those targets and the outputs built from them; every other dimension is
-reused. `odin_status` in `config/params.R` labels the run: `"provisional"`
-writes `03_output_data/PROVISIONAL_ODIN.md` and records the ODIN file hashes
-and the ODIN-dependent columns in `_estimation_manifest.json`; `"official"`
-removes the marker. Changing `odin_status` reruns only the labelling outputs
-(the output manifest and the revision evidence, which marks the
-ODIN-dependent columns as provisional while the status is provisional).
-
-A copied previous ODIN file is a carry-forward assumption. It must be
-labelled provisional and preserved separately from the official release.
-
-## ODIN's role in the pipeline
-
-The current pipeline reads files from:
+`odin_files` tracks every `ODIN_<YEAR>.csv` from 2015 through `end_date` under
+`01_raw_data/2.2_DSOA/`. `odin_data` reads and validates the shared inputs for
+D2.2 online access and D4.3 geospatial data. The main chain is:
 
 ```text
-01_raw_data/2.2_DSOA/ODIN_<YEAR>.csv
+odin_files -> odin_data -> dim2_odin / dim4_geo -> dim2 / dim4
+  -> spi_data -> spi_index -> quantiles / treemap / Databank / revision evidence
 ```
 
-The ODIN reader loads every file from 2015 through `end_date`. The same files
-are used for both:
+The non-ODIN parts of D2 and D4 have separate scoring targets. Replacing ODIN
+invalidates its dependents; collection run/control files and release checks
+may also rerun. Do not promise that no other orchestration target will run.
+The release diff checks the permissible **output changes**.
 
-- Dimension 2.2, online access; and
-- Dimension 4.3, geospatial data.
+`odin_status` is read separately from scoring parameters. It controls the
+output label/manifest, provisional notice, revision-evidence labels, and the
+official release-record check. Setting it to `"official"` alone is insufficient.
+Normal estimation writes to `03_output_data/.candidate/` and promotes a
+validated complete set. A provisional set includes `PROVISIONAL_ODIN.md`;
+successful official promotion removes it. Sandbox previews have the same
+notice in their own output folder and do not replace normal release gates.
 
-The dependency path is therefore:
+## Prepare and review provisional outputs
 
-```text
-odin_files (ODIN_2015.csv ... ODIN_<end_date>.csv)
-  -> odin_data (all columns both readers use are validated)
-  -> dim2_odin (D2.2) and dim4_geo (D4.3)
-  -> dim2 and dim4 (joined with dim2_core and dim4_core, which do not use ODIN)
-  -> spi_data -> vintage_diff, spi_index
-  -> quantiles, treemap, databank, and the output manifest
-```
+1. Preserve the previous ODIN input set and record its exact hashes. Keep the
+   approved prior SPI indicator/index outputs and baseline manifest intact.
+2. Obtain all other manual inputs, run collection, and complete the relevant
+   workbook reviews and source attestations. See the [user guide](user-guide.md).
+3. If using a stand-in, prepare `ODIN_2025.csv` from the previous release as
+   a documented carry-forward. Ensure its embedded year/schema matches the
+   intended source-file convention; do not blindly copy bytes if the
+   checkpoint requires adjusted metadata. Do not overwrite the preserved
+   previous-year input. The current retained stand-in is already present.
+4. Keep `odin_status <- "provisional"`. Confirm a matching complete collection
+   run with no blocking sources, then run normal estimation.
+5. Review the vintage diff, source evidence, and all non-ODIN revisions.
+   Frozen-history changes still require explicit approval. Share only
+   clearly labelled preliminary material while those decisions are pending.
 
-A change to ODIN can affect both dimensions, their dimension scores, pillar and
-overall index scores, rankings, aggregates, quantiles, and dissemination files.
-
-## Important distinction: new year versus revised release
-
-Do not assume that a new ODIN release only adds one new year. It may revise
-historical scores or country coverage. When the official release arrives,
-compare every ODIN year used by the update, normally 2015 through `end_date`.
-
-Keep the previous files unchanged so that the provisional and final results
-remain reproducible.
-
-## Recommended workflow
-
-### 1. Freeze the previous ODIN vintage
-
-Before preparing the update:
-
-1. Confirm which ODIN files are currently used by the SPI vintage.
-2. Preserve those files without overwriting them.
-3. Record the ODIN release date, download URL, file names, and file hashes if
-   available.
-
-The previous ODIN files are the reference inputs for the provisional run.
-
-### 2. Prepare all non-ODIN inputs
-
-Update and validate the other SPI sources normally. Run the collection stage
-from the project root:
+Run commands from the repository root with repository-local temporary
+variables initialized as in [replication instructions](../replication/README.md).
 
 ```r
-targets::tar_make(
-  script = "_targets_data.R",
-  store = "_targets_data"
-)
+targets::tar_make(script = "_targets_data.R", store = "_targets_data")
+# Inspect the run/status reports and complete source acceptance first.
+targets::tar_make(script = "_targets.R", store = "_targets")
 ```
 
-The current collection gate treats ODIN as a blocking source. If the new
-ODIN file is absent, the collection status will not pass. The provisional
-workflow therefore requires either the stand-in described below or a future
-provisional-source mode that distinguishes a delayed source from a missing
-source.
+ODIN registry presence/schema checks do not certify an official release. The
+label, provenance and approval record matter. Likewise, a completed collection
+run may still have blocking rows and is not itself source approval.
 
-### 3. Create a temporary stand-in, if a provisional full build is needed
+## Lock an approved provisional set
 
-Suppose the previous available ODIN year is 2024 and the new SPI reference
-year is 2025. The current reader expects `ODIN_2025.csv`. A temporary
-carry-forward can be created as follows:
-
-```sh
-cp "01_raw_data/2.2_DSOA/ODIN_2024.csv" \
-   "01_raw_data/2.2_DSOA/ODIN_2025.csv"
-```
-
-This means that the provisional 2025 ODIN values are exactly the 2024 values.
-It does not estimate or predict the 2025 ODIN release.
-
-Record the stand-in in the collection run notes. At minimum, record:
-
-```text
-SPI reference year: 2025
-ODIN status: provisional, release delayed
-ODIN file used: ODIN_2025.csv
-Stand-in source: ODIN_2024.csv
-Stand-in rule: carry forward the previous ODIN file unchanged
-Required follow-up: replace the stand-in with the official ODIN release
-```
-
-Do not overwrite `ODIN_2024.csv`, and do not leave the copied file labelled as
-an official 2025 release in a final publication directory.
-
-### 4. Build provisional outputs
-
-Keep `odin_status <- "provisional"` in `config/params.R`. The two ODIN
-registry sources (`d2_2_odin`, `d4_3_odin`) only require `ODIN_<end_date>.csv`
-to be present, so the provisional label comes from `odin_status`. Run
-estimation:
+Only after the complete **promoted** provisional outputs are approved:
 
 ```r
-targets::tar_make()
-```
-
-The promoted outputs carry `03_output_data/PROVISIONAL_ODIN.md`, and
-`_estimation_manifest.json` records `odin_status`, the hash of every ODIN file
-read and the ODIN-dependent output columns. Confirm before circulating that:
-
-- the stand-in is documented;
-- all other source checks have passed;
-- the marker is present; and
-- provisional files will not be published as the final vintage.
-
-The resulting SPI data and index are useful for preparing tables, checking
-layout, reviewing narrative text, and identifying changes that are unrelated to
-ODIN. They are not final results.
-
-### 5. Lock the approved provisional release
-
-After internal approval of the provisional outputs, write the release lock:
-
-```r
-for (f in list.files("R", full.names = TRUE)) source(f)
+for (file in list.files("R", full.names = TRUE, pattern = "[.]R$")) source(file)
 params <- load_params()
 write_release_lock(params, approved_by = "Technical lead name")
 ```
 
-This archives the promoted outputs to
+The approver must be the actual authorized person. The call requires the
+promoted manifest and expected files. It archives outputs under
 `03_output_data/releases/202611-provisional/` and writes
-`01_raw_data/_collection/release_lock_2025.json` with the SHA-256 of every
-non-ODIN collection artifact (resolved through the source registry, plus the
-World Bank snapshot), the PIP release, and the archived outputs. It never
-overwrites an existing lock or archive. While the lock exists:
+`01_raw_data/_collection/release_lock_2025.json` and its detached `.sha256`
+integrity record. Existing locks and archive folders are not overwritten.
 
-- collection uses the locked PIP release instead of resolving a newer one;
-- the collection run and the estimation (`release_lock_verification`) stop
-  with `RELEASE LOCK MISMATCH` when a non-ODIN artifact differs from the lock;
-- the estimation compares every candidate output with the archive
-  (`release_diff`) and stops with `RELEASE DIFF BLOCKS PROMOTION` when a
-  change falls outside the ODIN-dependent outputs.
+The lock covers non-ODIN registry artifacts, World Bank snapshots, relevant
+provenance sidecars, collection/control identities, baseline controls,
+approval/attestation records, and approved output hashes. PIP collection uses
+the pinned release. Collection and estimation fail on unexpected non-ODIN
+changes. Schema, self-hash, and detached integrity checks detect inconsistency;
+they do not replace independent human approval.
 
-### 6. Keep a provisional-to-final comparison plan
+Do not delete/recreate a lock to absorb unapproved changes. Review the change
+and record the appropriate decision before establishing a different release
+baseline. Historical sandbox locks are not the real release lock.
 
-Before the official release, prepare the comparison inputs and review process.
-The final comparison should identify changes in:
+## Install an approved official ODIN release
 
-- ODIN country-year rows and component scores;
-- Dimension 2.2 and Dimension 4.3 scores;
-- `spi_data` indicator and dimension columns;
-- overall index values, rankings, and aggregates; and
-- quantile, treemap, databank, and report outputs.
+### 1. Preserve and validate the supplied files
 
-## When the official ODIN release arrives
+Stage the official download in a new folder **inside the repository**, keeping
+the provisional annual files and hashes available. Record the actual source
+URL, release label/date, approver, filenames, and raw-file hashes.
 
-### 1. Store the official release separately first
+Compare **all annual inputs** from 2015 through 2025 for schema, country codes,
+coverage, category labels, numeric values, duplicate country/year keys, and
+historical revisions. The shared reader requires the columns in
+`odin_required_columns` (`R/dim2.R`), including openness and geospatial fields.
+It accepts the documented numeric missing tokens and stops on invalid text.
+All-category country rows must have unique keys; geography must match the
+collected country universe after the explicit crosswalk/exclusions.
 
-Download the official files without immediately overwriting the stand-in.
-Check the raw schema before using the files. The readers require the
-following fields (the checkpoint and `odin_data` also require the other score
-columns: indicator coverage, data available in the last 5 and 10 years, and
-the overall score):
+A valid source download may legitimately revise older years. Those changes
+must also pass the frozen-history approval gate; an ODIN-dependent column is
+not automatically approved for a historical revision.
 
-```text
-Country Code
-Year
-Data categories
-Machine readable
-Non-proprietary
-Download options
-Metadata available
-Terms of use
-Openness subscore
-First administrative level
-Second administrative level
-Coverage subscore
+### 2. Create the official release record
+
+The configured path is `01_raw_data/2.2_DSOA/ODIN_release.json`.
+`read_odin_release_record()` in `R/output_manifest.R` enforces this schema:
+
+```json
+{
+  "schema_version": "spi-odin-release-v1",
+  "source_url": "<actual official download URL>",
+  "release_label": "<actual source release>",
+  "released_at": "<actual UTC timestamp: YYYY-MM-DDTHH:MM:SSZ>",
+  "approved_by": "<actual approver>",
+  "files": [
+    {
+      "file": "ODIN_2015.csv",
+      "sha256": "<64-character SHA-256 of the approved official file>",
+      "provisional_sha256": "<64-character SHA-256 of the prior provisional file>"
+    }
+  ]
+}
 ```
 
-`verify_odin_data()` and the `odin_data` target stop with `ODIN SCHEMA
-MISMATCH` when any of these columns is missing.
+This is a structural example, not a complete record to copy. The real `files`
+array must contain exactly every filename consumed by `odin_files` with valid
+hashes; `released_at` must be a valid UTC date/time. Each `sha256` must match
+the installed annual file. Approval is a human action, not a script-generated
+name inserted to make validation pass.
 
-### 2. Compare the complete annual input set
+**Current implementation restriction:** the verifier also requires
+`sha256 != provisional_sha256` for **every** annual entry. If an official
+release leaves historical annual files byte-identical and changes only 2025,
+the current contract rejects that otherwise plausible file set. Stop and
+resolve this restriction through a reviewed implementation decision before
+finalization. Do not alter source bytes or invent hashes to satisfy it.
+Documentation does not resolve or bypass this limitation.
 
-Compare the official files with the provisional inputs for every year from
-2015 through `end_date`. Check for:
+### 3. Activate and validate the transition
 
-- new or missing countries;
-- changed country codes;
-- changed category labels;
-- changed component scores;
-- revised historical values; and
-- changed column names or types.
+After the supplied files and record meet the reviewed contract, install them
+at the expected annual paths and set `odin_status <- "official"`.
+Rerun collection and estimation using their separate stores. A retained
+release lock must still validate the non-ODIN inputs and controls.
 
-Stop and investigate any schema or coverage change before rebuilding.
+Before promotion, `release_diff` compares the candidate set with the locked
+provisional archive and writes `release_diff_2025.csv` and `.md` next to the
+outputs. The allowed changes are defined by `R/release_diff.R`: ODIN RAW/SPI
+columns, their dimension scores, pillars 2 and 4, overall index and derived
+rank/quantile/Databank/treemap results, with the documented jitter treatment.
+Unexpected key/row/schema changes or values outside this scope block
+promotion. Inspect the exact report; an allowed series is not a guarantee
+that any source coverage change will be accepted.
 
-### 3. Replace the stand-in and rerun collection
+## Rehearse without changing the normal output set
 
-After the official files pass review, place them at the paths expected by the
-pipeline, for example:
+The rehearsal uses an isolated repository-local sandbox and explicit
+sandbox-only overrides of the collection/vintage gates. It perturbs ODIN,
+checks an unchanged rerun, tests a non-ODIN change, and records the comparison.
+It is engineering evidence, not approval of the actual final source release.
 
-```text
-01_raw_data/2.2_DSOA/ODIN_2025.csv
+```sh
+Rscript tests/replication/rehearse_odin_swap.R \
+  --out replication/spi-rep/rehearsal-next
 ```
 
-Rerun the collection pipeline. The ODIN sources are excluded from the
-release lock, and every other artifact must still match it:
+Read `replication/spi-rep/rehearsal-next/_rehearsal_summary.txt` and all step
+logs. Earlier rehearsals predate some current controls, including official
+release verification. Their success does not establish that the actual final
+file set meets the newer contract. Use a new run name to retain earlier
+results; fresh clones do not include the local historical rehearsal folders.
 
-```r
-targets::tar_make(
-  script = "_targets_data.R",
-  store = "_targets_data"
-)
-```
+## Final acceptance and next vintage
 
-### 4. Rebuild ODIN-dependent outputs
+Confirm the approved input set and release record, matching unblocked
+collection, current tests/replication scope, explicit history approvals,
+complete promoted manifest, `odin_status = "official"`, and absence of the
+provisional notice. Review the release diff against the approved archive and
+refresh attribution, E6/aggregate evidence, and the Working Group narrative
+from the same final output set.
 
-Set `odin_status <- "official"` in `config/params.R` and run estimation:
-
-```r
-targets::tar_make()
-```
-
-The new file invalidates `odin_files`, `odin_data`, `dim2_odin`, `dim4_geo`
-and the outputs built from them; the other dimensions are reused. Before
-promotion, `release_diff` compares every output with the locked provisional
-archive and writes `release_diff_2025.csv` and `.md` next to the outputs.
-Allowed changes: `SPI.D2.2.*`, `SPI.D4.3.*` (and their RAW columns),
-`SPI.DIM2.2.INDEX`, `SPI.DIM4.3.INDEX`, Pillars 2 and 4, the overall index,
-the quintiles and scores derived from them, the plotting jitter of
-`SPI_quantiles_2025.csv` (it is drawn in index order, so it moves between
-countries whose rank changes), and the treemap and databank rows of those
-series (including aggregates). Any other change, or an added or removed row or
-column, stops promotion. The output manifest records
-`odin_status = "official"` and the marker is removed. Keep the release-diff
-report as part of the update record.
-
-To rehearse the swap without touching the repository, run
-`Rscript tests/replication/rehearse_odin_swap.R --out <dir>` from the
-repository root (see the header of that script). The steps are summarized in
-`<dir>/_rehearsal_summary.txt`.
-
-## What the pipeline does for a delayed ODIN release
-
-- Every annual ODIN file is a file target, and both readers share one
-  validated read, so only ODIN-dependent targets rerun after a replacement.
-- `odin_status` labels the outputs (marker file and output manifest) without
-  invalidating the rest of the graph.
-- Every column used by either reader is validated in every annual file.
-- The vintage-diff report treats D2.2 and D4.3 history as frozen, so a
-  revised ODIN release that changes 2015 to `end_date - 1` values blocks
-  promotion until the changes are approved.
-
-`{targets}` does not append a year to an existing data frame; a new or
-replaced annual file reruns the shared ODIN read and its dependents.
-
-## Final acceptance checklist
-
-Before releasing the final SPI update, confirm that:
-
-- the previous ODIN files remain preserved;
-- the stand-in is clearly labelled as provisional;
-- the official release was checked for all years used by the pipeline;
-- the collection status was rerun with the official files in place;
-- `odin_status` is `"official"` and `PROVISIONAL_ODIN.md` is gone;
-- both Dimensions 2.2 and 4.3 were rebuilt;
-- downstream index and dissemination outputs were regenerated;
-- provisional and final outputs were compared (`release_diff_2025.md`);
-- the revision evidence (`revision_summary_2025.md`) and the Working Group
-  report (`docs/revisions/202611-revision-report.md`) were updated with the
-  final ODIN values;
-- the published `SPI_data.csv` and `SPI_index.csv` were copied to
-  `01_raw_data/previous_vintages/SPI_data_2025.csv` and `SPI_index_2025.csv`
-  for the next vintage; and
-- no provisional output was published as the official SPI vintage.
+Preserve the approved final `SPI_data.csv` and `SPI_index.csv` as the next
+vintage's baselines and prepare the reviewed baseline manifest with their
+hashes. Keep the source/download evidence, lock/archive, approvals, and run
+records together. Promotion inside this repo and external publication are
+separate steps; release only the authorized final set.

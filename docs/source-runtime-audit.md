@@ -1,59 +1,76 @@
-# SPI Source Runtime Audit
+# SPI source runtime inventory
 
-**Created:** 2026-10-05
+**Updated: 25 October 2026.** This replaces the pre-migration inventory of
+5 October. Acquisition now belongs to `_targets_data.R`; estimation in
+`_targets.R` reads collected files. See the
+[architecture](pipeline-architecture.md) and
+[current source/run status](update-status-202611.md).
 
-This audit records where source acquisition currently occurs before the
-collection-first migration. It distinguishes confirmed runtime acquisition
-from prepared-file reads and reference-only code.
+## Where acquisition runs now
 
-## Confirmed Runtime Acquisition in Current Targets/Helpers
-
-| Location | Source or operation | Current behavior | Collection action |
-|---|---|---|---|
-| `config/params.R` | `wbstats::wb_countries()` | Loads live country metadata while loading estimation parameters | Cache as a collection artifact; estimation reads the saved snapshot |
-| `R/append.R` | World Bank country API, OECD region | Fetches OECD country codes and caches an RDS under `staging/` | Move to collection raw/normalized artifacts |
-| `R/append.R` | `wbstats::wb_data()` population | Fetches population and caches an RDS under `staging/` | Move to collection artifacts |
-| `R/quantiles.R` | `wbstats::wb_data()` GDP per capita | Fetches GDP during quantile construction | Move to collection artifacts |
-| `R/pull_jmp.R` | JMP country downloads | HTTP GET for country files; target is currently opt-in and disconnected from `dim1_5` | Make a collection target and explicit dependency |
-| `R/pull_unsdg.R` | UN SDG JSON API | HTTP GET for CRVS, legislation, and finance series; target is currently opt-in and disconnected from consuming dimensions | Make collection targets and preserve raw responses |
-| `config/params.R` / `R/setup.R` | World Bank country metadata | Used to build the country grid and country filters | Consume the collection snapshot in estimation |
-
-## Confirmed Acquisition in Legacy or Miscellaneous Scripts
-
-| Location | Source or operation | Current behavior | Collection action |
-|---|---|---|---|
-| `02_programs/misc_scripts/un_stats_cleaning.Rmd` | UN SDG `DataCSV` POST | Downloads raw per-series files, then creates normalized and scored files outside `{targets}` | Port into tested collection functions and targets |
-| `02_programs/misc_scripts/sdg_indicators_for_SPI.R` | UN SDG `DataCSV` POST | Downloads raw CRVS, legislation, and finance series and writes normalized files | Consolidate behind shared collectors |
-| `02_programs/misc_scripts/microdata_library_pull.Rmd` | Microdata catalog APIs/downloads | Pulls public catalog metadata and writes intermediate files | Register as external/API source and migrate where reproducible |
-| `02_programs/misc_scripts/nada_check.R` | National-site HTTP checks | Checks URLs supplied by the NADA source process | Keep as explicit collection checkpoint unless a stable source API is established |
-| `02_programs/01-SPI_data_prep.Rmd` | `pipr` package | Loads `pipr`, but the acquisition call and CSV write are commented; the active code reads `PIP_comparability_latest.csv` | Verify package behavior and implement a tested collector or document external PIP input |
-
-## Dimension 1.5 Source Coverage
-
-Dimension 1.5 has five separate estimation inputs and scoring paths:
-
-| Indicator | Source | Estimation reader/scorer |
+| Source/group | Current implementation | Retained collection evidence |
 |---|---|---|
-| `SPI.D1.5.POV` | PIP | `read_pip_data()` / `score_poverty_comparability()` |
-| `SPI.D1.5.CHLD.MORT` | UN IGME | `read_child_mortality_data()` / `score_child_mortality()` |
-| `SPI.D1.5.DT.TDS.DPPF.XP.ZS` | WDI metadata | `read_wdi_metadata()` / `score_debt_reporting()` |
-| `SPI.D1.5.SAFE.MAN.WATER` | JMP | `read_safely_managed_water()` / `score_safely_managed_water()` |
-| `SPI.D1.5.LFP` | ILO | `read_ilo_lfp()` / `score_ilo_lfp()` |
+| PIP poverty comparability | `R/collect_pip.R`, `pip_collection` | Request/release identity, raw/cache artifacts, normalized comparability CSV, provenance sidecar; a release lock pins the approved release |
+| World Bank countries, OECD list, population, GDP | `R/collect_world_bank.R`, `world_bank_inputs` | Raw responses and RDS snapshots under `_collection/world_bank/`; estimation reads the snapshots |
+| JMP safely managed water | `R/pull_jmp.R`, `jmp_collection` | Cached Data Summary sheets and workbook URL/hash/size identities, normalized quality file, and calibration evidence; the collector does not retain every original workbook |
+| OECD SDG evidence | `R/collect_oecd.R`, `oecd_collection` | SDMX raw/cache data and normalized OECD SDG file |
+| UN SDG D3 data products | `R/collect_sdg.R`, `sdg_collection` | Per-series compressed/cache data, geography validation, annual scored D3 artifacts |
+| UN SDG CRVS, legislation, finance | `R/pull_unsdg.R`, `unsdg_collection` | Raw API responses and normalized dimension inputs |
+| NADA | `R/collect_nada.R`, `nada_url_evidence`, `nada_output` | Prior vintage, URL checks, current review workbook, output CSV, collection manifest |
+| D4.1 censuses/surveys | `R/collect_dim4_1.R`, `R/collect_dim4_1_prefetch.R` | Workbook validation, annual derived files, manual review, normalized companions, cache/failure log, refresh record and manifest |
+| EMPL, CNIN, FINA | `R/collect_d5_2.R`, annual collection targets | ILO national-sources catalogue, prior inputs, review workbooks, and derived annual outputs |
+| GSBP | `R/collect_gsbp.R`, `gsbp_output` | Prior vintage, desk review, current manual-review workbook, output/manifest and warnings |
 
-The collection registry represents these as five distinct source records. PIP
-and JMP have collection functions; IGME, WDI metadata, and ILO remain explicit
-manual checkpoints until their source-specific collection is automated.
+A target name in this table identifies orchestration; the source registry
+records the authoritative required artifact paths and acceptance rules.
+The same source may have several registered artifacts and review layers.
 
-Other prepared or manual inputs include ODIN, NADA, census/survey extracts and
-manual reviews, IMF workbooks, previous-vintage standards inputs, CLASS, ASPIRE,
-and other dimension-specific files.
+## Manual files and access requirements
 
-These are represented in `config/source_registry.R` as `manual`, `external`,
-or `unavailable` sources until a reproducible collection method is verified.
+IGME, ILO bulk extracts, WDI metadata, IMF workbooks, ODIN annual files,
+CLASS, annual review workbooks, and other prepared inputs still require
+source-specific analyst action. `manual_checkpoints` validates presence and
+schema; hash-bound source attestations are a separate acceptance step.
 
-## Audit Boundary
+The configured `UN IGME 2025.csv` is local-only because it exceeds the regular
+Git file-size limit. A fresh clone must obtain it separately. See the
+[exclusion record](revisions/202611/git-history-file-exclusion-2026-10-25.md).
+The source-specific [user guide](user-guide.md#44-detailed-source-instructions)
+lists filenames and preparation steps.
 
-This document is a baseline for migration. It is not evidence that every
-listed source has a stable public API or that a collector is safe to automate.
-Each source must pass the registry schema, cache/provenance, freshness, and
-fixture-backed transformation tests before it becomes an estimation dependency.
+Most sources are public. The D4.1 refresh also uses the World Bank internal
+microdata library and therefore requires World Bank network access; retaining
+that source is a Working Group decision. Some IMF/manual material may require
+institutional access. Do not describe all raw inputs as anonymously available.
+
+## Controls that do not mean “offline”
+
+`run_downloads = FALSE` disables the optional D4.1 catalogue refresh only.
+Other collectors may fetch cache misses or stale responses. `refresh_nada_urls`
+controls NADA URL checks. A locked PIP release restricts the selected source
+vintage; it does not guarantee every request can be served without network
+access. Cached payload and provenance validation still applies on reuse.
+
+## Estimation boundary
+
+The collected country snapshot is loaded by `R/setup.R`; `R/append.R` reads
+collected population/OECD inputs and `R/quantiles.R` reads collected GDP.
+These are no longer live acquisitions into the root `staging/` folder.
+Registry-resolved source files and content digests are explicit estimation
+dependencies. The shared ODIN reader validates annual files for D2.2/D4.3.
+
+Original scripts in `02_programs/` can contain live requests, legacy output
+paths, and assumptions predating the new graphs. They remain references, not
+the operational entry points for an update. In particular, the legacy NADA
+script has a hard-coded Windows output location; use the active collection
+implementation described above.
+
+## Repeating this audit
+
+Check the actual calls in `_targets_data.R`, `_targets.R`, and `R/`; identify
+raw writes, provenance, normalized artifacts, manual prerequisites, and the
+consumer file targets. Distinguish persistent source artifacts from temporary
+transport files. Confirm fresh-clone availability and internal access needs.
+Do not promote a source to automated acquisition solely because an old script
+contains a URL. Validate schema, geography, keys, hashes, and fail-loud behavior
+before changing source contracts.

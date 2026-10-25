@@ -12,6 +12,11 @@ the completed source attestations and reviewer workbooks, and use provisional
 ODIN data. The matching durable summary is also in
 `docs/revisions/202611/preview/revision_summary_2025.md`.
 
+This is the retained 24 October snapshot, not a claim that the latest branch
+has passed normal estimation. The [current status](../docs/update-status-202611.md)
+records the mismatched collection run/report and pending approvals.
+`03_output_data/` still contains the prior release through 2024.
+
 ## Locations
 
 | Directory | Contents |
@@ -47,6 +52,49 @@ Rscript tests/replication/preview_estimation.R \
 The preview, replication, and rehearsal scripts reject output locations
 outside the repository. Their working sandboxes and child R sessions use
 `replication/.scratch/`. Use a new output directory to retain an earlier run.
+
+## Run modes and prerequisites
+
+Restore the recorded R environment and provide the required manual sources
+first. The exact `01_raw_data/1.5_DUIO/UN IGME 2025.csv` is not in Git; see
+the [exclusion record](../docs/revisions/202611/git-history-file-exclusion-2026-10-25.md).
+Network access can still be required when collectors lack usable caches;
+`run_downloads = FALSE` only disables the optional D4.1 catalogue refresh.
+
+| Script | Purpose and important flags |
+|---|---|
+| `tests/replication/preview_estimation.R` | Current-reference-year preliminary build; `--out` is required; `--keep-sandbox` retains working files; `--legacy-e6` uses the older country-name joins for a matched E6 comparison |
+| `tests/replication/run_replication.R` | Isolated 2024 reconstruction; `--code worktree` or a Git ref, `--vintage 2024`, `--out`, optional `--compare`, `--keep-sandbox`, and explicit `--allow-skips` |
+| `tests/replication/rehearse_odin_swap.R` | Sandbox rehearsal of a provisional/official transition; `--out` is required and `--keep-sandbox` retains the working set |
+
+Preview and rehearsal scripts disable collection acceptance and vintage-diff
+enforcement only inside their sandboxes. Source readers and other validation
+can still fail. These modes produce diagnostic/review evidence; they do not
+approve sources or replace normal release gates.
+
+Example reconstruction using a retained local comparison reference:
+
+```sh
+Rscript tests/replication/run_replication.R \
+  --code worktree --vintage 2024 \
+  --out replication/spi-rep/replication-next \
+  --compare replication/spi-rep/step16b
+```
+
+`step16b` and most older run folders are local archives and are not included
+in a fresh clone. Restore/rebuild an appropriate reference before comparing.
+The executable raw baseline is `25b534706ff6`; historical IDs can be mapped
+using the exclusion record. Existing X1 differences and E1–E6 exceptions have
+specific scopes; see the [test guide](../docs/user-guide.md#7-interpreting-test-results).
+The runner exits nonzero on failures, errors, comparison differences, and
+unaccepted skips. `--allow-skips` does not approve failed expectations.
+
+For every deliberate new run, record the invoked command and Git revision
+alongside the logs. Inspect the output manifest, provisional notice, vintage
+diff, and revision evidence; the manifest's timestamp and vintage do not by
+themselves establish which code/source snapshot was used. An earlier preview
+cannot be assumed to reproduce newer code. The actual official ODIN transition
+also has the [release-record constraint](../docs/odin-delayed-update.md#2-create-the-official-release-record).
 
 ## Relocation on 25 October 2026
 

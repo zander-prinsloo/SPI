@@ -2,7 +2,7 @@
 project-name: "Statistical Performance Indicators (SPI)"
 team: "DECDG / GPID -- World Bank"
 created: "2026-09-21"
-last-reviewed: "2026-09-21"
+last-reviewed: "2026-10-25"
 ---
 
 # Statistical Performance Indicators (SPI)
@@ -13,19 +13,33 @@ The new Statistical Performance Indicators (SPI) builds on the SCI, which the Wo
 
 ## Key Deliverables
 
-- `Run_SPI.R` — master file to reproduce results by running `01-data_prep.Rmd` and `02-SPI_index.Rmd`
-- `01_raw_data/` — raw data for each indicator across the 22 dimensions
-- `02_programs/` — cleaning code consolidated into `01-data_prep.Rmd` (also auto-writes the technical methodology document); `02-SPI_index.Rmd` creates the overall/dimension index
-- `03_output_data/` — final outputs in CSV/Stata `.dta` format (`SPI_data.csv`, `SPI_index.csv`, etc.)
-- `SPI_data_viz/` — Shiny dashboard for dissemination
+- `_targets_data.R` — collection graph with the `_targets_data/` store
+- `_targets.R` — estimation, candidate validation, and promotion, with the `_targets/` store
+- `R/` and `config/` — active functions, source registry, and reference-year configuration
+- `01_raw_data/` — manual sources, cached/normalized artifacts, review workbooks, provenance, and collection reports
+- `03_output_data/` — last promoted outputs; candidate files are under `.candidate/`
+- `replication/` — preliminary review snapshots, local historical runs, and scratch files
+- `docs/README.md` — documentation index; `docs/update-status-202611.md` is the current operational handoff
+- `02_programs/` and `Run_SPI.R` — preserved legacy references
+- `SPI_data_viz/` — Shiny dissemination application
 
 ## Constraints
 
-- Open data and open code to build confidence in the work
-- Uses only publicly accessible data
-- Reproducibility via `renv::restore()` from `renv.lock` (WB-specific packages like wbgviz may need manual install)
-- Raw data and outputs are version-controlled via explicit `.gitignore` rules
+- Preserve approved previous-vintage outputs, their hash manifest, and immutable test fixtures.
+- Collect sources before estimation; require current matching hash-bound run/status evidence and no blocking sources.
+- Record explicit source, methodological, and release approvals; a preview bypasses gates only in its sandbox.
+- Most sources are public; D4.1 also uses an internal library requiring World Bank network access.
+- Restore recorded dependencies from `renv.lock`; do not change it to hide environment warnings.
+- Keep SPI artifacts and temporary work inside the repo. Bulk archives/scratch and the exact oversized `UN IGME 2025.csv` are local-only and Git-ignored.
+- Preserve legacy scripts as reference code; exact replication has documented corrections and differential exceptions in `docs/CHANGELOG.md`.
 
 ## Current Focus
 
-Current focus is to create a better estimation pipeline from `01-SPI_data_prep.Rmd`, `02-SPI_index.Rmd`, and `03_SPI_data_validation.Rmd`. The pipeline should use `{targets}` and should exactly replicate the Rmd files. It is very important that the Rmd files remain untouched to test, and that the new pipeline exactly replicates the results from the existing pipeline.
+The active branch is `dev_SPI_2025`; the planned 202611 update has reference
+year 2025. Preliminary review CSVs are in
+`replication/spi-rep/preview-p0p1/`, with provisional ODIN. Main output CSVs
+still end in 2024. The latest collection marker is started and its earlier
+status report is stale for that run. Complete reviews, source attestations,
+frozen-history decisions, current validation, normal estimation, and the
+approved official ODIN transition before final release. See the dated status
+page rather than older handover counts or branch names.

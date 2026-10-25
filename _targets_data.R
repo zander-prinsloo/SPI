@@ -2,6 +2,10 @@
 # SPI data collection pipeline
 # =============================================================================
 # This pipeline refreshes and validates source artifacts before estimation.
+# Completion of reporting does not imply source acceptance: inspect both the
+# matching run marker and all blocking status rows. See docs/user-guide.md.
+# run_downloads controls the D4.1 catalogue refresh only; other collectors may
+# fetch missing/stale responses through their caches.
 # Run from the project root with:
 #   targets::tar_make(script = "_targets_data.R", store = "_targets_data")
 #

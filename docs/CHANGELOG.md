@@ -6,6 +6,42 @@ of truth and are untouched.
 
 Created: 2026-09-22
 
+## 25 October 2026 — operational documentation and repository handoff
+
+- The current branch is `dev_SPI_2025`. The exact oversized
+  `01_raw_data/1.5_DUIO/UN IGME 2025.csv` is local-only and ignored; published
+  branch history excludes it. The [exclusion record](revisions/202611/git-history-file-exclusion-2026-10-25.md)
+  provides the checksum and old-to-new unpublished commit map. The active
+  reconstruction/attribution baseline is `25b534706ff6`.
+- Preliminary review outputs are retained at
+  `replication/spi-rep/preview-p0p1/`. Earlier runs, probes, and recovered logs
+  remain local under `replication/`; the designated review CSVs/evidence and
+  relocation inventory are versioned. Run tools constrain output/sandbox
+  paths to the repo and use `replication/.scratch/` for child temporary files.
+- The [status page](update-status-202611.md) reconciles the retained preview:
+  1,073 refreshed-history changes, 41 pending frozen changes, and 233 E6
+  preview indicator cells. The main two `03_output_data/` CSVs still end in
+  2024. The latest collection marker is `started` and differs from the older
+  17-blocking-source report. No new source or release approval is implied.
+- README/wiki/user/source/ODIN guides now describe the active two-store
+  workflow, automatic candidate validation/promotion, manual-input access,
+  strict versus explicit porting tests, and remaining approval steps.
+  The root `staging/` folder and early opt-in pull-target descriptions below
+  belong to the older workflow.
+- Current implemented controls include content-bound collection inputs and
+  run/status integrity, sidecar/control-aware release locks, strict reviewed
+  workbook values, duplicate-group handling, output/key completeness, prior
+  baseline hashes, and an approved official ODIN release record. Recorded
+  implementation fixes do not close pending human/methodology decisions.
+- The official ODIN verifier currently requires different official/provisional
+  hashes for every consumed annual file. The [ODIN guide](odin-delayed-update.md)
+  documents the limitation for unchanged historical files; this documentation
+  update does not alter that contract.
+
+The older sections below preserve the porting and readiness history. Numerical
+claims and commands there must be interpreted with their dated scope; consult
+the current operational guides before running an update.
+
 ## What was ported
 
 ### Stage A: Data prep (from `01-SPI_data_prep.Rmd`)
@@ -43,7 +79,7 @@ Created: 2026-09-22
 | `databank.R` | `R/databank.R` | `SPI_databank_*.csv` (4 files) |
 | `microdata_library_pull.Rmd` (ASPIRE) | `R/spl_admin.R` | `SPL_admin_data_availability.csv` |
 
-### Data pulls (new)
+### Data pulls in the original port (superseded orchestration)
 
 | Target | Source | Notes |
 |--------|--------|-------|
@@ -53,8 +89,9 @@ Created: 2026-09-22
 
 ## 202611 readiness (plan 2026-10-23)
 
-Changes made so that the 202611 update (reference year 2025) runs end to end,
-with ODIN as the only provisional input. Plan:
+Historical readiness work for the 202611 update (reference year 2025).
+ODIN is the deliberately provisional source; manual source acceptance,
+methodology, and release decisions remain separate requirements. Plan:
 `.cg-docs/plans/2026-10-23-spi-202611-source-readiness.md`; evidence:
 `.cg-docs/work-reports/2026-10-23-spi-202611-source-readiness.md`.
 
@@ -219,8 +256,9 @@ with ODIN as the only provisional input. Plan:
   exclusions in `config/ilo_area_exclusions.csv`. Unknown codes or names
   stop the run. The 2024 replication changes 157 D1.5 indicator cells
   (63 child-mortality and 94 LFP) across eight economies; the 202611
-  preview changes 251 cells (66 child-mortality and 185 LFP) across 14
-  economies. The full country, rank, quintile and aggregate effects are in
+  earlier preview changed 251 cells (66 child-mortality and 185 LFP) across
+  14 economies. The later matched `preview-p0p1` evidence has 233 cells
+  across 12 economies; see the dated status page for the active snapshot. The full country, rank, quintile and aggregate effects are in
   `docs/revisions/202611/e6/`; the 2,349 country-level exception cells are
   in `tests/fixtures/exceptions/E6_d15_country_matching.csv`.
 - **Databank aggregate order**: group means are now summed in ISO3 order

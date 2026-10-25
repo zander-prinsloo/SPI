@@ -149,8 +149,8 @@ passwords/
 compound-gpid.md
 
 # SPI pipeline: staging outputs are transient and must not be committed
-# (constraint C7: historical outputs in 03_output_data/ are never overwritten;
-# staged outputs are reviewed and copied over manually)
+# The root folder is a legacy cache. Active candidates use
+# 03_output_data/.candidate/ and validated sets are promoted automatically.
 staging/
 _targets/
 

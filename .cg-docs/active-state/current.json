@@ -1,9 +1,9 @@
 {
   "schemaVersion": "compound-gpid-active-state-v1",
-  "updatedAt": "2026-10-24T19:04:18Z",
+  "updatedAt": "2026-10-25T17:11:36Z",
   "workflow": "/cg-work",
   "status": "handoff",
-  "branch": "feat/d41-manual-collection-pipeline",
+  "branch": "dev_SPI_2025",
   "plan": ".cg-docs/plans/2026-10-23-spi-202611-source-readiness.md",
   "executionReport": ".cg-docs/work-reports/2026-10-23-spi-202611-source-readiness.md",
   "currentPhase": 7,
@@ -61,17 +61,17 @@
     {
       "id": "V11",
       "status": "pending",
-      "artifact": "collection rerun after the D4.1 refresh: complete, 17 blocking rows (attestation_missing) + 1 GSBP warning; 853 review candidates"
+      "artifact": "Latest marker 20261024T202211Z-932a14ce7bf7 is started; earlier report 20261024T101422Z-376f4ac13a8b has 17 blocking attestations and 1 GSBP warning. Rerun current collection after reviews; 853 candidate rows."
     },
     {
       "id": "V12",
       "status": "pending",
-      "artifact": "sandbox preview with E6 complete; vintage diff: D1.5 478, D4.1 362, D4.2 5 reported; 1 frozen change awaiting decision (COL SPI.D5.5.DIFI 2024 0->1)"
+      "artifact": "Retained 24 October preview-p0p1 contains reference year 2025 with provisional ODIN; 1,073 refreshed historical cells and 41 unapproved frozen cells (Andorra 40, Colombia DIFI 1). Normal estimation/promotion remains pending."
     },
     {
       "id": "V13",
-      "status": "passed",
-      "artifact": "all-row ODIN rehearsal: lock 104 files; unchanged diff 0; 12,817 ODIN changes, 0 outside allowed outputs; non-ODIN change blocked"
+      "status": "pending",
+      "artifact": "Historical all-row rehearsal-final2: 12,817 allowed cells and non-ODIN tamper blocked. Predates newer official-release controls; rerun current transition with the actual source release before finalization."
     },
     {
       "id": "V14",
@@ -81,26 +81,28 @@
     {
       "id": "V15",
       "status": "passed",
-      "artifact": "user guide, ODIN guide, CHANGELOG, README; path check"
+      "artifact": "Operational docs reconciled 25 October: current status, architecture, user/source/ODIN guides, wiki, artifact and Git instructions; validation recorded in the documentation review."
     },
     {
       "id": "V16",
-      "status": "passed",
-      "artifact": "E6 impact and attribution complete; cache-integrity and attribution-gate safe fixes tested; 2,349-cell fixture exact"
+      "status": "pending",
+      "artifact": "Current retained evidence: 1,073 attribution entries; 233 E6 preview indicator cells (66 IGME, 167 LFP), 201 corrected-index rows, 915 rank side effects, 2,697 aggregates. Historical 2024 E6 fixture has 2,349 cells; rerun current-code differential validation."
     },
     {
       "id": "V17",
-      "status": "passed",
-      "artifact": "full suite after review safe fixes: 1,055 passed, 0 failed, 14 skipped, 206 audited warnings"
+      "status": "pending",
+      "artifact": "Historical full-suite result: 1,055 passed, 14 skipped, 206 warnings. Latest focused replication-runner checks passed after history rewrite. No current full-suite or live release validation is implied."
     }
   ],
   "unresolvedDecisions": [
-    "Technical lead: review D4.1 crosswalk and exclusion additions, and ILO crosswalk/exclusion config",
-    "Step 23: attest 17 blocking manual sources and the GSBP desk review",
-    "Step 23: circulate reviewer package; review 853 candidates and complete CNIN, FINA, GSBP and D4.1 workbooks",
-    "Vintage diff: approve or keep COL SPI.D5.5.DIFI 2024 (0 -> 1); publication waits for decision",
-    "Working Group: decide FAO filter, FAO agricultural census list and five territories, CNIN/FINA, JMP 2027, internal library, retired ILO catalog; review E6 and aggregation-order evidence",
-    "Step 24: write_release_lock(params, approved_by = ...) after provisional release approval"
+    "Review IGME observation-unit and JMP sentinel methodology findings; reconcile code implementation with explicit approvals",
+    "Technical lead: review D4.1 and ILO mapping/exclusion additions and complete source/workbook evidence",
+    "Complete reviews for 853 candidate rows, attest the reviewed bytes, and rerun collection to a matching complete unblocked report",
+    "Resolve all 41 frozen-history changes: Andorra ODIN D2.2/D4.3 2017-2021 (40 cells), Colombia DIFI 2024 (1 cell)",
+    "Run current normal estimation and validation; refresh attribution, E6/aggregate evidence, and Working Group narrative for the same exact output set",
+    "Working Group: decide FAO filter/census evidence, CNIN/FINA carry-forward, JMP approach, internal library, and retired ILO catalogue",
+    "Write the real release lock only after provisional approval; resolve the official ODIN annual-file hash restriction if unchanged historical files occur, then validate the actual final transition",
+    "Reconcile legacy availability references and tracked target metadata before final release"
   ],
   "artifactRefs": [
     {
@@ -146,13 +148,23 @@
     {
       "kind": "rehearsal",
       "path": "replication/spi-rep/rehearsal-final2/_rehearsal_summary.txt",
-      "status": "passed"
+      "status": "historical"
     },
     {
       "kind": "review",
       "path": ".cg-docs/reviews/2026-10-23-spi-202611-source-readiness-review.md",
       "status": "open"
+    },
+    {
+      "kind": "status",
+      "path": "docs/update-status-202611.md",
+      "status": "current"
+    },
+    {
+      "kind": "documentation-review",
+      "path": ".cg-docs/reviews/2026-10-25-spi-documentation-review.md",
+      "status": "complete"
     }
   ],
-  "nextCommand": "/cg-work phase7 (after Step 23 attestations, reviewer workbooks, and the DIFI decision)"
+  "nextCommand": "Review docs/update-status-202611.md; resume Phase 7 with current collection/report reconciliation, reviewer workbooks, methodology and 41-cell history decisions, then normal estimation and release validation"
 }

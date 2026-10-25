@@ -6,8 +6,8 @@
 # Produces:
 #   1. SPI_quantiles.csv -- SPI index with quintile categories, fragile/
 #      conflict classification, and GDP per capita.
-#   2. SPI_quantiles_2024.csv -- latest-year quantiles with jitter columns.
-#   3. SPI_indicators_2024.csv -- latest-year indicator scores with
+#   2. SPI_quantiles_<end_date>.csv -- latest-year quantiles with jitter columns.
+#   3. SPI_indicators_<end_date>.csv -- latest-year indicator scores with
 #      human-readable pillar names.
 #
 # Created: 2026-09-22
@@ -46,7 +46,7 @@ library(dplyr)
 #'
 #' NOTE: the original script reads SPI_index.csv from disk
 #' (`read_csv(paste0(dir, "/03_output_data/SPI_index.csv"))`). We mirror
-#' that CSV round-trip by reading the staged SPI_index.csv, because the
+#' that CSV round-trip by reading the candidate SPI_index.csv, because the
 #' round-trip changes binary representations at the 15th significant digit
 #' and this flips boundary rounding (e.g. Tanzania PIL4 = 52.95 rounds to
 #' 53 from the CSV value but 52.9 from the in-memory value). Reading the
@@ -54,7 +54,7 @@ library(dplyr)
 #'
 #' @param spi_index The index data frame from build_index(). Retained only
 #'   to create the targets dependency (the index target must run first so
-#'   staging/SPI_index.csv exists); the values come from the staged CSV to
+#'   candidate SPI_index.csv exists); values come from that written CSV to
 #'   mirror the original script.
 #' @param params    List of pipeline parameters.
 #' @return A tibble with country, region, income, fragile_conflict, iso3c,
@@ -155,7 +155,7 @@ build_quantiles <- function(spi_index, params) {
 #' E2 in docs/CHANGELOG.md).
 #'
 #' @param spi_index The index data frame from build_index(). Retained only
-#'   to create the targets dependency; the values come from the staged CSV
+#'   to create the targets dependency; the values come from the candidate CSV
 #'   (see build_quantiles()).
 #' @param quantiles The quantiles data frame from build_quantiles().
 #' @param params    List of pipeline parameters.
@@ -205,7 +205,7 @@ build_quantiles_2024 <- function(spi_index, quantiles, params) {
 #' Save the quantiles and indicators outputs
 #'
 #' Writes SPI_quantiles.csv, SPI_quantiles_2024.csv, and
-#' SPI_indicators_2024.csv to the staging directory (constraint C7).
+#' SPI_indicators_<end_date>.csv to the candidate directory.
 #'
 #' @param quantiles      The quantiles data frame.
 #' @param quantiles_2024 The latest-year quantiles data frame.

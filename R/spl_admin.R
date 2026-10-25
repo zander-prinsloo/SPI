@@ -51,8 +51,8 @@ build_spl_admin <- function(params) {
 
 #' Save the SPL admin output
 #'
-#' Writes SPL_admin_data_availability.csv to the staging directory
-#' (constraint C7).
+#' Writes SPL_admin_data_availability.csv to the candidate directory.
+#' Complete-set validation and promotion are separate targets.
 #'
 #' @param spl_admin_df The SPL admin data frame from build_spl_admin().
 #' @param params       List of pipeline parameters.

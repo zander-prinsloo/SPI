@@ -24,14 +24,14 @@ library(dplyr)
 #'
 #' NOTE: the original script reads SPI_index.csv from disk
 #' (`read_csv(paste0(output_dir,'/SPI_index.csv'))`). We mirror that CSV
-#' round-trip by reading the staged SPI_index.csv, because the round-trip
+#' round-trip by reading the candidate SPI_index.csv, because the round-trip
 #' changes binary representations at the 15th significant digit and this
 #' flips boundary rounding. Reading the CSV is required for exact
 #' replication.
 #'
 #' @param spi_index The index data frame from build_index(). Retained only
 #'   to create the targets dependency (the index target must run first so
-#'   staging/SPI_index.csv exists); the values come from the staged CSV.
+#'   candidate SPI_index.csv exists); values come from that written CSV.
 #' @param params    List of pipeline parameters.
 #' @return A tibble with country, source_id, value, descript,
 #'   spi_indicator_description, spi_indicator_scoring, Pillar, color, max,
@@ -97,7 +97,7 @@ build_treemap <- function(spi_index, params) {
 
 #' Save the treemap output
 #'
-#' Writes SPI_treemap.csv to the staging directory (constraint C7).
+#' Writes SPI_treemap.csv to the candidate directory before set validation.
 #'
 #' @param treemap_df The treemap data frame from build_treemap().
 #' @param params     List of pipeline parameters.

@@ -40,6 +40,18 @@ findings:
 
 # SPI 202611 canonical gate review
 
+> **Current-state notice — 25 October 2026:** This is a dated workflow/evidence
+> record. For current operation, use [202611 status](../../docs/update-status-202611.md)
+> and the [user guide](../../docs/user-guide.md). The active branch is
+> `dev_SPI_2025`; its work is committed and published. The latest collection
+> marker is `started`, while the last status report belongs to an older run.
+> The retained review snapshot is `replication/spi-rep/preview-p0p1/`
+> (1,073 refreshed and 41 frozen-history changes), superseding the earlier
+> preview counts below. Old commit IDs map to the rewritten history in
+> [the exclusion record](../../docs/revisions/202611/git-history-file-exclusion-2026-10-25.md).
+> Historical test counts and completed implementation tasks do not constitute
+> a current release gate or source/methodology approval.
+
 ## Review scope and evidence
 
 Reviewed only the paths listed in `replication/spi-gate/review_canonical_scope.txt`,

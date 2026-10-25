@@ -6,12 +6,12 @@
 # This is the FINAL assembly step of the data prep pipeline. It:
 #   1. Selects SPI/RAW columns from all dimensions and joins them onto the
 #      full country grid.
-#   2. Adds population data (from the World Bank API).
+#   2. Adds the collected World Bank population snapshot.
 #   3. Carries forward missing SPI values within each country (na.locf).
 #   4. Applies the OECD high-income adjustment (sets several indicators to
 #      1 for high-income OECD countries).
-#   5. Writes the final SPI_data.csv and SPI_data.dta to the staging
-#      directory (constraint C7: never overwrite 03_output_data/).
+#   5. Writes SPI_data.csv/.dta to the candidate directory. Validation and
+#      complete-set promotion to 03_output_data/ are orchestrated separately.
 #
 # Created: 2026-09-21
 # =============================================================================
@@ -37,8 +37,9 @@ library(dplyr)
 #' the adjustment. We match by iso3c code instead (the API's `id` field),
 #' which is stable across renames.
 #'
-#' To keep the pipeline reproducible and offline-friendly, we fetch it once
-#' and cache it in the staging directory. If the cache exists, it is reused.
+#' To keep estimation based on recorded inputs, read the collection snapshot.
+#' Acquisition/cache updates belong to
+#' R/collect_world_bank.R and the collection graph.
 #'
 #' @param params List of pipeline parameters.
 #' @return A character vector of OECD iso3c codes (plus "SGP" for
@@ -64,14 +65,14 @@ get_oecd_countries <- function(params) {
 # Population data
 # =============================================================================
 
-#' Get population data from the World Bank API
+#' Read the collected World Bank population snapshot
 #'
-#' Mirrors the "append" chunk's population pull. Fetches SP.POP.TOTL for
-#' all countries 2004:end_date.
+#' Supplies the "append" chunk's SP.POP.TOTL values for 2004:end_date.
+#' The collection graph acquires the data; this reader performs no API request.
 #'
-#' The result is cached in the staging directory (keyed by end_date) so
+#' The result is read from the collected population snapshot so
 #' repeated runs within a vintage use the same population snapshot (P2.2).
-#' The cache is invalidated when end_date changes.
+#' The configured snapshot filename depends on end_date.
 #'
 #' @param params List of pipeline parameters.
 #' @return A tibble with iso3c, date, population.
@@ -131,7 +132,7 @@ append_spi <- function(dims, params, grid) {
   # get_oecd_countries().
   #
   # NOTE (P2.4): the income_level column comes from params$country_metadata
-  # (a single live snapshot loaded in config/params.R). This mirrors the
+  # (the collected snapshot loaded by load_params()). This mirrors the
   # original Rmd, which also used the live wb_countries() income levels.
   # The snapshot is consistent within a run; income reclassifications
   # between vintages are documented WB API drift.
@@ -174,7 +175,7 @@ append_spi <- function(dims, params, grid) {
 #' Save the final SPI data to CSV and Stata
 #'
 #' Mirrors the "save" chunk. Writes SPI_data.csv and SPI_data.dta to the
-#' staging directory (constraint C7: never overwrite 03_output_data/).
+#' candidate directory; validation and promotion are separate targets.
 #'
 #' @param spi_df_final The final SPI data frame from append_spi().
 #' @param params       List of pipeline parameters.

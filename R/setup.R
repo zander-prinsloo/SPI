@@ -50,7 +50,8 @@ load_params <- function(params_file = here::here("config", "params.R"),
 #' Read the ODIN status from the parameters file
 #'
 #' Kept out of the `params` target value so that switching from
-#' "provisional" to "official" reruns only the output manifest.
+#' "provisional" to "official" updates output/revision labels and the
+#' official release-record gate, without changing scoring parameters.
 #'
 #' @param params_file Path to config/params.R.
 #' @return "provisional" or "official".
@@ -97,7 +98,7 @@ read_iso_codes <- function(params) {
 #'
 #' Ported from the "spi_df" chunk. Creates the blank SPI dataset containing
 #' one row per country per year (2004:end_date), which indicators are joined
-#' onto. Uses params$country_metadata (loaded once in config/params.R) for
+#' onto. Uses params$country_metadata (loaded from the collection snapshot) for
 #' the country list and drops the regional aggregates.
 #'
 #' @param params List of pipeline parameters (from load_params()).
@@ -108,9 +109,9 @@ build_country_grid <- function(params) {
 
   # Replicate the country list once per year, then convert the .id column
   # (1, 2, 3, ...) into actual years (2004, 2005, ...).
-  # NOTE: uses params$country_metadata (loaded once in config/params.R)
+  # NOTE: uses params$country_metadata (hydrated by load_params() from disk)
   # instead of calling wb_countries() again -- the metadata is a single
-  # live snapshot, so the grid and the append step see the SAME country
+  # collected snapshot, so the grid and append step see the SAME country
   # list (P2.1/P2.12).
   grid <- dplyr::bind_rows(
     replicate(length(span), params$country_metadata, simplify = FALSE),

@@ -4,7 +4,10 @@
 
 This guide explains how the SPI technical team runs an update using the
 collection-first `{targets}` workflow. The collection stage refreshes and
-reports source data before the estimation stage produces final outputs.
+reports source data before estimation builds and validates candidate outputs.
+For the observed run state, review files, and outstanding approvals, see
+[202611 status](update-status-202611.md). The
+[architecture](pipeline-architecture.md) explains dependencies and directories.
 
 ---
 
@@ -16,8 +19,9 @@ The SPI update has two explicit stages:
   caches raw and normalized artifacts, and writes a status report under
   `01_raw_data/_collection/`.
 2. **Estimation** consumes only validated collection artifacts, cleans and
-  scores indicators, builds the nested index, and writes final dissemination
-  files to `03_output_data/`.
+  scores indicators, builds the nested index, writes working files to
+  `03_output_data/.candidate/`, and promotes a complete validated set to
+  `03_output_data/`.
 
 Both stages use the R `{targets}` package. The estimation stage remains
 replication-tested against the original R Markdown pipeline (the 2024 vintage
@@ -30,7 +34,7 @@ outputs are written to `03_output_data/`.
 
 ### 202611 update identity
 
-The **SPI 202611 update** is the update released in **November 2026**. Its
+The **SPI 202611 update** is the update planned for **November 2026**. Its
 reference year is **2025**, so `config/params.R` must use:
 
 ```r
@@ -74,7 +78,6 @@ The pipeline mirrors the original Rmd structure as a sequence of targets:
 | Vintage diff | `previous_vintage_file`, `vintage_diff_approvals_file`, `vintage_diff` | revision-policy check (section 3) |
 | Release lock | `release_lock_verification`, `release_diff` | provisional-to-final checks (`docs/odin-delayed-update.md`) |
 | Promotion | `output_manifest` (with `odin_status`) | complete output set to `03_output_data/` |
-| Collection | `pip_collection`, `world_bank_inputs`, `sdg_collection`, `jmp_collection`, `unsdg_collection`, `manual_checkpoints`, `collection_status` | see section 5 |
 
 ## 2. Prerequisites
 
@@ -88,7 +91,32 @@ The pipeline mirrors the original Rmd structure as a sequence of targets:
   `jsonlite`, `readxl`, `stringr`, `tidyr`, `purrr`, `zoo`, `magrittr`,
   `here`, `dplyr`)
 
+### Fresh-clone inputs and repository-local temporary files
+
+The exact manual file `01_raw_data/1.5_DUIO/UN IGME 2025.csv` is ignored by
+Git because of its size. Obtain it separately; the expected checksum and
+history mapping are in the
+[IGME exclusion record](revisions/202611/git-history-file-exclusion-2026-10-25.md).
+Other IGME vintages remain tracked. Recovered historical runs and bulk probes
+under `replication/` are local-only; the designated review CSVs and evidence
+are versioned. A fresh clone does not contain every path mentioned in a
+historical handover.
+
+Before starting R/Rscript, set temporary directories from the project root:
+
+```sh
+mkdir -p replication/.scratch
+export TMPDIR="$PWD/replication/.scratch"
+export TMP="$TMPDIR"
+export TEMP="$TMPDIR"
+```
+
+Setting `TMPDIR` after R has started does not relocate that R session's
+already-initialized `tempdir()`. The sandbox tools also set their children's
+temporary directories and reject output locations outside the repository.
+
 ## 3. How to Run the Pipelines
+
 
 From R, in the project root, run collection first:
 
@@ -105,6 +133,11 @@ Review the generated reports:
 read.csv("01_raw_data/_collection/collection_status.csv")
 file.edit("01_raw_data/_collection/collection_status.md")
 ```
+
+Check `collection_run.json` as well as the report: it must be `complete`,
+name the same run and parameters as the report, and contain matching report
+and self-hashes. A completed run can still have blocking rows. Do not hand-edit
+these artifacts; resolve the source issues and rerun collection.
 
 Resolve every `blocking` item before running estimation. Manual source files
 (registry rule `manual_attestation`, for example IGME, ILO and the IMF
@@ -140,7 +173,9 @@ targets::tar_make(
 
 ### 202611 run order
 
-1. Run the full test suite (`testthat::test_dir("tests/testthat")`).
+1. Run relevant development checks and plan strict vintage validation as
+   described in section 7. Missing release manifests cause strict comparisons
+   to fail; an explicit porting run with skipped comparisons is not a release gate.
 2. Run collection (`_targets_data.R`).
 3. Refresh the D4.1 catalogue on the World Bank network (see "Catalogue
    refresh" in section 4.4) and rerun collection.
@@ -159,13 +194,15 @@ targets::tar_make(
    Group.
 9. Confirm that `03_output_data/PROVISIONAL_ODIN.md` is present before
    circulating the outputs internally.
-10. After approval, write the release lock (`write_release_lock()`); in
-    December replace ODIN and rerun as described in
+10. After provisional approval, write the release lock (`write_release_lock()`).
+    When the approved official ODIN release is available, install its release
+    record and rerun as described in
     `docs/odin-delayed-update.md`.
-11. After the final (official ODIN) release, copy the published
-    `03_output_data/SPI_data.csv` and `SPI_index.csv` to
+11. After final approval, preserve the published indicator and index files as
     `01_raw_data/previous_vintages/SPI_data_2025.csv` and
-    `SPI_index_2025.csv`; the next vintage compares against them.
+    `SPI_index_2025.csv`. Prepare the reviewed baseline manifest and its
+    hashes before configuring the next vintage; copying files alone does not
+    satisfy the baseline integrity check.
 
 The E6 country-matching evidence is generated with
 `Rscript docs/revisions/202611/e6_country_matching_impact.R` for both the
@@ -196,7 +233,13 @@ empty by the pipeline) with the columns `indicator`, `iso3c`, `date`,
 every row needs a reason and an approver. The report lists approvals that
 match no change.
 
+The prior indicator/index paths are verified against
+`01_raw_data/previous_vintages/manifest.json`, which records approval metadata
+and file hashes. Editing a previous-vintage file or changing its pointer is
+not a substitute for a reviewed baseline update.
+
 ### Revision evidence for the Working Group
+
 
 After the vintage diff, the `revision_report` target writes four files next
 to the outputs (promoted with them):
@@ -223,19 +266,36 @@ include reference year 2025 and provisional ODIN data. See
 `replication/README.md` for artifact locations and instructions that keep
 temporary files inside the repository.
 
-For the earlier final sandbox preview's evidence, run:
+For a deliberately regenerated new preview, first run
+`tests/replication/preview_estimation.R --out replication/spi-rep/preview-next`,
+then check attribution against that exact run:
 
 ```sh
-Rscript docs/revisions/202611/attribute_revisions.R --current replication/spi-rep/preview-final
+Rscript docs/revisions/202611/attribute_revisions.R \
+  --current replication/spi-rep/preview-next
+```
+
+Do not assume newer code can reproduce a retained older preview: a mismatch
+is diagnostic evidence to investigate. The current retained E6 comparison can
+be reproduced from its matched pair of local snapshots:
+
+```sh
 Rscript docs/revisions/202611/e6_country_matching_impact.R \
-  --before replication/spi-rep/preview-pre-e6 \
-  --after replication/spi-rep/preview-final \
+  --before replication/spi-rep/preview-legacy-e6-p0p1 \
+  --after replication/spi-rep/preview-p0p1 \
   --label 202611
 Rscript docs/revisions/202611/e6_country_matching_impact.R \
   --before replication/spi-rep/step16b \
   --after replication/spi-rep/step-e6-final \
   --label 2024_replication
 ```
+
+The before snapshots and full Databank outputs are local archives, not all
+versioned review files. Restore/rebuild the appropriate inputs first on a
+fresh clone. These commands overwrite generated evidence; run them only as
+part of a deliberate evidence refresh. The executable raw baseline is
+`25b534706ff6`; old commit IDs in historical records are explained by the
+[history map](revisions/202611/git-history-file-exclusion-2026-10-25.md).
 
 ### Review workbooks and candidates
 
@@ -402,23 +462,27 @@ inputs; they do not introduce additional SPI indicators.
 #### 1.5.2 Child mortality (UN IGME)
 
 - **Source**: <https://childmortality.org>
-- **File**: `01_raw_data/1.5_DUIO/UN IGME 2025.csv`
+- **File**: `01_raw_data/1.5_DUIO/UN IGME 2025.csv` (local-only; obtain
+  separately after cloning, as described in section 2)
 - **Choose the detailed metadata CSV**, not a country-rates workbook,
   report-only spreadsheet, or a summary table. The filename above is the
   filename expected by the pipeline; rename the downloaded file only after
   verifying that its contents match the checklist below.
 - **Required columns** (exact raw names, including spaces and capitalization):
-  `Indicator`, `Sex`, `Observation Status`, `Series Year`, `REF_DATE`,
-  `Geographic area`, and `OBS_VALUE`. The file may contain additional UN IGME
+  `REF_AREA`, `Indicator`, `Sex`, `Wealth Quintile`, `Observation Status`,
+  `Series Year`, `Geographic area`, `OBS_VALUE`, and either `REF_DATE` or
+  `TIME_PERIOD`. The file may contain additional UN IGME
   metadata columns; do not delete them before running the pipeline.
 - **Required records**: the file must contain rows where
-  `Indicator == "Under-five mortality rate"`, `Sex == "Total"`, and
-  `Observation Status == "Included in IGME"`. The reader uses the first four
-  characters of `Series Year` and `REF_DATE` as years, so both fields must
-  contain year-like values. `OBS_VALUE` must be numeric.
-- **Country matching**: `Geographic area` is joined to the `country` column in
-  `01_raw_data/metadata/iso_codes.csv`; retain the published country names.
-  Côte d'Ivoire is handled by an explicit `CIV` mapping in the code.
+  `Indicator == "Under-five mortality rate"`, `Sex == "Total"`,
+  `Wealth Quintile == "Total"`, `Observation Status == "Included in IGME"`,
+  and nonmissing `OBS_VALUE`. The reader uses the first four characters of
+  `Series Year` and the selected date column as years. `OBS_VALUE` must be
+  numeric. The dated review's observation-unit/methodology decision remains
+  separate from this description of the current implemented filter.
+- **Country matching**: the reader uses `REF_AREA`, including the explicit
+  `RKS` to `XKX` alias. Unknown codes stop the run; preserve source names for
+  provenance rather than renaming them to make a name join succeed.
 - **Update**: Download the current UNICEF CME file with the wealth-quintile
   metadata, verify the columns and record values above, save it under the
   expected filename, and rerun collection. The checkpoint stops with a schema
@@ -473,14 +537,18 @@ inputs; they do not introduce additional SPI indicators.
   download timestamp.
 - **Update**: Download from
   <https://www.ilo.org/shinyapps/bulkexplorer2/>. Filter sex = Total,
-  classif1 = Age (Youth, adults): 15+. Update the filename in BOTH
-  `R/dim1_5.R` (`read_ilo_lfp()`) and `R/pull_ilo.R`
-  (`checkpoint_ilo_lfp()`). CSV exports with the same columns remain supported.
+  classif1 = Age (Youth, adults): 15+. Update `ilo_modelled_file` and
+  `ilo_survey_file` in `config/params.R`; readers and checkpoints consume
+  those parameters. CSV exports with the same columns remain supported.
 - **Required columns in both files**: `sex.label`, `classif1.label`,
   `ref_area.label`, `time`, and `obs_value`. Select `sex.label = Total` and
   `classif1.label = Age (Youth, adults): 15+`. The 2WAP file must be the
   `ILO - Modelled Estimates` source; the DWAP file is the survey-source file
   and its `source.label` values identify records such as `LFS - ...`.
+- **Scoring checks**: reviewed area names map through the ILO crosswalk and
+  exclusion files. The accuracy component requires at least one valid
+  reported/modelled comparison and a mean absolute gap of at most 10
+  percentage points; a missing modelled comparator does not earn credit.
 
 #### 2.1 SDDS
 
@@ -814,9 +882,12 @@ The original Rmd sequence (01 → 02 → 03) maps to the pipeline targets:
 | 6. `misc_scripts/databank.R` | `databank` | `03_output_data/SPI_databank_*.csv` |
 | 7. `misc_scripts/` (ASPIRE) | `spl_admin` | `03_output_data/SPL_admin_data_availability.csv` |
 
-After collection passes its status gate, run estimation and review the final
-outputs in `03_output_data/`. The estimation target refuses to proceed while
-blocking collection issues remain.
+Each writer first produces the corresponding filename under
+`03_output_data/.candidate/`. The table shows its eventual promoted location.
+Collection, vintage-history, release-diff, and complete-output checks must pass
+before promotion to `03_output_data/`. See the
+[architecture](pipeline-architecture.md#candidate-files-and-promotion).
+The root `staging/` folder is a legacy cache and is not this working folder.
 
 ## 5. Data Pulls and Manual Checkpoints
 
@@ -868,8 +939,10 @@ targets::tar_make(
 
 The source file format has changed (e.g. ILO renamed a column, ODIN changed
 its layout). The pipeline refuses to proceed because the estimates would be
-wrong. Investigate the source download, update the schema registry in
-`config/params.R` (or the checkpoint in `R/checkpoints.R`), and re-run.
+wrong. Investigate the source download and update the actual validated reader
+or checkpoint for a reviewed format change. Most `source_schema` entries in
+`config/params.R` document expectations; editing them alone does not change
+every source's inline validation. Re-run the relevant tests and collection.
 
 ### 6.3 An ILO or IGME country is missing from D1.5
 
@@ -908,36 +981,40 @@ for the exact column and row. Common causes:
 
 ### 6.6 renv is out of sync
 
-If you see "The project is out-of-sync", run:
+Run `renv::status()` to identify differences and `renv::restore()` when the
+intent is to return to the recorded environment. Do not run `renv::snapshot()`
+simply to dismiss a warning: it updates the environment contract and requires
+an intended dependency change. Local archived scripts can also affect implicit
+dependency discovery; they are not new pipeline requirements.
+
+### 6.7 Slow runs and targeted rebuilding
+
+Collection and estimation have separate stores. Network/cache tasks and the
+D4.1 catalogue refresh are often the expensive steps. `run_downloads` only
+controls the D4.1 catalogue refresh, not all collectors.
+
+The estimation graph tracks registry-resolved source files, country metadata,
+parameters, and a collection-content digest. After changing inputs, rerun
+collection and inspect the affected estimation targets:
 
 ```r
-renv::status()      # see what changed
-renv::snapshot()    # update the lockfile after adding packages
+targets::tar_outdated(script = "_targets.R", store = "_targets")
+targets::tar_manifest(script = "_targets.R")
 ```
 
-### 6.7 The pipeline is slow
-
-The pipeline uses incremental re-runs: `targets::tar_make()` only rebuilds
-targets whose inputs changed. The slow steps are the API pulls (JMP ~200
-requests) and the microdata library pull — run those explicitly when
-updating.
-
-### 6.7 Forcing a rebuild after changing `end_date`
-
-`targets` tracks file hashes, so changing `end_date` in `config/params.R`
-invalidates the `params` target and everything downstream. However, some
-targets read files whose names do NOT include the year (e.g.
-`D2.4.NADA.csv`, `D5.2.6.EMPL.csv`), so targets may not detect that the
-underlying data changed. To force a full rebuild:
+`tar_manifest()` lists target definitions/dependencies; it does not explain
+why every target is outdated. When an explicit rebuild is necessary,
+invalidate the relevant target rather than destroying the entire store:
 
 ```r
-targets::tar_destroy()   # delete all targets
-targets::tar_make()      # rebuild from scratch
+targets::tar_invalidate(names = "dim1_5", store = "_targets")
+targets::tar_make(script = "_targets.R", store = "_targets")
 ```
 
-This is the safest way to guarantee a clean run after a vintage change.
-Note that `tar_destroy()` also removes the staged outputs — re-run
-`targets::tar_make()` to regenerate them.
+A changed reference year should flow through parameter/file dependencies.
+Do not use `tar_destroy()` as routine update procedure or assume it removes
+all written artifacts. Preserve the stores and failed-run evidence until the
+cause of an invalidation or failure is understood.
 
 ### 6.8 Schema mismatch in a dimension source
 
@@ -971,7 +1048,7 @@ To see which targets are outdated (need rebuilding) and why:
 
 ```r
 targets::tar_outdated()     # names of outdated targets
-targets::tar_manifest()     # why each target is outdated
+targets::tar_manifest()     # target definitions and commands
 ```
 
 To inspect a specific target's value:
@@ -986,29 +1063,80 @@ target rebuilds when any of its dependencies (files or targets) changed.
 
 ## 7. Interpreting Test Results
 
-Run the full suite:
+Tests have different scopes. The fixture-comparison tests target the published
+202511 / reference-year 2024 outputs. They are not a requirement that a new
+2025 output set equal the older vintage in every row.
+
+### Focused development checks
+
+Run the relevant `test_file()` for changed behavior, for example:
 
 ```r
+testthat::test_file("tests/testthat/test-collection-status.R")
+testthat::test_file("tests/testthat/test-replication-runner.R")
+```
+
+If no valid comparison manifest/output set exists yet, an explicitly scoped
+development run can opt into missing-output skips:
+
+```sh
+SPI_COMPARISON_MODE=porting Rscript -e \
+  'testthat::test_dir("tests/testthat")'
+```
+
+This only permits the missing comparison-output paths handled by those tests;
+it does not suppress real failures. Record skips and warnings. A porting-mode
+success is not evidence that the release comparisons executed.
+
+### Strict vintage comparisons
+
+Without `SPI_COMPARISON_MODE=porting`, missing or incomplete manifests and
+required files fail. In a prepared 2024 comparison workspace:
+
+```r
+Sys.unsetenv("SPI_COMPARISON_MODE")
 testthat::test_dir("tests/testthat")
 ```
 
-The suite covers:
+For this repository's current 202611 work, use the isolated vintage harness
+so fixture comparisons run against a 2024 reconstruction rather than replacing
+the main 2025 outputs:
 
-| Test file | What it verifies |
-|-----------|------------------|
-| `test-compare.R` | The comparison harness (1e-9 relative tolerance) |
-| `test-fixtures.R` | Vintage fixture integrity + historical-output protection (C7) |
-| `test-stage-compare.R` | Staged outputs match the vintage fixtures (SPI_data, SPI_index, quantiles, treemap, databank, SPL admin) |
-| `test-validation.R` | `validate::validator()` expectation rules (min/max ranges, country/year coverage) |
-| `test-vintage-compare.R` | Vintage comparison + positive correlation checks |
-| `test-downloads.R` | Download/checkpoint targets (happy path + fail-loudly) |
+```sh
+Rscript tests/replication/run_replication.R \
+  --code worktree --vintage 2024 \
+  --out replication/spi-rep/replication-next \
+  --compare replication/spi-rep/step16b
+```
 
-**Reading the results**: `testthat` reports `X passed, Y failed, Z skipped`.
-A failure message names the test file, the test, and the exact difference
-(column, row, new vs vintage value). Fix the underlying cause (section 6.4)
-and re-run.
+`step16b` is a retained local post-E5 reference. It is not supplied by a fresh
+clone; restore the appropriate reference or deliberately rebuild the baseline
+with `--code 25b534706ff6` into a new directory and document its scope.
+The baseline itself can have the accepted historical X1 differences. The
+runner exits nonzero on failures, errors, comparison differences, or skips
+without an explicit exception. `--allow-skips` accepts skips only; it does not
+approve failures. Diagnose the result and record the applicable exception.
 
-**The replication gate**: the stage-compare and vintage-compare tests are
-the gate. They compare only the reproducible value columns — WB-drift
-metadata, jitter columns, and databank aggregate rows are documented
-exceptions (see the execution report).
+### Contracts and acceptance evidence
+
+| Tests | Scope |
+|---|---|
+| `test-source-registry.R`, `test-collection-*.R` | Source registration, cache/provenance, source acceptance, and run integrity |
+| `test-dim4-collection.R`, `test-d41-catalogue-prefetch.R`, `test-review-candidates.R` | Workbooks, review merge/years, catalogue refresh/cache, and review queues |
+| `test-nada-collection.R`, `test-gsbp-collection.R`, `test-d5-2-collection.R` | Annual builders and review contracts |
+| `test-scoring.R`, `test-dim3.R`, collector parity tests | Indicator behavior and specific legacy-port comparisons |
+| `test-output-manifest.R`, `test-output-writers.R` | Schema/key coverage, complete output sets, and write/promotion safeguards |
+| `test-vintage-diff.R`, `test-revision-report.R` | History policy, approvals, and generated revision evidence |
+| `test-release-lock.R`, `test-release-diff.R` | Locked sources/control identities and allowed ODIN transition effects |
+| `test-stage-compare.R`, `test-vintage-compare.R`, `test-fixtures.R` | Vintage values and immutable fixture integrity |
+| `test-pipeline-contract.R`, `test-replication-runner.R` | Dependency/entry-point contracts and runner exit status |
+
+Comparisons use the documented tolerances and E1–E6 exception scope in
+[CHANGELOG](CHANGELOG.md). Metadata/population drift, jitter, aggregate rows,
+and historical IMF/D4.1 limitations have separate treatment. The retained
+2024 differential run has 13 accepted X1 failures; that historical count is
+not permission to ignore a new failure or proof that current code passes.
+
+For release, retain the exact test command, code revision, source identities,
+run ID, output manifest, vintage diff/approvals, release diff, and approver.
+Check the current [status page](update-status-202611.md) for unfinished work.

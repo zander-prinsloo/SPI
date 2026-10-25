@@ -117,14 +117,14 @@ aggregate_databank <- function(databank_df, class_df) {
 #'
 #' NOTE: the original script reads SPI_index.csv from disk
 #' (`read_csv(paste(output_dir, '/SPI_index.csv', sep=""))`). We mirror
-#' that CSV round-trip by reading the staged SPI_index.csv, because the
+#' that CSV round-trip by reading the candidate SPI_index.csv, because the
 #' round-trip changes binary representations at the 15th significant digit
 #' and this flips boundary rounding in the aggregate means. Reading the CSV
 #' is required for exact replication.
 #'
 #' @param spi_index The index data frame from build_index(). Retained only
 #'   to create the targets dependency (the index target must run first so
-#'   staging/SPI_index.csv exists); the values come from the staged CSV.
+#'   candidate SPI_index.csv exists); values come from that written CSV.
 #' @param spi_data  The final SPI data frame (for RAW footnotes).
 #' @param params    List of pipeline parameters.
 #' @return A tibble with iso3c, country, date, source_id, source_name, N,
@@ -144,7 +144,7 @@ build_databank <- function(spi_index, spi_data, params) {
   class_df <- read_classifications(params)
 
   # --- Footnotes from RAW data ----------------------------------------------
-  # NOTE: read the staged SPI_data.csv (deduplicated by save_spi) rather
+  # NOTE: read the candidate SPI_data.csv (deduplicated by save_spi) rather
   # than the in-memory spi_data target, which may contain duplicate rows
   # from the append joins. The original script reads SPI_data.csv from
   # disk, so this mirrors the CSV round-trip.
@@ -196,7 +196,7 @@ build_databank <- function(spi_index, spi_data, params) {
 
 #' Save the databank outputs
 #'
-#' Writes the four databank files to the staging directory (constraint C7).
+#' Writes the four Databank files to the candidate directory before validation.
 #'
 #' @param databank_df The databank data frame from build_databank().
 #' @param params      List of pipeline parameters.

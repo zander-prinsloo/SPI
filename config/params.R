@@ -5,7 +5,8 @@
 # The technical lead edits THIS file when running a new SPI update.
 #
 # These parameters mirror the "set-parameters" chunk in the original
-# 01-SPI_data_prep.Rmd so that the new pipeline produces identical results.
+# 01-SPI_data_prep.Rmd, with the documented corrections/exceptions in
+# docs/CHANGELOG.md and current readiness in docs/update-status-202611.md.
 #
 # Created: 2026-09-21
 # =============================================================================
@@ -19,8 +20,10 @@ end_date <- 2025
 
 # odin_status marks whether ODIN_<end_date>.csv is the official ODIN release.
 # For 202611 it is "provisional" (the 2024 ODIN data duplicated as 2025)
-# until the official release (expected 7 December 2026); then replace the
-# file, set "official", and rerun estimation. A provisional run writes
+# until an approved official release is supplied. Earlier plans anticipated
+# 7 December 2026; actual source/release approval determines readiness. Follow
+# docs/odin-delayed-update.md for the required ODIN_release.json record and
+# annual-file hash contract before setting "official". A provisional run writes
 # 03_output_data/PROVISIONAL_ODIN.md; an official run removes it.
 odin_status <- "provisional"
 
@@ -128,6 +131,10 @@ ilo_area_exclusions_file <- here::here("config", "ilo_area_exclusions.csv")
 # The country metadata snapshot is collected before estimation. `load_params()`
 # hydrates this field from the collection artifact when it exists.
 country_metadata <- NULL
+
+# The exact UN IGME 2025.csv is local-only and Git-ignored. Fresh clones must
+# obtain it separately; see docs/revisions/202611/
+# git-history-file-exclusion-2026-10-25.md. Other IGME vintages remain tracked.
 
 # --- Source schema registry --------------------------------------------------
 # (Phase 2) Expected column names/types per source file. The pipeline

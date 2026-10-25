@@ -5,47 +5,48 @@
 
 - **Audience**: SPI Working Group (technical specialists)
 - **Release**: 202611, reference year 2025 (years 2004-2025)
-- **Status**: draft. The figures come from a preview estimation run in a
-  sandbox on 24 October 2026, after the D4.1 catalogue refresh and before the
-  reviewers' workbooks, the technical lead's source attestations and the
-  official ODIN 2025 release (7 December 2026). They will be updated from the
-  final estimation (`revision_summary_2025.md` and
-  `docs/revisions/202611/`).
+- **Status**: internal draft, reconciled on 25 October 2026 with the retained
+  24 October `replication/spi-rep/preview-p0p1/` outputs and matching evidence
+  in `docs/revisions/202611/preview/`. This snapshot precedes completed manual
+  reviews, source attestations, and official ODIN. It does not certify the
+  latest code or normal production gates. The current operational state is
+  documented in [202611 status](../update-status-202611.md).
 - **Previous release**: 202511 (reference year 2024),
   `01_raw_data/previous_vintages/SPI_data_2024.csv` and
   `SPI_index_2024.csv`.
 
 ## 1. Summary
 
-The 202611 preview re-estimates the SPI through reference year 2025 using the
-approved refresh policy. Before the technical-lead attestations, reviewer
-workbooks, and the official ODIN release, it reports **845 historical changes
-in refreshed dimensions** (D1.5: 478; D4.1: 362; D4.2: 5) and one frozen
-historical change awaiting approval: Colombia's D5.5 DIFI value in 2024
-changes from 0 to 1. D5.5 has zero weight in the index, so this pending
-decision does not change the overall SPI score, but publication remains
-blocked by the frozen-history rule.
+The retained preliminary 202611 estimate covers reference years 2004–2025.
+Compared with the published 202511 indicator history, it records **1,073
+historical changes in refreshed dimensions** (D1.5: 706; D4.1: 362; D4.2: 5)
+and **41 frozen-history changes awaiting decisions**: 40 new Andorra values
+in D2.2/D4.3 for 2017–2021 and Colombia's D5.5 value in 2024 changing from
+0 to 1. All must be explicitly approved or resolved before normal promotion.
+D5.5 has zero index weight; this does not waive the history-approval rule.
 
-The largest methodological correction is E6, which restores D1.5 values
-silently lost by name-based country joins. Relative to the pre-E6 202611
-preview, E6 restores 251 indicator cells (66 child-mortality and 185
-labour-force cells) across 14 economies. Relative to the published 202511
-history, the 2024 replication restores 157 D1.5 cells (63 child-mortality
-and 94 labour-force cells) and changes the overall score for five economies
-in the latest rankable year. The detailed country, rank, quintile, and
-aggregate effects are in `docs/revisions/202611/e6/`.
+For 2024, 188 economies have comparable overall scores and 98 scores change.
+The mean absolute change is 0.95 points, the maximum is 8.00 points, with
+159 rank changes and 16 quintile changes. Türkiye rises from 79.3 to 87.3,
+from the fourth quintile to the top quintile. See the generated summary for
+full definitions and all-year comparisons.
 
-For 2024, the revised overall SPI is available for 188 economies: 94 scores
-change, with mean absolute change 0.90 points and a maximum change of 8.00
-points. There are 158 rank changes and 16 quintile changes. Türkiye has the
-largest increase, from 79.3 to 87.3, and moves from the fourth quintile to
-the top quintile.
+The matched E6 country-identification comparison changes 233 indicator cells
+(66 child mortality, 167 LFP) across 12 economies in the 202611 snapshot.
+The separate 2024 reconstruction comparison contains 157 E6 indicator cells
+and must be interpreted within its documented replication exceptions.
+These comparisons answer different questions and cannot be added together.
 
-The 2025 reference-year outputs are complete except for the provisional ODIN
-columns, which are marked provisional and use the toy ODIN file until
-7 December 2026. The final release still requires the 17 manual attestations,
-the reviewer workbooks, the Working Group decisions in section 7, and the
-release lock.
+The source report still lists 17 missing attestations and a GSBP warning,
+but it predates the latest run marker, which remains `started`. Source
+reviews, the current collection gate, methodology decisions, normal
+estimation, and final ODIN/release checks remain outstanding. The retained
+preview is complete as a preliminary output set, not approved for release.
+
+Older narrative figures of 845 refreshed changes, one frozen change, and
+251 E6 preview cells belong to an earlier run. This report uses the retained
+`preview-p0p1` evidence instead. No new estimates were computed for this
+prose reconciliation.
 
 ## 2. Revision policy
 
@@ -69,53 +70,53 @@ without a recorded approval (indicator, country, year, reason, approver).
 D5.1 and D5.5 keep the legacy full-series download, so their history can
 change when the UN revises it; each such change needs the same approval.
 
-## 3. Revisions to published values, 2004-2024
+## 3. Revisions to published values, 2004–2024
 
-The revision policy re-estimates D1.5, D4.1, and D4.2 history when their
-source producers or inputs change. The frozen dimensions remain unchanged
-except for the pending D5.5 decision.
+The refresh-policy dimensions are recomputed from the designated sources.
+Frozen-history additions are also revisions: Andorra's previously missing
+values are not exempt from approval because they are new observations.
 
 | Dimension | Changed cells | Economies | Up | Down | New | Years |
 |---|---:|---:|---:|---:|---:|---|
-| D1.5 Data use by international organizations | 478 | 123 | 313 | 165 | 0 | 2004-2024 |
-| D4.1 Censuses and surveys | 362 | 78 | 231 | 110 | 21 | 2004-2024 |
-| D4.2 Civil registration and vital statistics | 5 | 3 | 4 | 1 | 0 | 2015-2024 |
-| D5.5 Statistical plan fully funded | 1 | 1 | 1 | 0 | 0 | 2024 |
+| D1.5 Data use by international organizations | 706 | 121 | 248 | 458 | 0 | 2004–2024 |
+| D4.1 Censuses and surveys | 362 | 78 | 231 | 110 | 21 | 2004–2024 |
+| D4.2 Civil registration | 5 | 3 | 4 | 1 | 0 | 2015–2024 |
+| D2.2 ODIN openness, Andorra | 30 | 1 | 0 | 0 | 30 | 2017–2021 |
+| D4.3 ODIN geospatial, Andorra | 10 | 1 | 0 | 0 | 10 | 2017–2021 |
+| D5.5 Fully funded statistical plan, Colombia | 1 | 1 | 1 | 0 | 0 | 2024–2024 |
 
-Within D1.5, the changes are: child mortality 182 cells, labour force
-participation 239, poverty comparability 39, and safely managed water 18.
-Within D4.1, the largest changes are health surveys (197 cells), business
-surveys (95), household surveys (29), labour-force surveys (25), agricultural
-surveys (15), and agricultural censuses (1). The complete cell-level record,
-including previous value, revised value, policy and approval status, is
-`preview/vintage_diff_2025.csv`.
+D1.5 comprises 122 child-mortality revisions, 527 labour-force revisions,
+39 poverty-comparability revisions, and 18 safely-managed-water revisions.
+D4.1 comprises 197 health, 95 business, 29 household, 25 labour-force,
+15 agricultural-survey, and one agricultural-census revision.
+The complete cell-level record is [the vintage diff](202611/preview/vintage_diff_2025.csv).
 
-The largest 2024 overall-score changes are:
+The largest 2024 overall-score changes in the generated table begin with:
 
-| Economy | Previous | Revised | Change | Rank movement | Quintile movement |
-|---|---:|---:|---:|---|---|
-| Türkiye | 79.3 | 87.3 | +8.0 | 68 to 33 | 4th to top |
-| Uganda | 68.7 | 75.0 | +6.3 | 96 to 82 | no change |
-| Congo, Dem. Rep. | 46.3 | 51.9 | +5.7 | 169 to 161 | no change |
-| Côte d’Ivoire | 70.2 | 74.9 | +4.7 | 93 to 83 | no change |
-| Indonesia | 82.3 | 78.0 | -4.3 | 53 to 74 | no change |
+| Country | ISO3 | Previous | Revised | Change | Rank | Quintile |
+|---|---|---|---|---|---|---|
+| Turkiye | TUR | 79.3 | 87.3 | 8.0 | 68 to 33 | 4th Quintile to Top Quintile |
+| Uganda | UGA | 68.7 | 75.0 | 6.3 | 96 to 81 | 3rd Quintile |
+| Seychelles | SYC | 64.5 | 58.9 | -5.7 | 112 to 139 | 3rd Quintile to 2nd Quintile |
+| Congo, Dem. Rep. | COD | 46.3 | 51.9 | 5.7 | 169 to 161 | Bottom 20% |
+| Cote d'Ivoire | CIV | 70.2 | 74.9 | 4.7 | 93 to 82 | 3rd Quintile |
 
 ## 4. Effect on the overall SPI score and pillars
 
-| Measure | Economies compared | Revised | Mean absolute change | Maximum absolute change | Rank changes |
-|---|---:|---:|---:|---:|---:|
-| Overall SPI | 188 | 94 | 0.90 | 8.00 | 158 |
-| Pillar 1 | 217 | 52 | 3.96 | 40.00 | 156 |
-| Pillar 2 | 190 | 0 | 0.00 | 0.00 | 0 |
-| Pillar 3 | 215 | 0 | 0.00 | 0.00 | 0 |
-| Pillar 4 | 189 | 66 | 0.80 | 12.50 | 132 |
-| Pillar 5 | 191 | 0 | 0.00 | 0.00 | 0 |
+| Measure | Countries compared | Revised | Added | Dropped | Mean abs change | Max abs change | Rank changes |
+|---|---|---|---|---|---|---|---|
+| SPI.INDEX | 188 | 98 | 0 | 0 | 0.95 | 8.00 | 159 |
+| SPI.INDEX.PIL1 | 217 | 58 | 0 | 0 | 4.24 | 40.00 | 160 |
+| SPI.INDEX.PIL2 | 190 | 0 | 0 | 0 | 0.00 | 0.00 | 0 |
+| SPI.INDEX.PIL3 | 215 | 0 | 0 | 0 | 0.00 | 0.00 | 0 |
+| SPI.INDEX.PIL4 | 189 | 66 | 0 | 0 | 0.80 | 12.50 | 132 |
+| SPI.INDEX.PIL5 | 191 | 0 | 0 | 0 | 0.00 | 0.00 | 0 |
 
-The pillar-1 effect is driven by D1.5 updates, including E4, E6, source
-updates, and the new reference-year windows. Pillar 4 changes reflect D4.1
-and D4.2 refreshes. No pillar-2, pillar-3, or pillar-5 index history changes
-are reported in the preview; the one D5.5 indicator change is excluded from
-the index by its zero weight.
+This table is specifically the **2024** comparison. Pillar 1 reflects D1.5
+source/window and implementation changes; Pillar 4 reflects D4.1/D4.2.
+The Andorra frozen additions affect earlier years and should not be inferred
+to have no effect from a table limited to 2024. Colombia's D5.5 change has
+zero overall-index weight but remains subject to the historical-data rule.
 
 ## 5. Reference year 2025: how each indicator was produced
 
@@ -140,19 +141,30 @@ The main results are:
 
 The 2025 values should not be treated as final until the manual review
 workbooks and source attestations are complete. ODIN-dependent values remain
-provisional until the official December file is installed.
+provisional until the approved official file and release record are installed.
 
 ## 6. Changes to methods and processes
 
-No scoring rule changed in 202611. The changes below fall into four groups.
+The preview includes documented legacy corrections, source refreshes, and
+validation changes. These can change estimates; they are not an unconditional
+legacy-parity claim. Methodology acceptance and source approval remain
+separate from implementation and are not established by this draft.
 
 ### 6.1 Corrections that change published values
 
 | Change | Description | Effect on 2004-2024 |
 |---|---|---|
-| E4: labour force window | The legacy condition `else if (end_date - 1)` was always true, so the "five-year" window used for 2010-2022 covered six years. The pipeline applies the intended five years (approved September 2026, at the port of the legacy code). 202611 is the first release to publish it. | 194 attribution entries: 99 E4-only, 94 overlapping E6, and 1 overlapping a source update |
+| E4: labour force window | The legacy condition `else if (end_date - 1)` was always true, so the "five-year" window used for 2010-2022 covered six years. The pipeline applies the intended five years (approved September 2026, at the port of the legacy code). 202611 is the first release to publish it. | 478 attribution entries carry an E4 label: 383 E4-only, 94 overlapping E6, and 1 overlapping a source update; these are the current attribution labels, not a new approval |
 | E5: catalogue country names | The catalogue evidence was joined to countries by name, using World Bank API names that differ from the catalogue's names for six economies (Cabo Verde, Czech Republic, Korea, Dem. People's Rep., Nauru, Tanzania and Yemen, Rep.), so their catalogue evidence was silently lost. Names are now normalized to CLASS.xlsx and joined by ISO3 code (approved by the technical lead on 24 October 2026, including Korea, Dem. People's Rep.). | 39 cells in the attribution; all are listed in the E5 exception fixture |
-| E6: D1.5 country matching | The IGME and ILO readers previously joined by exact country name and silently dropped unmatched economies, scoring them as zero. IGME now uses `REF_AREA` with `RKS` mapped to `XKX`; ILO uses the reviewed name crosswalk and exclusions. Unknown names and codes stop the run. | 157 historical D1.5 cells in the 2024 replication (63 child mortality, 94 LFP); 251 D1.5 cells restored in the 202611 preview relative to the pre-E6 current-input run (66 child mortality, 185 LFP) |
+| E6: D1.5 country matching | The IGME and ILO readers previously joined by exact country name and silently dropped unmatched economies, scoring them as zero. IGME now uses `REF_AREA` with `RKS` mapped to `XKX`; ILO uses the reviewed name crosswalk and exclusions. Unknown names and codes stop the run. | 157 historical D1.5 cells in the 2024 replication (63 child mortality, 94 LFP); 233 D1.5 cells changed in the matched 202611 comparison (66 child mortality, 167 LFP) |
+
+The current LFP accuracy component requires at least one valid
+reported/modelled pair and a mean absolute gap no greater than 10 percentage
+points. Missing comparators do not earn accuracy credit. The retained
+attribution labels group effects according to the existing step definitions;
+the E4-labelled count above is not a separate impact estimate for this
+accuracy safeguard. Reconcile scorer changes and attribution scope before
+final methodological sign-off.
 
 #### E6 impact on country scores and aggregates
 
@@ -163,7 +175,7 @@ economies whose names changed in the 2026 ILO files.
 | Comparison | Indicator cells | Economies with indicator changes | Corrected-index rows | Overall-score economy-years | Other rank side effects | Quintile changes | Aggregate values |
 |---|---:|---:|---:|---:|---:|---:|---:|
 | 2024 replication, historical correction | 157 | 8 (3 child mortality, 7 LFP) | 128 | 41 across 5 economies | 510 | 15 | 2,069 |
-| 202611 preview, full current-input effect | 251 | 14 (3 child mortality, 13 LFP) | 219 | 95 across 11 economies | 935 | 28 | 2,814 |
+| 202611 matched preview comparison | 233 | 12 (3 child mortality, 11 LFP) | 201 | 88 across 9 economies | 915 | 29 | 2,697 |
 
 The maximum overall-score change is +8.0 points in both comparisons. In the
 2024 replication, Türkiye rises from 78.7 to 86.7 in the latest rankable
@@ -172,17 +184,17 @@ to 80.3, Côte d'Ivoire from 65.9 to 69.9, and Congo, Dem. Rep. from 47.1 to
 49.1. In the 202611 reference-year comparison, Türkiye rises from 79.4 to
 87.4, the Netherlands from 87.0 to 91.0, and Cabo Verde from 55.8 to 59.8.
 
-All 219 corrected-index rows in the 202611 comparison and all 128 in the
+All 201 corrected-index rows in the 202611 comparison and all 128 in the
 2024 comparison affect Pillar 1. The largest Pillar 1 change is 40 points,
 from 20 to 60, for Türkiye in affected years. The remaining rank and
 quintile changes are distributional side effects on other economies, not
 additional indicator corrections.
 
-The 202611 comparison prevents 79 false downward LFP revisions that would
-otherwise appear when the 2026 ILO names for Bolivia, Cabo Verde, Iran,
-Micronesia, Nauru, and Venezuela fail the legacy exact-name join. The
-country-level cells, index effects, side effects, and aggregate effects are
-in the following evidence files:
+The 202611 comparison includes the effect of matching renamed ILO economies
+in the current source files. Use the matched before/after snapshots and the
+233-cell table for this effect; an older pre-E6 run is not an interchangeable
+comparison baseline. Country cells, index effects, side effects, and aggregates
+are in the following evidence files:
 
 - `e6_202611_indicator_cells.csv` and `e6_2024_replication_indicator_cells.csv`;
 - `e6_202611_index.csv` and `e6_2024_replication_index.csv`;
@@ -201,7 +213,7 @@ in the following evidence files:
 | D4.2 CRVS, D5.1, D5.5 | UN SDG database (202511 pull) | UN SDG database, October 2026 (DataCSV endpoint, as in the script that produced the 202511 files) |
 | D3 (2025 only) | n.a. | UN SDG database (352 Tier 1 series) and OECD SDG data, October 2026, scored with a port of the legacy method |
 
-### 6.3 Production changes (no effect on values)
+### 6.3 Production controls and aggregate handling
 
 - **Collection gate**: manual files need a hash-bound attestation by the
   technical lead; collected files carry a release identifier and retrieval
@@ -218,11 +230,14 @@ in the following evidence files:
   sorting members by ISO3 code. This prevents a country reorder from changing
   an unrelated aggregate at a two-decimal floating-point boundary. Country
   values are unchanged; the earlier aggregate-order differences are covered
-  by the documented E3 exception.
-- **December ODIN update**: after approval, a release lock records the
-  hashes of every non-ODIN input; the December run stops if anything other
-  than ODIN changed, and a provisional-to-final comparison checks that only
-  ODIN-dependent outputs moved.
+  by the documented E3 exception. Current classification handling also removes
+  exact duplicate country/group memberships and rejects conflicting group
+  names. Those safeguards can affect aggregate counts/means and require
+  current-code evidence; they are not a claim that every aggregate is unchanged.
+- **Official ODIN update**: after provisional approval, a release lock records
+  non-ODIN artifacts, provenance/control identities, and approved outputs.
+  The transition validates the approved source release record and compares
+  outputs with the archive. See the ODIN guide for the annual-file restriction.
 
 ### 6.4 Legacy behaviour kept and reported
 
@@ -241,10 +256,10 @@ in the following evidence files:
   used, so no recorded labour force survey is lost; the other two sources
   (World Bank microdata library and the ILO national sources catalogue)
   continue to add new surveys.
-- **Child mortality (D1.5)**: the legacy scorer counts every IGME
-  observation row, including rows broken down by time since first birth;
-  in the current database these rows decide 37 country-years of 2004-2016,
-  35 of which equal the published values.
+- **Child mortality (D1.5)**: current code filters to Total wealth, both
+  sexes, included under-five mortality observations and nonmissing values.
+  The dated review still records the observation-unit/methodology decision
+  as open; the presence of a filter is not Working Group approval.
 - **Safely managed water (D1.5)**: the legacy reader treats areas without
   JMP data as fully covered and reads national columns with an outdated
   suffix; both are kept for 202611 and documented in
@@ -258,7 +273,10 @@ in the following evidence files:
 
 ## 7. Decisions requested from the Working Group
 
-1. **Colombia, D5.5 (statistical plan fully funded), 2024.** The UN SDG
+1. **Frozen-history revisions: Andorra and Colombia.** The Andorra mapping
+   from the legacy ODIN code adds 30 D2.2 and 10 D4.3 values in 2017–2021.
+   Review and approve those additions explicitly or retain approved history.
+   **Colombia, D5.5 (statistical plan fully funded), 2024:** The UN SDG
    database now reports 1 for 2024 (0 in the 202511 release); 2022, 2023 and
    2025 are 1. D5 history is frozen, so the change is published only if it
    is approved. Options: approve the revision, or keep the published 0.
@@ -297,11 +315,12 @@ in the following evidence files:
 2. The technical lead checks the evidence and attests the manual sources.
 3. Collection and estimation are rerun; this report is updated from the
    final `revision_summary_2025.md` and `docs/revisions/202611/`.
-4. The Working Group decides on section 7 (item 1 is needed before the
-   outputs can be published).
-5. After approval, the release lock is written; the official ODIN 2025 file
-   (7 December 2026) replaces the provisional copy, and only ODIN-dependent
-   outputs may change.
+4. The Working Group decides on section 7; all 41 frozen cells in item 1
+   require an explicit decision or resolution before promotion.
+5. After provisional approval, create the real release lock. Install the
+   approved official ODIN files and `ODIN_release.json`, then follow the
+   [ODIN guide](../odin-delayed-update.md), including its current annual-file
+   hash restriction and output allowed-change checks.
 
 ## Annex A. Evidence and how to reproduce it
 
@@ -315,10 +334,12 @@ in the following evidence files:
 | Retired ILO Survey Catalog | `01_raw_data/4.1_SOCS/retired/ilo_survey_catalog_final_2026-10-20.csv` and its `.provenance.json` |
 | Review candidates sent to reviewers | `01_raw_data/_collection/review_candidates_2025.csv`; earlier lists in `review_candidates_history/` |
 
-To reproduce the attribution (repository root, R environment restored with
-`renv::restore()`):
+To check attribution against a deliberately regenerated `preview-next`
+(repository root, recorded environment restored, temporary variables set as
+in the [artifact guide](../../replication/README.md)):
 
 ```sh
-Rscript docs/revisions/202611/attribute_revisions.R --current <folder with SPI_data.csv>
+Rscript docs/revisions/202611/attribute_revisions.R \
+  --current replication/spi-rep/preview-next
 Rscript docs/revisions/202611/agriculture_catalogue_evidence.R
 ```
