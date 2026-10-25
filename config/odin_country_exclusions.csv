@@ -1,0 +1,4 @@
+iso3c,country,category,reason
+AIA,Anguilla,outside_country_universe,ODIN territory absent from the canonical World Bank country snapshot
+COK,Cook Islands,outside_country_universe,ODIN territory absent from the canonical World Bank country snapshot
+TWN,Taiwan,outside_country_universe,ODIN economy absent from the canonical World Bank country snapshot
