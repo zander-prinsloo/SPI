@@ -35,3 +35,34 @@ test_that("source registry covers all SPI dimensions", {
   registry <- load_source_registry(registry_path)
   expect_setequal(unique(registry$dimension_id), expected_dimensions)
 })
+
+# --- 202611 readiness plan, Steps 5-6 ----------------------------------------
+
+test_that("the registry uses only supported vintage rules", {
+  registry <- load_source_registry(registry_path)
+  expect_true(all(registry$expected_vintage_rule %in% c(
+    "not_measured", "end_date", "end_date_plus_one",
+    "manual_attestation", "release_identifier"
+  )))
+
+  retired <- registry[1, , drop = FALSE]
+  retired$expected_vintage_rule <- "latest_release"
+  expect_error(validate_source_registry(retired), "UNSUPPORTED EXPECTED VINTAGE RULE")
+})
+
+test_that("configured source files are referenced through parameter placeholders", {
+  registry <- load_source_registry(registry_path)
+  path_of <- function(id) registry$normalized_path[registry$source_id == id]
+  expect_equal(path_of("d1_5_ilo"), "1.5_DUIO/<ILO_MODELLED_FILE>|1.5_DUIO/<ILO_SURVEY_FILE>")
+  expect_equal(path_of("d1_5_igme"), "1.5_DUIO/<UNIGME_FILE>")
+  expect_equal(path_of("d5_2_imf_workbook"), "5.2_DISM/<IMF_FILE>")
+  expect_equal(path_of("d5_2_imf_workbook_2024"), "5.2_DISM/<IMF_FILE_2024>")
+})
+
+test_that("the CRVS source covers the birth and death registration series", {
+  registry <- load_source_registry(registry_path)
+  expect_equal(
+    registry$normalized_path[registry$source_id == "d4_2_crvs"],
+    "4.2_SOAD/SG_REG_BRTH90N.csv|4.2_SOAD/SG_REG_DETH75N.csv"
+  )
+})

@@ -3,20 +3,15 @@
 # =============================================================================
 # Several SPI sources have no reliable public API and must be downloaded
 # manually by the technical lead. For each, this file defines a CHECKPOINT
-# target that:
+# function that:
 #   1. Verifies the expected raw file is present in 01_raw_data/.
 #   2. Validates its schema (R8: fail loudly on format changes).
 #   3. Fails with clear download instructions if the file is missing.
 #
-# These checkpoints RUN BY DEFAULT: they are in the default target list, so
-# targets::tar_make() verifies every manual source and fails loudly (R8)
-# with download instructions if a file is missing or schema-invalid. Only
-# the API pulls (pull_jmp, pull_unsdg) are opt-in (run_downloads = TRUE).
-# The technical lead can also run a single checkpoint explicitly:
-#   targets::tar_make(checkpoint_odin)
-#   targets::tar_make(checkpoint_nada)
-#   targets::tar_make(checkpoint_microdata)
-#   targets::tar_make(checkpoint_unigme)
+# The collection target `manual_checkpoints` (run_collection_checkpoints() in
+# R/collection_checkpoints.R) runs the checks on every collection run:
+#   targets::tar_make(names = "manual_checkpoints",
+#                     script = "_targets_data.R", store = "_targets_data")
 #
 # Created: 2026-09-22
 # =============================================================================
@@ -55,36 +50,20 @@ verify_odin_data <- function(params) {
   }
 
   df <- readr::read_csv(file_path, show_col_types = FALSE)
-  # The ODIN file uses "Country Code" and "Year" (raw names); the pipeline
-  # applies as_tibble(.name_repair = "universal") which converts spaces to
-  # dots. Validate against the RAW names. The pipeline also reads the
-  # "Open Data Inventory" score columns (see R/dim2.R score_odin()).
-  required <- c("Country Code", "Year")
-  missing <- setdiff(required, names(df))
+  # The ODIN file uses raw names such as "Country Code"; the readers apply
+  # as_tibble(.name_repair = "universal"), which converts spaces to dots.
+  # Validate the repaired names against every column SPI.D2.2 and SPI.D4.3
+  # read (odin_required_columns in R/dim2.R), so a format change cannot
+  # silently zero the ODIN scores.
+  repaired <- names(tibble::as_tibble(df, .name_repair = "universal_quiet"))
+  missing <- setdiff(odin_required_columns, repaired)
   if (length(missing) > 0) {
     stop(
       sprintf(
         "ODIN SCHEMA MISMATCH in '%s':\n  Missing required column(s): %s\n  Found columns: %s\n\n",
-        basename(file_path), paste(missing, collapse = ", "), paste(names(df), collapse = ", ")
+        basename(file_path), paste(missing, collapse = ", "), paste(repaired, collapse = ", ")
       ),
       "The ODIN download format has changed. Investigate before proceeding.",
-      call. = FALSE
-    )
-  }
-
-  # The pipeline's score_odin() reads the "Openness subscore" column (raw
-  # name "Openness subscore" -> "Openness.subscore" after name repair).
-  # Fail loudly if it is missing so the checkpoint catches format changes
-  # that would silently zero the ODIN scores.
-  score_col <- "Openness subscore"
-  if (!(score_col %in% names(df))) {
-    stop(
-      sprintf(
-        "ODIN SCHEMA MISMATCH in '%s':\n  Missing score column: '%s'\n  Found columns: %s\n\n",
-        basename(file_path), score_col, paste(names(df), collapse = ", ")
-      ),
-      "The ODIN download format has changed (score column missing).",
-      "Investigate before proceeding.",
       call. = FALSE
     )
   }

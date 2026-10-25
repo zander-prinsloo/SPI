@@ -54,9 +54,9 @@ source_registry <- data.frame(
     NA, NA, NA, NA, "1.5_DUIO/PIP_comparability_latest.csv",
     "2.1_DSDR/SCI_archived_data.csv", "2.2_DSOA/ODIN_<YEAR>.csv", NA,
     "2.4_DSDS/D2.4.NADA.<YEAR>.csv",
-    "3_DP/sdg_data/<SERIES>.csv", "3_DP/sdg_data/<SERIES>.csv",
-    "3_DP/sdg_data/<SERIES>.csv", "3_DP/sdg_data/<SERIES>.csv",
-    "4.1_SOCS/raw/", "4.2_SOAD/SG_REG_BRTH90N.csv",
+    "3_DP/sdg_data/raw/", "3_DP/sdg_data/raw/",
+    "3_DP/sdg_data/raw/", "3_DP/sdg_data/raw/",
+    "4.1_SOCS/raw/", "4.2_SOAD/SG_REG_BRTH90N.csv|4.2_SOAD/SG_REG_DETH75N.csv",
     "2.2_DSOA/ODIN_<YEAR>.csv", NA,
     "5.1_DILG/SG_STT_FPOS.csv", "5.2_DISM/D5.2.2.NABY_raw_metadata.csv", NA, NA,
     "5.5_DIFI/SG_STT_NSDSFND.csv"
@@ -73,24 +73,27 @@ source_registry <- data.frame(
     NA, NA, NA, NA, "1.5_DUIO/PIP_comparability_latest.csv",
     "2.1_DSDR/SCI_archived_data.csv", "2.2_DSOA/ODIN_<YEAR>.csv", NA,
     "2.4_DSDS/D2.4.NADA.<YEAR>.csv",
-    "3_DP/collection/SPI_D3_UNSD_data_5yr.csv", "3_DP/collection/SPI_D3_UNSD_data_5yr.csv",
-    "3_DP/collection/SPI_D3_UNSD_data_5yr.csv", "3_DP/collection/SPI_D3_UNSD_data_5yr.csv",
-    "4.1_SOCS/raw/", "4.2_SOAD/SG_REG_BRTH90N.csv",
+    "3_DP/<END_DATE>/SPI_D3_UNSD_data_5yr.csv", "3_DP/<END_DATE>/SPI_D3_UNSD_data_5yr.csv",
+    "3_DP/<END_DATE>/SPI_D3_UNSD_data_5yr.csv", "3_DP/<END_DATE>/SPI_D3_UNSD_data_5yr.csv",
+    "4.1_SOCS/raw/", "4.2_SOAD/SG_REG_BRTH90N.csv|4.2_SOAD/SG_REG_DETH75N.csv",
     "2.2_DSOA/ODIN_<YEAR>.csv", NA, "5.1_DILG/SG_STT_FPOS.csv",
     "5.2_DISM/D5.2.2.NABY_raw_metadata.csv", NA, NA, "5.5_DIFI/SG_STT_NSDSFND.csv"
   ),
   availability_path = c(
     NA, NA, NA, NA, NA, NA, NA, NA, NA,
-    "3_DP/availability/", "3_DP/availability/", "3_DP/availability/",
-    "3_DP/availability/", NA, "4.2_SOAD/availability/", NA, NA, NA, NA,
+    NA, NA, NA,
+    NA, NA, "4.2_SOAD/availability/", NA, NA, NA, NA,
     NA, NA, NA
   ),
+  # release_identifier: collected sources must carry provenance with the
+  # observed release; manual_attestation: manual files need a hash-bound
+  # attestation in _collection/source_attestations_<end_date>.csv.
   expected_vintage_rule = c(
-    "not_measured", "not_measured", "not_measured", "not_measured", "latest_release",
-    "latest_release", "end_date", "not_measured", "end_date",
-    "end_date", "end_date", "end_date", "end_date", "end_date",
-    "end_date", "end_date", "not_measured", "end_date", "end_date_plus_one",
-    "not_measured", "not_measured", "end_date"
+    "not_measured", "not_measured", "not_measured", "not_measured", "release_identifier",
+    "manual_attestation", "end_date", "not_measured", "end_date",
+    "release_identifier", "release_identifier", "release_identifier", "release_identifier", "end_date",
+    "release_identifier", "end_date", "not_measured", "release_identifier", "end_date_plus_one",
+    "not_measured", "not_measured", "release_identifier"
   ),
   age_warning_days = rep(365, 22),
   status_if_missing = c(
@@ -194,10 +197,10 @@ source_registry <- rbind(
       "https://www.ilo.org/ilostat-files/"
     ),
     input_path = c(
-      "1.5_DUIO/UN IGME 2025.csv",
+      "1.5_DUIO/<UNIGME_FILE>",
       "metadata/WDI_metadata_<END_DATE_PLUS_ONE>.csv",
       "1.5_DUIO/Safely_Managed_Water_data.csv",
-      "1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-<timestamp>.xlsx|EAP_DWAP_SEX_AGE_RT_A-<timestamp>.xlsx"
+      "1.5_DUIO/<ILO_MODELLED_FILE>|1.5_DUIO/<ILO_SURVEY_FILE>"
     ),
     raw_path = c(
       "1.5_DUIO/raw/igme/",
@@ -206,13 +209,13 @@ source_registry <- rbind(
       "1.5_DUIO/raw/ilo/"
     ),
     normalized_path = c(
-      "1.5_DUIO/UN IGME 2025.csv",
+      "1.5_DUIO/<UNIGME_FILE>",
       "metadata/WDI_metadata_<END_DATE_PLUS_ONE>.csv",
       "1.5_DUIO/Safely_Managed_Water_data.csv",
-      "1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-<timestamp>.xlsx|EAP_DWAP_SEX_AGE_RT_A-<timestamp>.xlsx"
+      "1.5_DUIO/<ILO_MODELLED_FILE>|1.5_DUIO/<ILO_SURVEY_FILE>"
     ),
     availability_path = rep(NA, 4),
-    expected_vintage_rule = c("latest_release", "end_date_plus_one", "latest_release", "latest_release"),
+    expected_vintage_rule = c("manual_attestation", "end_date_plus_one", "release_identifier", "manual_attestation"),
     age_warning_days = rep(365, 4),
     status_if_missing = rep("blocking", 4),
     analyst_action = c(
@@ -255,17 +258,17 @@ source_registry <- rbind(
     ),
     input_path = c(
       "metadata/WDI_metadata_<END_DATE_PLUS_ONE>.csv",
-      "5.2_DISM/2026.10_Compiled Data for World Bank - Sep 2026 - Final.xlsx",
-      "5.2_DISM/2025.10_Compiled Data for World Bank.xlsx"
+      "5.2_DISM/<IMF_FILE>",
+      "5.2_DISM/<IMF_FILE_2024>"
     ),
     raw_path = c("metadata/raw/", "5.2_DISM/raw/", "5.2_DISM/raw/"),
     normalized_path = c(
       "metadata/WDI_metadata_<END_DATE_PLUS_ONE>.csv",
-      "5.2_DISM/2026.10_Compiled Data for World Bank - Sep 2026 - Final.xlsx",
-      "5.2_DISM/2025.10_Compiled Data for World Bank.xlsx"
+      "5.2_DISM/<IMF_FILE>",
+      "5.2_DISM/<IMF_FILE_2024>"
     ),
     availability_path = c(NA, NA, NA),
-    expected_vintage_rule = c("end_date_plus_one", "latest_release", "latest_release"),
+    expected_vintage_rule = c("end_date_plus_one", "manual_attestation", "manual_attestation"),
     age_warning_days = c(365, 365, 365),
     status_if_missing = c("blocking", "blocking", "blocking"),
     analyst_action = c(
@@ -296,7 +299,7 @@ source_registry <- rbind(
     expected_vintage_rule = "end_date",
     age_warning_days = 365,
     status_if_missing = "blocking",
-    analyst_action = "Run the D4.1 collection target and resolve manual-review or artifact validation failures.",
+    analyst_action = "Run the D4.1 collection target and resolve manual-review, workbook (year text, coverage) or artifact validation failures; map unmatched catalogue names in config/d41_country_crosswalk.csv or record non-economies in config/d41_companion_exclusions.csv.",
     stringsAsFactors = FALSE
   )
 )
@@ -350,12 +353,127 @@ source_registry <- rbind(
       "4.1_SOCS/raw/D4.1.Manual.Review.<END_DATE>.xlsx"
     ),
     availability_path = rep(NA_character_, 9),
-    expected_vintage_rule = c(rep("manual_attestation", 8), "end_date"),
+    expected_vintage_rule = rep("manual_attestation", 9),
     age_warning_days = rep(365, 9),
     status_if_missing = rep("blocking", 9),
     analyst_action = c(
       rep("Update and validate the current 4.1 source workbook.", 8),
       "Complete country-economist review and save the current-vintage workbook."
+    ),
+    stringsAsFactors = FALSE
+  )
+)
+
+# OECD SDG data blended into Pillar 3 (maximum of UN and OECD quality).
+source_registry <- rbind(
+  source_registry,
+  data.frame(
+    source_id = "d3_oecd_sdg",
+    dimension_id = "3.1",
+    source_type = "api",
+    indicator_ids = "SPI.D3.*",
+    source_url = "https://sdmx.oecd.org/public/rest/data/OECD.WISE.RSB,DSD_SDG@DF_SDG,1.0/all",
+    input_path = "oecd_data/OECD_data_scored.csv",
+    raw_path = "oecd_data/raw/",
+    normalized_path = "oecd_data/OECD_data_scored.csv",
+    availability_path = NA_character_,
+    expected_vintage_rule = "release_identifier",
+    age_warning_days = 365,
+    status_if_missing = "blocking",
+    analyst_action = "Run the OECD SDG collection target (oecd_collection).",
+    stringsAsFactors = FALSE
+  )
+)
+
+# D5.2 annual files built by the collection pipeline and their manual input.
+source_registry <- rbind(
+  source_registry,
+  data.frame(
+    source_id = c("d5_2_ilo_catalogue", "d5_2_empl"),
+    dimension_id = c("5.2", "5.2"),
+    source_type = c("manual", "external"),
+    indicator_ids = c("SPI.D5.2.6.EMPL|SPI.D4.1.6.LABR", "SPI.D5.2.6.EMPL"),
+    source_url = c("https://ilostat.ilo.org/data/national-sources-catalogue/", NA_character_),
+    input_path = c("4.1_SOCS/ilo_sources_catalog.csv", "5.2_DISM/D5.2.6.EMPL.<END_DATE>.csv"),
+    raw_path = c("4.1_SOCS/", "5.2_DISM/"),
+    normalized_path = c("4.1_SOCS/ilo_sources_catalog.csv", "5.2_DISM/D5.2.6.EMPL.<END_DATE>.csv"),
+    availability_path = c(NA_character_, NA_character_),
+    expected_vintage_rule = c("manual_attestation", "end_date"),
+    age_warning_days = c(365, 365),
+    status_if_missing = c("blocking", "blocking"),
+    analyst_action = c(
+      "Download sources_en.csv from the ILOSTAT national sources catalogue, save it as 4.1_SOCS/ilo_sources_catalog.csv and attest it.",
+      "Run the d5_2_empl collection target."
+    ),
+    stringsAsFactors = FALSE
+  )
+)
+
+# CNIN and FINA: carried forward and reviewed per vintage (the review
+# workbooks are created as blank templates by the collection run).
+source_registry <- rbind(
+  source_registry,
+  data.frame(
+    source_id = c("d5_2_cnin_review", "d5_2_fina_review", "d5_2_cnin", "d5_2_fina"),
+    dimension_id = rep("5.2", 4),
+    source_type = c("manual", "manual", "external", "external"),
+    indicator_ids = c("SPI.D5.2.3.CNIN", "SPI.D5.2.8.FINA", "SPI.D5.2.3.CNIN", "SPI.D5.2.8.FINA"),
+    source_url = rep(NA_character_, 4),
+    input_path = c(
+      "5.2_DISM/D5.2.3.CNIN.Manual.Review.<END_DATE>.xlsx",
+      "5.2_DISM/D5.2.8.FINA.Manual.Review.<END_DATE>.xlsx",
+      "5.2_DISM/D5.2.3.CNIN.<END_DATE>.csv",
+      "5.2_DISM/D5.2.8.FINA.<END_DATE>.csv"
+    ),
+    raw_path = rep("5.2_DISM/", 4),
+    normalized_path = c(
+      "5.2_DISM/D5.2.3.CNIN.Manual.Review.<END_DATE>.xlsx",
+      "5.2_DISM/D5.2.8.FINA.Manual.Review.<END_DATE>.xlsx",
+      "5.2_DISM/D5.2.3.CNIN.<END_DATE>.csv",
+      "5.2_DISM/D5.2.8.FINA.<END_DATE>.csv"
+    ),
+    availability_path = rep(NA_character_, 4),
+    expected_vintage_rule = c("manual_attestation", "manual_attestation", "end_date", "end_date"),
+    age_warning_days = rep(365, 4),
+    status_if_missing = rep("blocking", 4),
+    analyst_action = c(
+      "Review the CNIN candidates in _collection/review_candidates_<end_date>.csv, record overrides with evidence in the workbook, then attest it.",
+      "Review the FINA candidates in _collection/review_candidates_<end_date>.csv, record overrides with evidence in the workbook, then attest it.",
+      "Run the d5_2_cnin collection target.",
+      "Run the d5_2_fina collection target."
+    ),
+    stringsAsFactors = FALSE
+  )
+)
+
+# GSBP (Steps 5-6 of the 2026-10-21 NADA/GSBP plan).
+source_registry <- rbind(
+  source_registry,
+  data.frame(
+    source_id = c("d5_2_10_gsbp", "d5_2_10_gsbp_desk_review", "d5_2_10_gsbp_review"),
+    dimension_id = rep("5.2", 3),
+    source_type = c("external", "manual", "manual"),
+    indicator_ids = rep("SPI.D5.2.10.GSBP", 3),
+    source_url = rep(NA_character_, 3),
+    input_path = c(
+      "5.2_DISM/D5.2.10.GSBP.<END_DATE>.csv",
+      "5.2_DISM/raw/D1.12.MSC.csv",
+      "5.2_DISM/D5.2.10.GSBP.Manual.Review.<END_DATE>.xlsx"
+    ),
+    raw_path = c("5.2_DISM/", "5.2_DISM/raw/", "5.2_DISM/"),
+    normalized_path = c(
+      "5.2_DISM/D5.2.10.GSBP.<END_DATE>.csv",
+      "5.2_DISM/raw/D1.12.MSC.csv",
+      "5.2_DISM/D5.2.10.GSBP.Manual.Review.<END_DATE>.xlsx"
+    ),
+    availability_path = rep(NA_character_, 3),
+    expected_vintage_rule = c("end_date", "manual_attestation", "end_date"),
+    age_warning_days = c(365, 365, 365),
+    status_if_missing = c("blocking", "warning", "blocking"),
+    analyst_action = c(
+      "Run the gsbp_output collection target.",
+      "Refresh the GSBPM desk review (5.2_DISM/raw/D1.12.MSC.csv) or confirm the carry-forward, then attest it.",
+      "Review the GSBP candidates and complete the current-vintage GSBP review workbook."
     ),
     stringsAsFactors = FALSE
   )

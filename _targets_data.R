@@ -90,7 +90,9 @@ collection_targets <- function() {
       collect_pip_comparability(
         raw_dir = collection_params$raw_dir,
         vintage = collection_params$end_date,
-        max_age_days = collection_params$collection_age_warning_days
+        max_age_days = collection_params$collection_age_warning_days,
+        ppp_version = collection_params$pip_ppp_version,
+        release_lock = pip_locked_release(collection_params)
       )
     },
     format = "rds"
@@ -187,13 +189,15 @@ collection_targets <- function() {
     format = "file"
   )
 
+  # Validates (or, with run_downloads, refreshes) the raw catalogue companions
+  # and normalizes them to CLASS.xlsx names plus ISO3 codes in
+  # 4.1_SOCS/collection/ (config/d41_country_crosswalk.csv and
+  # config/d41_companion_exclusions.csv).
   d41_catalogue_collection <- tar_target(
     name = "d41_catalogue_collection",
     command = {
       d41_preprocess
       d41_manual_review_file
-      wb <- world_bank_inputs
-      collection_params$country_metadata <- readRDS(wb$countries)
       collect_dim4_1_catalogue(collection_params)
     },
     format = "rds",
@@ -238,6 +242,7 @@ collection_targets <- function() {
     name = "manual_checkpoints",
     command = {
       collection_run_start
+      d41_preprocess
       run_collection_checkpoints(collection_params)
     },
     format = "rds",
@@ -248,8 +253,102 @@ collection_targets <- function() {
     name = "jmp_collection",
     command = {
       collection_run_start
-      world_bank_inputs
-      pull_jmp_water(collection_params)
+      wb <- world_bank_inputs
+      pull_jmp_water(
+        collection_params,
+        country_metadata = readRDS(wb$countries)
+      )
+    },
+    format = "rds"
+  )
+
+  d5_2_empl <- tar_target(
+    name = "d5_2_empl",
+    command = {
+      collection_run_start
+      collect_empl_vintage(collection_params)
+    },
+    format = "rds"
+  )
+
+  d5_2_cnin <- tar_target(
+    name = "d5_2_cnin",
+    command = {
+      collection_run_start
+      collect_cnin_vintage(collection_params)
+    },
+    format = "rds"
+  )
+
+  d5_2_fina <- tar_target(
+    name = "d5_2_fina",
+    command = {
+      collection_run_start
+      collect_fina_vintage(collection_params)
+    },
+    format = "rds"
+  )
+
+  gsbp_previous_file <- tar_target(
+    name = "gsbp_previous_file",
+    command = gsbp_artifact_paths(collection_params$raw_dir, collection_params$end_date)$previous,
+    format = "file"
+  )
+
+  gsbp_desk_review_file <- tar_target(
+    name = "gsbp_desk_review_file",
+    command = gsbp_artifact_paths(collection_params$raw_dir, collection_params$end_date)$desk_review,
+    format = "file"
+  )
+
+  gsbp_review_file <- tar_target(
+    name = "gsbp_review_file",
+    command = gsbp_artifact_paths(collection_params$raw_dir, collection_params$end_date)$review,
+    format = "file"
+  )
+
+  gsbp_output <- tar_target(
+    name = "gsbp_output",
+    command = {
+      collection_run_start
+      gsbp_previous_file
+      gsbp_desk_review_file
+      gsbp_review_file
+      wb <- world_bank_inputs
+      collect_gsbp_vintage(
+        collection_params,
+        country_metadata = readRDS(wb$countries)
+      )
+    },
+    format = "rds"
+  )
+
+  review_candidates <- tar_target(
+    name = "review_candidates",
+    command = {
+      d41_manifest
+      assemble_review_candidates(
+        list(
+          d5_2_empl$candidates,
+          d5_2_cnin$candidates,
+          d5_2_fina$candidates,
+          gsbp_output$candidates,
+          d41_review_candidates(collection_params)
+        ),
+        file.path(
+          collection_params$collection_dir,
+          sprintf("review_candidates_%d.csv", as.integer(collection_params$end_date))
+        )
+      )
+    },
+    format = "file"
+  )
+
+  oecd_collection <- tar_target(
+    name = "oecd_collection",
+    command = {
+      collection_run_start
+      collect_oecd_sdg(collection_params)
     },
     format = "rds"
   )
@@ -258,7 +357,11 @@ collection_targets <- function() {
     name = "unsdg_collection",
     command = {
       collection_run_start
-      download_unsdg_series(collection_params)
+      wb <- world_bank_inputs
+      download_unsdg_series(
+        collection_params,
+        country_metadata = readRDS(wb$countries)
+      )
     },
     format = "rds"
   )
@@ -267,7 +370,12 @@ collection_targets <- function() {
     name = "sdg_collection",
     command = {
       collection_run_start
-      collect_sdg_pipeline(collection_params)
+      oecd_collection
+      wb <- world_bank_inputs
+      collect_d3_scores(
+        collection_params,
+        country_metadata = readRDS(wb$countries)
+      )
     },
     format = "rds"
   )
@@ -290,8 +398,25 @@ collection_targets <- function() {
         collection_params$end_date
       )
       nada_warnings <- read_nada_manifest_warnings(nada_paths$manifest)
+      empl_warnings <- if (length(d5_2_empl$unmatched) > 0L) {
+        data.frame(
+          source_id = "d5_2_empl",
+          message = paste0(
+            "ILO catalogue countries without an ISO3 code were dropped (as in the notebook): ",
+            paste(d5_2_empl$unmatched, collapse = "; ")
+          ),
+          stringsAsFactors = FALSE
+        )
+      } else {
+        NULL
+      }
+      collection_warnings <- rbind(nada_warnings, gsbp_output$warnings, empl_warnings)
       manual_checkpoints
       jmp_collection
+      d5_2_empl
+      d5_2_cnin
+      d5_2_fina
+      oecd_collection
       unsdg_collection
       sdg_collection
       status <- evaluate_collection_status(
@@ -299,13 +424,25 @@ collection_targets <- function() {
         collection_root = collection_params$raw_dir,
         end_date = collection_params$end_date,
         run_id = run$run_id,
-        parameters_hash = run$parameters_hash
+        parameters_hash = run$parameters_hash,
+        substitutions = collection_artifact_substitutions(collection_params),
+        attestations = read_collection_attestations(
+          collection_attestation_path(collection_params)
+        )
       )
       write_collection_status_report(
         status,
         csv_path = collection_params$collection_status_file,
         markdown_path = file.path(collection_params$collection_dir, "collection_status.md"),
-        warnings = nada_warnings
+        warnings = collection_warnings,
+        candidates = readr::read_csv(review_candidates, show_col_types = FALSE)
+      )
+      # With a release lock (written at approval of the provisional
+      # outputs), every non-ODIN artifact must still match it.
+      verify_release_lock(
+        collection_params,
+        registry = source_registry,
+        substitutions = collection_artifact_substitutions(collection_params)
       )
       complete_collection_run(collection_params, run)
       status
@@ -335,6 +472,15 @@ collection_targets <- function() {
     d41_manifest_file,
     manual_checkpoints,
     jmp_collection,
+    d5_2_empl,
+    d5_2_cnin,
+    d5_2_fina,
+    gsbp_previous_file,
+    gsbp_desk_review_file,
+    gsbp_review_file,
+    gsbp_output,
+    review_candidates,
+    oecd_collection,
     unsdg_collection,
     sdg_collection,
     collection_status

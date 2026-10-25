@@ -17,6 +17,13 @@
 #   - When running a new update, change this to the new reference year.
 end_date <- 2025
 
+# odin_status marks whether ODIN_<end_date>.csv is the official ODIN release.
+# For 202611 it is "provisional" (the 2024 ODIN data duplicated as 2025)
+# until the official release (expected 7 December 2026); then replace the
+# file, set "official", and rerun estimation. A provisional run writes
+# 03_output_data/PROVISIONAL_ODIN.md; an official run removes it.
+odin_status <- "provisional"
+
 # window is the moving-average window used by several indicators
 # (e.g. the 5-year window for SDG data availability).
 window <- 5
@@ -42,15 +49,19 @@ first_collected_vintage <- 2025
 nada_url_max_age_days <- 30
 refresh_nada_urls <- FALSE
 nada_url_delay_seconds <- 5
+# PIP: each collection run resolves the newest PROD release for this PPP base
+# year and records it in provenance; the release lock (Step 24) pins it.
+pip_ppp_version <- 2021
 source_registry_file <- here::here("config", "source_registry.R")
 sdg_indicator_list_file <- here::here("01_raw_data", "metadata", "SDG_indicator_list.csv")
-sdg_collection_dir <- here::here("01_raw_data", "3_DP", "collection")
 dim4_1_manifest_file <- file.path(
   raw_dir,
   "4.1_SOCS",
   "collection",
   "D4.1_collection_manifest.json"
 )
+odin_country_exclusions_file <- here::here("config", "odin_country_exclusions.csv")
+odin_country_crosswalk_file <- here::here("config", "odin_country_crosswalk.csv")
 
 # --- Weights -----------------------------------------------------------------
 # wgt controls whether index estimates are weighted by population (2) or
@@ -58,11 +69,29 @@ dim4_1_manifest_file <- file.path(
 wgt <- 1
 
 # --- Data pulls --------------------------------------------------------------
-# run_downloads controls whether the OPT-IN API pull targets (pull_jmp,
-# pull_unsdg) download fresh data into 01_raw_data/. Keep FALSE for
-# replication runs (the committed raw files are the source of truth).
-# Set TRUE only when updating to a new vintage.
+# run_downloads controls the opt-in D4.1 microdata-catalogue refresh
+# (d41_catalogue_collection in _targets_data.R; World Bank network required).
+# The API collectors (PIP, UN SDG, JMP, OECD, D3) fetch through their
+# provenance caches whenever a cached response is missing or stale. Keep FALSE
+# for replication runs; set TRUE only to refresh the catalogue for a new vintage.
 run_downloads <- FALSE
+
+# --- D4.1 catalogue refresh ----------------------------------------------------
+# Run-time budget for the opt-in microdata-catalogue refresh
+# (microdata_library_pull.Rmd, run when run_downloads is TRUE). The refresh
+# writes to a staging folder and the previous companions stay in place when
+# the budget runs out; the response cache is kept, so a rerun continues.
+d41_catalogue_budget_minutes <- 240
+# Before the script runs, every catalogue response it requests (three
+# searches, one detail page per internal and FAO study) is fetched with this
+# many concurrent connections and cached in
+# 4.1_SOCS/collection/catalogue_cache/. Failing requests are retried up to
+# d41_catalogue_max_attempts times and then stop the refresh, listed in
+# catalogue_fetch_failures.csv; cached responses older than
+# d41_catalogue_cache_max_age_days are fetched again.
+d41_catalogue_connections <- 8
+d41_catalogue_max_attempts <- 4
+d41_catalogue_cache_max_age_days <- 7
 
 # --- IMF compiled data file --------------------------------------------------
 # The IMF "Compiled Data for World Bank" workbook is downloaded manually
@@ -84,6 +113,15 @@ imf_file_2024 <- "2025.10_Compiled Data for World Bank.xlsx"
 ilo_modelled_file <- "EAP_2WAP_SEX_AGE_RT_A-20261006T1235.xlsx"
 ilo_survey_file <- "EAP_DWAP_SEX_AGE_RT_A-20261006T1234.xlsx"
 unigme_file <- "UN IGME 2025.csv"
+
+# --- ILO area names (correction E6) ------------------------------------------
+# The ILO bulk files name areas but carry no ISO3 code. Names that
+# metadata/iso_codes.csv does not match are mapped in the crosswalk
+# (economies) or recorded in the exclusions (regional and income aggregates,
+# areas outside the SPI). Any other ILO name stops the estimation: a new ILO
+# spelling must be added to one of the two files (docs/user-guide.md).
+ilo_area_crosswalk_file <- here::here("config", "ilo_area_crosswalk.csv")
+ilo_area_exclusions_file <- here::here("config", "ilo_area_exclusions.csv")
 
 # --- Country metadata --------------------------------------------------------
 # The country metadata snapshot is collected before estimation. `load_params()`

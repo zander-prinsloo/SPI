@@ -16,6 +16,41 @@ validate_cached_hash <- function(raw_path, record) {
   invisible(TRUE)
 }
 
+# Cache age comes from the provenance `retrieved_at` stamp, never from file
+# modification time (OneDrive sync and copies rewrite mtimes).
+.cache_entry_age_days <- function(provenance_path, now = Sys.time()) {
+  if (!file.exists(provenance_path)) {
+    return(Inf)
+  }
+  retrieved_at <- jsonlite::read_json(provenance_path, simplifyVector = TRUE)$retrieved_at
+  if (is.null(retrieved_at) || length(retrieved_at) != 1L || is.na(retrieved_at)) {
+    return(Inf)
+  }
+  retrieved <- as.POSIXct(
+    sub(" UTC$", "", retrieved_at),
+    tz = "UTC",
+    format = "%Y-%m-%d %H:%M:%S"
+  )
+  if (is.na(retrieved)) {
+    return(Inf)
+  }
+  as.numeric(difftime(now, retrieved, units = "days"))
+}
+
+#' Wrap fetched bytes with metadata for the provenance record.
+#'
+#' Fetchers passed to [collect_cached_raw()] may return this instead of bare
+#' bytes when facts about the retrieval (for example the URL and hash of a
+#' downloaded file that is not kept) belong in the provenance record.
+#'
+#' @param payload Raw bytes or a single character string.
+#' @param metadata Named list of additional provenance fields.
+#' @return A `collection_payload` object.
+#' @export
+collection_payload <- function(payload, metadata = list()) {
+  structure(list(payload = payload, metadata = metadata), class = "collection_payload")
+}
+
 #' Build a deterministic cache key for a source request.
 #'
 #' @param source_id Character source identifier.
@@ -55,11 +90,7 @@ collect_cached_raw <- function(cache_dir, source_id, request, vintage,
   raw_path <- file.path(cache_dir, paste0(safe_source_id, "-", key, ".raw"))
   provenance_path <- paste0(raw_path, ".json")
 
-  cache_age <- if (file.exists(raw_path)) {
-    as.numeric(difftime(Sys.time(), file.info(raw_path)$mtime, units = "days"))
-  } else {
-    Inf
-  }
+  cache_age <- .cache_entry_age_days(provenance_path)
   if (file.exists(raw_path) && file.exists(provenance_path) && cache_age <= max_age_days) {
     record <- jsonlite::read_json(provenance_path, simplifyVector = TRUE)
     validate_cached_hash(raw_path, record)
@@ -68,18 +99,24 @@ collect_cached_raw <- function(cache_dir, source_id, request, vintage,
   }
 
   payload <- fetch()
-  record <- write_raw_capture(
-    raw_path,
-    payload,
-    metadata = list(
-      source_id = source_id,
-      request = request,
-      vintage = vintage,
-      collector_version = collector_version,
-      payload_type = "serialized_structured_response",
-      retrieved_at = format(Sys.time(), tz = "UTC", usetz = TRUE)
-    )
+  extra <- list()
+  if (inherits(payload, "collection_payload")) {
+    extra <- payload$metadata
+    payload <- payload$payload
+  }
+  metadata <- list(
+    source_id = source_id,
+    request = request,
+    vintage = vintage,
+    collector_version = collector_version,
+    payload_type = "serialized_structured_response",
+    retrieved_at = format(Sys.time(), tz = "UTC", usetz = TRUE)
   )
+  clash <- intersect(names(extra), c(names(metadata), "raw_path", "bytes", "sha256", "provenance_path"))
+  if (length(clash) > 0L) {
+    stop("COLLECTION PROVENANCE METADATA CLASH: ", paste(clash, collapse = ", "), call. = FALSE)
+  }
+  record <- write_raw_capture(raw_path, payload, metadata = c(metadata, extra))
   record$cached <- FALSE
   record
 }
@@ -101,11 +138,7 @@ collect_cached_table <- function(cache_dir, source_id, request, vintage,
   raw_path <- file.path(cache_dir, paste0(safe_source_id, "-", key, ".rds"))
   provenance_path <- paste0(raw_path, ".json")
 
-  cache_age <- if (file.exists(raw_path)) {
-    as.numeric(difftime(Sys.time(), file.info(raw_path)$mtime, units = "days"))
-  } else {
-    Inf
-  }
+  cache_age <- .cache_entry_age_days(provenance_path)
   if (file.exists(raw_path) && file.exists(provenance_path) && cache_age <= max_age_days) {
     record <- jsonlite::read_json(provenance_path, simplifyVector = TRUE)
     validate_cached_hash(raw_path, record)

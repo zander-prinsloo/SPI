@@ -8,6 +8,7 @@ library(testthat)
 
 source(file.path(here::here("R"), "collection_status.R"))
 source(file.path(here::here("R"), "collection_report.R"))
+source(file.path(here::here("R"), "collection_attestation.R"))
 
 status_registry <- function() {
   data.frame(
@@ -94,8 +95,9 @@ test_that("status gate requires a complete current run and registry coverage", {
     stringsAsFactors = FALSE
   )
   readr::write_csv(status, status_path)
+  status_hash <- digest::digest(status_path, algo = "sha256", file = TRUE)
   jsonlite::write_json(
-    list(collection_state = "complete", run_id = "run-1"),
+    list(collection_state = "complete", run_id = "run-1", status_sha256 = status_hash),
     run_path,
     auto_unbox = TRUE
   )
@@ -124,4 +126,117 @@ test_that("status gate requires a complete current run and registry coverage", {
     validate_collection_status(status_path, "present", run_path, "hash-1"),
     "NOT COMPLETE"
   )
+  jsonlite::write_json(
+    list(collection_state = "complete", run_id = "run-1", status_sha256 = "bad"),
+    run_path,
+    auto_unbox = TRUE
+  )
+  expect_error(
+    validate_collection_status(status_path, "present", run_path, "hash-1"),
+    "STATUS HASH"
+  )
+})
+
+# --- 202611 readiness plan, Steps 5-6 ----------------------------------------
+
+
+one_source <- function(rule, path = "artifact.csv", status_if_missing = "blocking", age = 365) {
+  data.frame(
+    source_id = "src", dimension_id = "1.5", source_type = "manual",
+    normalized_path = path, expected_vintage_rule = rule,
+    age_warning_days = age, status_if_missing = status_if_missing,
+    analyst_action = "Act", stringsAsFactors = FALSE
+  )
+}
+
+test_that("registry placeholders resolve to configured filenames", {
+  root <- withr::local_tempdir()
+  dir.create(file.path(root, "1.5_DUIO"))
+  file.create(file.path(root, "1.5_DUIO", c("modelled.xlsx", "survey.xlsx")))
+  registry <- one_source("end_date", "1.5_DUIO/<ILO_MODELLED_FILE>|1.5_DUIO/<ILO_SURVEY_FILE>")
+  substitutions <- list(ILO_MODELLED_FILE = "modelled.xlsx", ILO_SURVEY_FILE = "survey.xlsx")
+
+  status <- evaluate_collection_status(registry, root, 2025, substitutions = substitutions)
+  expect_equal(status$status, "informational")
+  expect_match(status$artifact_path, "modelled.xlsx")
+  expect_match(status$artifact_path, "survey.xlsx")
+
+  expect_error(
+    evaluate_collection_status(registry, root, 2025),
+    "UNRESOLVED PLACEHOLDER"
+  )
+})
+
+test_that("manual sources pass only with a hash-matching attestation", {
+  root <- withr::local_tempdir()
+  writeLines("v1", file.path(root, "artifact.csv"))
+  registry <- one_source("manual_attestation")
+  params <- list(raw_dir = root, collection_dir = file.path(root, "_collection"), end_date = 2025)
+
+  status <- evaluate_collection_status(registry, root, 2025, attestations = read_collection_attestations(collection_attestation_path(params)))
+  expect_equal(status$status, "blocking")
+  expect_equal(status$reason, "attestation_missing")
+
+  attest_collection_sources("src", attested_by = "tester", release_label = "2025 release", params = params, registry = registry)
+  attestations <- read_collection_attestations(collection_attestation_path(params))
+  status <- evaluate_collection_status(registry, root, 2025, attestations = attestations)
+  expect_equal(status$status, "informational")
+  expect_equal(status$reason, "attested")
+  expect_equal(status$observed_vintage, "2025 release")
+
+  Sys.setFileTime(file.path(root, "artifact.csv"), as.POSIXct("2020-01-01", tz = "UTC"))
+  expect_equal(evaluate_collection_status(registry, root, 2025, attestations = attestations)$status, "informational")
+
+  writeLines("v2", file.path(root, "artifact.csv"))
+  status <- evaluate_collection_status(registry, root, 2025, attestations = attestations)
+  expect_equal(status$status, "blocking")
+  expect_equal(status$reason, "attestation_hash_mismatch")
+})
+
+test_that("collected sources pass only with matching provenance and a release identifier", {
+  root <- withr::local_tempdir()
+  artifact <- file.path(root, "artifact.csv")
+  writeLines("data", artifact)
+  registry <- one_source("release_identifier")
+
+  status <- evaluate_collection_status(registry, root, 2025)
+  expect_equal(status$reason, "provenance_missing")
+  expect_equal(status$status, "blocking")
+
+  write_artifact_provenance(artifact, "src", retrieved_at = format(Sys.time(), tz = "UTC", usetz = TRUE), release_identifier = "20260922_2021_01_02_PROD")
+  status <- evaluate_collection_status(registry, root, 2025)
+  expect_equal(status$status, "informational")
+  expect_equal(status$observed_vintage, "20260922_2021_01_02_PROD")
+
+  write_artifact_provenance(artifact, "src", retrieved_at = format(Sys.time(), tz = "UTC", usetz = TRUE), release_identifier = NA_character_)
+  expect_equal(evaluate_collection_status(registry, root, 2025)$reason, "release_identifier_missing")
+
+  write_artifact_provenance(artifact, "src", retrieved_at = "2020-01-01 00:00:00 UTC", release_identifier = "old")
+  expect_equal(evaluate_collection_status(registry, root, 2025)$reason, "artifact_age_exceeds_warning_threshold")
+
+  write_artifact_provenance(artifact, "src", retrieved_at = format(Sys.time(), tz = "UTC", usetz = TRUE), release_identifier = "r1")
+  writeLines("edited by hand", artifact)
+  status <- evaluate_collection_status(registry, root, 2025)
+  expect_equal(status$status, "blocking")
+  expect_equal(status$reason, "artifact_modified_after_collection")
+})
+
+test_that("file modification time never makes an artifact stale", {
+  root <- withr::local_tempdir()
+  writeLines("data", file.path(root, "artifact.csv"))
+  Sys.setFileTime(file.path(root, "artifact.csv"), as.POSIXct("2019-01-01", tz = "UTC"))
+  status <- evaluate_collection_status(one_source("end_date"), root, 2025)
+  expect_equal(status$status, "informational")
+  expect_equal(status$reason, "artifact_present")
+})
+
+test_that("the collection parameter hash covers the attestation record", {
+  root <- withr::local_tempdir()
+  params <- list(
+    raw_dir = root, collection_dir = root, end_date = 2025, span = 2004:2025,
+    source_registry_file = NA_character_
+  )
+  before <- collection_parameters_hash(params)
+  writeLines("source_id,artifact_path,sha256", collection_attestation_path(params))
+  expect_false(identical(before, collection_parameters_hash(params)))
 })

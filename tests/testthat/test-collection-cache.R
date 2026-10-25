@@ -134,7 +134,9 @@ test_that("old cache entries are refreshed after the age threshold", {
     fetch = fetch,
     max_age_days = 365
   )
-  Sys.setFileTime(first$raw_path, Sys.time() - 400 * 86400)
+  provenance <- jsonlite::read_json(first$provenance_path, simplifyVector = TRUE)
+  provenance$retrieved_at <- format(Sys.time() - 400 * 86400, tz = "UTC", usetz = TRUE)
+  jsonlite::write_json(provenance, first$provenance_path, auto_unbox = TRUE, pretty = TRUE)
   second <- collect_cached_raw(
     cache_dir = root,
     source_id = "example",
@@ -147,4 +149,43 @@ test_that("old cache entries are refreshed after the age threshold", {
 
   expect_false(second$cached)
   expect_equal(calls, 2L)
+})
+
+test_that("cache freshness comes from provenance, not file modification time", {
+  cache_dir <- withr::local_tempdir()
+  calls <- 0L
+  fetch <- function() { calls <<- calls + 1L; charToRaw("payload") }
+  record <- collect_cached_raw(cache_dir, "src", list(a = 1), 2025, "v1", fetch, max_age_days = 365)
+  expect_equal(calls, 1L)
+
+  provenance <- jsonlite::read_json(record$provenance_path, simplifyVector = TRUE)
+  provenance$retrieved_at <- "2020-01-01 00:00:00 UTC"
+  jsonlite::write_json(provenance, record$provenance_path, auto_unbox = TRUE, pretty = TRUE)
+  Sys.setFileTime(record$raw_path, Sys.time())
+
+  collect_cached_raw(cache_dir, "src", list(a = 1), 2025, "v1", fetch, max_age_days = 365)
+  expect_equal(calls, 2L)
+})
+
+test_that("fetchers can add retrieval facts to the provenance record", {
+  cache_dir <- withr::local_tempdir()
+  fetch <- function() {
+    collection_payload(charToRaw("sheet"), list(workbook_url = "https://example.test/x.xlsx", workbook_sha256 = "abc"))
+  }
+  record <- collect_cached_raw(cache_dir, "src", list(a = 1), 2025, "v1", fetch)
+  provenance <- jsonlite::read_json(record$provenance_path, simplifyVector = TRUE)
+  expect_equal(provenance$workbook_sha256, "abc")
+  expect_equal(readBin(record$raw_path, "raw", 100), charToRaw("sheet"))
+
+  cached <- collect_cached_raw(cache_dir, "src", list(a = 1), 2025, "v1", function() stop("no refetch"))
+  expect_true(cached$cached)
+  expect_equal(cached$workbook_url, "https://example.test/x.xlsx")
+
+  expect_error(
+    collect_cached_raw(
+      withr::local_tempdir(), "src", list(a = 1), 2025, "v1",
+      function() collection_payload(charToRaw("x"), list(source_id = "other"))
+    ),
+    "PROVENANCE METADATA CLASH"
+  )
 })

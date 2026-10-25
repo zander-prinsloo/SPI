@@ -10,10 +10,12 @@
 #' @param csv_path CSV destination.
 #' @param markdown_path Markdown destination.
 #' @param warnings Optional data frame with `source_id` and `message` columns.
+#' @param candidates Optional review candidates (`source_id`, `reason`);
+#'   summarised in the markdown only, never in the status.
 #' @return Invisibly returns both paths.
 #' @export
 write_collection_status_report <- function(status, csv_path, markdown_path,
-                                           warnings = NULL) {
+                                           warnings = NULL, candidates = NULL) {
   required <- c("source_id", "status", "reason", "analyst_action")
   missing <- setdiff(required, names(status))
   if (length(missing) > 0L) {
@@ -71,6 +73,25 @@ write_collection_status_report <- function(status, csv_path, markdown_path,
       "| Source | Warning |",
       "|---|---|",
       warning_rows
+    )
+  }
+  if (!is.null(candidates) && nrow(candidates) > 0L) {
+    counts <- stats::aggregate(
+      list(n = rep(1L, nrow(candidates))),
+      by = list(source_id = candidates$source_id, reason = candidates$reason),
+      FUN = sum
+    )
+    counts <- counts[order(counts$source_id, counts$reason, method = "radix"), , drop = FALSE]
+    lines <- c(
+      lines,
+      "",
+      "## Review candidates",
+      "",
+      "Informational: countries to check before signing the review workbooks.",
+      "",
+      "| Source | Reason | Countries |",
+      "|---|---|---|",
+      paste0("| ", counts$source_id, " | ", counts$reason, " | ", counts$n, " |")
     )
   }
   writeLines(lines, markdown_path)

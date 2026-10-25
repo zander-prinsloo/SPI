@@ -49,6 +49,19 @@ validate_source_registry <- function(registry) {
     )
   }
 
+  valid_rules <- c(
+    "not_measured", "end_date", "end_date_plus_one",
+    "manual_attestation", "release_identifier"
+  )
+  invalid_rules <- setdiff(unique(registry$expected_vintage_rule), valid_rules)
+  if (length(invalid_rules) > 0) {
+    stop(
+      "SOURCE REGISTRY contains UNSUPPORTED EXPECTED VINTAGE RULE value(s): ",
+      paste(invalid_rules, collapse = ", "),
+      call. = FALSE
+    )
+  }
+
   if (any(is.na(registry$age_warning_days) | registry$age_warning_days < 0)) {
     stop("SOURCE REGISTRY age_warning_days must be non-negative.", call. = FALSE)
   }
