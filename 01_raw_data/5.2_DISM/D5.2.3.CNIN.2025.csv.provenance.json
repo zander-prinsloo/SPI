@@ -1,0 +1,14 @@
+{
+  "source_id": "d5_2_cnin",
+  "artifact_path": "01_raw_data/5.2_DISM/D5.2.3.CNIN.2025.csv",
+  "sha256": "ebcc29e304ddba8973694d47028dcdaa4ca38e6e9e1f24785ab97e7c9ebcf0fd",
+  "retrieved_at": "2026-10-24 10:14:30 UTC",
+  "release_identifier": null,
+  "raw_path": null,
+  "review": {
+    "path": "01_raw_data/5.2_DISM/D5.2.3.CNIN.Manual.Review.2025.xlsx",
+    "sha256": "144e48c1cf0f24ad72c0fabe834f087e372ef34d2755bc923e94427dc6e62148",
+    "rows": 190,
+    "override_count": 0
+  }
+}

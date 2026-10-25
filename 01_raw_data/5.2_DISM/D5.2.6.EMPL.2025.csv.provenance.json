@@ -1,0 +1,11 @@
+{
+  "source_id": "d5_2_empl",
+  "artifact_path": "01_raw_data/5.2_DISM/D5.2.6.EMPL.2025.csv",
+  "sha256": "37b9adf22394a562021e92463515dc77141a5584048c4a6ead0e318a54db713f",
+  "retrieved_at": "2026-10-24 10:14:29 UTC",
+  "release_identifier": null,
+  "raw_path": null,
+  "catalogue_sha256": "f2228421c9ef4d56fe405f6d91b1284f0c36528c4a2557fcf824c33861c4f1e0",
+  "unmatched_catalogue_countries": ["Bolivia, Plurinational State of", "Faroe Islands", "Republic of Korea", "Republic of Moldova", "Türkiye", "United Kingdom of Great Britain and Northern Ireland", "United States of America"],
+  "raised_flags": []
+}

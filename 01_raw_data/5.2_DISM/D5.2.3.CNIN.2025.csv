@@ -1,0 +1,191 @@
+Code,Country,2020,2021,2022,2023,2024,2025
+AFG,Afghanistan,na,,,,No Data,No Data
+ALB,Albania,rev4,rev4,rev4,rev4,rev4,rev4
+DZA,Algeria,rev3,rev3,rev3,rev3,rev3,rev3
+AND,Andorra,na,,,,No Data,No Data
+AGO,Angola,rev4,rev4,rev4,rev4,rev4,rev4
+ATG,Antigua and Barbuda,rev3,rev3,rev3,rev3,rev3,rev3
+ARG,Argentina,rev3,rev3,rev3,rev3,rev3,rev3
+ARM,Armenia,nace rev2,nace rev2,nace rev2,nace rev2,nace rev2,nace rev2
+AUS,Australia,rev4,rev4,rev4,rev4,rev4,rev4
+AUT,Austria,rev4,rev4,rev4,rev4,rev4,rev4
+AZE,Azerbaijan,rev4,rev4,rev4,rev4,rev4,rev4
+BHS,"Bahamas, The",rev4,rev4,rev4,rev4,rev4,rev4
+BHR,Bahrain,rev3,rev3,rev3,rev3,rev3,rev3
+BGD,Bangladesh,rev4,rev4,rev4,rev4,rev4,rev4
+BRB,Barbados,rev3,rev3,rev3,rev4,rev4,rev4
+BLR,Belarus,rev4,rev4,rev4,rev4,rev4,rev4
+BEL,Belgium,rev4,rev4,rev4,rev4,Not Found,Not Found
+BLZ,Belize,Rev3,Rev3,Rev3,Rev3,Rev3,Rev3
+BEN,Benin,Rev3,Rev3,Rev3,rev4,rev4,rev4
+BTN,Bhutan,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2
+BOL,Bolivia,rev3,rev3,rev3,rev4,rev4,rev4
+BIH,Bosnia and Herzegovina,rev4,rev4,rev4,rev4,rev4,rev4
+BWA,Botswana,rev4,rev4,rev4,rev4,rev4,rev4
+BRA,Brazil,rev4,rev4,rev4,rev4,rev4,rev4
+BRN,Brunei Darussalam,rev3,rev3,rev3,rev3,rev3,rev3
+BGR,Bulgaria,rev4,rev4,rev4,rev4,rev4,rev4
+BFA,Burkina Faso,rev4,rev4,rev4,rev4,rev4,rev4
+BDI,Burundi,rev3,rev3,rev3,rev3,rev3,rev3
+CPV,Cabo Verde,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2
+KHM,Cambodia,rev3,rev3,rev3,rev3,rev3,rev3
+CMR,Cameroon,rev4,rev4,rev4,rev4,rev4,rev4
+CAN,Canada,rev4,rev4,rev4,rev4,rev4,rev4
+CAF,Central African Republic,rev3,rev3,rev3,rev3,rev3,rev3
+TCD,Chad,,,,,Not Found,Not Found
+CHL,Chile,rev4,rev4,rev4,rev4,rev4,rev4
+CHN,China,rev4,rev4,rev4,rev4,rev4,rev4
+COL,Colombia,rev4,rev4,rev4,rev4,rev4,rev4
+COM,Comoros,,,,,Not Found,Not Found
+COD,"Congo, Dem. Rep.",rev3,rev3,rev3,rev3,rev3,rev3
+COG,"Congo, Rep.",ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev3,ISIC rev3,ISIC rev3
+CRI,Costa Rica,rev4,rev4,rev4,rev4,rev4,rev4
+CIV,Côte d'Ivoire,rev3,rev3,rev3,rev3,rev3,rev3
+HRV,Croatia,rev4,rev4,rev4,rev4,rev4,rev4
+CYP,Cyprus,rev4,rev4,rev4,rev4,rev4,rev4
+CZE,Czech Republic,rev4,rev4,rev4,rev4,rev4,rev4
+DNK,Denmark,rev4,rev4,rev4,rev4,rev4,rev4
+DJI,Djibouti,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2
+DMA,Dominica,rev3,rev3,rev3,rev3,rev3,rev3
+DOM,Dominican Republic,rev4,rev4,rev4,rev4,rev4,rev4
+ECU,Ecuador,rev4,rev4,rev4,rev4,rev4,rev4
+EGY,"Egypt, Arab Rep.",rev4,rev4,rev4,rev4,rev4,rev4
+SLV,El Salvador,rev4,rev4,rev4,rev4,rev4,rev4
+GNQ,Equatorial Guinea,,,,,0,0
+ERI,Eritrea,,,,,0,0
+EST,Estonia,rev4,rev4,rev4,rev4,rev4,rev4
+SWZ,Eswatini,rev4,rev4,rev4,rev4,rev4,rev4
+ETH,Ethiopia,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2
+FJI,Fiji,rev4,rev4,rev4,rev4,rev4,rev4
+FIN,Finland,rev4,rev4,rev4,rev4,rev4,rev4
+FRA,France,rev4,rev4,rev4,rev4,rev4,rev4
+GAB,Gabon,rev3,rev3,rev3,rev3,rev3,rev3
+GMB,"Gambia, The",rev3,rev3,rev3,rev3,rev3,rev3
+GEO,Georgia,nace rev2,nace rev2,nace rev2,nace rev2,nace rev2,nace rev2
+DEU,Germany,rev4,rev4,rev4,rev4,rev4,rev4
+GHA,Ghana,rev4,rev4,rev4,rev4,rev4,rev4
+GRC,Greece,rev4,rev4,rev4,rev4,rev4,rev4
+GRD,Grenada,rev3,rev3,rev3,rev3,rev3,rev3
+GTM,Guatemala,rev4,rev4,rev4,rev4,rev4,rev4
+GIN,Guinea,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2
+GNB,Guinea-Bissau,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2
+GUY,Guyana,rev4,rev4,rev4,rev4,rev4,rev4
+HTI,Haiti,rev3,rev3,rev3,rev3,rev3,rev3
+HND,Honduras,rev3,rev3,rev3,rev3,rev3,rev3
+HUN,Hungary,rev4,rev4,rev4,rev4,rev4,rev4
+ISL,Iceland,nace rev1,nace rev1,nace rev1,nace rev2,nace rev2,nace rev2
+IND,India,rev3,rev3,rev3,rev3,rev3,rev4
+IDN,Indonesia,rev4,rev4,rev4,rev4,rev4,rev4
+IRN,"Iran, Islamic Rep.",rev3,rev3,rev3,rev3,rev3,rev3
+IRQ,Iraq,rev3,rev3,rev3,rev3,rev3,rev3
+IRL,Ireland,rev4,rev4,rev4,rev4,rev4,rev4
+ISR,Israel,rev4,rev4,rev4,rev4,rev4,rev4
+ITA,Italy,rev4,rev4,rev4,rev4,rev4,rev4
+JAM,Jamaica,rev3,rev3,rev3,rev3,rev3,rev3
+JPN,Japan,rev4,rev4,rev4,rev4,rev4,rev4
+JOR,Jordan,rev4,rev4,rev4,rev4,rev4,rev4
+KAZ,Kazakhstan,nace rev2,nace rev2,nace rev2,nace rev2,nace rev2,nace rev2
+KEN,Kenya,rev3,rev3,rev3,rev3,rev3,rev3
+KIR,Kiribati,rev3,rev3,rev3,rev3,rev3,rev3
+KOR,"Korea, Rep.",rev4,rev4,rev4,rev4,rev4,rev4
+XKX,Kosovo,NACE REV2,NACE REV2,NACE REV2,NACE REV2,NACE REV2,NACE REV2
+KWT,Kuwait,rev3,rev3,rev3,rev3,rev3,rev3
+KGZ,Kyrgyz Republic,rev4,rev4,rev4,rev4,rev4,rev4
+LAO,Lao PDR,,,,,0,0
+LVA,Latvia,rev4,rev4,rev4,rev4,rev4,rev4
+LBN,Lebanon,na,na,na,na,na,na
+LSO,Lesotho,rev3,rev3,rev3,rev3,rev3,rev3
+LBR,Liberia,rev3,rev3,rev3,rev3,rev3,rev3
+LBY,Libya,rev3,rev3,rev3,rev3,rev3,rev3
+LTU,Lithuania,rev4,rev4,rev4,rev4,rev4,rev4
+LUX,Luxembourg,rev4,rev4,rev4,rev4,rev4,rev4
+MKD,"Macedonia, FYR",rev4,rev4,rev4,rev4,rev4,rev4
+MDG,Madagascar,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2
+MWI,Malawi,rev3,rev3,rev3,rev3,rev3,rev3
+MYS,Malaysia,rev4,rev4,rev4,rev4,rev4,rev4
+MDV,Maldives,rev4,rev4,rev4,rev4,rev4,rev4
+MLI,Mali,rev3,rev3,rev3,rev3,rev3,rev3
+MLT,Malta,rev4,rev4,rev4,rev4,rev4,rev4
+MHL,Marshall Islands,,,,,0,0
+MRT,Mauritania,rev4,rev4,rev4,rev4,rev4,rev4
+MUS,Mauritius,rev4,rev4,rev4,rev4,rev4,rev4
+MEX,Mexico,rev4,rev4,rev4,rev4,rev4,rev4
+FSM,"Micronesia, Fed. Sts.",,,,,0,0
+MDA,Moldova,rev4,rev4,rev4,rev4,rev4,rev4
+MNG,Mongolia,rev3,rev3,rev3,rev3,rev3,rev3
+MNE,Montenegro,rev4,rev4,rev4,rev4,rev4,rev4
+MAR,Morocco,rev3,rev3,rev3,rev3,rev3,rev3
+MOZ,Mozambique,rev3,rev3,rev3,rev3,rev3,rev3
+MMR,Myanmar,na,na,na,na,na,na
+NAM,Namibia,rev3,rev3,rev3,rev3,rev3,rev3
+NRU,Nauru,,,,,0,0
+NPL,Nepal,rev3,rev3,rev3,rev3,rev3,rev3
+NLD,Netherlands,rev4,rev4,rev4,rev4,rev4,rev4
+NZL,New Zealand,rev4,rev4,rev4,rev4,rev4,rev4
+NIC,Nicaragua,rev3,rev3,rev3,rev3,rev3,rev3
+NER,Niger,rev3,rev3,rev3,rev4,rev4,rev4
+NGA,Nigeria,rev4,rev4,rev4,rev4,rev4,rev4
+NOR,Norway,rev4,rev4,rev4,rev4,rev4,rev4
+OMN,Oman,rev3,rev3,rev3,rev3,rev3,rev3
+PAK,Pakistan,rev4,rev4,rev4,rev4,rev4,rev4
+PLW,Palau,rev4,rev4,rev4,rev4,rev4,rev4
+PAN,Panama,rev3,rev3,rev3,rev3,rev3,rev3
+PNG,Papua New Guinea,,,,,0,0
+PRY,Paraguay,rev4,rev4,rev4,rev4,rev4,rev4
+PER,Peru,rev4,rev4,rev4,rev4,rev4,rev4
+PHL,Philippines,rev3,rev3,rev3,rev3,rev4,rev4
+POL,Poland,rev4,rev4,rev4,rev4,rev4,rev4
+PRT,Portugal,rev4,rev4,rev4,rev4,rev4,rev4
+QAT,Qatar,rev3,rev3,rev3,rev3,rev3,rev3
+ROU,Romania,rev4,rev4,rev4,rev4,rev4,rev4
+RUS,Russian Federation,NACE REV2,NACE REV2,NACE REV2,NACE REV2,NACE REV2,NACE REV2
+RWA,Rwanda,rev4,rev4,rev4,rev4,rev4,rev4
+WSM,Samoa,rev3,rev3,rev3,rev3,rev3,rev3
+STP,São Tomé and Principe,rev3,rev3,rev3,rev3,rev3,rev3
+SAU,Saudi Arabia,rev4,rev4,rev4,rev4,rev4,rev4
+SEN,Senegal,rev3,rev3,rev3,rev3,rev3,rev3
+SRB,Serbia,rev4,rev4,rev4,rev4,rev4,rev4
+SYC,Seychelles,rev4,rev4,rev4,rev4,rev4,rev4
+SLE,Sierra Leone,rev3,rev3,rev3,rev3,rev3,rev3
+SGP,Singapore,rev4,rev4,rev4,rev4,rev4,rev4
+SVK,Slovak Republic,rev4,rev4,rev4,rev4,rev4,rev4
+SVN,Slovenia,rev4,rev4,rev4,rev4,rev4,rev4
+SLB,Solomon Islands,rev3,rev3,rev3,rev3,rev3,rev3
+SOM,Somalia,na,na,na,na,na,rev4
+ZAF,South Africa,rev3,rev3,rev3,rev3,rev3,rev3
+SSD,South Sudan,,,,,0,0
+ESP,Spain,rev4,rev4,rev4,rev4,rev4,rev4
+LKA,Sri Lanka,rev4,rev4,rev4,rev4,rev4,rev4
+KNA,St. Kitts and Nevis,rev3,rev3,rev3,rev3,rev3,rev3
+LCA,St. Lucia,rev3,rev3,rev3,rev3,rev3,rev3
+VCT,St. Vincent and the Grenadines,rev3,rev3,rev3,rev3,rev3,rev3
+SDN,Sudan,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2
+SUR,Suriname,rev3,rev3,rev3,rev3,rev3,rev3
+SWE,Sweden,rev4,rev4,rev4,rev4,rev4,rev4
+CHE,Switzerland,rev4,rev4,rev4,rev4,rev4,rev4
+SYR,Syrian Arab Republic,rev3,rev3,rev3,rev3,rev3,rev3
+TJK,Tajikistan,na,na,na,na,na,na
+TZA,Tanzania,rev3,rev3,rev3,rev3,rev3,rev3
+THA,Thailand,rev4,rev4,rev4,rev4,rev4,rev4
+TLS,Timor-Leste,rev4,rev4,rev4,rev4,rev4,rev4
+TGO,Togo,rev4,rev4,rev4,rev4,rev4,rev4
+TON,Tonga,rev1,rev1,rev1,rev1,rev1,rev1
+TTO,Trinidad and Tobago,rev3,rev3,rev3,rev3,rev3,rev3
+TUN,Tunisia,rev4,rev4,rev4,rev4,rev4,rev4
+TUR,Turkey,rev4,rev4,rev4,rev4,rev4,rev4
+TKM,Turkmenistan,na,na,na,na,na,na
+TUV,Tuvalu,na,na,na,na,na,na
+UGA,Uganda,na,rev3,rev3,rev4,rev4,rev4
+UKR,Ukraine,rev4,rev4,rev4,rev4,rev4,rev4
+ARE,United Arab Emirates,rev4,rev4,rev4,rev4,rev4,rev4
+GBR,United Kingdom,rev4,rev4,rev4,rev4,rev4,rev4
+USA,United States,rev4,rev4,rev4,rev4,rev4,rev4
+URY,Uruguay,rev3,rev3,rev3,rev4,rev4,rev4
+UZB,Uzbekistan,nace rev2,nace rev2,nace rev2,nace rev2,nace rev2,nace rev2
+VUT,Vanuatu,na,na,na,na,na,na
+VEN,"Venezuela, RB",ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2,ISIC rev2
+VNM,Vietnam,rev4,rev4,rev4,rev4,rev4,rev4
+PSE,West Bank and Gaza,rev4,rev4,rev4,rev4,rev4,rev4
+YEM,"Yemen, Rep.",rev3,rev3,rev3,rev3,rev3,rev3
+ZMB,Zambia,rev3,rev3,rev3,rev3,rev3,rev3
+ZWE,Zimbabwe,rev3,rev3,rev3,rev3,rev3,rev3

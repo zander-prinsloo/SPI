@@ -1,0 +1,14 @@
+{
+  "source_id": "d5_2_fina",
+  "artifact_path": "01_raw_data/5.2_DISM/D5.2.8.FINA.2025.csv",
+  "sha256": "fdfa7454cabf8601e45bdd8f5c497bb7df836514302fae40acbfb3b8a5e204d3",
+  "retrieved_at": "2026-10-24 10:14:29 UTC",
+  "release_identifier": null,
+  "raw_path": null,
+  "review": {
+    "path": "01_raw_data/5.2_DISM/D5.2.8.FINA.Manual.Review.2025.xlsx",
+    "sha256": "b66ff2071e5310fff859063b4b0c37ff9308075e425447da55ba9e7774b9863c",
+    "rows": 190,
+    "override_count": 0
+  }
+}

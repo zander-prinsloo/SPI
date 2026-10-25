@@ -1,0 +1,31 @@
+{
+  "indicator": "SPI.D5.2.10.GSBP",
+  "end_date": 2025,
+  "created_at": "2026-10-24 10:15:29 UTC",
+  "output": {
+    "path": "01_raw_data/5.2_DISM/D5.2.10.GSBP.2025.csv",
+    "sha256": "77621255d0ae42b923ff0b803aacf4f4f32741e1d88ef2169daf7e293f1bfc08"
+  },
+  "previous": {
+    "path": "01_raw_data/5.2_DISM/D5.2.10.GSBP.2024.csv",
+    "sha256": "60d04dd6c6156318f0d987ca132adfe1a4471bf41c87134a634a13daf77b9248"
+  },
+  "desk_review": {
+    "path": "01_raw_data/5.2_DISM/raw/D1.12.MSC.csv",
+    "sha256": "6567dfcdf0f307b590416fe10c2fe0bb11d6af8bf9bfbaa9d6cd37a63f3d6523"
+  },
+  "review": {
+    "path": "01_raw_data/5.2_DISM/D5.2.10.GSBP.Manual.Review.2025.xlsx",
+    "sha256": "9abf5abafb5a49437d1d48825409665e25510aad2808cdcd7fa623a40d8b94d9",
+    "rows": 190,
+    "override_count": 0
+  },
+  "rows": 190,
+  "overrides": [],
+  "warnings": [
+    {
+      "source_id": "d5_2_10_gsbp_desk_review",
+      "message": "GSBP desk review D1.12.MSC.csv is unchanged since the 2024 vintage (sha256 6567dfcdf0f3); refresh it or confirm the carry-forward."
+    }
+  ]
+}

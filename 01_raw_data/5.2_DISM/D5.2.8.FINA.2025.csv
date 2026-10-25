@@ -1,0 +1,191 @@
+Code,Country,FINA
+AFG,Afghanistan,2001
+ALB,Albania,2014
+DZA,Algeria,1986
+AND,Andorra,ESA 2010
+AGO,Angola,1986
+ATG,Antigua and Barbuda,1986
+ARG,Argentina,1986
+ARM,Armenia,2001
+AUS,Australia,2014
+AUT,Austria,ESA 2010
+AZE,Azerbaijan,2014
+BHS,"Bahamas, The",2014
+BHR,Bahrain,2001
+BGD,Bangladesh,2014
+BRB,Barbados,2001
+BLR,Belarus,2014
+BEL,Belgium,ESA 2010
+BLZ,Belize,1986
+BEN,Benin,2001
+BTN,Bhutan,1986
+BOL,Bolivia,1986
+BIH,Bosnia and Herzegovina,2014
+BWA,Botswana,1986
+BRA,Brazil,2014
+BRN,Brunei Darussalam,1986
+BGR,Bulgaria,2001
+BFA,Burkina Faso,2014
+BDI,Burundi,1986
+CPV,Cabo Verde,1986
+KHM,Cambodia,2001
+CMR,Cameroon,1986
+CAN,Canada,2014
+CAF,Central African Republic,1986
+TCD,Chad,1986
+CHL,Chile,2014
+CHN,China,1986
+COL,Colombia,1986
+COM,Comoros,1986
+COD,"Congo, Dem. Rep.",1986
+COG,"Congo, Rep.",1986
+CRI,Costa Rica,1986
+CIV,Côte d'Ivoire,1986
+HRV,Croatia,2001
+CYP,Cyprus,ESA 2010
+CZE,Czech Republic,2014
+DNK,Denmark,ESA 2010
+DJI,Djibouti,2001
+DMA,Dominica,1986
+DOM,Dominican Republic,2014
+ECU,Ecuador,2001
+EGY,"Egypt, Arab Rep.",2001
+SLV,El Salvador,1986
+GNQ,Equatorial Guinea,2014
+ERI,Eritrea,
+EST,Estonia,2014
+SWZ,Eswatini,2001
+ETH,Ethiopia,2001
+FJI,Fiji,0
+FIN,Finland,ESA 2010
+FRA,France,ESA 2010
+GAB,Gabon,1986
+GMB,"Gambia, The",1986
+GEO,Georgia,2001
+DEU,Germany,2001
+GHA,Ghana,1986
+GRC,Greece,ESA 2010
+GRD,Grenada,1986
+GTM,Guatemala,2014
+GIN,Guinea,
+GNB,Guinea-Bissau,
+GUY,Guyana,2001
+HTI,Haiti,2001
+HND,Honduras,1986
+HUN,Hungary,2014
+ISL,Iceland,2014
+IND,India,2014
+IDN,Indonesia,2014
+IRN,"Iran, Islamic Rep.",1986
+IRQ,Iraq,2001
+IRL,Ireland,ESA 2010
+ISR,Israel,2014
+ITA,Italy,ESA 2010
+JAM,Jamaica,1986
+JPN,Japan,2001
+JOR,Jordan,2001
+KAZ,Kazakhstan,1986
+KEN,Kenya,2001
+KIR,Kiribati,1986
+KOR,"Korea, Rep.",2001
+XKX,Kosovo,2014
+KWT,Kuwait,2001
+KGZ,Kyrgyz Republic,2001
+LAO,Lao PDR,
+LVA,Latvia,ESA 2010
+LBN,Lebanon,2001
+LSO,Lesotho,2001
+LBR,Liberia,2001
+LBY,Libya,Not Found
+LTU,Lithuania,2014
+LUX,Luxembourg,ESA 2010
+MKD,"Macedonia, FYR",ESA 2010
+MDG,Madagascar,2001
+MWI,Malawi,1986
+MYS,Malaysia,2014
+MDV,Maldives,
+MLI,Mali,1986
+MLT,Malta,2014
+MHL,Marshall Islands,
+MRT,Mauritania,1986
+MUS,Mauritius,2001
+MEX,Mexico,2014
+FSM,"Micronesia, Fed. Sts.",
+MDA,Moldova,2001
+MNG,Mongolia,1986
+MNE,Montenegro,2001
+MAR,Morocco,1986
+MOZ,Mozambique,1986
+MMR,Myanmar,2014
+NAM,Namibia,2014
+NRU,Nauru,
+NPL,Nepal,1986
+NLD,Netherlands,ESA 2010
+NZL,New Zealand,2014
+NIC,Nicaragua,1986
+NER,Niger,2001
+NGA,Nigeria,1986
+NOR,Norway,2014
+OMN,Oman,1986
+PAK,Pakistan,1986
+PLW,Palau,2014
+PAN,Panama,other
+PNG,Papua New Guinea,1986
+PRY,Paraguay,2014
+PER,Peru,2014
+PHL,Philippines,2014
+POL,Poland,ESA 2010
+PRT,Portugal,ESA 2010
+QAT,Qatar,2001
+ROU,Romania,ESA 2010
+RUS,Russian Federation,2014
+RWA,Rwanda,1986
+WSM,Samoa,1986
+STP,São Tomé and Principe,1986
+SAU,Saudi Arabia,2014
+SEN,Senegal,2014
+SRB,Serbia,1986
+SYC,Seychelles,2001
+SLE,Sierra Leone,1986
+SGP,Singapore,2014
+SVK,Slovak Republic,2014
+SVN,Slovenia,2014
+SLB,Solomon Islands,other
+SOM,Somalia,
+ZAF,South Africa,2014
+SSD,South Sudan,
+ESP,Spain,ESA 2010
+LKA,Sri Lanka,1986
+KNA,St. Kitts and Nevis,1986
+LCA,St. Lucia,1986
+VCT,St. Vincent and the Grenadines,1986
+SDN,Sudan,1986
+SUR,Suriname,2001
+SWE,Sweden,ESA 2010
+CHE,Switzerland,2014
+SYR,Syrian Arab Republic,1986
+TJK,Tajikistan,2001
+TZA,Tanzania,1986
+THA,Thailand,2014
+TLS,Timor-Leste,1986
+TGO,Togo,1986
+TON,Tonga,1986
+TTO,Trinidad and Tobago,1986
+TUN,Tunisia,1986
+TUR,Turkey,2014
+TKM,Turkmenistan,
+TUV,Tuvalu,
+UGA,Uganda,2014
+UKR,Ukraine,2014
+ARE,United Arab Emirates,2014
+GBR,United Kingdom,ESA 2010
+USA,United States,2014
+URY,Uruguay,2014
+UZB,Uzbekistan,2014
+VUT,Vanuatu,1986
+VEN,"Venezuela, RB",1986
+VNM,Vietnam,1986
+PSE,West Bank and Gaza,2001
+YEM,"Yemen, Rep.",1986
+ZMB,Zambia,2001
+ZWE,Zimbabwe,2001

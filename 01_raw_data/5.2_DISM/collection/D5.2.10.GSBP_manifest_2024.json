@@ -1,0 +1,16 @@
+{
+  "indicator": "SPI.D5.2.10.GSBP",
+  "end_date": 2024,
+  "baseline": true,
+  "created_at": "2026-10-23 21:51:57 UTC",
+  "note": "Baseline for the stale desk-review check: the 2024 file was built by the legacy preprocessing script from D1.12.MSC.csv at commit 95b3959.",
+  "desk_review": {
+    "path": "01_raw_data/5.2_DISM/raw/D1.12.MSC.csv",
+    "sha256": "6567dfcdf0f307b590416fe10c2fe0bb11d6af8bf9bfbaa9d6cd37a63f3d6523",
+    "commit": "95b3959"
+  },
+  "output": {
+    "path": "01_raw_data/5.2_DISM/D5.2.10.GSBP.2024.csv",
+    "sha256": "60d04dd6c6156318f0d987ca132adfe1a4471bf41c87134a634a13daf77b9248"
+  }
+}
