@@ -1,0 +1,10 @@
+{
+  "source_id": "d4_2_crvs",
+  "artifact_path": "01_raw_data/4.2_SOAD/SG_REG_BRTH90N.csv",
+  "sha256": "27b2f5a9b64f46234fe00dcef5bbbf11808e49d362ae6652f4dc844de3689b40",
+  "retrieved_at": "2026-10-24 00:30:29 UTC",
+  "release_identifier": "UN SDG API DataCSV retrieved 2026-10-24",
+  "raw_path": "01_raw_data/_collection/un_sdg/raw/un_sdg_SG_REG_BRTH90N-9a51e0969b83d9d4d7f9e66ce051b48052705d66c048ef1b693b14a7c4f31117.raw",
+  "series_code": "SG_REG_BRTH90N",
+  "dropped_geo_area_codes": ["1", "143", "145", "15", "150", "199", "202", "21", "30", "34", "35", "419", "432", "513", "53", "543", "62", "722", "747", "753", "9"]
+}

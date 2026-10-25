@@ -1,0 +1,10 @@
+{
+  "source_id": "d5_1_legislation",
+  "artifact_path": "01_raw_data/5.1_DILG/SG_STT_FPOS.csv",
+  "sha256": "89fef4af6ea5de3dde823dde44b0957719c404d365feb905839d575c95e00272",
+  "retrieved_at": "2026-10-24 00:30:38 UTC",
+  "release_identifier": "UN SDG API DataCSV retrieved 2026-10-24",
+  "raw_path": "01_raw_data/_collection/un_sdg/raw/un_sdg_SG_STT_FPOS-b7051517485683aeb8e067b25bfe94bad6e0b3e11dcb5002112186c6c8c1ed97.raw",
+  "series_code": "SG_STT_FPOS",
+  "dropped_geo_area_codes": ["1", "11", "13", "14", "142", "143", "145", "15", "150", "151", "154", "155", "17", "18", "199", "202", "21", "29", "30", "34", "35", "39", "419", "432", "5", "513", "53", "54", "543", "57", "61", "62", "680", "722", "747", "753", "830", "9"]
+}

@@ -1,0 +1,10 @@
+{
+  "source_id": "d4_2_crvs",
+  "artifact_path": "01_raw_data/4.2_SOAD/SG_REG_DETH75N.csv",
+  "sha256": "95e41cde26cf00706b9a26065873792098f26d8ca279aa3dc631368a74fe8579",
+  "retrieved_at": "2026-10-24 00:30:35 UTC",
+  "release_identifier": "UN SDG API DataCSV retrieved 2026-10-24",
+  "raw_path": "01_raw_data/_collection/un_sdg/raw/un_sdg_SG_REG_DETH75N-c406e05aedfeac61a5fce9a0bb10237b1eea1cb42e1a0cec2df37dbd7ea7040f.raw",
+  "series_code": "SG_REG_DETH75N",
+  "dropped_geo_area_codes": ["1", "143", "145", "15", "150", "199", "202", "21", "30", "34", "35", "419", "432", "513", "53", "543", "62", "722", "747", "753", "9"]
+}

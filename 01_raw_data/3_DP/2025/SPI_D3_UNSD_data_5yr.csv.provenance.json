@@ -1,0 +1,10 @@
+{
+  "source_id": "d3_sdg",
+  "artifact_path": "01_raw_data/3_DP/2025/SPI_D3_UNSD_data_5yr.csv",
+  "sha256": "956b052e1c60b1930fbc5eda23ce2ae87259e66e7213c81ed885bcd714451759",
+  "retrieved_at": "2026-10-23 21:36:22 UTC",
+  "release_identifier": "UN SDG API DataCSV, 352 Tier-1 series, retrieved 2026-10-23; OECD SDG dataflow OECD.WISE.RSB:DSD_SDG@DF_SDG(1.0), retrieved 2026-10-23",
+  "raw_path": "01_raw_data/3_DP/sdg_data/raw",
+  "series": 352,
+  "end_date": 2025
+}

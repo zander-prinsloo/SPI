@@ -1,0 +1,10 @@
+{
+  "source_id": "d5_5_finance",
+  "artifact_path": "01_raw_data/5.5_DIFI/SG_STT_NSDSFND.csv",
+  "sha256": "ba7661955e91918d42095f21835d5f787820dc6dbf4f18ab906dfd2acc67cfa2",
+  "retrieved_at": "2026-10-24 00:30:44 UTC",
+  "release_identifier": "UN SDG API DataCSV retrieved 2026-10-24",
+  "raw_path": "01_raw_data/_collection/un_sdg/raw/un_sdg_SG_STT_NSDSFND-3580453e89425452874431f41ad322b7879ad22fd530f3a5ac62d5677de2dbf5.raw",
+  "series_code": "SG_STT_NSDSFND",
+  "dropped_geo_area_codes": ["1", "11", "13", "14", "142", "143", "145", "15", "150", "151", "154", "155", "17", "18", "199", "202", "21", "29", "30", "34", "35", "39", "419", "432", "5", "513", "53", "54", "543", "57", "61", "62", "680", "722", "747", "753", "830", "9"]
+}

@@ -1,0 +1,10 @@
+{
+  "source_id": "d3_oecd_sdg",
+  "artifact_path": "01_raw_data/oecd_data/OECD_data_scored.csv",
+  "sha256": "3068fce839803b24e3b890728d9c0614ae98ca8a996aeb10bf44ef7619330f00",
+  "retrieved_at": "2026-10-23 21:17:17 UTC",
+  "release_identifier": "OECD SDG dataflow OECD.WISE.RSB:DSD_SDG@DF_SDG(1.0), retrieved 2026-10-23",
+  "raw_path": "01_raw_data/oecd_data/raw/oecd_sdg-fe72c54f4a49e7e51860f711fc3626badd175d348cb9e5856c9517a46ac303e6.raw",
+  "download_sha256": "05a82d93346978d61cc1486151c12257539001e945189aba3f44adca8c4bb241",
+  "rows": 126240
+}
