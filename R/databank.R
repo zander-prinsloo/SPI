@@ -30,7 +30,7 @@ library(dplyr)
 #' @return A tibble with iso3c, country, WB_Group_Code, WB_Group_Name.
 #' @export
 read_classifications <- function(params) {
-  readxl::read_excel(
+  classifications <- readxl::read_excel(
     path = file.path(params$raw_dir, "misc", "CLASS.xlsx"),
     sheet = "Groups"
   ) %>%
@@ -40,6 +40,74 @@ read_classifications <- function(params) {
       WB_Group_Code = GroupCode,
       WB_Group_Name = GroupName
     )
+  conflicting <- classifications %>%
+    dplyr::group_by(iso3c, WB_Group_Code) %>%
+    dplyr::summarise(n_names = dplyr::n_distinct(WB_Group_Name), .groups = "drop") %>%
+    dplyr::filter(n_names > 1L)
+  if (nrow(conflicting) > 0L) {
+    stop(
+      "CLASS HAS CONFLICTING GROUP NAMES FOR COUNTRY/GROUP KEYS: ",
+      paste(
+        paste(conflicting$iso3c, conflicting$WB_Group_Code, sep = "/"),
+        collapse = ", "
+      ),
+      call. = FALSE
+    )
+  }
+  dplyr::distinct(
+    classifications,
+    iso3c,
+    country,
+    WB_Group_Code,
+    WB_Group_Name
+  )
+}
+
+#' Group aggregates of the databank series (unweighted means)
+#'
+#' Members are summed in iso3c order. SPI_index.csv is sorted by the overall
+#' score, and a mean that falls on a rounding boundary (for example 0.455)
+#' rounds up or down depending on the summation order, so without a fixed
+#' order any change that reorders countries (the December ODIN update) would
+#' move the aggregates of unrelated series and block the release diff.
+#'
+#' @param databank_df Long country data (iso3c, date, source_id,
+#'   source_name, value).
+#' @param class_df World Bank group membership from read_classifications().
+#' @return One row per group, year and series with N, N_obs and the mean
+#'   rounded to two decimals.
+#' @export
+aggregate_databank <- function(databank_df, class_df) {
+  duplicate_memberships <- class_df %>%
+    dplyr::count(iso3c, WB_Group_Code, WB_Group_Name, name = "membership_rows") %>%
+    dplyr::filter(membership_rows > 1L)
+  if (nrow(duplicate_memberships) > 0L) {
+    class_df <- class_df %>%
+      dplyr::distinct(iso3c, country, WB_Group_Code, WB_Group_Name)
+  }
+  conflicting <- class_df %>%
+    dplyr::group_by(iso3c, WB_Group_Code) %>%
+    dplyr::summarise(n_names = dplyr::n_distinct(WB_Group_Name), .groups = "drop") %>%
+    dplyr::filter(n_names > 1L)
+  if (nrow(conflicting) > 0L) {
+    stop(
+      "CLASS HAS CONFLICTING GROUP NAMES FOR COUNTRY/GROUP KEYS: ",
+      paste(paste(conflicting$iso3c, conflicting$WB_Group_Code, sep = "/"), collapse = ", "),
+      call. = FALSE
+    )
+  }
+  databank_df %>%
+    dplyr::left_join(class_df %>% dplyr::select(-country), by = "iso3c", relationship = "many-to-many") %>%
+    dplyr::arrange(iso3c) %>%
+    dplyr::group_by(WB_Group_Code, WB_Group_Name, date, source_id, source_name) %>%
+    dplyr::summarise(
+      N = dplyr::n(),
+      N_obs = sum(!is.na(value)),
+      value = round(mean(value, na.rm = TRUE), 2),
+      .groups = "drop"
+    ) %>%
+    dplyr::ungroup() %>%
+    dplyr::filter(!is.na(WB_Group_Name))
 }
 
 #' Build the databank dataset
@@ -113,17 +181,7 @@ build_databank <- function(spi_index, spi_data, params) {
     )
 
   # --- Produce aggregates (unweighted) ---------------------------------------
-  agg_df <- databank_df %>%
-    dplyr::left_join(class_df %>% dplyr::select(-country), by = "iso3c", relationship = "many-to-many") %>%
-    dplyr::group_by(WB_Group_Code, WB_Group_Name, date, source_id, source_name) %>%
-    dplyr::summarise(
-      N = dplyr::n(),
-      N_obs = sum(!is.na(value)),
-      value = round(mean(value, na.rm = TRUE), 2),
-      .groups = "drop"
-    ) %>%
-    dplyr::ungroup() %>%
-    dplyr::filter(!is.na(WB_Group_Name))
+  agg_df <- aggregate_databank(databank_df, class_df)
 
   # --- Append aggregates to country data -------------------------------------
   data_bank_df_w_aggregates <- agg_df %>%
