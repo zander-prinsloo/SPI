@@ -291,7 +291,8 @@ pipeline_targets <- function() {
       validate_dim4_1_manifest(
         d41_manifest_file,
         raw_dir = params$raw_dir,
-        end_date = params$end_date
+        end_date = params$end_date,
+        valid_iso3c = params$country_metadata$iso3c
       )
       combine_dim4_core(params, country_grid, d41_manifest = manifest)
     },

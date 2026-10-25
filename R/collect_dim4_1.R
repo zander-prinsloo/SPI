@@ -392,7 +392,7 @@ dim4_1_catalogue_future_years <- 2L
 normalize_dim4_1_companions <- function(raw_dir, end_date,
                                         output_dir = file.path(raw_dir, "4.1_SOCS", "collection"),
                                         naming = dim4_1_naming_files(raw_dir),
-                                        write = TRUE) {
+                                        write = TRUE, valid_iso3c = NULL) {
   paths <- dim4_1_artifact_paths(raw_dir, end_date = if (is.null(end_date)) 0L else end_date)
   missing_raw <- paths$companion_files[!file.exists(paths$companion_files)]
   if (length(missing_raw) > 0L) {
@@ -449,15 +449,8 @@ normalize_dim4_1_companions <- function(raw_dir, end_date,
       end_date
     )
     path <- file.path(output_dir, basename(paths$normalized_companion_files[[stem]]))
-    if (write) {
-      dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
-      temporary <- paste0(path, ".partial")
-      readr::write_csv(normalized$data, temporary, na = "")
-      if (!file.rename(temporary, path)) {
-        stop("D4.1 NORMALIZED COMPANION COULD NOT BE WRITTEN: ", path, call. = FALSE)
-      }
-    }
     list(
+      path = path,
       file = list(
         path = path,
         raw_path = raw_path,
@@ -472,6 +465,33 @@ normalize_dim4_1_companions <- function(raw_dir, end_date,
     )
   })
   names(results) <- names(paths$companion_files)
+  if (!is.null(valid_iso3c)) {
+    valid_iso3c <- unique(trimws(as.character(valid_iso3c)))
+    observed <- unique(unlist(lapply(results, function(result) result$data$iso3c), use.names = FALSE))
+    outside <- sort(setdiff(observed, valid_iso3c))
+    if (length(outside) > 0L) {
+      stop(
+        "D4.1 CATALOGUE EVIDENCE OUTSIDE ESTIMATION COUNTRY UNIVERSE: ",
+        paste(outside, collapse = ", "),
+        call. = FALSE
+      )
+    }
+  }
+  if (isTRUE(write)) {
+    dir.create(output_dir, recursive = TRUE, showWarnings = FALSE)
+    for (result in results) {
+      temporary <- paste0(result$path, ".partial")
+      readr::write_csv(result$data, temporary, na = "")
+      if (!file.rename(temporary, result$path)) {
+        unlink(temporary, force = TRUE)
+        stop(
+          "D4.1 NORMALIZED COMPANION COULD NOT BE WRITTEN: ",
+          result$path,
+          call. = FALSE
+        )
+      }
+    }
+  }
   list(
     files = lapply(results, `[[`, "file"),
     exclusions = lapply(results, `[[`, "exclusions"),
@@ -858,12 +878,14 @@ dim4_1_file_metadata <- function(path, role) {
 #' @return A list with per-companion `files` statistics and `exclusions`.
 #' @export
 validate_dim4_1_companions <- function(raw_dir, end_date = NULL,
-                                       naming = dim4_1_naming_files(raw_dir)) {
+                                       naming = dim4_1_naming_files(raw_dir),
+                                       valid_iso3c = NULL) {
   expected <- normalize_dim4_1_companions(
     raw_dir,
     end_date = end_date,
     naming = naming,
-    write = FALSE
+    write = FALSE,
+    valid_iso3c = valid_iso3c
   )
   for (stem in names(expected$files)) {
     path <- expected$files[[stem]]$path
@@ -977,6 +999,7 @@ validate_dim4_1_derived <- function(raw_dir, end_date,
 dim4_1_build_manifest <- function(raw_dir, end_date,
                                   country_metadata = NULL) {
   paths <- dim4_1_artifact_paths(raw_dir, end_date)
+  refresh_record <- dim4_1_read_refresh_record(raw_dir, end_date)
   validate_dim4_1_workbooks(raw_dir, end_date)
   validate_dim4_1_derived(
     raw_dir,
@@ -991,7 +1014,8 @@ dim4_1_build_manifest <- function(raw_dir, end_date,
   companions <- validate_dim4_1_companions(
     raw_dir,
     end_date = end_date,
-    naming = paths$naming_files
+    naming = paths$naming_files,
+    valid_iso3c = if (is.null(country_metadata)) NULL else country_metadata$iso3c
   )
   normalized_entries <- lapply(names(companions$files), function(stem) {
     statistics <- companions$files[[stem]]
@@ -1005,7 +1029,7 @@ dim4_1_build_manifest <- function(raw_dir, end_date,
   })
   names(normalized_entries) <- names(companions$files)
 
-  list(
+  manifest <- list(
     schema_version = "spi-d4.1-collection-v2",
     end_date = end_date,
     naming = list(
@@ -1039,8 +1063,20 @@ dim4_1_build_manifest <- function(raw_dir, end_date,
       role = "d41_catalogue_raw"
     ),
     companions = normalized_entries,
-    exclusions = companions$exclusions
+    exclusions = companions$exclusions,
+    catalogue_refresh = if (is.null(refresh_record)) {
+      NULL
+    } else {
+      c(
+        dim4_1_file_metadata(
+          dim4_1_catalogue_refresh_record_path(raw_dir),
+          role = "d41_catalogue_refresh_record"
+        ),
+        list(record = refresh_record)
+      )
+    }
   )
+  manifest
 }
 
 #' Validate a D4.1 manifest and every artifact it authorizes.
@@ -1050,7 +1086,8 @@ dim4_1_build_manifest <- function(raw_dir, end_date,
 #' @param end_date Current SPI reference year.
 #' @return The validated manifest invisibly.
 #' @export
-validate_dim4_1_manifest <- function(manifest_path, raw_dir, end_date) {
+validate_dim4_1_manifest <- function(manifest_path, raw_dir, end_date,
+                                     valid_iso3c = NULL) {
   if (!file.exists(manifest_path)) {
     stop("D4.1 MANIFEST NOT FOUND: ", manifest_path, call. = FALSE)
   }
@@ -1159,6 +1196,41 @@ validate_dim4_1_manifest <- function(manifest_path, raw_dir, end_date) {
     unname(expected$normalized_companion_files),
     "d41_catalogue_companion"
   )
+  refresh_path <- dim4_1_catalogue_refresh_record_path(raw_dir)
+  has_refresh <- !is.null(manifest$catalogue_refresh) && length(manifest$catalogue_refresh) > 0L
+  if (file.exists(refresh_path) && !has_refresh) {
+    stop(
+      "D4.1 MANIFEST REFRESH PROVENANCE MISSING: rerun the D4.1 collection target.",
+      call. = FALSE
+    )
+  }
+  if (has_refresh) {
+    validate_entry(
+      manifest$catalogue_refresh,
+      refresh_path,
+      "d41_catalogue_refresh_record"
+    )
+    dim4_1_read_refresh_record(raw_dir, end_date)
+  }
+  if (!is.null(valid_iso3c)) {
+    valid_iso3c <- unique(trimws(as.character(valid_iso3c)))
+    outside <- lapply(manifest$companions, function(entry) {
+      data <- readr::read_csv(
+        dim4_1_resolve_manifest_path(entry$path),
+        col_types = readr::cols_only(iso3c = readr::col_character()),
+        progress = FALSE
+      )
+      sort(setdiff(unique(trimws(data$iso3c)), valid_iso3c))
+    })
+    outside <- sort(unique(unlist(outside, use.names = FALSE)))
+    if (length(outside) > 0L) {
+      stop(
+        "D4.1 MANIFEST EVIDENCE OUTSIDE ESTIMATION COUNTRY UNIVERSE: ",
+        paste(outside, collapse = ", "),
+        call. = FALSE
+      )
+    }
+  }
   invisible(manifest)
 }
 
@@ -1481,7 +1553,8 @@ dim4_1_promote_staged_files <- function(staged_files, target_dir, backup_dir,
 #' @export
 dim4_1_refresh_catalogue <- function(params, refresh_fn, adapter = "injected",
                                      request = list(),
-                                     companions = names(dim4_1_workbook_specs())) {
+                                     companions = names(dim4_1_workbook_specs()),
+                                     valid_iso3c = NULL) {
   budget_minutes <- params$d41_catalogue_budget_minutes
   if (is.null(budget_minutes) || !is.numeric(budget_minutes) ||
       length(budget_minutes) != 1L || !is.finite(budget_minutes) ||
@@ -1571,7 +1644,8 @@ dim4_1_refresh_catalogue <- function(params, refresh_fn, adapter = "injected",
       file.path(staging_root, "01_raw_data"),
       end_date = params$end_date,
       output_dir = file.path(staging_root, "normalized"),
-      naming = dim4_1_naming_files(params$raw_dir)
+      naming = dim4_1_naming_files(params$raw_dir),
+      valid_iso3c = valid_iso3c
     ),
     error = function(error) error
   )
@@ -1627,6 +1701,105 @@ dim4_1_catalogue_refresh_record_path <- function(raw_dir) {
   file.path(raw_dir, "4.1_SOCS", "collection", "catalogue_refresh.json")
 }
 
+.d41_validate_refresh_record <- function(record, raw_dir, end_date, path) {
+  required <- c(
+    "adapter", "request", "started_at", "finished_at", "elapsed_seconds",
+    "budget_seconds", "companions", "carried_forward", "promoted_files", "fetch"
+  )
+  missing <- setdiff(required, names(record))
+  if (length(missing) > 0L) {
+    stop(
+      "D4.1 CATALOGUE REFRESH RECORD SCHEMA INVALID; missing ",
+      paste(missing, collapse = ", "), " in ", path,
+      call. = FALSE
+    )
+  }
+  if (length(record$adapter) != 1L || is.na(record$adapter) || !nzchar(record$adapter)) {
+    stop("D4.1 CATALOGUE REFRESH RECORD HAS NO adapter: ", path, call. = FALSE)
+  }
+  for (field in c("started_at", "finished_at")) {
+    value <- as.character(record[[field]])
+    parsed <- as.POSIXct(value, format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC")
+    if (length(value) != 1L || is.na(parsed)) {
+      stop("D4.1 CATALOGUE REFRESH RECORD HAS INVALID ", field, ": ", path, call. = FALSE)
+    }
+  }
+  numeric_fields <- c("elapsed_seconds", "budget_seconds")
+  if (any(!vapply(record[numeric_fields], function(value) {
+    length(value) == 1L && is.numeric(value) && is.finite(value) && value >= 0
+  }, logical(1)))) {
+    stop("D4.1 CATALOGUE REFRESH RECORD HAS INVALID TIMING FIELDS: ", path, call. = FALSE)
+  }
+
+  stems <- names(dim4_1_workbook_specs())
+  if (!is.list(record$companions) || !identical(sort(names(record$companions)), sort(stems))) {
+    stop("D4.1 CATALOGUE REFRESH RECORD COMPANION SET INVALID: ", path, call. = FALSE)
+  }
+  companion_files <- dim4_1_artifact_paths(raw_dir, end_date)$companion_files
+  for (stem in stems) {
+    companion <- record$companions[[stem]]
+    if (!is.list(companion) || !all(c("rows", "sha256", "refreshed") %in% names(companion))) {
+      stop("D4.1 CATALOGUE REFRESH RECORD COMPANION ENTRY INVALID: ", stem, call. = FALSE)
+    }
+    if (length(companion$rows) != 1L || is.na(companion$rows) ||
+        !is.numeric(companion$rows) || companion$rows < 0 ||
+        length(companion$refreshed) != 1L || is.na(companion$refreshed) ||
+        !is.logical(companion$refreshed) ||
+        length(companion$sha256) != 1L ||
+        !grepl("^[0-9a-fA-F]{64}$", companion$sha256)) {
+      stop("D4.1 CATALOGUE REFRESH RECORD COMPANION ENTRY INVALID: ", stem, call. = FALSE)
+    }
+    current <- companion_files[[stem]]
+    if (!file.exists(current) || !identical(
+      tolower(as.character(companion$sha256)),
+      tolower(digest::digest(current, algo = "sha256", file = TRUE))
+    )) {
+      stop(
+        "D4.1 CATALOGUE REFRESH RECORD DOES NOT MATCH CURRENT COMPANION: ",
+        stem,
+        call. = FALSE
+      )
+    }
+  }
+
+  # Production catalogue runs must carry identities for the prefetch index
+  # and failure log. Injected adapters remain intentionally lightweight test
+  # fixtures, but any identities they provide are still checked.
+  prefetch <- if (is.list(record$fetch)) record$fetch$prefetch else NULL
+  production <- !identical(as.character(record$adapter), "injected")
+  if (production && !is.list(prefetch)) {
+    stop("D4.1 CATALOGUE REFRESH RECORD HAS NO PREFETCH PROVENANCE: ", path, call. = FALSE)
+  }
+  if (is.list(prefetch)) {
+    present <- intersect(c("index", "failures"), names(prefetch))
+    if (production && !all(c("index", "failures") %in% present)) {
+      stop("D4.1 CATALOGUE REFRESH RECORD HAS INCOMPLETE PREFETCH PROVENANCE: ", path, call. = FALSE)
+    }
+    for (field in present) {
+      identity <- prefetch[[field]]
+      if (is.null(identity) || !is.list(identity) || length(identity) == 0L ||
+          length(identity$path) != 1L || !nzchar(identity$path)) {
+        stop(
+          "D4.1 CATALOGUE REFRESH RECORD HAS INVALID PREFETCH ", field, ": ",
+          path,
+          call. = FALSE
+        )
+      }
+      identity_path <- dim4_1_resolve_manifest_path(identity$path)
+      if (!file.exists(identity_path)) {
+        stop("D4.1 CATALOGUE REFRESH PREFETCH FILE MISSING: ", identity_path, call. = FALSE)
+      }
+      if (!is.null(identity$sha256) && !identical(
+        tolower(as.character(identity$sha256)),
+        tolower(digest::digest(identity_path, algo = "sha256", file = TRUE))
+      )) {
+        stop("D4.1 CATALOGUE REFRESH PREFETCH HASH MISMATCH: ", identity_path, call. = FALSE)
+      }
+    }
+  }
+  invisible(TRUE)
+}
+
 #' Read the last refresh record and compare it with the current companions.
 #'
 #' @param raw_dir Root raw-data directory.
@@ -1640,6 +1813,7 @@ dim4_1_read_refresh_record <- function(raw_dir, end_date) {
     return(NULL)
   }
   record <- jsonlite::read_json(path, simplifyVector = FALSE)
+  .d41_validate_refresh_record(record, raw_dir, end_date, path)
   companion_files <- dim4_1_artifact_paths(raw_dir, end_date)$companion_files
   changed <- names(companion_files)[vapply(names(companion_files), function(stem) {
     recorded <- record$companions[[stem]]$sha256
@@ -1665,13 +1839,17 @@ dim4_1_read_refresh_record <- function(raw_dir, end_date) {
 #' @param refresh_fn Optional injected adapter `function(params, staging_dir)`.
 #' @return A catalogue collection result, including the refresh record.
 #' @export
-collect_dim4_1_catalogue <- function(params, refresh_fn = NULL) {
+collect_dim4_1_catalogue <- function(params, refresh_fn = NULL, valid_iso3c = NULL) {
   if (is.null(params$end_date)) {
     stop("D4.1 CATALOGUE COLLECTION REQUIRES end_date.", call. = FALSE)
   }
   refresh <- NULL
   if (!is.null(refresh_fn)) {
-    refresh <- dim4_1_refresh_catalogue(params, refresh_fn)
+    refresh <- dim4_1_refresh_catalogue(
+      params,
+      refresh_fn,
+      valid_iso3c = valid_iso3c
+    )
   } else if (isTRUE(params$run_downloads)) {
     script_path <- dim4_1_catalogue_script_path()
     code <- dim4_1_legacy_catalogue_code(script_path)
@@ -1697,23 +1875,33 @@ collect_dim4_1_catalogue <- function(params, refresh_fn = NULL) {
         script_sha256 = digest::digest(script_path, algo = "sha256", file = TRUE),
         urls = dim4_1_catalogue_request_urls(code)
       ),
-      companions = dim4_1_catalogue_written_companions(code)
+      companions = dim4_1_catalogue_written_companions(code),
+      valid_iso3c = valid_iso3c
     )
   }
 
   normalized <- normalize_dim4_1_companions(
     params$raw_dir,
-    end_date = params$end_date
+    end_date = params$end_date,
+    valid_iso3c = valid_iso3c
   )
+  last_refresh <- if (is.null(refresh)) {
+    dim4_1_read_refresh_record(params$raw_dir, params$end_date)
+  } else {
+    NULL
+  }
+  if (!is.null(last_refresh) && !isTRUE(last_refresh$matches_current_companions)) {
+    stop(
+      "D4.1 CATALOGUE REFRESH RECORD DOES NOT MATCH CURRENT COMPANIONS: ",
+      paste(last_refresh$changed_companions, collapse = ", "),
+      call. = FALSE
+    )
+  }
   list(
     status = if (is.null(refresh)) "validated_external_artifacts" else "refreshed",
     refreshed = !is.null(refresh),
     refresh = refresh,
-    last_refresh = if (is.null(refresh)) {
-      dim4_1_read_refresh_record(params$raw_dir, params$end_date)
-    } else {
-      NULL
-    },
+    last_refresh = last_refresh,
     companion_files = vapply(normalized$files, `[[`, character(1), "path"),
     raw_companion_files = vapply(normalized$files, `[[`, character(1), "raw_path"),
     rows = vapply(normalized$files, `[[`, integer(1), "rows"),

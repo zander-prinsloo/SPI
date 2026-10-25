@@ -198,7 +198,11 @@ collection_targets <- function() {
     command = {
       d41_preprocess
       d41_manual_review_file
-      collect_dim4_1_catalogue(collection_params)
+      wb <- world_bank_inputs
+      collect_dim4_1_catalogue(
+        collection_params,
+        valid_iso3c = readRDS(wb$countries)$iso3c
+      )
     },
     format = "rds",
     cue = tar_cue(mode = "always")

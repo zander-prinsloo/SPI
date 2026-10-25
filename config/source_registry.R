@@ -178,6 +178,29 @@ source_registry <- rbind(
   )
 )
 
+# D4.1 catalogue refresh provenance is a release input, not a disposable
+# collection log. Locking it binds the promoted companions to the request,
+# prefetch identities and carry-forward decisions that produced them.
+source_registry <- rbind(
+  source_registry,
+  data.frame(
+    source_id = "d4_1_catalogue_refresh_record",
+    dimension_id = "4.1",
+    source_type = "external",
+    indicator_ids = "SPI.D4.1.*",
+    source_url = NA_character_,
+    input_path = "4.1_SOCS/collection/catalogue_refresh.json",
+    raw_path = "4.1_SOCS/collection/",
+    normalized_path = "4.1_SOCS/collection/catalogue_refresh.json",
+    availability_path = NA_character_,
+    expected_vintage_rule = "end_date",
+    age_warning_days = 365,
+    status_if_missing = "blocking",
+    analyst_action = "Run the D4.1 catalogue collection target and verify the refresh record, prefetch identities and companion hashes.",
+    stringsAsFactors = FALSE
+  )
+)
+
 source_registry <- rbind(
   source_registry,
   data.frame(

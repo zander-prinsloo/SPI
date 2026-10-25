@@ -573,6 +573,7 @@ dim4_1_catalogue_prefetch <- function(cache, sources = dim4_1_catalogue_sources(
     ),
     failures = list(
       path = dim4_1_project_relative_path(cache$failures),
+      sha256 = digest::digest(cache$failures, algo = "sha256", file = TRUE),
       blocking_rows = 0L,
       documented_rows = nrow(anomalies)
     ),

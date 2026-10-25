@@ -543,9 +543,10 @@ test_that("the refresh record persists for later runs without a refresh", {
   companion <- dim4_1_artifact_paths(raw_root, 2024)$companion_files[["D4.1.7.SVY.HLTH"]]
   lines <- readLines(companion)
   writeLines(c(lines, lines[length(lines)]), companion)
-  changed <- collect_dim4_1_catalogue(refresh_params(raw_root))
-  expect_false(changed$last_refresh$matches_current_companions)
-  expect_identical(changed$last_refresh$changed_companions, "D4.1.7.SVY.HLTH")
+  expect_error(
+    collect_dim4_1_catalogue(refresh_params(raw_root)),
+    "D4.1 CATALOGUE REFRESH RECORD DOES NOT MATCH CURRENT COMPANION: D4.1.7.SVY.HLTH"
+  )
 })
 
 test_that("without a recorded refresh the catalogue result says so", {

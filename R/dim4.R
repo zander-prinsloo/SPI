@@ -318,7 +318,7 @@ census_fun <- function(data, input_var, params, review_path = NULL) {
     dplyr::summarise(
       input_var = dplyr::first(stats::na.omit(input_var)),
       nada_dates = paste(
-        unique(stats::na.omit(nada_dates)),
+        unique(nada_dates[!is.na(nada_dates) & nzchar(trimws(nada_dates))]),
         collapse = "; "
       ),
       .groups = "drop"
@@ -342,7 +342,10 @@ census_fun <- function(data, input_var, params, review_path = NULL) {
         last_val = max(indicator_date, na.rm = TRUE),
         register = max(register, na.rm = TRUE),
         input_var = paste(unique(indicator_date), collapse = ","),
-        nada_dates = dplyr::first(nada_dates),
+      nada_dates = paste(
+          unique(nada_dates[!is.na(nada_dates) & nzchar(trimws(nada_dates))]),
+          collapse = "; "
+        ),
         .groups = "drop"
       ) %>%
       dplyr::mutate(indicator = dplyr::case_when(
@@ -436,7 +439,10 @@ survey_fun <- function(data, input_var, params, review_path = NULL) {
     dplyr::group_by(iso3c, indicator_date) %>%
     dplyr::summarise(
       input_var = dplyr::first(stats::na.omit(input_var)),
-      nada_dates = dplyr::first(stats::na.omit(nada_dates)),
+        nada_dates = paste(
+          unique(nada_dates[!is.na(nada_dates) & nzchar(trimws(nada_dates))]),
+          collapse = "; "
+        ),
       .groups = "drop"
     ) %>%
     dplyr::mutate(indicator_date = if_else(is.na(indicator_date), -99, indicator_date))
@@ -462,7 +468,10 @@ survey_fun <- function(data, input_var, params, review_path = NULL) {
           TRUE ~ 0
         ),
         input_var = paste(unique(indicator_date), collapse = ", "),
-        nada_dates = dplyr::first(nada_dates),
+        nada_dates = paste(
+          unique(nada_dates[!is.na(nada_dates) & nzchar(trimws(nada_dates))]),
+          collapse = "; "
+        ),
         .groups = "drop"
       ) %>%
       dplyr::select(iso3c, date, input_var, nada_dates, indicator) %>%
@@ -555,6 +564,25 @@ combine_censuses_surveys <- function(params, grid, d41_manifest = NULL) {
       SPI.D4.1.8.BZSVY = indicator
     ) %>%
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
+
+  evidence <- list(
+    POPU = cs1_df, AGRI = cs2_df, BIZZ = cs3_df, HOUS = cs4_df,
+    AGSVY = cs5_df, LABR = cs6_df, HLTH = cs7_df, BZSVY = cs8_df
+  )
+  outside <- lapply(evidence, function(data) {
+    sort(setdiff(unique(data$iso3c), unique(grid$iso3c)))
+  })
+  outside <- outside[lengths(outside) > 0L]
+  if (length(outside) > 0L) {
+    stop(
+      "D4.1 EVIDENCE OUTSIDE ESTIMATION COUNTRY UNIVERSE: ",
+      paste(
+        sprintf("%s=%s", names(outside), vapply(outside, paste, character(1), collapse = ", ")),
+        collapse = "; "
+      ),
+      call. = FALSE
+    )
+  }
 
   # Bind all censuses and surveys together
   grid %>%
