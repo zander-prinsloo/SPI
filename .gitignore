@@ -214,3 +214,6 @@ _targets/
 .opencode/opencode.json
 .opencode/shared
 .opencode/skills
+
+# Oversized 2025 manual IGME input remains local; other vintages stay tracked.
+/01_raw_data/1.5_DUIO/UN IGME 2025.csv

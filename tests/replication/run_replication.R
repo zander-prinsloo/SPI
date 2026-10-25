@@ -3,7 +3,7 @@
 # =============================================================================
 # Examples (run from the repository root):
 #   Rscript --vanilla tests/replication/run_replication.R \
-#     --code 8df2865 --vintage 2024 --out replication/spi-rep/baseline
+#     --code 25b534706ff6 --vintage 2024 --out replication/spi-rep/baseline
 #   Rscript --vanilla tests/replication/run_replication.R \
 #     --code worktree --vintage 2024 --out replication/spi-rep/worktree \
 #     --compare replication/spi-rep/baseline

@@ -25,7 +25,7 @@
 #     step 3  2025 workbooks and review files, previous catalogue companions
 #     step 4  refreshed catalogue companions (the current inputs)
 #
-# 202511 inputs: the files of commit 8df2865 (PIP, JMP, UN SDG CRVS series,
+# 202511 inputs: the files of commit 25b534706ff6 (PIP, JMP, UN SDG CRVS series,
 # D4.1 catalogue companions) and the 202511 files kept in 01_raw_data under
 # their own names (UN IGME 2021 extract, ILO September 2025 bulk files).
 #
@@ -43,7 +43,7 @@
 suppressPackageStartupMessages(library(dplyr))
 for (file in list.files("R", full.names = TRUE, pattern = "[.]R$")) source(file)
 
-reference_commit <- "8df2865"
+reference_commit <- "25b534706ff6"
 previous_end_date <- 2024L
 current_end_date <- 2025L
 out_dir <- file.path("docs", "revisions", "202611")

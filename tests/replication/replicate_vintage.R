@@ -91,7 +91,7 @@ replication_vintage_params <- function(vintage) {
 
 # Commit whose tracked raw files replications read (see
 # pin_tracked_raw_files()); the raw data of the E5 enumeration.
-replication_raw_ref <- "8df2865"
+replication_raw_ref <- "25b534706ff6"
 
 .run_git_lines <- function(repo_root, args) {
   out <- system2("git", c("-C", shQuote(repo_root), args), stdout = TRUE)
@@ -230,7 +230,7 @@ build_raw_data_farm <- function(repo_root, sandbox, vintage) {
 
   # World Bank snapshots for the vintage are derived from the frozen 2025
   # retrieval in tests/replication/world_bank_snapshot (the snapshot every
-  # replication since the 8df2865 baseline used), filtered to the vintage
+  # replication since the 25b534706ff6 baseline used), filtered to the vintage
   # span, so a later live collection cannot change replicated metadata.
   wb_real <- file.path(repo_root, "tests", "replication", "world_bank_snapshot")
   wb_farm <- file.path(farm, "_collection", "world_bank")
