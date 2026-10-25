@@ -1,0 +1,19 @@
+ilo_label,iso3c,note
+"Bolivia, Plurinational State of",BOL,ILO name in the 2026 bulk files; iso_codes.csv uses Bolivia (Plurinational State of)
+Cape Verde,CPV,ILO name in the 2026 bulk files; iso_codes.csv uses Cabo Verde
+Channel Islands,CHI,"ILO area code CHA; World Bank economy CHI, absent from iso_codes.csv"
+"Congo, Democratic Republic of the",COD,ILO name; iso_codes.csv uses Democratic Republic of the Congo
+Côte d'Ivoire,CIV,Straight apostrophe; iso_codes.csv uses a typographic apostrophe
+"Hong Kong, China",HKG,"ILO name; iso_codes.csv uses China, Hong Kong Special Administrative Region"
+"Iran, Islamic Republic of",IRN,ILO name in the 2026 bulk files; iso_codes.csv uses Iran (Islamic Republic of)
+Korea (the Democratic People's Republic of),PRK,ILO name in the 2025 bulk files; iso_codes.csv uses Democratic People's Republic of Korea
+"Korea, Democratic People's Republic of",PRK,ILO name in the 2026 bulk files; iso_codes.csv uses Democratic People's Republic of Korea
+Kosovo,XKX,"ILO area code KOS; World Bank economy XKX, absent from iso_codes.csv"
+"Macao, China",MAC,"ILO name in the 2025 bulk files; iso_codes.csv uses China, Macao Special Administrative Region"
+"Macau, China",MAC,"ILO name in the 2026 bulk files; iso_codes.csv uses China, Macao Special Administrative Region"
+"Micronesia, Federated States of",FSM,ILO name in the 2026 bulk files; iso_codes.csv uses Micronesia (Federated States of)
+Naoero,NRU,ILO name (Nauruan) in the 2026 bulk files; iso_codes.csv uses Nauru
+Occupied Palestinian Territory,PSE,ILO name in the 2025 bulk files; World Bank economy West Bank and Gaza
+"Palestine, State of",PSE,ILO name in the 2026 bulk files; World Bank economy West Bank and Gaza
+Türkiye,TUR,ILO name; iso_codes.csv uses Turkey
+"Venezuela, Bolivarian Republic of",VEN,ILO name in the 2026 bulk files; iso_codes.csv uses Venezuela (Bolivarian Republic of)

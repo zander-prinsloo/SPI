@@ -20,6 +20,8 @@
 library(testthat)
 
 # Source the functions under test
+source(file.path(here::here("R"), "setup.R"))
+source(file.path(here::here("R"), "schema.R"))
 source(file.path(here::here("R"), "dim1_5.R"))
 source(file.path(here::here("R"), "dim2.R"))
 source(file.path(here::here("R"), "collect_dim4_1.R"))
@@ -75,6 +77,30 @@ test_that("poverty comparability: only 1 comparable survey scores 0", {
 
   result <- score_poverty_comparability(pip, params, grid)
   expect_equal(result$SPI.D1.5.POV[result$date == 2024], 0)
+})
+
+test_that("ilo lfp does not award accuracy without a modelled comparator", {
+  params <- test_params(end_date = 2024)
+  lfp <- tibble::tibble(
+    iso3c = "AFG",
+    date = 2023,
+    estimate_diff = NA_real_,
+    lfs_source = TRUE
+  )
+  result <- score_ilo_lfp(lfp, params)
+  expect_equal(result$SPI.D1.5.LFP[result$date == 2024], 0.5)
+})
+
+test_that("ilo lfp uses the absolute reported-modelled gap", {
+  params <- test_params(end_date = 2024)
+  lfp <- tibble::tibble(
+    iso3c = "AFG",
+    date = 2023,
+    estimate_diff = -20,
+    lfs_source = TRUE
+  )
+  result <- score_ilo_lfp(lfp, params)
+  expect_equal(result$SPI.D1.5.LFP[result$date == 2024], 0.5)
 })
 
 test_that("poverty comparability: 10-year window with 2 national surveys scores 0.5", {
@@ -222,7 +248,7 @@ test_that("ilo lfp: estimate_diff > 10 scores 0.5 (source only)", {
 test_that("census_fun: census within 10 years scores 1", {
   params <- test_params()
   # census_fun reads from <raw_dir>/4.1_SOCS/raw/ (base + manual review)
-  # and <raw_dir>/4.1_SOCS/ (NADA files).
+  # and <raw_dir>/4.1_SOCS/collection/ (normalized NADA companions).
   tmp <- tempdir()
   raw_sub <- file.path(tmp, "4.1_SOCS", "raw")
   dir.create(raw_sub, recursive = TRUE)
@@ -246,18 +272,20 @@ test_that("census_fun: census within 10 years scores 1", {
     LABR.SURVEYS = c(NA_character_),
     HLTH.SURVEYS = c(NA_character_),
     BIZZ.SURVEYS = c(NA_character_),
-    Evidence = c(NA_character_)
+    Evidence = c("test source")
   )
   writexl::write_xlsx(manual, file.path(raw_sub, "D4.1.Manual.Review.2024.xlsx"))
 
-  # NADA file (read from 4.1_SOCS/, keyed on country name)
+  # Normalized catalogue companion (4.1_SOCS/collection/, keyed on iso3c)
   nada <- tibble::tibble(
+    iso3c = c("AFG"),
     country = c("Afghanistan"),
     indicator_date = c(2015),
     nada_dates = c("2015"),
     nada_title = c("Test census")
   )
-  readr::write_csv(nada, file.path(tmp, "4.1_SOCS", "D4.1.1.CEN.POPU_NADA.csv"))
+  dir.create(file.path(tmp, "4.1_SOCS", "collection"), recursive = TRUE, showWarnings = FALSE)
+  readr::write_csv(nada, file.path(tmp, "4.1_SOCS", "collection", "D4.1.1.CEN.POPU_NADA.iso3c.csv"))
 
   params$raw_dir <- tmp
   params$country_metadata <- tibble::tibble(
@@ -300,14 +328,16 @@ test_that("survey_fun: 3 surveys within window scores 1, 2 scores 0.67, 1 scores
   )
   writexl::write_xlsx(manual, file.path(raw_sub, "D4.1.Manual.Review.2024.xlsx"))
 
-  # NADA file (read from 4.1_SOCS/, keyed on country name)
+  # Normalized catalogue companion (4.1_SOCS/collection/, keyed on iso3c)
   nada <- tibble::tibble(
+    iso3c = c("AFG"),
     country = c("Afghanistan"),
     indicator_date = c(2015),
     nada_dates = c("2015"),
     nada_title = c("Test survey")
   )
-  readr::write_csv(nada, file.path(tmp, "4.1_SOCS", "D4.1.4.SVY.HOUS_NADA.csv"))
+  dir.create(file.path(tmp, "4.1_SOCS", "collection"), recursive = TRUE, showWarnings = FALSE)
+  readr::write_csv(nada, file.path(tmp, "4.1_SOCS", "collection", "D4.1.4.SVY.HOUS_NADA.iso3c.csv"))
 
   params$raw_dir <- tmp
   params$country_metadata <- tibble::tibble(
@@ -511,4 +541,367 @@ test_that("load_index_weights: pillar 4 dimension weights sum to 1", {
   w <- load_index_weights()
   pillar4_total <- w$dim_4_1.CEN + w$dim_4_1.SVY + w$dim_4_2 + w$dim_4_3
   expect_equal(pillar4_total, 1)
+})
+# =============================================================================
+# 202611 readiness: source-reader robustness (plan Step 1)
+# =============================================================================
+
+test_that("read_wdi_metadata binds vintages whose column types differ", {
+  raw <- withr::local_tempdir()
+  dir.create(file.path(raw, "metadata"))
+  write_wdi <- function(year, agri) {
+    readr::write_csv(
+      data.frame(
+        `Country Code` = c("AAA", "BBB"),
+        `Income Group` = c("Low income", "High income"),
+        `National accounts reference year` = c("2015", ""),
+        `Latest agricultural census` = agri,
+        check.names = FALSE
+      ),
+      file.path(raw, "metadata", sprintf("WDI_metadata_%d.csv", year))
+    )
+  }
+  write_wdi(2016, c("2010/11", "2012"))
+  write_wdi(2017, c("2013", "2014"))
+
+  out <- read_wdi_metadata(list(raw_dir = raw, end_date = 2016))
+  expect_equal(nrow(out), 4)
+  expect_type(out$Latest.agricultural.census, "character")
+})
+
+test_that("score_debt_reporting scores 'Estimated' like 'Estimate'", {
+  wdi <- data.frame(
+    Code = c("AAA", "BBB"),
+    date = 2026,
+    External.debt.Reporting.status = c("Estimate", "Estimated"),
+    Income.Group = "Lower middle income"
+  )
+  out <- score_debt_reporting(wdi)
+  expect_equal(out$SPI.D1.5.DT.TDS.DPPF.XP.ZS, c(0.33, 0.33))
+})
+
+test_that("score_debt_reporting fails loudly on an unseen reporting label", {
+  wdi <- data.frame(
+    Code = "AAA",
+    date = 2026,
+    External.debt.Reporting.status = "Provisional",
+    Income.Group = "Low income"
+  )
+  expect_error(score_debt_reporting(wdi), "UNKNOWN EXTERNAL DEBT REPORTING STATUS")
+})
+
+ilo_fixture <- function(time_value,
+                        survey_labels = "Alpha",
+                        modelled_labels = survey_labels,
+                        crosswalk = data.frame(ilo_label = character(), iso3c = character(), note = character()),
+                        exclusions = data.frame(ilo_label = character(), category = character(), reason = character()),
+                        economies = "AAA") {
+  raw <- withr::local_tempdir(.local_envir = parent.frame())
+  config <- withr::local_tempdir(.local_envir = parent.frame())
+  dir.create(file.path(raw, "metadata"))
+  dir.create(file.path(raw, "1.5_DUIO"))
+  readr::write_csv(
+    data.frame(ref_area = "AAA", ref_area.label = "Alpha"),
+    file.path(raw, "metadata", "ILO_reference_area.csv")
+  )
+  readr::write_csv(
+    data.frame(country = c("Alpha", "Beta"), geoAreaCode = c(1, 2), iso3c = c("AAA", "BBB")),
+    file.path(raw, "metadata", "iso_codes.csv")
+  )
+  rows <- function(labels, value) {
+    data.frame(
+      sex.label = "Total",
+      classif1.label = "Age (Youth, adults): 15+",
+      ref_area.label = labels,
+      time = time_value,
+      obs_value = value
+    )
+  }
+  writexl::write_xlsx(rows(modelled_labels, 60), file.path(raw, "1.5_DUIO", "modelled.xlsx"))
+  writexl::write_xlsx(
+    transform(rows(survey_labels, 61), source.label = "LFS - Labour Force Survey"),
+    file.path(raw, "1.5_DUIO", "survey.xlsx")
+  )
+  readr::write_csv(crosswalk, file.path(config, "ilo_area_crosswalk.csv"), na = "")
+  readr::write_csv(exclusions, file.path(config, "ilo_area_exclusions.csv"), na = "")
+  list(
+    raw_dir = raw,
+    ilo_modelled_file = "modelled.xlsx",
+    ilo_survey_file = "survey.xlsx",
+    ilo_area_crosswalk_file = file.path(config, "ilo_area_crosswalk.csv"),
+    ilo_area_exclusions_file = file.path(config, "ilo_area_exclusions.csv"),
+    country_metadata = data.frame(iso3c = economies)
+  )
+}
+
+test_that("read_ilo_lfp converts text years from Excel bulk files to numbers", {
+  params <- ilo_fixture("2020")
+  out <- suppressMessages(read_ilo_lfp(params))
+  expect_true(is.numeric(out$date))
+  expect_equal(out$date, 2020)
+})
+
+test_that("read_ilo_lfp fails loudly on non-numeric years", {
+  params <- ilo_fixture("20x0")
+  expect_error(suppressMessages(read_ilo_lfp(params)), "ILO TIME VALUES ARE NOT NUMERIC")
+})
+
+# --- E6: ILO area names that iso_codes.csv does not match ---------------------
+
+test_that("read_ilo_lfp keeps an economy whose ILO name differs, through the crosswalk (E6)", {
+  params <- ilo_fixture(
+    "2020",
+    survey_labels = c("Alpha", "Beta, Republic of"),
+    crosswalk = data.frame(ilo_label = "Beta, Republic of", iso3c = "BBB", note = "ILO name"),
+    economies = c("AAA", "BBB")
+  )
+  out <- suppressMessages(read_ilo_lfp(params))
+  expect_setequal(out$iso3c, c("AAA", "BBB"))
+  # The modelled estimate is joined for the renamed economy too, so the
+  # accuracy check compares the reported and modelled rates.
+  expect_equal(out$estimate_diff[out$iso3c == "BBB"], 1)
+})
+
+test_that("read_ilo_lfp stops on an ILO area name that is neither matched nor recorded (E6)", {
+  params <- ilo_fixture("2020", survey_labels = c("Alpha", "Gamma Islands"))
+  expect_error(
+    suppressMessages(read_ilo_lfp(params)),
+    "ILO AREA NAMES NOT RECOGNISED.*Gamma Islands"
+  )
+  # The modelled file is checked as well: a lost modelled estimate would
+  # silently set the accuracy gap to 0.
+  params <- ilo_fixture("2020", survey_labels = "Alpha", modelled_labels = c("Alpha", "Gamma Islands"))
+  expect_error(
+    suppressMessages(read_ilo_lfp(params)),
+    "ILO AREA NAMES NOT RECOGNISED.*Gamma Islands"
+  )
+})
+
+test_that("read_ilo_lfp drops recorded aggregates without a many-to-many join (E6)", {
+  params <- ilo_fixture(
+    "2020",
+    survey_labels = c("Alpha", "World", "Africa"),
+    exclusions = data.frame(
+      ilo_label = c("World", "Africa"),
+      category = "aggregate",
+      reason = "ILO regional aggregate"
+    )
+  )
+  out <- expect_no_warning(suppressMessages(read_ilo_lfp(params)))
+  expect_identical(out$iso3c, "AAA")
+})
+
+test_that("the ILO area-name config is validated against iso_codes.csv and the SPI economies (E6)", {
+  conflict <- ilo_fixture(
+    "2020",
+    crosswalk = data.frame(ilo_label = "Alpha", iso3c = "BBB", note = "wrong"),
+    economies = c("AAA", "BBB")
+  )
+  expect_error(suppressMessages(read_ilo_lfp(conflict)), "ILO AREA CROSSWALK CONFLICTS WITH iso_codes.csv.*Alpha")
+  unknown_code <- ilo_fixture(
+    "2020",
+    survey_labels = c("Alpha", "Beta, Republic of"),
+    crosswalk = data.frame(ilo_label = "Beta, Republic of", iso3c = "BBX", note = "typo"),
+    economies = c("AAA", "BBB")
+  )
+  expect_error(suppressMessages(read_ilo_lfp(unknown_code)), "ILO AREA CROSSWALK CODE IS NOT AN SPI ECONOMY.*BBX")
+  excluded_economy <- ilo_fixture(
+    "2020",
+    exclusions = data.frame(ilo_label = "Beta", category = "aggregate", reason = "wrong")
+  )
+  expect_error(suppressMessages(read_ilo_lfp(excluded_economy)), "ILO AREA EXCLUSIONS NAME AN ECONOMY.*Beta")
+})
+
+# --- E6: UN IGME rows are matched on their own ISO3 code ----------------------
+
+igme_fixture <- function(codes, names) {
+  raw <- withr::local_tempdir(.local_envir = parent.frame())
+  dir.create(file.path(raw, "metadata"))
+  dir.create(file.path(raw, "1.5_DUIO"))
+  readr::write_csv(
+    data.frame(country = c("Alpha", "Beta", "Kosovo-free"), geoAreaCode = c(1, 2, 3), iso3c = c("AAA", "BBB", "CCC")),
+    file.path(raw, "metadata", "iso_codes.csv")
+  )
+  readr::write_csv(
+    data.frame(
+      REF_AREA = codes,
+      `Geographic area` = names,
+      Indicator = "Under-five mortality rate",
+      Sex = "Total",
+      `Wealth Quintile` = "Total",
+      `Observation Status` = "Included in IGME",
+      `Series Year` = "2018",
+      REF_DATE = "2017.5",
+      OBS_VALUE = 40,
+      check.names = FALSE
+    ),
+    file.path(raw, "1.5_DUIO", "igme.csv")
+  )
+  list(raw_dir = raw, unigme_file = "igme.csv")
+}
+
+test_that("read_child_mortality_data joins on REF_AREA, so renamed economies are kept (E6)", {
+  params <- igme_fixture(
+    codes = c("AAA", "BBB", "RKS"),
+    names = c("Alpha", "Republic of Beta", "Kosovo (UNSCR 1244)")
+  )
+  out <- suppressWarnings(suppressMessages(read_child_mortality_data(params)))
+  expect_identical(sort(out$iso3c), c("AAA", "BBB", "XKX"))
+})
+
+test_that("read_child_mortality_data stops on an unknown REF_AREA code (E6)", {
+  params <- igme_fixture(codes = c("AAA", "ZZZ"), names = c("Alpha", "Zeta"))
+  expect_error(
+    suppressWarnings(suppressMessages(read_child_mortality_data(params))),
+    "UN IGME AREA CODES NOT RECOGNISED.*ZZZ"
+  )
+})
+
+test_that("child mortality uses only total wealth-quintile observations", {
+  params <- igme_fixture(
+    codes = c("AAA", "AAA", "AAA"),
+    names = c("Alpha", "Alpha", "Alpha")
+  )
+  raw_path <- file.path(params$raw_dir, "1.5_DUIO", "igme.csv")
+  data <- readr::read_csv(raw_path, show_col_types = FALSE)
+  data$`Wealth Quintile` <- c("Total", "Lower", "Upper")
+  readr::write_csv(data, raw_path)
+  out <- suppressWarnings(suppressMessages(read_child_mortality_data(params)))
+  expect_identical(unique(out$iso3c), "AAA")
+  expect_true(all(out$Wealth.Quintile == "Total"))
+})
+
+test_that("the shipped ILO area-name config covers every area of the configured ILO files (E6)", {
+  params <- load_params(here::here("config", "params.R"), require_country_metadata = FALSE)
+  skip_if_not(nrow(params$country_metadata) > 0, "country metadata not collected")
+  skip_if_not(
+    file.exists(file.path(params$raw_dir, "1.5_DUIO", params$ilo_survey_file)),
+    "ILO bulk files not present"
+  )
+  out <- suppressWarnings(suppressMessages(read_ilo_lfp(params)))
+  # Economies whose ILO names differ from iso_codes.csv (202511 and 202611
+  # files); each must reach the score.
+  expect_true(all(c("BOL", "CPV", "CIV", "COD", "HKG", "IRN", "MAC", "PSE", "TUR", "VEN", "XKX") %in% out$iso3c))
+  # The 202511 files, read by the replication harness and the revision
+  # attribution, are covered too.
+  previous <- params
+  previous$ilo_modelled_file <- "EAP_2WAP_SEX_AGE_RT_A-20250923T0014.csv"
+  previous$ilo_survey_file <- "EAP_DWAP_SEX_AGE_RT_A-20250923T0014.csv"
+  skip_if_not(file.exists(file.path(params$raw_dir, "1.5_DUIO", previous$ilo_survey_file)), "202511 ILO files not present")
+  out_previous <- suppressWarnings(suppressMessages(read_ilo_lfp(previous)))
+  expect_true(all(c("CIV", "COD", "HKG", "MAC", "PSE", "TUR", "XKX") %in% out_previous$iso3c))
+})
+
+test_that("the configured and 202511 UN IGME files reach the Netherlands, Türkiye and Kosovo (E6)", {
+  params <- load_params(here::here("config", "params.R"), require_country_metadata = FALSE)
+  for (file in c(params$unigme_file, "UNICEF-CME_DF_2021_WQ-1.0-download.csv")) {
+    skip_if_not(file.exists(file.path(params$raw_dir, "1.5_DUIO", file)), paste(file, "not present"))
+    params$unigme_file <- file
+    out <- suppressWarnings(suppressMessages(read_child_mortality_data(params)))
+    expect_true(all(c("NLD", "TUR", "XKX", "CIV") %in% out$iso3c), info = file)
+    expect_false(anyNA(out$iso3c), info = file)
+  }
+})
+
+# =============================================================================
+# ODIN reads (202611 plan, Step 19)
+# =============================================================================
+
+write_odin_years <- function(raw, years, drop = character()) {
+  dir.create(file.path(raw, "2.2_DSOA"), recursive = TRUE, showWarnings = FALSE)
+  source_file <- here::here("01_raw_data", "2.2_DSOA", "ODIN_2024.csv")
+  data <- readr::read_csv(source_file, show_col_types = FALSE)
+  for (year in years) {
+    out <- data[, setdiff(names(data), drop)]
+    out$Year <- year
+    readr::write_csv(out, file.path(raw, "2.2_DSOA", sprintf("ODIN_%d.csv", year)))
+  }
+}
+
+test_that("read_odin_data rejects malformed and duplicate all-category rows", {
+  raw <- withr::local_tempdir()
+  write_odin_years(raw, 2015:2015)
+  path <- file.path(raw, "2.2_DSOA", "ODIN_2015.csv")
+  data <- readr::read_csv(path, show_col_types = FALSE)
+  all_rows <- which(data[["Data categories"]] %in% c("All Categories", "All categories"))
+  data[["Machine readable"]][all_rows[[1L]]] <- "not available"
+  readr::write_csv(data, path)
+  params <- list(raw_dir = raw, end_date = 2015)
+  expect_error(
+    suppressMessages(read_odin_data(params)),
+    "ODIN NUMERIC VALUE INVALID"
+  )
+
+  write_odin_years(raw, 2015:2015)
+  data <- readr::read_csv(path, show_col_types = FALSE)
+  duplicate <- data[data[["Data categories"]] %in% c("All Categories", "All categories"), ][1, , drop = FALSE]
+  readr::write_csv(rbind(data, duplicate), path)
+  expect_error(
+    suppressMessages(read_odin_data(params)),
+    "ODIN DUPLICATE COUNTRY-YEAR"
+  )
+})
+
+test_that("read_odin_data applies recorded non-economy exclusions", {
+  raw <- withr::local_tempdir()
+  write_odin_years(raw, 2015:2015)
+  params <- list(raw_dir = raw, end_date = 2015)
+  result <- suppressMessages(read_odin_data(params))
+  expect_false(any(result$Country.Code %in% c("AIA", "COK", "TWN")))
+
+  path <- file.path(raw, "2.2_DSOA", "ODIN_2015.csv")
+  data <- readr::read_csv(path, show_col_types = FALSE)
+  known_codes <- unique(data[["Country Code"]])
+  all_rows <- which(data[["Data categories"]] %in% c("All Categories", "All categories"))
+  data[["Country Code"]][all_rows[[1L]]] <- "ZZZ"
+  readr::write_csv(data, path)
+  params$country_metadata <- tibble::tibble(
+    iso3c = known_codes,
+    country = known_codes
+  )
+  expect_error(
+    suppressMessages(read_odin_data(params)),
+    "ODIN UNKNOWN COUNTRY CODE.*ZZZ"
+  )
+})
+
+test_that("odin_file_paths lists 2015 to end_date and fails on a missing year", {
+  raw <- withr::local_tempdir()
+  write_odin_years(raw, 2015:2017)
+  params <- list(raw_dir = raw, end_date = 2017)
+  expect_identical(basename(odin_file_paths(params)), sprintf("ODIN_%d.csv", 2015:2017))
+  unlink(file.path(raw, "2.2_DSOA", "ODIN_2016.csv"))
+  expect_error(odin_file_paths(params), "ODIN FILE NOT FOUND.*ODIN_2016.csv")
+})
+
+test_that("read_odin_data validates every column the ODIN readers use", {
+  raw <- withr::local_tempdir()
+  write_odin_years(raw, 2015:2016)
+  write_odin_years(raw, 2017, drop = "Coverage subscore")
+  params <- list(raw_dir = raw, end_date = 2017)
+  expect_error(
+    suppressMessages(read_odin_data(params)),
+    "ODIN SCHEMA MISMATCH in 'ODIN_2017.csv'.*Coverage.subscore"
+  )
+})
+
+test_that("geospatial scores use the shared ODIN data", {
+  raw <- withr::local_tempdir()
+  write_odin_years(raw, 2015:2016)
+  params <- test_params()
+  params$raw_dir <- raw
+  params$end_date <- 2016
+  source <- readr::read_csv(
+    here::here("01_raw_data", "2.2_DSOA", "ODIN_2024.csv"),
+    show_col_types = FALSE,
+    name_repair = "universal"
+  )
+  params$country_metadata <- source %>%
+    dplyr::filter(Data.categories %in% c("All Categories", "All categories")) %>%
+    dplyr::distinct(Country.Code) %>%
+    dplyr::transmute(iso3c = Country.Code, country = Country.Code)
+  odin <- suppressMessages(read_odin_data(params))
+  shared <- suppressMessages(score_geospatial(params, odin))
+  expect_true(all(c("SPI.D4.3.GEO.first.admin.level", "SPI.D4.3.GEO.second.admin.level") %in% names(shared)))
+  expect_identical(sort(unique(shared$date[!is.na(shared$date)])), c(2015L, 2016L))
 })

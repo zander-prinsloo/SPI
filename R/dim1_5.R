@@ -137,6 +137,147 @@ score_poverty_comparability <- function(pip_data, params, grid) {
 }
 
 # =============================================================================
+# Country matching for the UN IGME and ILO files (correction E6)
+# =============================================================================
+# The legacy readers matched countries by name against metadata/iso_codes.csv
+# and silently dropped every name that did not match, so those economies
+# scored 0 in every published release: the Netherlands, Türkiye and Kosovo in
+# the IGME data; Congo, Dem. Rep., Côte d'Ivoire, Hong Kong SAR, Macao SAR,
+# West Bank and Gaza, Türkiye and Kosovo in the ILO data. The 2026 ILO files
+# renamed six more economies (Bolivia, Cabo Verde, Iran, Micronesia, Nauru,
+# Venezuela). The IGME file carries ISO3 codes (REF_AREA) and is matched on
+# them; the ILO bulk files carry names only and are matched through
+# iso_codes.csv plus a recorded crosswalk, and any name that is neither
+# matched nor recorded as a non-economy stops the estimation.
+
+# IGME area codes that differ from the World Bank's.
+unigme_area_code_aliases <- c(RKS = "XKX")
+
+#' World Bank codes for UN IGME area codes (E6)
+#'
+#' @param codes Character vector of IGME REF_AREA codes.
+#' @param params Pipeline parameters (`raw_dir`).
+#' @return Character vector of ISO3 codes; stops on a code that neither
+#'   metadata/iso_codes.csv nor `unigme_area_code_aliases` knows.
+#' @export
+unigme_area_codes <- function(codes, params) {
+  iso_codes <- readr::read_csv(
+    file.path(params$raw_dir, "metadata", "iso_codes.csv"),
+    col_types = readr::cols(.default = readr::col_character()),
+    progress = FALSE
+  )
+  aliased <- unigme_area_code_aliases[codes]
+  mapped <- ifelse(is.na(aliased), codes, unname(aliased))
+  known <- c(iso_codes$iso3c[!is.na(iso_codes$iso3c) & nzchar(iso_codes$iso3c)], unname(unigme_area_code_aliases))
+  unknown <- sort(unique(mapped[is.na(mapped) | !mapped %in% known]))
+  if (length(unknown) > 0L) {
+    stop(
+      "UN IGME AREA CODES NOT RECOGNISED: ", paste(unknown, collapse = ", "),
+      ". Add the World Bank code to `unigme_area_code_aliases` in R/dim1_5.R ",
+      "(or to metadata/iso_codes.csv) after checking the area.",
+      call. = FALSE
+    )
+  }
+  unname(mapped)
+}
+
+#' ILO area-name lookup (E6)
+#'
+#' Combines metadata/iso_codes.csv with the recorded ILO crosswalk and
+#' exclusions, after checking that they agree with each other and with the
+#' SPI economies.
+#'
+#' @param params Pipeline parameters (`raw_dir`, `ilo_area_crosswalk_file`,
+#'   `ilo_area_exclusions_file`, `country_metadata`).
+#' @return A list with `codes` (ilo_label, iso3c) and `excluded` (labels).
+#' @export
+ilo_area_lookup <- function(params) {
+  files <- c(crosswalk = params$ilo_area_crosswalk_file %||% NA_character_,
+             exclusions = params$ilo_area_exclusions_file %||% NA_character_)
+  missing <- names(files)[is.na(files) | !file.exists(files)]
+  if (length(missing) > 0L) {
+    stop(
+      "ILO AREA NAME CONFIG NOT FOUND: ", paste(sprintf("%s (%s)", missing, files[missing]), collapse = ", "),
+      ". Set ilo_area_crosswalk_file and ilo_area_exclusions_file in config/params.R.",
+      call. = FALSE
+    )
+  }
+  read_text <- function(path) {
+    readr::read_csv(path, col_types = readr::cols(.default = readr::col_character()), progress = FALSE)
+  }
+  crosswalk <- read_text(files[["crosswalk"]])
+  exclusions <- read_text(files[["exclusions"]])
+  if (!all(c("ilo_label", "iso3c") %in% names(crosswalk)) || !all(c("ilo_label", "category") %in% names(exclusions))) {
+    stop("ILO AREA NAME CONFIG SCHEMA MISMATCH: the crosswalk needs ilo_label and iso3c, the exclusions ilo_label and category.", call. = FALSE)
+  }
+  labels <- c(crosswalk$ilo_label, exclusions$ilo_label)
+  if (anyNA(labels) || any(!nzchar(labels)) || anyDuplicated(labels) > 0L || anyNA(crosswalk$iso3c)) {
+    stop("ILO AREA NAME CONFIG HAS BLANK OR REPEATED LABELS, OR A BLANK CODE.", call. = FALSE)
+  }
+  economies <- params$country_metadata$iso3c
+  if (length(economies) == 0L) {
+    stop("SPI COUNTRY METADATA IS REQUIRED TO CHECK THE ILO AREA NAMES.", call. = FALSE)
+  }
+  iso_codes <- readr::read_csv(
+    file.path(params$raw_dir, "metadata", "iso_codes.csv"),
+    col_types = readr::cols(.default = readr::col_character()),
+    progress = FALSE
+  )
+  iso_codes <- iso_codes[!is.na(iso_codes$iso3c) & nzchar(iso_codes$iso3c), c("country", "iso3c")]
+  in_iso <- match(crosswalk$ilo_label, iso_codes$country)
+  conflict <- !is.na(in_iso) & iso_codes$iso3c[in_iso] != crosswalk$iso3c
+  if (any(conflict)) {
+    stop(
+      "ILO AREA CROSSWALK CONFLICTS WITH iso_codes.csv: ",
+      paste(sprintf("%s -> %s (iso_codes.csv: %s)", crosswalk$ilo_label[conflict], crosswalk$iso3c[conflict],
+                    iso_codes$iso3c[in_iso[conflict]]), collapse = "; "),
+      call. = FALSE
+    )
+  }
+  not_economy <- setdiff(crosswalk$iso3c, economies)
+  if (length(not_economy) > 0L) {
+    stop("ILO AREA CROSSWALK CODE IS NOT AN SPI ECONOMY: ", paste(sort(not_economy), collapse = ", "), call. = FALSE)
+  }
+  excluded_matched <- intersect(exclusions$ilo_label, iso_codes$country)
+  if (length(excluded_matched) > 0L) {
+    stop(
+      "ILO AREA EXCLUSIONS NAME AN ECONOMY in iso_codes.csv: ", paste(sort(excluded_matched), collapse = ", "),
+      call. = FALSE
+    )
+  }
+  list(
+    codes = tibble::tibble(
+      ilo_label = c(iso_codes$country, crosswalk$ilo_label[is.na(in_iso)]),
+      iso3c = c(iso_codes$iso3c, crosswalk$iso3c[is.na(in_iso)])
+    ),
+    excluded = exclusions$ilo_label
+  )
+}
+
+# Attach ISO3 codes to an ILO bulk file; recorded non-economies are dropped
+# and any other unmatched name stops the run.
+.ilo_match_areas <- function(data, lookup, file_name) {
+  # Legacy relabelling of the Tanzania rows, kept.
+  data <- data %>%
+    dplyr::mutate(ref_area.label = ifelse(stringr::str_detect(ref_area.label, "Tanzania"),
+      "United Republic of Tanzania",
+      ref_area.label
+    ))
+  unknown <- sort(setdiff(unique(data$ref_area.label), c(lookup$codes$ilo_label, lookup$excluded)))
+  if (length(unknown) > 0L) {
+    stop(
+      sprintf("ILO AREA NAMES NOT RECOGNISED in '%s': %s. ", file_name, paste(unknown, collapse = "; ")),
+      "Map economies in config/ilo_area_crosswalk.csv or record areas that are not SPI economies in ",
+      "config/ilo_area_exclusions.csv.",
+      call. = FALSE
+    )
+  }
+  data %>%
+    dplyr::filter(!ref_area.label %in% lookup$excluded) %>%
+    dplyr::left_join(lookup$codes, by = dplyr::join_by(ref_area.label == ilo_label))
+}
+
+# =============================================================================
 # 2. SPI.D1.5.CHLD.MORT -- Child mortality (UN IGME)
 # =============================================================================
 # Source: UN Inter-agency Group for Child Mortality Estimation.
@@ -149,6 +290,8 @@ score_poverty_comparability <- function(pip_data, params, grid) {
 #'
 #' Reads the configured UN IGME file, keeping only under-5
 #' mortality observations included in the IGME estimation model.
+#' Rows are matched to economies on the file's own ISO3 code (REF_AREA;
+#' correction E6, see the country matching section below).
 #'
 #' @param params List of pipeline parameters.
 #' @return A tibble of child mortality source records.
@@ -162,7 +305,10 @@ read_child_mortality_data <- function(params) {
   mortality_raw <- read_csv_validated(
     file_path,
     schema = list(
-      required_cols = c("Indicator", "Sex", "Observation Status", "Series Year", "Geographic area", "OBS_VALUE")
+      required_cols = c(
+        "REF_AREA", "Indicator", "Sex", "Wealth Quintile",
+        "Observation Status", "Series Year", "Geographic area", "OBS_VALUE"
+      )
     )
   )
   date_column <- if ("REF_DATE" %in% names(mortality_raw)) "REF_DATE" else "TIME_PERIOD"
@@ -170,10 +316,15 @@ read_child_mortality_data <- function(params) {
     stop("UN IGME input must contain REF_DATE or TIME_PERIOD.", call. = FALSE)
   }
 
-  mortality_raw %>%
+  mortality <- mortality_raw %>%
     tibble::as_tibble(.name_repair = "universal") %>%
     # Keep only under-5 mortality, both sexes, overall wealth quintile
-    dplyr::filter(Indicator == "Under-five mortality rate" & Sex == "Total") %>%
+    dplyr::filter(
+      Indicator == "Under-five mortality rate",
+      Sex == "Total",
+      Wealth.Quintile == "Total",
+      !is.na(OBS_VALUE)
+    ) %>%
     # Keep only surveys that met IGME criteria for inclusion
     dplyr::filter(Observation.Status == "Included in IGME") %>%
     dplyr::mutate(
@@ -181,12 +332,9 @@ read_child_mortality_data <- function(params) {
       ind_date = as.numeric(stringr::str_extract(.data[[date_column]], "^.{4}")),
       country  = Geographic.area,
       D3.CHLD.MORT = OBS_VALUE
-    ) %>%
-    dplyr::left_join(
-      readr::read_csv(file.path(params$raw_dir, "metadata", "iso_codes.csv")),
-      by = "country"
-    ) %>%
-    dplyr::mutate(iso3c = if_else(country == "Côte d'Ivoire", "CIV", iso3c))
+    )
+  mortality$iso3c <- unigme_area_codes(mortality$REF_AREA, params)
+  mortality
 }
 
 #' Score the child mortality indicator
@@ -292,7 +440,10 @@ read_wdi_metadata <- function(params) {
       dplyr::mutate(
         National.accounts.reference.year = as.numeric(National.accounts.reference.year),
         date = i
-      )
+      ) %>%
+      # Unscored text column whose parsed type differs between vintages
+      # (numeric in WDI_metadata_2026.csv); keep it as text so rows bind.
+      dplyr::mutate(dplyr::across(dplyr::any_of("Latest.agricultural.census"), as.character))
 
     # Normalize the country code column name across vintages.
     # 2016-2018 and 2025 use "Country.Code"; 2019-2024 use "Code".
@@ -312,6 +463,20 @@ read_wdi_metadata <- function(params) {
 #' @return A tibble with iso3c, date, SPI.D1.5.DT.TDS.DPPF.XP.ZS.
 #' @export
 score_debt_reporting <- function(wdi_metadata) {
+  # Fail loudly on reporting labels the scoring rule does not know, so a new
+  # WDI vocabulary cannot silently score 0. "Estimated" first appeared in
+  # WDI_metadata_2026.csv and is scored like "Estimate".
+  known_labels <- c("Actual", "Preliminary", "Estimate", "Estimated")
+  observed <- unique(stats::na.omit(wdi_metadata$External.debt.Reporting.status))
+  unknown <- setdiff(observed, known_labels)
+  if (length(unknown) > 0L) {
+    stop(
+      "UNKNOWN EXTERNAL DEBT REPORTING STATUS label(s) in WDI metadata: ",
+      paste(unknown, collapse = ", "),
+      call. = FALSE
+    )
+  }
+
   wdi_metadata %>%
     dplyr::transmute(
       iso3c = Code,
@@ -322,7 +487,7 @@ score_debt_reporting <- function(wdi_metadata) {
     dplyr::mutate(SPI.D1.5.DT.TDS.DPPF.XP.ZS = dplyr::case_when(
       External_debt_Reporting == "Actual" ~ 1,
       External_debt_Reporting == "Preliminary" ~ 0.67,
-      External_debt_Reporting == "Estimate" ~ 0.33,
+      External_debt_Reporting %in% c("Estimate", "Estimated") ~ 0.33,
       TRUE ~ 0
     )) %>%
     # High-income countries and WBG/PSE are not judged on debt reporting
@@ -418,13 +583,10 @@ score_safely_managed_water <- function(water_data, params) {
 #   0.5 point -- either LFS source OR within 10 points, but not both
 #   0 points -- otherwise
 
-#' Read the ILO labor force participation data
+#' Read an ILO bulk file (Excel or CSV download)
 #'
-#' Reads the modelled estimates and reported survey data, merges them, and
-#' computes the difference between reported and estimated values.
-#'
-#' @param params List of pipeline parameters.
-#' @return A tibble with iso3c, date, estimate_diff, lfs_source.
+#' @param path Path to the file.
+#' @return A tibble with syntactic column names.
 #' @export
 read_ilo_bulk_file <- function(path) {
   extension <- tolower(tools::file_ext(path))
@@ -435,8 +597,35 @@ read_ilo_bulk_file <- function(path) {
     tibble::as_tibble(.name_repair = "universal")
 }
 
+#' Read the ILO labor force participation data
+#'
+#' Reads the modelled estimates and reported survey data, merges them, and
+#' computes the difference between reported and estimated values. Areas are
+#' matched through iso_codes.csv and the recorded ILO names (E6); an
+#' unrecorded name stops the run.
+#'
+#' @param params List of pipeline parameters.
+#' @return A tibble with iso3c, date, estimate_diff, lfs_source.
 #' @export
 read_ilo_lfp <- function(params) {
+  # Excel bulk downloads store `time` as text while earlier CSV downloads
+  # parsed it as numeric; convert explicitly and fail loudly on bad years.
+  ilo_numeric_time <- function(time, file_name) {
+    converted <- suppressWarnings(as.numeric(as.character(time)))
+    invalid <- !is.na(time) & is.na(converted)
+    if (any(invalid)) {
+      stop(
+        sprintf(
+          "ILO TIME VALUES ARE NOT NUMERIC in '%s': %s",
+          file_name,
+          paste(utils::head(unique(as.character(time[invalid])), 5), collapse = ", ")
+        ),
+        call. = FALSE
+      )
+    }
+    converted
+  }
+
   # ILO reference areas (for country name matching)
   ilo_ref_area <- readr::read_csv(file.path(params$raw_dir, "metadata", "ILO_reference_area.csv")) %>%
     dplyr::transmute(iso3c = ref_area, country = ref_area.label)
@@ -448,20 +637,14 @@ read_ilo_lfp <- function(params) {
   fn_modelled <- file.path(params$raw_dir, "1.5_DUIO", params$ilo_modelled_file)
   fn_survey <- file.path(params$raw_dir, "1.5_DUIO", params$ilo_survey_file)
 
-  # iso3c lookup from the UN country codes
-  iso3c_lookup <- readr::read_csv(file.path(params$raw_dir, "metadata", "iso_codes.csv"))
+  # iso3c lookup: the UN country codes plus the recorded ILO names (E6)
+  area_lookup <- ilo_area_lookup(params)
 
   lfp_estimated <- read_ilo_bulk_file(fn_modelled) %>%
     dplyr::filter(sex.label == "Total", classif1.label == "Age (Youth, adults): 15+") %>%
-    dplyr::mutate(ref_area.label = ifelse(stringr::str_detect(ref_area.label, "Tanzania"),
-      "United Republic of Tanzania",
-      ref_area.label
-    )) %>%
-    dplyr::left_join(iso3c_lookup %>% dplyr::select(country, iso3c),
-      by = dplyr::join_by(ref_area.label == country)
-    ) %>%
+    .ilo_match_areas(area_lookup, params$ilo_modelled_file) %>%
     dplyr::mutate(
-      date = time,
+      date = ilo_numeric_time(time, params$ilo_modelled_file),
       estimated_value = obs_value
     ) %>%
     dplyr::left_join(ilo_ref_area, by = "iso3c") %>%
@@ -469,15 +652,9 @@ read_ilo_lfp <- function(params) {
 
   lfp_reported <- read_ilo_bulk_file(fn_survey) %>%
     dplyr::filter(sex.label == "Total", classif1.label == "Age (Youth, adults): 15+") %>%
-    dplyr::mutate(ref_area.label = ifelse(stringr::str_detect(ref_area.label, "Tanzania"),
-      "United Republic of Tanzania",
-      ref_area.label
-    )) %>%
-    dplyr::left_join(iso3c_lookup %>% dplyr::select(country, iso3c),
-      by = dplyr::join_by(ref_area.label == country)
-    ) %>%
+    .ilo_match_areas(area_lookup, params$ilo_survey_file) %>%
     dplyr::mutate(
-      date = time,
+      date = ilo_numeric_time(time, params$ilo_survey_file),
       reported_value = obs_value,
       source = source.label
     ) %>%
@@ -487,7 +664,11 @@ read_ilo_lfp <- function(params) {
   lfp_reported %>%
     dplyr::left_join(lfp_estimated, by = c("iso3c", "date")) %>%
     dplyr::mutate(
-      estimate_diff = if_else(!is.na(estimated_value), reported_value - estimated_value, 0),
+      estimate_diff = if_else(
+        !is.na(estimated_value),
+        reported_value - estimated_value,
+        NA_real_
+      ),
       lfs_source = (stringr::str_detect(source, "LFS"))
     ) %>%
     dplyr::filter(iso3c %in% params$country_metadata$iso3c)
@@ -512,8 +693,12 @@ score_ilo_lfp <- function(lfp_data, params) {
       dplyr::filter(dplyr::between(date, date_start, date_end)) %>%
       dplyr::group_by(iso3c) %>%
       dplyr::summarise(
-        SPI.D1.5.LFP.ACC = as.numeric(mean(estimate_diff, na.rm = TRUE) <= 10),
-        SPI.D1.5.LFP.SOURCE = max(lfs_source, na.rm = TRUE),
+        valid_pairs = sum(!is.na(estimate_diff)),
+        SPI.D1.5.LFP.ACC = as.numeric(
+          valid_pairs > 0 &&
+            mean(abs(estimate_diff), na.rm = TRUE) <= 10
+        ),
+        SPI.D1.5.LFP.SOURCE = as.numeric(any(lfs_source, na.rm = TRUE)),
         SPI.D1.5.LFP = (SPI.D1.5.LFP.ACC + SPI.D1.5.LFP.SOURCE) / 2,
         .groups = "drop"
       ) %>%

@@ -1,0 +1,2350 @@
+file,key,column,baseline,new
+SPI_data.csv,iso3c=NLD;date=2004,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2005,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2006,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2007,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2008,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2009,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2010,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2011,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2012,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2013,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2014,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2015,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2016,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2017,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2018,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2019,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2020,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2021,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2022,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2023,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=NLD;date=2024,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2004,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2005,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2006,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2007,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2008,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2009,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2010,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2011,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2012,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2013,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2014,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2015,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2016,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2017,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2018,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2019,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2020,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2021,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2022,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2023,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=TUR;date=2024,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2004,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2005,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2006,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2007,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2008,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2009,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2010,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2011,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2012,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2013,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2014,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2015,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2016,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2017,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2018,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2019,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2020,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2021,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2022,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2023,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=XKX;date=2024,SPI.D1.5.CHLD.MORT,0,1
+SPI_data.csv,iso3c=CIV;date=2012,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=CIV;date=2013,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=CIV;date=2014,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=CIV;date=2015,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=CIV;date=2016,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=CIV;date=2017,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=CIV;date=2018,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=CIV;date=2019,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=CIV;date=2020,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=CIV;date=2021,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=CIV;date=2022,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=CIV;date=2023,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=CIV;date=2024,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=COD;date=2012,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=COD;date=2013,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=COD;date=2014,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=COD;date=2015,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=COD;date=2016,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=COD;date=2020,SPI.D1.5.LFP,0,0.5
+SPI_data.csv,iso3c=COD;date=2021,SPI.D1.5.LFP,0,0.5
+SPI_data.csv,iso3c=COD;date=2022,SPI.D1.5.LFP,0,0.5
+SPI_data.csv,iso3c=COD;date=2023,SPI.D1.5.LFP,0,0.5
+SPI_data.csv,iso3c=COD;date=2024,SPI.D1.5.LFP,0,0.5
+SPI_data.csv,iso3c=HKG;date=2010,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2011,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2012,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2013,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2014,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2015,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2016,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2017,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2018,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2019,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2020,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2021,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2022,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2023,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=HKG;date=2024,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=MAC;date=2010,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=MAC;date=2011,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=MAC;date=2012,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=MAC;date=2013,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=MAC;date=2014,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=MAC;date=2015,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=MAC;date=2016,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=MAC;date=2017,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=MAC;date=2018,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=MAC;date=2019,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=MAC;date=2020,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2010,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2011,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2012,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2013,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2014,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2015,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2016,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2017,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2018,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2019,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2020,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2021,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2022,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2023,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=PSE;date=2024,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2010,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2011,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2012,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2013,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2014,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2015,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2016,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2017,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2018,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2019,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2020,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2021,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2022,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2023,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=TUR;date=2024,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2010,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2011,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2012,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2013,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2014,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2015,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2016,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2017,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2018,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2019,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2020,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2021,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2022,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2023,SPI.D1.5.LFP,0,1
+SPI_data.csv,iso3c=XKX;date=2024,SPI.D1.5.LFP,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2012;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2012;source_id=SPI.DIM1.5.INDEX,value,0.3,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2012;source_id=SPI.INDEX.PIL1,value,30,50
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2013;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2013;source_id=SPI.DIM1.5.INDEX,value,0.3,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2013;source_id=SPI.INDEX.PIL1,value,30,50
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2014;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2014;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2014;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2015;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2015;source_id=SPI.DIM1.5.INDEX,value,0.5,0.7
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2015;source_id=SPI.INDEX.PIL1,value,50,70
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2016;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2016;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2016;source_id=SPI.INDEX,value,47.586666666666666,51.58666666666667
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2016;source_id=SPI.INDEX.PIL1,value,70,90
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2017;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2017;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2017;source_id=SPI.INDEX,value,52.815,56.81500000000001
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2017;source_id=SPI.INDEX.PIL1,value,70,90
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2018;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2018;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2018;source_id=SPI.INDEX,value,53.93833333333333,57.93833333333333
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2018;source_id=SPI.INDEX.PIL1,value,70,90
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2019;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2019;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2019;source_id=SPI.INDEX,value,52.43833333333333,56.43833333333333
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2019;source_id=SPI.INDEX.PIL1,value,70,90
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2020;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2020;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2020;source_id=SPI.INDEX,value,57.46916666666667,61.469166666666666
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2020;source_id=SPI.INDEX.PIL1,value,70,90
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2021;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2021;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2021;source_id=SPI.INDEX,value,67.35583333333334,71.35583333333334
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2021;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2022;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2022;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2022;source_id=SPI.INDEX,value,64.42375,68.42375000000001
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2022;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2023;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2023;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2023;source_id=SPI.INDEX,value,65.88625,69.88625
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2023;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2024;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2024;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2024;source_id=SPI.INDEX,value,71.20125,75.20125
+SPI_databank_country_and_aggregates.csv,iso3c=CIV;date=2024;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2012;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2012;source_id=SPI.DIM1.5.INDEX,value,0.3,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2012;source_id=SPI.INDEX.PIL1,value,30,50
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2013;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2013;source_id=SPI.DIM1.5.INDEX,value,0.3,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2013;source_id=SPI.INDEX.PIL1,value,30,50
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2014;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2014;source_id=SPI.DIM1.5.INDEX,value,0.3,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2014;source_id=SPI.INDEX.PIL1,value,30,50
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2015;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2015;source_id=SPI.DIM1.5.INDEX,value,0.5,0.7
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2015;source_id=SPI.INDEX.PIL1,value,50,70
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2016;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2016;source_id=SPI.DIM1.5.INDEX,value,0.5,0.7
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2016;source_id=SPI.INDEX.PIL1,value,50,70
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2020;source_id=SPI.D1.5.LFP,value,0,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2020;source_id=SPI.DIM1.5.INDEX,value,0.4,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2020;source_id=SPI.INDEX,value,43.177083333333336,45.177083333333336
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2020;source_id=SPI.INDEX.PIL1,value,40,50
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2021;source_id=SPI.D1.5.LFP,value,0,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2021;source_id=SPI.DIM1.5.INDEX,value,0.4,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2021;source_id=SPI.INDEX,value,47.43333333333333,49.43333333333334
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2021;source_id=SPI.INDEX.PIL1,value,40,50
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2022;source_id=SPI.D1.5.LFP,value,0,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2022;source_id=SPI.DIM1.5.INDEX,value,0.4,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2022;source_id=SPI.INDEX,value,45.65166666666667,47.651666666666664
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2022;source_id=SPI.INDEX.PIL1,value,40,50
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2023;source_id=SPI.D1.5.LFP,value,0,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2023;source_id=SPI.DIM1.5.INDEX,value,0.4,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2023;source_id=SPI.INDEX,value,47.109166666666674,49.10916666666667
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2023;source_id=SPI.INDEX.PIL1,value,40,50
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2024;source_id=SPI.D1.5.LFP,value,0,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2024;source_id=SPI.DIM1.5.INDEX,value,0.4,0.5
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2024;source_id=SPI.INDEX,value,46.611250000000005,48.61125
+SPI_databank_country_and_aggregates.csv,iso3c=COD;date=2024;source_id=SPI.INDEX.PIL1,value,40,50
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2010;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2010;source_id=SPI.DIM1.5.INDEX,value,0,0.2
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2010;source_id=SPI.INDEX.PIL1,value,0,20
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2011;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2011;source_id=SPI.DIM1.5.INDEX,value,0,0.2
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2011;source_id=SPI.INDEX.PIL1,value,0,20
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2012;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2012;source_id=SPI.DIM1.5.INDEX,value,0,0.2
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2012;source_id=SPI.INDEX.PIL1,value,0,20
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2013;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2013;source_id=SPI.DIM1.5.INDEX,value,0,0.2
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2013;source_id=SPI.INDEX.PIL1,value,0,20
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2014;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2014;source_id=SPI.DIM1.5.INDEX,value,0,0.2
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2014;source_id=SPI.INDEX.PIL1,value,0,20
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2015;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2015;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2015;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2016;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2016;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2016;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2017;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2017;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2017;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2018;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2018;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2018;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2019;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2019;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2019;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2020;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2020;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2020;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2021;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2021;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2021;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2022;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2022;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2022;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2023;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2023;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2023;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2024;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2024;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=HKG;date=2024;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2010;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2010;source_id=SPI.DIM1.5.INDEX,value,0,0.2
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2010;source_id=SPI.INDEX.PIL1,value,0,20
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2011;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2011;source_id=SPI.DIM1.5.INDEX,value,0,0.2
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2011;source_id=SPI.INDEX.PIL1,value,0,20
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2012;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2012;source_id=SPI.DIM1.5.INDEX,value,0,0.2
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2012;source_id=SPI.INDEX.PIL1,value,0,20
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2013;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2013;source_id=SPI.DIM1.5.INDEX,value,0,0.2
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2013;source_id=SPI.INDEX.PIL1,value,0,20
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2014;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2014;source_id=SPI.DIM1.5.INDEX,value,0,0.2
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2014;source_id=SPI.INDEX.PIL1,value,0,20
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2015;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2015;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2015;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2016;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2016;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2016;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2017;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2017;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2017;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2018;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2018;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2018;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2019;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2019;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2019;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2020;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2020;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=MAC;date=2020;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2004;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2004;source_id=SPI.DIM1.5.INDEX,value,0.1,0.3
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2004;source_id=SPI.INDEX.PIL1,value,10,30
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2005;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2005;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2005;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2006;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2006;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2006;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2007;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2007;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2007;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2008;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2008;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2008;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2009;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2009;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2009;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2010;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2010;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2010;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2011;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2011;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2011;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2012;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2012;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2012;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2013;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2013;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2013;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2014;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2014;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2014;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2015;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2015;source_id=SPI.DIM1.5.INDEX,value,0.6,0.8
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2015;source_id=SPI.INDEX.PIL1,value,60,80
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2016;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2016;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2016;source_id=SPI.INDEX,value,74.14416666666668,78.14416666666668
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2016;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2017;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2017;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2017;source_id=SPI.INDEX,value,76.21625,80.21624999999999
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2017;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2018;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2018;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2018;source_id=SPI.INDEX,value,84.21958333333333,88.21958333333333
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2018;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2019;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2019;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2019;source_id=SPI.INDEX,value,84.26583333333333,88.26583333333333
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2019;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2020;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2020;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2020;source_id=SPI.INDEX,value,84.91708333333334,88.91708333333335
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2020;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2021;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2021;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2021;source_id=SPI.INDEX,value,89.35875,93.35875
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2021;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2022;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2022;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2022;source_id=SPI.INDEX,value,88.16000000000001,92.16
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2022;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2023;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2023;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2023;source_id=SPI.INDEX,value,89.98250000000002,93.9825
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2023;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2024;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2024;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2024;source_id=SPI.INDEX,value,86.13291666666667,90.13291666666667
+SPI_databank_country_and_aggregates.csv,iso3c=NLD;date=2024;source_id=SPI.INDEX.PIL1,value,80,100
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2010;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2010;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2010;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2011;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2011;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2011;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2012;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2012;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2012;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2013;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2013;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2013;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2014;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2014;source_id=SPI.DIM1.5.INDEX,value,0.4,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2014;source_id=SPI.INDEX.PIL1,value,40,60
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2015;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2015;source_id=SPI.DIM1.5.INDEX,value,0.6,0.8
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2015;source_id=SPI.INDEX.PIL1,value,60,80
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2016;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2016;source_id=SPI.DIM1.5.INDEX,value,0.6,0.8
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2016;source_id=SPI.INDEX.PIL1,value,60,80
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2017;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2017;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2017;source_id=SPI.INDEX,value,58.508333333333326,62.50833333333333
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2017;source_id=SPI.INDEX.PIL1,value,70,90
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2018;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2018;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2018;source_id=SPI.INDEX,value,67.03791666666666,71.03791666666666
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2018;source_id=SPI.INDEX.PIL1,value,70,90
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2019;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2019;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2019;source_id=SPI.INDEX,value,66.76291666666667,70.76291666666667
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2019;source_id=SPI.INDEX.PIL1,value,70,90
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2020;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2020;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2020;source_id=SPI.INDEX,value,73.19208333333333,77.19208333333334
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2020;source_id=SPI.INDEX.PIL1,value,70,90
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2021;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2021;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2021;source_id=SPI.INDEX,value,77.8625,81.86250000000001
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2021;source_id=SPI.INDEX.PIL1,value,70,90
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2022;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2022;source_id=SPI.DIM1.5.INDEX,value,0.6,0.8
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2022;source_id=SPI.INDEX,value,74.92500000000001,78.92500000000001
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2022;source_id=SPI.INDEX.PIL1,value,60,80
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2023;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2023;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2023;source_id=SPI.INDEX,value,76.3475,80.34750000000001
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2023;source_id=SPI.INDEX.PIL1,value,70,90
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2024;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2024;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2024;source_id=SPI.INDEX,value,74.40041666666667,78.40041666666667
+SPI_databank_country_and_aggregates.csv,iso3c=PSE;date=2024;source_id=SPI.INDEX.PIL1,value,70,90
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2004;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2004;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2004;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2005;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2005;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2005;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2006;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2006;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2006;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2007;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2007;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2007;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2008;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2008;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2008;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2009;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2009;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2009;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2010;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2010;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2010;source_id=SPI.DIM1.5.INDEX,value,0.2,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2010;source_id=SPI.INDEX.PIL1,value,20,60
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2011;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2011;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2011;source_id=SPI.DIM1.5.INDEX,value,0.2,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2011;source_id=SPI.INDEX.PIL1,value,20,60
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2012;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2012;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2012;source_id=SPI.DIM1.5.INDEX,value,0.2,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2012;source_id=SPI.INDEX.PIL1,value,20,60
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2013;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2013;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2013;source_id=SPI.DIM1.5.INDEX,value,0.2,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2013;source_id=SPI.INDEX.PIL1,value,20,60
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2014;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2014;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2014;source_id=SPI.DIM1.5.INDEX,value,0.2,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2014;source_id=SPI.INDEX.PIL1,value,20,60
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2015;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2015;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2015;source_id=SPI.DIM1.5.INDEX,value,0.4,0.8
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2015;source_id=SPI.INDEX.PIL1,value,40,80
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2016;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2016;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2016;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2016;source_id=SPI.INDEX,value,72.64541666666668,80.64541666666668
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2016;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2017;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2017;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2017;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2017;source_id=SPI.INDEX,value,77.20291666666668,85.20291666666668
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2017;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2018;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2018;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2018;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2018;source_id=SPI.INDEX,value,77.99000000000001,85.99000000000001
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2018;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2019;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2019;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2019;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2019;source_id=SPI.INDEX,value,78.47125,86.47125
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2019;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2020;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2020;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2020;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2020;source_id=SPI.INDEX,value,78.14583333333334,86.14583333333334
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2020;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2021;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2021;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2021;source_id=SPI.DIM1.5.INDEX,value,0.5,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2021;source_id=SPI.INDEX,value,80.08250000000001,88.0825
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2021;source_id=SPI.INDEX.PIL1,value,50,90
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2022;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2022;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2022;source_id=SPI.DIM1.5.INDEX,value,0.5,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2022;source_id=SPI.INDEX,value,77.72083333333333,85.72083333333333
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2022;source_id=SPI.INDEX.PIL1,value,50,90
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2023;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2023;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2023;source_id=SPI.DIM1.5.INDEX,value,0.5,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2023;source_id=SPI.INDEX,value,78.67708333333334,86.67708333333334
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2023;source_id=SPI.INDEX.PIL1,value,50,90
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2024;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2024;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2024;source_id=SPI.DIM1.5.INDEX,value,0.5,0.9
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2024;source_id=SPI.INDEX,value,79.34833333333333,87.34833333333334
+SPI_databank_country_and_aggregates.csv,iso3c=TUR;date=2024;source_id=SPI.INDEX.PIL1,value,50,90
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2004;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2004;source_id=SPI.DIM1.5.INDEX,value,0,0.2
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2004;source_id=SPI.INDEX.PIL1,value,0,20
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2005;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2005;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2005;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2006;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2006;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2006;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2007;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2007;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2007;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2008;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2008;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2008;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2009;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2009;source_id=SPI.DIM1.5.INDEX,value,0.2,0.4
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2009;source_id=SPI.INDEX.PIL1,value,20,40
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2010;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2010;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2010;source_id=SPI.DIM1.5.INDEX,value,0.2,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2010;source_id=SPI.INDEX.PIL1,value,20,60
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2011;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2011;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2011;source_id=SPI.DIM1.5.INDEX,value,0.2,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2011;source_id=SPI.INDEX.PIL1,value,20,60
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2012;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2012;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2012;source_id=SPI.DIM1.5.INDEX,value,0.2,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2012;source_id=SPI.INDEX.PIL1,value,20,60
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2013;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2013;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2013;source_id=SPI.DIM1.5.INDEX,value,0.2,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2013;source_id=SPI.INDEX.PIL1,value,20,60
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2014;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2014;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2014;source_id=SPI.DIM1.5.INDEX,value,0.2,0.6
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2014;source_id=SPI.INDEX.PIL1,value,20,60
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2015;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2015;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2015;source_id=SPI.DIM1.5.INDEX,value,0.4,0.8
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2015;source_id=SPI.INDEX.PIL1,value,40,80
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2016;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2016;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2016;source_id=SPI.DIM1.5.INDEX,value,0.4,0.8
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2016;source_id=SPI.INDEX.PIL1,value,40,80
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2017;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2017;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2017;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2017;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2018;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2018;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2018;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2018;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2019;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2019;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2019;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2019;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2020;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2020;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2020;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2020;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2021;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2021;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2021;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2021;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2022;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2022;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2022;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2022;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2023;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2023;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2023;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2023;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2024;source_id=SPI.D1.5.CHLD.MORT,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2024;source_id=SPI.D1.5.LFP,value,0,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2024;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_databank_country_and_aggregates.csv,iso3c=XKX;date=2024;source_id=SPI.INDEX.PIL1,value,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2004;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2004;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.1,0.3
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2004;Country=NLD;Series=SPI.INDEX.PIL1,Data,10,30
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2004;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2004;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2004;Country=TUR;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2004;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2004;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0,0.2
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2004;Country=XKX;Series=SPI.INDEX.PIL1,Data,0,20
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2005;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2005;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2005;Country=NLD;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2005;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2005;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2005;Country=TUR;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2005;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2005;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2005;Country=XKX;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2006;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2006;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2006;Country=NLD;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2006;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2006;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2006;Country=TUR;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2006;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2006;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2006;Country=XKX;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2007;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2007;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2007;Country=NLD;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2007;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2007;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2007;Country=TUR;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2007;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2007;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2007;Country=XKX;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2008;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2008;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2008;Country=NLD;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2008;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2008;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2008;Country=TUR;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2008;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2008;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2008;Country=XKX;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2009;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2009;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2009;Country=NLD;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2009;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2009;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2009;Country=TUR;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2009;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2009;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2009;Country=XKX;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0,0.2
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=HKG;Series=SPI.INDEX.PIL1,Data,0,20
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=MAC;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=MAC;Series=SPI.DIM1.5.INDEX,Data,0,0.2
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=MAC;Series=SPI.INDEX.PIL1,Data,0,20
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=NLD;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=PSE;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.2,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=TUR;Series=SPI.INDEX.PIL1,Data,20,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.2,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2010;Country=XKX;Series=SPI.INDEX.PIL1,Data,20,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0,0.2
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=HKG;Series=SPI.INDEX.PIL1,Data,0,20
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=MAC;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=MAC;Series=SPI.DIM1.5.INDEX,Data,0,0.2
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=MAC;Series=SPI.INDEX.PIL1,Data,0,20
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=NLD;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=PSE;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.2,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=TUR;Series=SPI.INDEX.PIL1,Data,20,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.2,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2011;Country=XKX;Series=SPI.INDEX.PIL1,Data,20,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.3,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=CIV;Series=SPI.INDEX.PIL1,Data,30,50
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=COD;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=COD;Series=SPI.DIM1.5.INDEX,Data,0.3,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=COD;Series=SPI.INDEX.PIL1,Data,30,50
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0,0.2
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=HKG;Series=SPI.INDEX.PIL1,Data,0,20
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=MAC;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=MAC;Series=SPI.DIM1.5.INDEX,Data,0,0.2
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=MAC;Series=SPI.INDEX.PIL1,Data,0,20
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=NLD;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=PSE;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.2,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=TUR;Series=SPI.INDEX.PIL1,Data,20,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.2,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2012;Country=XKX;Series=SPI.INDEX.PIL1,Data,20,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.3,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=CIV;Series=SPI.INDEX.PIL1,Data,30,50
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=COD;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=COD;Series=SPI.DIM1.5.INDEX,Data,0.3,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=COD;Series=SPI.INDEX.PIL1,Data,30,50
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0,0.2
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=HKG;Series=SPI.INDEX.PIL1,Data,0,20
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=MAC;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=MAC;Series=SPI.DIM1.5.INDEX,Data,0,0.2
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=MAC;Series=SPI.INDEX.PIL1,Data,0,20
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=NLD;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=PSE;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.2,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=TUR;Series=SPI.INDEX.PIL1,Data,20,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.2,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2013;Country=XKX;Series=SPI.INDEX.PIL1,Data,20,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=CIV;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=COD;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=COD;Series=SPI.DIM1.5.INDEX,Data,0.3,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=COD;Series=SPI.INDEX.PIL1,Data,30,50
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0,0.2
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=HKG;Series=SPI.INDEX.PIL1,Data,0,20
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=MAC;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=MAC;Series=SPI.DIM1.5.INDEX,Data,0,0.2
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=MAC;Series=SPI.INDEX.PIL1,Data,0,20
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=NLD;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=PSE;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.2,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=TUR;Series=SPI.INDEX.PIL1,Data,20,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.2,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2014;Country=XKX;Series=SPI.INDEX.PIL1,Data,20,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.5,0.7
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=CIV;Series=SPI.INDEX.PIL1,Data,50,70
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=COD;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=COD;Series=SPI.DIM1.5.INDEX,Data,0.5,0.7
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=COD;Series=SPI.INDEX.PIL1,Data,50,70
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=HKG;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=MAC;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=MAC;Series=SPI.DIM1.5.INDEX,Data,0.2,0.4
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=MAC;Series=SPI.INDEX.PIL1,Data,20,40
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.6,0.8
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=NLD;Series=SPI.INDEX.PIL1,Data,60,80
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.6,0.8
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=PSE;Series=SPI.INDEX.PIL1,Data,60,80
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.4,0.8
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=TUR;Series=SPI.INDEX.PIL1,Data,40,80
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.4,0.8
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2015;Country=XKX;Series=SPI.INDEX.PIL1,Data,40,80
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.7,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=CIV;Series=SPI.INDEX,Data,47.5866666666667,51.5866666666667
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=CIV;Series=SPI.INDEX.PIL1,Data,70,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=COD;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=COD;Series=SPI.DIM1.5.INDEX,Data,0.5,0.7
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=COD;Series=SPI.INDEX.PIL1,Data,50,70
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=HKG;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=MAC;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=MAC;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=MAC;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=NLD;Series=SPI.INDEX,Data,74.1441666666667,78.1441666666667
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=NLD;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.6,0.8
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=PSE;Series=SPI.INDEX.PIL1,Data,60,80
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=TUR;Series=SPI.INDEX,Data,72.6454166666667,80.6454166666667
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=TUR;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.4,0.8
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2016;Country=XKX;Series=SPI.INDEX.PIL1,Data,40,80
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.7,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=CIV;Series=SPI.INDEX,Data,52.815,56.815
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=CIV;Series=SPI.INDEX.PIL1,Data,70,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=HKG;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=MAC;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=MAC;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=MAC;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=NLD;Series=SPI.INDEX,Data,76.21625,80.21625
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=NLD;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.7,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=PSE;Series=SPI.INDEX,Data,58.5083333333333,62.5083333333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=PSE;Series=SPI.INDEX.PIL1,Data,70,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=TUR;Series=SPI.INDEX,Data,77.2029166666667,85.2029166666667
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=TUR;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2017;Country=XKX;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.7,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=CIV;Series=SPI.INDEX,Data,53.9383333333333,57.9383333333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=CIV;Series=SPI.INDEX.PIL1,Data,70,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=HKG;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=MAC;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=MAC;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=MAC;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=NLD;Series=SPI.INDEX,Data,84.2195833333333,88.2195833333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=NLD;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.7,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=PSE;Series=SPI.INDEX,Data,67.0379166666667,71.0379166666667
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=PSE;Series=SPI.INDEX.PIL1,Data,70,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=TUR;Series=SPI.INDEX,Data,77.99,85.99
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=TUR;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2018;Country=XKX;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.7,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=CIV;Series=SPI.INDEX,Data,52.4383333333333,56.4383333333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=CIV;Series=SPI.INDEX.PIL1,Data,70,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=HKG;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=MAC;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=MAC;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=MAC;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=NLD;Series=SPI.INDEX,Data,84.2658333333333,88.2658333333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=NLD;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.7,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=PSE;Series=SPI.INDEX,Data,66.7629166666667,70.7629166666667
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=PSE;Series=SPI.INDEX.PIL1,Data,70,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=TUR;Series=SPI.INDEX,Data,78.47125,86.47125
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=TUR;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2019;Country=XKX;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.7,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=CIV;Series=SPI.INDEX,Data,57.4691666666667,61.4691666666667
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=CIV;Series=SPI.INDEX.PIL1,Data,70,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=COD;Series=SPI.D1.5.LFP,Data,0,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=COD;Series=SPI.DIM1.5.INDEX,Data,0.4,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=COD;Series=SPI.INDEX,Data,43.1770833333333,45.1770833333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=COD;Series=SPI.INDEX.PIL1,Data,40,50
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=HKG;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=MAC;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=MAC;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=MAC;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=NLD;Series=SPI.INDEX,Data,84.9170833333333,88.9170833333334
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=NLD;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.7,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=PSE;Series=SPI.INDEX,Data,73.1920833333333,77.1920833333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=PSE;Series=SPI.INDEX.PIL1,Data,70,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=TUR;Series=SPI.INDEX,Data,78.1458333333333,86.1458333333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=TUR;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2020;Country=XKX;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=CIV;Series=SPI.INDEX,Data,67.3558333333333,71.3558333333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=CIV;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=COD;Series=SPI.D1.5.LFP,Data,0,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=COD;Series=SPI.DIM1.5.INDEX,Data,0.4,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=COD;Series=SPI.INDEX,Data,47.4333333333333,49.4333333333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=COD;Series=SPI.INDEX.PIL1,Data,40,50
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=HKG;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=NLD;Series=SPI.INDEX,Data,89.35875,93.35875
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=NLD;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.7,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=PSE;Series=SPI.INDEX,Data,77.8625,81.8625
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=PSE;Series=SPI.INDEX.PIL1,Data,70,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.5,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=TUR;Series=SPI.INDEX,Data,80.0825,88.0825
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=TUR;Series=SPI.INDEX.PIL1,Data,50,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2021;Country=XKX;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=CIV;Series=SPI.INDEX,Data,64.42375,68.42375
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=CIV;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=COD;Series=SPI.D1.5.LFP,Data,0,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=COD;Series=SPI.DIM1.5.INDEX,Data,0.4,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=COD;Series=SPI.INDEX,Data,45.6516666666667,47.6516666666667
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=COD;Series=SPI.INDEX.PIL1,Data,40,50
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=HKG;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=NLD;Series=SPI.INDEX,Data,88.16,92.16
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=NLD;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.6,0.8
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=PSE;Series=SPI.INDEX,Data,74.925,78.925
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=PSE;Series=SPI.INDEX.PIL1,Data,60,80
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.5,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=TUR;Series=SPI.INDEX,Data,77.7208333333333,85.7208333333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=TUR;Series=SPI.INDEX.PIL1,Data,50,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2022;Country=XKX;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=CIV;Series=SPI.INDEX,Data,65.88625,69.88625
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=CIV;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=COD;Series=SPI.D1.5.LFP,Data,0,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=COD;Series=SPI.DIM1.5.INDEX,Data,0.4,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=COD;Series=SPI.INDEX,Data,47.1091666666667,49.1091666666667
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=COD;Series=SPI.INDEX.PIL1,Data,40,50
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=HKG;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=NLD;Series=SPI.INDEX,Data,89.9825,93.9825
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=NLD;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.7,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=PSE;Series=SPI.INDEX,Data,76.3475,80.3475
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=PSE;Series=SPI.INDEX.PIL1,Data,70,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.5,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=TUR;Series=SPI.INDEX,Data,78.6770833333333,86.6770833333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=TUR;Series=SPI.INDEX.PIL1,Data,50,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2023;Country=XKX;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=CIV;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=CIV;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=CIV;Series=SPI.INDEX,Data,71.20125,75.20125
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=CIV;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=COD;Series=SPI.D1.5.LFP,Data,0,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=COD;Series=SPI.DIM1.5.INDEX,Data,0.4,0.5
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=COD;Series=SPI.INDEX,Data,46.61125,48.61125
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=COD;Series=SPI.INDEX.PIL1,Data,40,50
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=HKG;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=HKG;Series=SPI.DIM1.5.INDEX,Data,0.4,0.6
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=HKG;Series=SPI.INDEX.PIL1,Data,40,60
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=NLD;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=NLD;Series=SPI.DIM1.5.INDEX,Data,0.8,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=NLD;Series=SPI.INDEX,Data,86.1329166666667,90.1329166666667
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=NLD;Series=SPI.INDEX.PIL1,Data,80,100
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=PSE;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=PSE;Series=SPI.DIM1.5.INDEX,Data,0.7,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=PSE;Series=SPI.INDEX,Data,74.4004166666667,78.4004166666667
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=PSE;Series=SPI.INDEX.PIL1,Data,70,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=TUR;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=TUR;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=TUR;Series=SPI.DIM1.5.INDEX,Data,0.5,0.9
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=TUR;Series=SPI.INDEX,Data,79.3483333333333,87.3483333333333
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=TUR;Series=SPI.INDEX.PIL1,Data,50,90
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=XKX;Series=SPI.D1.5.CHLD.MORT,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=XKX;Series=SPI.D1.5.LFP,Data,0,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=XKX;Series=SPI.DIM1.5.INDEX,Data,0.6,1
+SPI_databank_country_and_aggregates_DCS.csv,Time=YR2024;Country=XKX;Series=SPI.INDEX.PIL1,Data,60,100
+SPI_index.csv,iso3c=NLD;date=2004,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2005,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2006,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2007,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2008,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2009,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2010,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2011,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2012,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2013,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2014,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2015,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2016,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2017,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2018,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2019,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2020,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2021,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2022,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2023,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=NLD;date=2024,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2004,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2005,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2006,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2007,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2008,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2009,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2010,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2011,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2012,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2013,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2014,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2015,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2016,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2017,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2018,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2019,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2020,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2021,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2022,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2023,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=TUR;date=2024,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2004,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2005,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2006,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2007,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2008,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2009,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2010,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2011,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2012,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2013,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2014,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2015,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2016,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2017,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2018,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2019,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2020,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2021,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2022,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2023,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=XKX;date=2024,SPI.D1.5.CHLD.MORT,0,1
+SPI_index.csv,iso3c=CIV;date=2012,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2013,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2014,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2015,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2016,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2017,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2018,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2019,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2020,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2021,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2022,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2023,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2024,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=COD;date=2012,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=COD;date=2013,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=COD;date=2014,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=COD;date=2015,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=COD;date=2016,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=COD;date=2020,SPI.D1.5.LFP,0,0.5
+SPI_index.csv,iso3c=COD;date=2021,SPI.D1.5.LFP,0,0.5
+SPI_index.csv,iso3c=COD;date=2022,SPI.D1.5.LFP,0,0.5
+SPI_index.csv,iso3c=COD;date=2023,SPI.D1.5.LFP,0,0.5
+SPI_index.csv,iso3c=COD;date=2024,SPI.D1.5.LFP,0,0.5
+SPI_index.csv,iso3c=HKG;date=2010,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2011,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2012,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2013,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2014,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2015,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2016,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2017,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2018,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2019,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2020,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2021,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2022,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2023,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=HKG;date=2024,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=MAC;date=2010,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=MAC;date=2011,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=MAC;date=2012,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=MAC;date=2013,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=MAC;date=2014,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=MAC;date=2015,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=MAC;date=2016,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=MAC;date=2017,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=MAC;date=2018,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=MAC;date=2019,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=MAC;date=2020,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2010,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2011,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2012,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2013,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2014,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2015,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2016,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2017,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2018,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2019,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2020,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2021,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2022,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2023,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=PSE;date=2024,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2010,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2011,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2012,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2013,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2014,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2015,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2016,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2017,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2018,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2019,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2020,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2021,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2022,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2023,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=TUR;date=2024,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2010,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2011,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2012,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2013,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2014,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2015,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2016,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2017,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2018,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2019,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2020,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2021,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2022,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2023,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=XKX;date=2024,SPI.D1.5.LFP,0,1
+SPI_index.csv,iso3c=CIV;date=2012,SPI.DIM1.5.INDEX,0.3,0.5
+SPI_index.csv,iso3c=CIV;date=2013,SPI.DIM1.5.INDEX,0.3,0.5
+SPI_index.csv,iso3c=CIV;date=2014,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=CIV;date=2015,SPI.DIM1.5.INDEX,0.5,0.7
+SPI_index.csv,iso3c=CIV;date=2016,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_index.csv,iso3c=CIV;date=2017,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_index.csv,iso3c=CIV;date=2018,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_index.csv,iso3c=CIV;date=2019,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_index.csv,iso3c=CIV;date=2020,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_index.csv,iso3c=CIV;date=2021,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=CIV;date=2022,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=CIV;date=2023,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=CIV;date=2024,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=COD;date=2012,SPI.DIM1.5.INDEX,0.3,0.5
+SPI_index.csv,iso3c=COD;date=2013,SPI.DIM1.5.INDEX,0.3,0.5
+SPI_index.csv,iso3c=COD;date=2014,SPI.DIM1.5.INDEX,0.3,0.5
+SPI_index.csv,iso3c=COD;date=2015,SPI.DIM1.5.INDEX,0.5,0.7
+SPI_index.csv,iso3c=COD;date=2016,SPI.DIM1.5.INDEX,0.5,0.7
+SPI_index.csv,iso3c=COD;date=2020,SPI.DIM1.5.INDEX,0.4,0.5
+SPI_index.csv,iso3c=COD;date=2021,SPI.DIM1.5.INDEX,0.4,0.5
+SPI_index.csv,iso3c=COD;date=2022,SPI.DIM1.5.INDEX,0.4,0.5
+SPI_index.csv,iso3c=COD;date=2023,SPI.DIM1.5.INDEX,0.4,0.5
+SPI_index.csv,iso3c=COD;date=2024,SPI.DIM1.5.INDEX,0.4,0.5
+SPI_index.csv,iso3c=HKG;date=2010,SPI.DIM1.5.INDEX,0,0.2
+SPI_index.csv,iso3c=HKG;date=2011,SPI.DIM1.5.INDEX,0,0.2
+SPI_index.csv,iso3c=HKG;date=2012,SPI.DIM1.5.INDEX,0,0.2
+SPI_index.csv,iso3c=HKG;date=2013,SPI.DIM1.5.INDEX,0,0.2
+SPI_index.csv,iso3c=HKG;date=2014,SPI.DIM1.5.INDEX,0,0.2
+SPI_index.csv,iso3c=HKG;date=2015,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=HKG;date=2016,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=HKG;date=2017,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=HKG;date=2018,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=HKG;date=2019,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=HKG;date=2020,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=HKG;date=2021,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=HKG;date=2022,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=HKG;date=2023,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=HKG;date=2024,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=MAC;date=2010,SPI.DIM1.5.INDEX,0,0.2
+SPI_index.csv,iso3c=MAC;date=2011,SPI.DIM1.5.INDEX,0,0.2
+SPI_index.csv,iso3c=MAC;date=2012,SPI.DIM1.5.INDEX,0,0.2
+SPI_index.csv,iso3c=MAC;date=2013,SPI.DIM1.5.INDEX,0,0.2
+SPI_index.csv,iso3c=MAC;date=2014,SPI.DIM1.5.INDEX,0,0.2
+SPI_index.csv,iso3c=MAC;date=2015,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=MAC;date=2016,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=MAC;date=2017,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=MAC;date=2018,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=MAC;date=2019,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=MAC;date=2020,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=NLD;date=2004,SPI.DIM1.5.INDEX,0.1,0.3
+SPI_index.csv,iso3c=NLD;date=2005,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=NLD;date=2006,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=NLD;date=2007,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=NLD;date=2008,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=NLD;date=2009,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=NLD;date=2010,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=NLD;date=2011,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=NLD;date=2012,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=NLD;date=2013,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=NLD;date=2014,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=NLD;date=2015,SPI.DIM1.5.INDEX,0.6,0.8
+SPI_index.csv,iso3c=NLD;date=2016,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=NLD;date=2017,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=NLD;date=2018,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=NLD;date=2019,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=NLD;date=2020,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=NLD;date=2021,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=NLD;date=2022,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=NLD;date=2023,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=NLD;date=2024,SPI.DIM1.5.INDEX,0.8,1
+SPI_index.csv,iso3c=PSE;date=2010,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=PSE;date=2011,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=PSE;date=2012,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=PSE;date=2013,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=PSE;date=2014,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_index.csv,iso3c=PSE;date=2015,SPI.DIM1.5.INDEX,0.6,0.8
+SPI_index.csv,iso3c=PSE;date=2016,SPI.DIM1.5.INDEX,0.6,0.8
+SPI_index.csv,iso3c=PSE;date=2017,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_index.csv,iso3c=PSE;date=2018,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_index.csv,iso3c=PSE;date=2019,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_index.csv,iso3c=PSE;date=2020,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_index.csv,iso3c=PSE;date=2021,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_index.csv,iso3c=PSE;date=2022,SPI.DIM1.5.INDEX,0.6,0.8
+SPI_index.csv,iso3c=PSE;date=2023,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_index.csv,iso3c=PSE;date=2024,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_index.csv,iso3c=TUR;date=2004,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=TUR;date=2005,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=TUR;date=2006,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=TUR;date=2007,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=TUR;date=2008,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=TUR;date=2009,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=TUR;date=2010,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_index.csv,iso3c=TUR;date=2011,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_index.csv,iso3c=TUR;date=2012,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_index.csv,iso3c=TUR;date=2013,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_index.csv,iso3c=TUR;date=2014,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_index.csv,iso3c=TUR;date=2015,SPI.DIM1.5.INDEX,0.4,0.8
+SPI_index.csv,iso3c=TUR;date=2016,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=TUR;date=2017,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=TUR;date=2018,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=TUR;date=2019,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=TUR;date=2020,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=TUR;date=2021,SPI.DIM1.5.INDEX,0.5,0.9
+SPI_index.csv,iso3c=TUR;date=2022,SPI.DIM1.5.INDEX,0.5,0.9
+SPI_index.csv,iso3c=TUR;date=2023,SPI.DIM1.5.INDEX,0.5,0.9
+SPI_index.csv,iso3c=TUR;date=2024,SPI.DIM1.5.INDEX,0.5,0.9
+SPI_index.csv,iso3c=XKX;date=2004,SPI.DIM1.5.INDEX,0,0.2
+SPI_index.csv,iso3c=XKX;date=2005,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=XKX;date=2006,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=XKX;date=2007,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=XKX;date=2008,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=XKX;date=2009,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_index.csv,iso3c=XKX;date=2010,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_index.csv,iso3c=XKX;date=2011,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_index.csv,iso3c=XKX;date=2012,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_index.csv,iso3c=XKX;date=2013,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_index.csv,iso3c=XKX;date=2014,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_index.csv,iso3c=XKX;date=2015,SPI.DIM1.5.INDEX,0.4,0.8
+SPI_index.csv,iso3c=XKX;date=2016,SPI.DIM1.5.INDEX,0.4,0.8
+SPI_index.csv,iso3c=XKX;date=2017,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=XKX;date=2018,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=XKX;date=2019,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=XKX;date=2020,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=XKX;date=2021,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=XKX;date=2022,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=XKX;date=2023,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=XKX;date=2024,SPI.DIM1.5.INDEX,0.6,1
+SPI_index.csv,iso3c=CIV;date=2016,SPI.INDEX,47.586666666666666,51.58666666666667
+SPI_index.csv,iso3c=CIV;date=2017,SPI.INDEX,52.815,56.81500000000001
+SPI_index.csv,iso3c=CIV;date=2018,SPI.INDEX,53.93833333333333,57.93833333333333
+SPI_index.csv,iso3c=CIV;date=2019,SPI.INDEX,52.43833333333333,56.43833333333333
+SPI_index.csv,iso3c=CIV;date=2020,SPI.INDEX,57.46916666666667,61.469166666666666
+SPI_index.csv,iso3c=CIV;date=2021,SPI.INDEX,67.35583333333334,71.35583333333334
+SPI_index.csv,iso3c=CIV;date=2022,SPI.INDEX,64.42375,68.42375000000001
+SPI_index.csv,iso3c=CIV;date=2023,SPI.INDEX,65.88625,69.88625
+SPI_index.csv,iso3c=CIV;date=2024,SPI.INDEX,71.20125,75.20125
+SPI_index.csv,iso3c=COD;date=2020,SPI.INDEX,43.177083333333336,45.177083333333336
+SPI_index.csv,iso3c=COD;date=2021,SPI.INDEX,47.43333333333333,49.43333333333334
+SPI_index.csv,iso3c=COD;date=2022,SPI.INDEX,45.65166666666667,47.651666666666664
+SPI_index.csv,iso3c=COD;date=2023,SPI.INDEX,47.109166666666674,49.10916666666667
+SPI_index.csv,iso3c=COD;date=2024,SPI.INDEX,46.611250000000005,48.61125
+SPI_index.csv,iso3c=NLD;date=2016,SPI.INDEX,74.14416666666668,78.14416666666668
+SPI_index.csv,iso3c=NLD;date=2017,SPI.INDEX,76.21625,80.21624999999999
+SPI_index.csv,iso3c=NLD;date=2018,SPI.INDEX,84.21958333333333,88.21958333333333
+SPI_index.csv,iso3c=NLD;date=2019,SPI.INDEX,84.26583333333333,88.26583333333333
+SPI_index.csv,iso3c=NLD;date=2020,SPI.INDEX,84.91708333333334,88.91708333333335
+SPI_index.csv,iso3c=NLD;date=2021,SPI.INDEX,89.35875,93.35875
+SPI_index.csv,iso3c=NLD;date=2022,SPI.INDEX,88.16000000000001,92.16
+SPI_index.csv,iso3c=NLD;date=2023,SPI.INDEX,89.98250000000002,93.98249999999999
+SPI_index.csv,iso3c=NLD;date=2024,SPI.INDEX,86.13291666666667,90.13291666666667
+SPI_index.csv,iso3c=PSE;date=2017,SPI.INDEX,58.508333333333326,62.50833333333333
+SPI_index.csv,iso3c=PSE;date=2018,SPI.INDEX,67.03791666666666,71.03791666666666
+SPI_index.csv,iso3c=PSE;date=2019,SPI.INDEX,66.76291666666667,70.76291666666667
+SPI_index.csv,iso3c=PSE;date=2020,SPI.INDEX,73.19208333333333,77.19208333333334
+SPI_index.csv,iso3c=PSE;date=2021,SPI.INDEX,77.8625,81.86250000000001
+SPI_index.csv,iso3c=PSE;date=2022,SPI.INDEX,74.92500000000001,78.92500000000001
+SPI_index.csv,iso3c=PSE;date=2023,SPI.INDEX,76.3475,80.34750000000001
+SPI_index.csv,iso3c=PSE;date=2024,SPI.INDEX,74.40041666666667,78.40041666666667
+SPI_index.csv,iso3c=TUR;date=2016,SPI.INDEX,72.64541666666668,80.64541666666668
+SPI_index.csv,iso3c=TUR;date=2017,SPI.INDEX,77.20291666666668,85.20291666666668
+SPI_index.csv,iso3c=TUR;date=2018,SPI.INDEX,77.99000000000001,85.99000000000001
+SPI_index.csv,iso3c=TUR;date=2019,SPI.INDEX,78.47125,86.47125
+SPI_index.csv,iso3c=TUR;date=2020,SPI.INDEX,78.14583333333334,86.14583333333334
+SPI_index.csv,iso3c=TUR;date=2021,SPI.INDEX,80.08250000000001,88.0825
+SPI_index.csv,iso3c=TUR;date=2022,SPI.INDEX,77.72083333333333,85.72083333333333
+SPI_index.csv,iso3c=TUR;date=2023,SPI.INDEX,78.67708333333334,86.67708333333334
+SPI_index.csv,iso3c=TUR;date=2024,SPI.INDEX,79.34833333333333,87.34833333333334
+SPI_index.csv,iso3c=CIV;date=2012,SPI.INDEX.PIL1,30,50
+SPI_index.csv,iso3c=CIV;date=2013,SPI.INDEX.PIL1,30,50
+SPI_index.csv,iso3c=CIV;date=2014,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=CIV;date=2015,SPI.INDEX.PIL1,50,70
+SPI_index.csv,iso3c=CIV;date=2016,SPI.INDEX.PIL1,70,90
+SPI_index.csv,iso3c=CIV;date=2017,SPI.INDEX.PIL1,70,90
+SPI_index.csv,iso3c=CIV;date=2018,SPI.INDEX.PIL1,70,90
+SPI_index.csv,iso3c=CIV;date=2019,SPI.INDEX.PIL1,70,90
+SPI_index.csv,iso3c=CIV;date=2020,SPI.INDEX.PIL1,70,90
+SPI_index.csv,iso3c=CIV;date=2021,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=CIV;date=2022,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=CIV;date=2023,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=CIV;date=2024,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=COD;date=2012,SPI.INDEX.PIL1,30,50
+SPI_index.csv,iso3c=COD;date=2013,SPI.INDEX.PIL1,30,50
+SPI_index.csv,iso3c=COD;date=2014,SPI.INDEX.PIL1,30,50
+SPI_index.csv,iso3c=COD;date=2015,SPI.INDEX.PIL1,50,70
+SPI_index.csv,iso3c=COD;date=2016,SPI.INDEX.PIL1,50,70
+SPI_index.csv,iso3c=COD;date=2020,SPI.INDEX.PIL1,40,50
+SPI_index.csv,iso3c=COD;date=2021,SPI.INDEX.PIL1,40,50
+SPI_index.csv,iso3c=COD;date=2022,SPI.INDEX.PIL1,40,50
+SPI_index.csv,iso3c=COD;date=2023,SPI.INDEX.PIL1,40,50
+SPI_index.csv,iso3c=COD;date=2024,SPI.INDEX.PIL1,40,50
+SPI_index.csv,iso3c=HKG;date=2010,SPI.INDEX.PIL1,0,20
+SPI_index.csv,iso3c=HKG;date=2011,SPI.INDEX.PIL1,0,20
+SPI_index.csv,iso3c=HKG;date=2012,SPI.INDEX.PIL1,0,20
+SPI_index.csv,iso3c=HKG;date=2013,SPI.INDEX.PIL1,0,20
+SPI_index.csv,iso3c=HKG;date=2014,SPI.INDEX.PIL1,0,20
+SPI_index.csv,iso3c=HKG;date=2015,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=HKG;date=2016,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=HKG;date=2017,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=HKG;date=2018,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=HKG;date=2019,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=HKG;date=2020,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=HKG;date=2021,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=HKG;date=2022,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=HKG;date=2023,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=HKG;date=2024,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=MAC;date=2010,SPI.INDEX.PIL1,0,20
+SPI_index.csv,iso3c=MAC;date=2011,SPI.INDEX.PIL1,0,20
+SPI_index.csv,iso3c=MAC;date=2012,SPI.INDEX.PIL1,0,20
+SPI_index.csv,iso3c=MAC;date=2013,SPI.INDEX.PIL1,0,20
+SPI_index.csv,iso3c=MAC;date=2014,SPI.INDEX.PIL1,0,20
+SPI_index.csv,iso3c=MAC;date=2015,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=MAC;date=2016,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=MAC;date=2017,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=MAC;date=2018,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=MAC;date=2019,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=MAC;date=2020,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=NLD;date=2004,SPI.INDEX.PIL1,10,30
+SPI_index.csv,iso3c=NLD;date=2005,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=NLD;date=2006,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=NLD;date=2007,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=NLD;date=2008,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=NLD;date=2009,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=NLD;date=2010,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=NLD;date=2011,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=NLD;date=2012,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=NLD;date=2013,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=NLD;date=2014,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=NLD;date=2015,SPI.INDEX.PIL1,60,80
+SPI_index.csv,iso3c=NLD;date=2016,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=NLD;date=2017,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=NLD;date=2018,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=NLD;date=2019,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=NLD;date=2020,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=NLD;date=2021,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=NLD;date=2022,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=NLD;date=2023,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=NLD;date=2024,SPI.INDEX.PIL1,80,100
+SPI_index.csv,iso3c=PSE;date=2010,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=PSE;date=2011,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=PSE;date=2012,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=PSE;date=2013,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=PSE;date=2014,SPI.INDEX.PIL1,40,60
+SPI_index.csv,iso3c=PSE;date=2015,SPI.INDEX.PIL1,60,80
+SPI_index.csv,iso3c=PSE;date=2016,SPI.INDEX.PIL1,60,80
+SPI_index.csv,iso3c=PSE;date=2017,SPI.INDEX.PIL1,70,90
+SPI_index.csv,iso3c=PSE;date=2018,SPI.INDEX.PIL1,70,90
+SPI_index.csv,iso3c=PSE;date=2019,SPI.INDEX.PIL1,70,90
+SPI_index.csv,iso3c=PSE;date=2020,SPI.INDEX.PIL1,70,90
+SPI_index.csv,iso3c=PSE;date=2021,SPI.INDEX.PIL1,70,90
+SPI_index.csv,iso3c=PSE;date=2022,SPI.INDEX.PIL1,60,80
+SPI_index.csv,iso3c=PSE;date=2023,SPI.INDEX.PIL1,70,90
+SPI_index.csv,iso3c=PSE;date=2024,SPI.INDEX.PIL1,70,90
+SPI_index.csv,iso3c=TUR;date=2004,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=TUR;date=2005,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=TUR;date=2006,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=TUR;date=2007,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=TUR;date=2008,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=TUR;date=2009,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=TUR;date=2010,SPI.INDEX.PIL1,20,60
+SPI_index.csv,iso3c=TUR;date=2011,SPI.INDEX.PIL1,20,60
+SPI_index.csv,iso3c=TUR;date=2012,SPI.INDEX.PIL1,20,60
+SPI_index.csv,iso3c=TUR;date=2013,SPI.INDEX.PIL1,20,60
+SPI_index.csv,iso3c=TUR;date=2014,SPI.INDEX.PIL1,20,60
+SPI_index.csv,iso3c=TUR;date=2015,SPI.INDEX.PIL1,40,80
+SPI_index.csv,iso3c=TUR;date=2016,SPI.INDEX.PIL1,60,100
+SPI_index.csv,iso3c=TUR;date=2017,SPI.INDEX.PIL1,60,100
+SPI_index.csv,iso3c=TUR;date=2018,SPI.INDEX.PIL1,60,100
+SPI_index.csv,iso3c=TUR;date=2019,SPI.INDEX.PIL1,60,100
+SPI_index.csv,iso3c=TUR;date=2020,SPI.INDEX.PIL1,60,100
+SPI_index.csv,iso3c=TUR;date=2021,SPI.INDEX.PIL1,50,90
+SPI_index.csv,iso3c=TUR;date=2022,SPI.INDEX.PIL1,50,90
+SPI_index.csv,iso3c=TUR;date=2023,SPI.INDEX.PIL1,50,90
+SPI_index.csv,iso3c=TUR;date=2024,SPI.INDEX.PIL1,50,90
+SPI_index.csv,iso3c=XKX;date=2004,SPI.INDEX.PIL1,0,20
+SPI_index.csv,iso3c=XKX;date=2005,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=XKX;date=2006,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=XKX;date=2007,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=XKX;date=2008,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=XKX;date=2009,SPI.INDEX.PIL1,20,40
+SPI_index.csv,iso3c=XKX;date=2010,SPI.INDEX.PIL1,20,60
+SPI_index.csv,iso3c=XKX;date=2011,SPI.INDEX.PIL1,20,60
+SPI_index.csv,iso3c=XKX;date=2012,SPI.INDEX.PIL1,20,60
+SPI_index.csv,iso3c=XKX;date=2013,SPI.INDEX.PIL1,20,60
+SPI_index.csv,iso3c=XKX;date=2014,SPI.INDEX.PIL1,20,60
+SPI_index.csv,iso3c=XKX;date=2015,SPI.INDEX.PIL1,40,80
+SPI_index.csv,iso3c=XKX;date=2016,SPI.INDEX.PIL1,40,80
+SPI_index.csv,iso3c=XKX;date=2017,SPI.INDEX.PIL1,60,100
+SPI_index.csv,iso3c=XKX;date=2018,SPI.INDEX.PIL1,60,100
+SPI_index.csv,iso3c=XKX;date=2019,SPI.INDEX.PIL1,60,100
+SPI_index.csv,iso3c=XKX;date=2020,SPI.INDEX.PIL1,60,100
+SPI_index.csv,iso3c=XKX;date=2021,SPI.INDEX.PIL1,60,100
+SPI_index.csv,iso3c=XKX;date=2022,SPI.INDEX.PIL1,60,100
+SPI_index.csv,iso3c=XKX;date=2023,SPI.INDEX.PIL1,60,100
+SPI_index.csv,iso3c=XKX;date=2024,SPI.INDEX.PIL1,60,100
+SPI_indicators_2024.csv,iso3c=CIV;date=2012,Data Use Score,30,50
+SPI_indicators_2024.csv,iso3c=CIV;date=2013,Data Use Score,30,50
+SPI_indicators_2024.csv,iso3c=CIV;date=2014,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=CIV;date=2015,Data Use Score,50,70
+SPI_indicators_2024.csv,iso3c=CIV;date=2016,Data Use Score,70,90
+SPI_indicators_2024.csv,iso3c=CIV;date=2017,Data Use Score,70,90
+SPI_indicators_2024.csv,iso3c=CIV;date=2018,Data Use Score,70,90
+SPI_indicators_2024.csv,iso3c=CIV;date=2019,Data Use Score,70,90
+SPI_indicators_2024.csv,iso3c=CIV;date=2020,Data Use Score,70,90
+SPI_indicators_2024.csv,iso3c=CIV;date=2021,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=CIV;date=2022,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=CIV;date=2023,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=CIV;date=2024,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=COD;date=2012,Data Use Score,30,50
+SPI_indicators_2024.csv,iso3c=COD;date=2013,Data Use Score,30,50
+SPI_indicators_2024.csv,iso3c=COD;date=2014,Data Use Score,30,50
+SPI_indicators_2024.csv,iso3c=COD;date=2015,Data Use Score,50,70
+SPI_indicators_2024.csv,iso3c=COD;date=2016,Data Use Score,50,70
+SPI_indicators_2024.csv,iso3c=COD;date=2020,Data Use Score,40,50
+SPI_indicators_2024.csv,iso3c=COD;date=2021,Data Use Score,40,50
+SPI_indicators_2024.csv,iso3c=COD;date=2022,Data Use Score,40,50
+SPI_indicators_2024.csv,iso3c=COD;date=2023,Data Use Score,40,50
+SPI_indicators_2024.csv,iso3c=COD;date=2024,Data Use Score,40,50
+SPI_indicators_2024.csv,iso3c=HKG;date=2010,Data Use Score,0,20
+SPI_indicators_2024.csv,iso3c=HKG;date=2011,Data Use Score,0,20
+SPI_indicators_2024.csv,iso3c=HKG;date=2012,Data Use Score,0,20
+SPI_indicators_2024.csv,iso3c=HKG;date=2013,Data Use Score,0,20
+SPI_indicators_2024.csv,iso3c=HKG;date=2014,Data Use Score,0,20
+SPI_indicators_2024.csv,iso3c=HKG;date=2015,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=HKG;date=2016,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=HKG;date=2017,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=HKG;date=2018,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=HKG;date=2019,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=HKG;date=2020,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=HKG;date=2021,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=HKG;date=2022,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=HKG;date=2023,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=HKG;date=2024,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=MAC;date=2010,Data Use Score,0,20
+SPI_indicators_2024.csv,iso3c=MAC;date=2011,Data Use Score,0,20
+SPI_indicators_2024.csv,iso3c=MAC;date=2012,Data Use Score,0,20
+SPI_indicators_2024.csv,iso3c=MAC;date=2013,Data Use Score,0,20
+SPI_indicators_2024.csv,iso3c=MAC;date=2014,Data Use Score,0,20
+SPI_indicators_2024.csv,iso3c=MAC;date=2015,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=MAC;date=2016,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=MAC;date=2017,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=MAC;date=2018,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=MAC;date=2019,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=MAC;date=2020,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=NLD;date=2004,Data Use Score,10,30
+SPI_indicators_2024.csv,iso3c=NLD;date=2005,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=NLD;date=2006,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=NLD;date=2007,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=NLD;date=2008,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=NLD;date=2009,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=NLD;date=2010,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=NLD;date=2011,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=NLD;date=2012,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=NLD;date=2013,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=NLD;date=2014,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=NLD;date=2015,Data Use Score,60,80
+SPI_indicators_2024.csv,iso3c=NLD;date=2016,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=NLD;date=2017,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=NLD;date=2018,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=NLD;date=2019,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=NLD;date=2020,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=NLD;date=2021,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=NLD;date=2022,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=NLD;date=2023,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=NLD;date=2024,Data Use Score,80,100
+SPI_indicators_2024.csv,iso3c=PSE;date=2010,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=PSE;date=2011,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=PSE;date=2012,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=PSE;date=2013,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=PSE;date=2014,Data Use Score,40,60
+SPI_indicators_2024.csv,iso3c=PSE;date=2015,Data Use Score,60,80
+SPI_indicators_2024.csv,iso3c=PSE;date=2016,Data Use Score,60,80
+SPI_indicators_2024.csv,iso3c=PSE;date=2017,Data Use Score,70,90
+SPI_indicators_2024.csv,iso3c=PSE;date=2018,Data Use Score,70,90
+SPI_indicators_2024.csv,iso3c=PSE;date=2019,Data Use Score,70,90
+SPI_indicators_2024.csv,iso3c=PSE;date=2020,Data Use Score,70,90
+SPI_indicators_2024.csv,iso3c=PSE;date=2021,Data Use Score,70,90
+SPI_indicators_2024.csv,iso3c=PSE;date=2022,Data Use Score,60,80
+SPI_indicators_2024.csv,iso3c=PSE;date=2023,Data Use Score,70,90
+SPI_indicators_2024.csv,iso3c=PSE;date=2024,Data Use Score,70,90
+SPI_indicators_2024.csv,iso3c=TUR;date=2004,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=TUR;date=2005,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=TUR;date=2006,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=TUR;date=2007,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=TUR;date=2008,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=TUR;date=2009,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=TUR;date=2010,Data Use Score,20,60
+SPI_indicators_2024.csv,iso3c=TUR;date=2011,Data Use Score,20,60
+SPI_indicators_2024.csv,iso3c=TUR;date=2012,Data Use Score,20,60
+SPI_indicators_2024.csv,iso3c=TUR;date=2013,Data Use Score,20,60
+SPI_indicators_2024.csv,iso3c=TUR;date=2014,Data Use Score,20,60
+SPI_indicators_2024.csv,iso3c=TUR;date=2015,Data Use Score,40,80
+SPI_indicators_2024.csv,iso3c=TUR;date=2016,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=TUR;date=2017,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=TUR;date=2018,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=TUR;date=2019,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=TUR;date=2020,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=TUR;date=2021,Data Use Score,50,90
+SPI_indicators_2024.csv,iso3c=TUR;date=2022,Data Use Score,50,90
+SPI_indicators_2024.csv,iso3c=TUR;date=2023,Data Use Score,50,90
+SPI_indicators_2024.csv,iso3c=TUR;date=2024,Data Use Score,50,90
+SPI_indicators_2024.csv,iso3c=XKX;date=2004,Data Use Score,0,20
+SPI_indicators_2024.csv,iso3c=XKX;date=2005,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=XKX;date=2006,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=XKX;date=2007,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=XKX;date=2008,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=XKX;date=2009,Data Use Score,20,40
+SPI_indicators_2024.csv,iso3c=XKX;date=2010,Data Use Score,20,60
+SPI_indicators_2024.csv,iso3c=XKX;date=2011,Data Use Score,20,60
+SPI_indicators_2024.csv,iso3c=XKX;date=2012,Data Use Score,20,60
+SPI_indicators_2024.csv,iso3c=XKX;date=2013,Data Use Score,20,60
+SPI_indicators_2024.csv,iso3c=XKX;date=2014,Data Use Score,20,60
+SPI_indicators_2024.csv,iso3c=XKX;date=2015,Data Use Score,40,80
+SPI_indicators_2024.csv,iso3c=XKX;date=2016,Data Use Score,40,80
+SPI_indicators_2024.csv,iso3c=XKX;date=2017,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=XKX;date=2018,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=XKX;date=2019,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=XKX;date=2020,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=XKX;date=2021,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=XKX;date=2022,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=XKX;date=2023,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=XKX;date=2024,Data Use Score,60,100
+SPI_indicators_2024.csv,iso3c=CIV;date=2016,SPI Overall Score,47.586666666666666,51.58666666666667
+SPI_indicators_2024.csv,iso3c=CIV;date=2017,SPI Overall Score,52.815,56.81500000000001
+SPI_indicators_2024.csv,iso3c=CIV;date=2018,SPI Overall Score,53.93833333333333,57.93833333333333
+SPI_indicators_2024.csv,iso3c=CIV;date=2019,SPI Overall Score,52.43833333333333,56.43833333333333
+SPI_indicators_2024.csv,iso3c=CIV;date=2020,SPI Overall Score,57.46916666666667,61.469166666666666
+SPI_indicators_2024.csv,iso3c=CIV;date=2021,SPI Overall Score,67.35583333333334,71.35583333333334
+SPI_indicators_2024.csv,iso3c=CIV;date=2022,SPI Overall Score,64.42375,68.42375000000001
+SPI_indicators_2024.csv,iso3c=CIV;date=2023,SPI Overall Score,65.88625,69.88625
+SPI_indicators_2024.csv,iso3c=CIV;date=2024,SPI Overall Score,71.20125,75.20125
+SPI_indicators_2024.csv,iso3c=COD;date=2020,SPI Overall Score,43.177083333333336,45.177083333333336
+SPI_indicators_2024.csv,iso3c=COD;date=2021,SPI Overall Score,47.43333333333333,49.43333333333334
+SPI_indicators_2024.csv,iso3c=COD;date=2022,SPI Overall Score,45.65166666666667,47.651666666666664
+SPI_indicators_2024.csv,iso3c=COD;date=2023,SPI Overall Score,47.109166666666674,49.10916666666667
+SPI_indicators_2024.csv,iso3c=COD;date=2024,SPI Overall Score,46.611250000000005,48.61125
+SPI_indicators_2024.csv,iso3c=NLD;date=2016,SPI Overall Score,74.14416666666668,78.14416666666668
+SPI_indicators_2024.csv,iso3c=NLD;date=2017,SPI Overall Score,76.21625,80.21624999999999
+SPI_indicators_2024.csv,iso3c=NLD;date=2018,SPI Overall Score,84.21958333333333,88.21958333333333
+SPI_indicators_2024.csv,iso3c=NLD;date=2019,SPI Overall Score,84.26583333333333,88.26583333333333
+SPI_indicators_2024.csv,iso3c=NLD;date=2020,SPI Overall Score,84.91708333333334,88.91708333333335
+SPI_indicators_2024.csv,iso3c=NLD;date=2021,SPI Overall Score,89.35875,93.35875
+SPI_indicators_2024.csv,iso3c=NLD;date=2022,SPI Overall Score,88.16000000000001,92.16
+SPI_indicators_2024.csv,iso3c=NLD;date=2023,SPI Overall Score,89.98250000000002,93.9825
+SPI_indicators_2024.csv,iso3c=NLD;date=2024,SPI Overall Score,86.13291666666667,90.13291666666667
+SPI_indicators_2024.csv,iso3c=PSE;date=2017,SPI Overall Score,58.508333333333326,62.50833333333333
+SPI_indicators_2024.csv,iso3c=PSE;date=2018,SPI Overall Score,67.03791666666666,71.03791666666666
+SPI_indicators_2024.csv,iso3c=PSE;date=2019,SPI Overall Score,66.76291666666667,70.76291666666667
+SPI_indicators_2024.csv,iso3c=PSE;date=2020,SPI Overall Score,73.19208333333333,77.19208333333334
+SPI_indicators_2024.csv,iso3c=PSE;date=2021,SPI Overall Score,77.8625,81.86250000000001
+SPI_indicators_2024.csv,iso3c=PSE;date=2022,SPI Overall Score,74.92500000000001,78.92500000000001
+SPI_indicators_2024.csv,iso3c=PSE;date=2023,SPI Overall Score,76.3475,80.34750000000001
+SPI_indicators_2024.csv,iso3c=PSE;date=2024,SPI Overall Score,74.40041666666667,78.40041666666667
+SPI_indicators_2024.csv,iso3c=TUR;date=2016,SPI Overall Score,72.64541666666668,80.64541666666668
+SPI_indicators_2024.csv,iso3c=TUR;date=2017,SPI Overall Score,77.20291666666668,85.20291666666668
+SPI_indicators_2024.csv,iso3c=TUR;date=2018,SPI Overall Score,77.99000000000001,85.99000000000001
+SPI_indicators_2024.csv,iso3c=TUR;date=2019,SPI Overall Score,78.47125,86.47125
+SPI_indicators_2024.csv,iso3c=TUR;date=2020,SPI Overall Score,78.14583333333334,86.14583333333334
+SPI_indicators_2024.csv,iso3c=TUR;date=2021,SPI Overall Score,80.08250000000001,88.0825
+SPI_indicators_2024.csv,iso3c=TUR;date=2022,SPI Overall Score,77.72083333333333,85.72083333333333
+SPI_indicators_2024.csv,iso3c=TUR;date=2023,SPI Overall Score,78.67708333333334,86.67708333333334
+SPI_indicators_2024.csv,iso3c=TUR;date=2024,SPI Overall Score,79.34833333333333,87.34833333333334
+SPI_indicators_2024.csv,iso3c=NLD;date=2004,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2005,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2006,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2007,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2008,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2009,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2010,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2011,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2012,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2013,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2014,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2015,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2016,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2017,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2018,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2019,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2020,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2021,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2022,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2023,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2024,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2004,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2005,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2006,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2007,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2008,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2009,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2010,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2011,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2012,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2013,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2014,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2015,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2016,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2017,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2018,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2019,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2020,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2021,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2022,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2023,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2024,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2004,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2005,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2006,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2007,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2008,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2009,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2010,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2011,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2012,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2013,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2014,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2015,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2016,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2017,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2018,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2019,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2020,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2021,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2022,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2023,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2024,SPI.D1.5.CHLD.MORT,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2012,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2013,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2014,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2015,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2016,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2017,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2018,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2019,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2020,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2021,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2022,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2023,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2024,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=COD;date=2012,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=COD;date=2013,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=COD;date=2014,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=COD;date=2015,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=COD;date=2016,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=COD;date=2020,SPI.D1.5.LFP,0,0.5
+SPI_indicators_2024.csv,iso3c=COD;date=2021,SPI.D1.5.LFP,0,0.5
+SPI_indicators_2024.csv,iso3c=COD;date=2022,SPI.D1.5.LFP,0,0.5
+SPI_indicators_2024.csv,iso3c=COD;date=2023,SPI.D1.5.LFP,0,0.5
+SPI_indicators_2024.csv,iso3c=COD;date=2024,SPI.D1.5.LFP,0,0.5
+SPI_indicators_2024.csv,iso3c=HKG;date=2010,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2011,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2012,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2013,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2014,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2015,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2016,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2017,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2018,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2019,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2020,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2021,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2022,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2023,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=HKG;date=2024,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=MAC;date=2010,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=MAC;date=2011,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=MAC;date=2012,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=MAC;date=2013,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=MAC;date=2014,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=MAC;date=2015,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=MAC;date=2016,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=MAC;date=2017,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=MAC;date=2018,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=MAC;date=2019,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=MAC;date=2020,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2010,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2011,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2012,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2013,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2014,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2015,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2016,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2017,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2018,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2019,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2020,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2021,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2022,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2023,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2024,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2010,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2011,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2012,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2013,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2014,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2015,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2016,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2017,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2018,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2019,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2020,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2021,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2022,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2023,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2024,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2010,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2011,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2012,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2013,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2014,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2015,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2016,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2017,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2018,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2019,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2020,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2021,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2022,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2023,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2024,SPI.D1.5.LFP,0,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2012,SPI.DIM1.5.INDEX,0.3,0.5
+SPI_indicators_2024.csv,iso3c=CIV;date=2013,SPI.DIM1.5.INDEX,0.3,0.5
+SPI_indicators_2024.csv,iso3c=CIV;date=2014,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=CIV;date=2015,SPI.DIM1.5.INDEX,0.5,0.7
+SPI_indicators_2024.csv,iso3c=CIV;date=2016,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_indicators_2024.csv,iso3c=CIV;date=2017,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_indicators_2024.csv,iso3c=CIV;date=2018,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_indicators_2024.csv,iso3c=CIV;date=2019,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_indicators_2024.csv,iso3c=CIV;date=2020,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_indicators_2024.csv,iso3c=CIV;date=2021,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2022,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2023,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=CIV;date=2024,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=COD;date=2012,SPI.DIM1.5.INDEX,0.3,0.5
+SPI_indicators_2024.csv,iso3c=COD;date=2013,SPI.DIM1.5.INDEX,0.3,0.5
+SPI_indicators_2024.csv,iso3c=COD;date=2014,SPI.DIM1.5.INDEX,0.3,0.5
+SPI_indicators_2024.csv,iso3c=COD;date=2015,SPI.DIM1.5.INDEX,0.5,0.7
+SPI_indicators_2024.csv,iso3c=COD;date=2016,SPI.DIM1.5.INDEX,0.5,0.7
+SPI_indicators_2024.csv,iso3c=COD;date=2020,SPI.DIM1.5.INDEX,0.4,0.5
+SPI_indicators_2024.csv,iso3c=COD;date=2021,SPI.DIM1.5.INDEX,0.4,0.5
+SPI_indicators_2024.csv,iso3c=COD;date=2022,SPI.DIM1.5.INDEX,0.4,0.5
+SPI_indicators_2024.csv,iso3c=COD;date=2023,SPI.DIM1.5.INDEX,0.4,0.5
+SPI_indicators_2024.csv,iso3c=COD;date=2024,SPI.DIM1.5.INDEX,0.4,0.5
+SPI_indicators_2024.csv,iso3c=HKG;date=2010,SPI.DIM1.5.INDEX,0,0.2
+SPI_indicators_2024.csv,iso3c=HKG;date=2011,SPI.DIM1.5.INDEX,0,0.2
+SPI_indicators_2024.csv,iso3c=HKG;date=2012,SPI.DIM1.5.INDEX,0,0.2
+SPI_indicators_2024.csv,iso3c=HKG;date=2013,SPI.DIM1.5.INDEX,0,0.2
+SPI_indicators_2024.csv,iso3c=HKG;date=2014,SPI.DIM1.5.INDEX,0,0.2
+SPI_indicators_2024.csv,iso3c=HKG;date=2015,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=HKG;date=2016,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=HKG;date=2017,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=HKG;date=2018,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=HKG;date=2019,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=HKG;date=2020,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=HKG;date=2021,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=HKG;date=2022,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=HKG;date=2023,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=HKG;date=2024,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=MAC;date=2010,SPI.DIM1.5.INDEX,0,0.2
+SPI_indicators_2024.csv,iso3c=MAC;date=2011,SPI.DIM1.5.INDEX,0,0.2
+SPI_indicators_2024.csv,iso3c=MAC;date=2012,SPI.DIM1.5.INDEX,0,0.2
+SPI_indicators_2024.csv,iso3c=MAC;date=2013,SPI.DIM1.5.INDEX,0,0.2
+SPI_indicators_2024.csv,iso3c=MAC;date=2014,SPI.DIM1.5.INDEX,0,0.2
+SPI_indicators_2024.csv,iso3c=MAC;date=2015,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=MAC;date=2016,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=MAC;date=2017,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=MAC;date=2018,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=MAC;date=2019,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=MAC;date=2020,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=NLD;date=2004,SPI.DIM1.5.INDEX,0.1,0.3
+SPI_indicators_2024.csv,iso3c=NLD;date=2005,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=NLD;date=2006,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=NLD;date=2007,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=NLD;date=2008,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=NLD;date=2009,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=NLD;date=2010,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=NLD;date=2011,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=NLD;date=2012,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=NLD;date=2013,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=NLD;date=2014,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=NLD;date=2015,SPI.DIM1.5.INDEX,0.6,0.8
+SPI_indicators_2024.csv,iso3c=NLD;date=2016,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2017,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2018,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2019,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2020,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2021,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2022,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2023,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=NLD;date=2024,SPI.DIM1.5.INDEX,0.8,1
+SPI_indicators_2024.csv,iso3c=PSE;date=2010,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=PSE;date=2011,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=PSE;date=2012,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=PSE;date=2013,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=PSE;date=2014,SPI.DIM1.5.INDEX,0.4,0.6
+SPI_indicators_2024.csv,iso3c=PSE;date=2015,SPI.DIM1.5.INDEX,0.6,0.8
+SPI_indicators_2024.csv,iso3c=PSE;date=2016,SPI.DIM1.5.INDEX,0.6,0.8
+SPI_indicators_2024.csv,iso3c=PSE;date=2017,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_indicators_2024.csv,iso3c=PSE;date=2018,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_indicators_2024.csv,iso3c=PSE;date=2019,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_indicators_2024.csv,iso3c=PSE;date=2020,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_indicators_2024.csv,iso3c=PSE;date=2021,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_indicators_2024.csv,iso3c=PSE;date=2022,SPI.DIM1.5.INDEX,0.6,0.8
+SPI_indicators_2024.csv,iso3c=PSE;date=2023,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_indicators_2024.csv,iso3c=PSE;date=2024,SPI.DIM1.5.INDEX,0.7,0.9
+SPI_indicators_2024.csv,iso3c=TUR;date=2004,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=TUR;date=2005,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=TUR;date=2006,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=TUR;date=2007,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=TUR;date=2008,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=TUR;date=2009,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=TUR;date=2010,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_indicators_2024.csv,iso3c=TUR;date=2011,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_indicators_2024.csv,iso3c=TUR;date=2012,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_indicators_2024.csv,iso3c=TUR;date=2013,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_indicators_2024.csv,iso3c=TUR;date=2014,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_indicators_2024.csv,iso3c=TUR;date=2015,SPI.DIM1.5.INDEX,0.4,0.8
+SPI_indicators_2024.csv,iso3c=TUR;date=2016,SPI.DIM1.5.INDEX,0.6,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2017,SPI.DIM1.5.INDEX,0.6,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2018,SPI.DIM1.5.INDEX,0.6,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2019,SPI.DIM1.5.INDEX,0.6,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2020,SPI.DIM1.5.INDEX,0.6,1
+SPI_indicators_2024.csv,iso3c=TUR;date=2021,SPI.DIM1.5.INDEX,0.5,0.9
+SPI_indicators_2024.csv,iso3c=TUR;date=2022,SPI.DIM1.5.INDEX,0.5,0.9
+SPI_indicators_2024.csv,iso3c=TUR;date=2023,SPI.DIM1.5.INDEX,0.5,0.9
+SPI_indicators_2024.csv,iso3c=TUR;date=2024,SPI.DIM1.5.INDEX,0.5,0.9
+SPI_indicators_2024.csv,iso3c=XKX;date=2004,SPI.DIM1.5.INDEX,0,0.2
+SPI_indicators_2024.csv,iso3c=XKX;date=2005,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=XKX;date=2006,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=XKX;date=2007,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=XKX;date=2008,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=XKX;date=2009,SPI.DIM1.5.INDEX,0.2,0.4
+SPI_indicators_2024.csv,iso3c=XKX;date=2010,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_indicators_2024.csv,iso3c=XKX;date=2011,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_indicators_2024.csv,iso3c=XKX;date=2012,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_indicators_2024.csv,iso3c=XKX;date=2013,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_indicators_2024.csv,iso3c=XKX;date=2014,SPI.DIM1.5.INDEX,0.2,0.6
+SPI_indicators_2024.csv,iso3c=XKX;date=2015,SPI.DIM1.5.INDEX,0.4,0.8
+SPI_indicators_2024.csv,iso3c=XKX;date=2016,SPI.DIM1.5.INDEX,0.4,0.8
+SPI_indicators_2024.csv,iso3c=XKX;date=2017,SPI.DIM1.5.INDEX,0.6,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2018,SPI.DIM1.5.INDEX,0.6,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2019,SPI.DIM1.5.INDEX,0.6,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2020,SPI.DIM1.5.INDEX,0.6,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2021,SPI.DIM1.5.INDEX,0.6,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2022,SPI.DIM1.5.INDEX,0.6,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2023,SPI.DIM1.5.INDEX,0.6,1
+SPI_indicators_2024.csv,iso3c=XKX;date=2024,SPI.DIM1.5.INDEX,0.6,1
+SPI_quantiles.csv,iso3c=CIV;date=2016,SPI.INDEX,47.586666666666666,51.58666666666667
+SPI_quantiles.csv,iso3c=CIV;date=2017,SPI.INDEX,52.815,56.81500000000001
+SPI_quantiles.csv,iso3c=CIV;date=2018,SPI.INDEX,53.93833333333333,57.93833333333333
+SPI_quantiles.csv,iso3c=CIV;date=2019,SPI.INDEX,52.43833333333333,56.43833333333333
+SPI_quantiles.csv,iso3c=CIV;date=2020,SPI.INDEX,57.46916666666667,61.469166666666666
+SPI_quantiles.csv,iso3c=CIV;date=2021,SPI.INDEX,67.35583333333334,71.35583333333334
+SPI_quantiles.csv,iso3c=CIV;date=2022,SPI.INDEX,64.42375,68.42375000000001
+SPI_quantiles.csv,iso3c=CIV;date=2023,SPI.INDEX,65.88625,69.88625
+SPI_quantiles.csv,iso3c=CIV;date=2024,SPI.INDEX,71.20125,75.20125
+SPI_quantiles.csv,iso3c=COD;date=2020,SPI.INDEX,43.177083333333336,45.177083333333336
+SPI_quantiles.csv,iso3c=COD;date=2021,SPI.INDEX,47.43333333333333,49.43333333333334
+SPI_quantiles.csv,iso3c=COD;date=2022,SPI.INDEX,45.65166666666667,47.651666666666664
+SPI_quantiles.csv,iso3c=COD;date=2023,SPI.INDEX,47.109166666666674,49.10916666666667
+SPI_quantiles.csv,iso3c=COD;date=2024,SPI.INDEX,46.611250000000005,48.61125
+SPI_quantiles.csv,iso3c=NLD;date=2016,SPI.INDEX,74.14416666666668,78.14416666666668
+SPI_quantiles.csv,iso3c=NLD;date=2017,SPI.INDEX,76.21625,80.21624999999999
+SPI_quantiles.csv,iso3c=NLD;date=2018,SPI.INDEX,84.21958333333333,88.21958333333333
+SPI_quantiles.csv,iso3c=NLD;date=2019,SPI.INDEX,84.26583333333333,88.26583333333333
+SPI_quantiles.csv,iso3c=NLD;date=2020,SPI.INDEX,84.91708333333334,88.91708333333335
+SPI_quantiles.csv,iso3c=NLD;date=2021,SPI.INDEX,89.35875,93.35875
+SPI_quantiles.csv,iso3c=NLD;date=2022,SPI.INDEX,88.16000000000001,92.16
+SPI_quantiles.csv,iso3c=NLD;date=2023,SPI.INDEX,89.98250000000002,93.9825
+SPI_quantiles.csv,iso3c=NLD;date=2024,SPI.INDEX,86.13291666666667,90.13291666666667
+SPI_quantiles.csv,iso3c=PSE;date=2017,SPI.INDEX,58.508333333333326,62.50833333333333
+SPI_quantiles.csv,iso3c=PSE;date=2018,SPI.INDEX,67.03791666666666,71.03791666666666
+SPI_quantiles.csv,iso3c=PSE;date=2019,SPI.INDEX,66.76291666666667,70.76291666666667
+SPI_quantiles.csv,iso3c=PSE;date=2020,SPI.INDEX,73.19208333333333,77.19208333333334
+SPI_quantiles.csv,iso3c=PSE;date=2021,SPI.INDEX,77.8625,81.86250000000001
+SPI_quantiles.csv,iso3c=PSE;date=2022,SPI.INDEX,74.92500000000001,78.92500000000001
+SPI_quantiles.csv,iso3c=PSE;date=2023,SPI.INDEX,76.3475,80.34750000000001
+SPI_quantiles.csv,iso3c=PSE;date=2024,SPI.INDEX,74.40041666666667,78.40041666666667
+SPI_quantiles.csv,iso3c=TUR;date=2016,SPI.INDEX,72.64541666666668,80.64541666666668
+SPI_quantiles.csv,iso3c=TUR;date=2017,SPI.INDEX,77.20291666666668,85.20291666666668
+SPI_quantiles.csv,iso3c=TUR;date=2018,SPI.INDEX,77.99000000000001,85.99000000000001
+SPI_quantiles.csv,iso3c=TUR;date=2019,SPI.INDEX,78.47125,86.47125
+SPI_quantiles.csv,iso3c=TUR;date=2020,SPI.INDEX,78.14583333333334,86.14583333333334
+SPI_quantiles.csv,iso3c=TUR;date=2021,SPI.INDEX,80.08250000000001,88.0825
+SPI_quantiles.csv,iso3c=TUR;date=2022,SPI.INDEX,77.72083333333333,85.72083333333333
+SPI_quantiles.csv,iso3c=TUR;date=2023,SPI.INDEX,78.67708333333334,86.67708333333334
+SPI_quantiles.csv,iso3c=TUR;date=2024,SPI.INDEX,79.34833333333333,87.34833333333334
+SPI_quantiles.csv,iso3c=CIV;date=2016,SPI.INDEX.PIL1,70,90
+SPI_quantiles.csv,iso3c=CIV;date=2017,SPI.INDEX.PIL1,70,90
+SPI_quantiles.csv,iso3c=CIV;date=2018,SPI.INDEX.PIL1,70,90
+SPI_quantiles.csv,iso3c=CIV;date=2019,SPI.INDEX.PIL1,70,90
+SPI_quantiles.csv,iso3c=CIV;date=2020,SPI.INDEX.PIL1,70,90
+SPI_quantiles.csv,iso3c=CIV;date=2021,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=CIV;date=2022,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=CIV;date=2023,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=CIV;date=2024,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=COD;date=2016,SPI.INDEX.PIL1,50,70
+SPI_quantiles.csv,iso3c=COD;date=2020,SPI.INDEX.PIL1,40,50
+SPI_quantiles.csv,iso3c=COD;date=2021,SPI.INDEX.PIL1,40,50
+SPI_quantiles.csv,iso3c=COD;date=2022,SPI.INDEX.PIL1,40,50
+SPI_quantiles.csv,iso3c=COD;date=2023,SPI.INDEX.PIL1,40,50
+SPI_quantiles.csv,iso3c=COD;date=2024,SPI.INDEX.PIL1,40,50
+SPI_quantiles.csv,iso3c=HKG;date=2016,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=HKG;date=2017,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=HKG;date=2018,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=HKG;date=2019,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=HKG;date=2020,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=HKG;date=2021,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=HKG;date=2022,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=HKG;date=2023,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=HKG;date=2024,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=MAC;date=2016,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=MAC;date=2017,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=MAC;date=2018,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=MAC;date=2019,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=MAC;date=2020,SPI.INDEX.PIL1,40,60
+SPI_quantiles.csv,iso3c=NLD;date=2016,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=NLD;date=2017,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=NLD;date=2018,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=NLD;date=2019,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=NLD;date=2020,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=NLD;date=2021,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=NLD;date=2022,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=NLD;date=2023,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=NLD;date=2024,SPI.INDEX.PIL1,80,100
+SPI_quantiles.csv,iso3c=PSE;date=2016,SPI.INDEX.PIL1,60,80
+SPI_quantiles.csv,iso3c=PSE;date=2017,SPI.INDEX.PIL1,70,90
+SPI_quantiles.csv,iso3c=PSE;date=2018,SPI.INDEX.PIL1,70,90
+SPI_quantiles.csv,iso3c=PSE;date=2019,SPI.INDEX.PIL1,70,90
+SPI_quantiles.csv,iso3c=PSE;date=2020,SPI.INDEX.PIL1,70,90
+SPI_quantiles.csv,iso3c=PSE;date=2021,SPI.INDEX.PIL1,70,90
+SPI_quantiles.csv,iso3c=PSE;date=2022,SPI.INDEX.PIL1,60,80
+SPI_quantiles.csv,iso3c=PSE;date=2023,SPI.INDEX.PIL1,70,90
+SPI_quantiles.csv,iso3c=PSE;date=2024,SPI.INDEX.PIL1,70,90
+SPI_quantiles.csv,iso3c=TUR;date=2016,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=TUR;date=2017,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=TUR;date=2018,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=TUR;date=2019,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=TUR;date=2020,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=TUR;date=2021,SPI.INDEX.PIL1,50,90
+SPI_quantiles.csv,iso3c=TUR;date=2022,SPI.INDEX.PIL1,50,90
+SPI_quantiles.csv,iso3c=TUR;date=2023,SPI.INDEX.PIL1,50,90
+SPI_quantiles.csv,iso3c=TUR;date=2024,SPI.INDEX.PIL1,50,90
+SPI_quantiles.csv,iso3c=XKX;date=2016,SPI.INDEX.PIL1,40,80
+SPI_quantiles.csv,iso3c=XKX;date=2017,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=XKX;date=2018,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=XKX;date=2019,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=XKX;date=2020,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=XKX;date=2021,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=XKX;date=2022,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=XKX;date=2023,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=XKX;date=2024,SPI.INDEX.PIL1,60,100
+SPI_quantiles.csv,iso3c=CIV;date=2016,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=CIV;date=2017,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=CIV;date=2018,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=CIV;date=2019,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=CIV;date=2020,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=CIV;date=2021,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=CIV;date=2022,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=CIV;date=2023,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=CIV;date=2024,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=COD;date=2016,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=HKG;date=2016,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=HKG;date=2017,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=HKG;date=2018,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=HKG;date=2019,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=HKG;date=2020,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=HKG;date=2021,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=HKG;date=2022,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=HKG;date=2023,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=HKG;date=2024,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=MAC;date=2016,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=MAC;date=2017,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=MAC;date=2018,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=MAC;date=2019,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=MAC;date=2020,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles.csv,iso3c=NLD;date=2016,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=NLD;date=2017,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=NLD;date=2018,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=NLD;date=2019,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=NLD;date=2020,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=NLD;date=2021,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=NLD;date=2022,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=NLD;date=2023,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=NLD;date=2024,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2016,SPI.INDEX.PIL1.quintile,2nd Quintile,3rd Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2017,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2018,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2019,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2020,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2021,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2022,SPI.INDEX.PIL1.quintile,2nd Quintile,3rd Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2023,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2024,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2016,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2017,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2018,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2019,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2020,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2021,SPI.INDEX.PIL1.quintile,Bottom 20%,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2022,SPI.INDEX.PIL1.quintile,Bottom 20%,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2023,SPI.INDEX.PIL1.quintile,Bottom 20%,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2024,SPI.INDEX.PIL1.quintile,Bottom 20%,Top Quintile
+SPI_quantiles.csv,iso3c=XKX;date=2016,SPI.INDEX.PIL1.quintile,Bottom 20%,3rd Quintile
+SPI_quantiles.csv,iso3c=XKX;date=2017,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=XKX;date=2018,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=XKX;date=2019,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=XKX;date=2020,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=XKX;date=2021,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=XKX;date=2022,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=XKX;date=2023,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=XKX;date=2024,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=ARM;date=2020,SPI.INDEX.quintile,Top Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=BGR;date=2019,SPI.INDEX.quintile,Top Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=BIH;date=2017,SPI.INDEX.quintile,3rd Quintile,2nd Quintile
+SPI_quantiles.csv,iso3c=CHL;date=2024,SPI.INDEX.quintile,Top Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=CIV;date=2017,SPI.INDEX.quintile,2nd Quintile,3rd Quintile
+SPI_quantiles.csv,iso3c=CIV;date=2018,SPI.INDEX.quintile,2nd Quintile,3rd Quintile
+SPI_quantiles.csv,iso3c=CIV;date=2020,SPI.INDEX.quintile,2nd Quintile,3rd Quintile
+SPI_quantiles.csv,iso3c=COL;date=2024,SPI.INDEX.quintile,4th Quintile,3rd Quintile
+SPI_quantiles.csv,iso3c=GEO;date=2016,SPI.INDEX.quintile,Top Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=GTM;date=2023,SPI.INDEX.quintile,4th Quintile,3rd Quintile
+SPI_quantiles.csv,iso3c=HRV;date=2021,SPI.INDEX.quintile,Top Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=IND;date=2019,SPI.INDEX.quintile,4th Quintile,3rd Quintile
+SPI_quantiles.csv,iso3c=IRN;date=2018,SPI.INDEX.quintile,3rd Quintile,2nd Quintile
+SPI_quantiles.csv,iso3c=ISR;date=2016,SPI.INDEX.quintile,Top Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=ISR;date=2018,SPI.INDEX.quintile,Top Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=JPN;date=2017,SPI.INDEX.quintile,Top Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=KOR;date=2017,SPI.INDEX.quintile,Top Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=NLD;date=2016,SPI.INDEX.quintile,4th Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=NLD;date=2017,SPI.INDEX.quintile,4th Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=NLD;date=2024,SPI.INDEX.quintile,4th Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=PER;date=2018,SPI.INDEX.quintile,4th Quintile,3rd Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2018,SPI.INDEX.quintile,3rd Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2019,SPI.INDEX.quintile,3rd Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2022,SPI.INDEX.quintile,3rd Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=PSE;date=2023,SPI.INDEX.quintile,3rd Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=SAU;date=2024,SPI.INDEX.quintile,4th Quintile,3rd Quintile
+SPI_quantiles.csv,iso3c=SEN;date=2022,SPI.INDEX.quintile,4th Quintile,3rd Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2016,SPI.INDEX.quintile,4th Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2017,SPI.INDEX.quintile,4th Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2018,SPI.INDEX.quintile,4th Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2019,SPI.INDEX.quintile,4th Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2020,SPI.INDEX.quintile,4th Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2021,SPI.INDEX.quintile,4th Quintile,Top Quintile
+SPI_quantiles.csv,iso3c=TUR;date=2024,SPI.INDEX.quintile,3rd Quintile,4th Quintile
+SPI_quantiles.csv,iso3c=WSM;date=2020,SPI.INDEX.quintile,3rd Quintile,2nd Quintile
+SPI_quantiles_2024.csv,iso3c=CIV;date=2024,SPI.INDEX,71.2,75.2
+SPI_quantiles_2024.csv,iso3c=COD;date=2024,SPI.INDEX,46.6,48.6
+SPI_quantiles_2024.csv,iso3c=NLD;date=2024,SPI.INDEX,86.1,90.1
+SPI_quantiles_2024.csv,iso3c=PSE;date=2024,SPI.INDEX,74.4,78.4
+SPI_quantiles_2024.csv,iso3c=TUR;date=2024,SPI.INDEX,79.3,87.3
+SPI_quantiles_2024.csv,iso3c=CIV;date=2024,SPI.INDEX.PIL1,80,100
+SPI_quantiles_2024.csv,iso3c=COD;date=2024,SPI.INDEX.PIL1,40,50
+SPI_quantiles_2024.csv,iso3c=HKG;date=2024,SPI.INDEX.PIL1,40,60
+SPI_quantiles_2024.csv,iso3c=NLD;date=2024,SPI.INDEX.PIL1,80,100
+SPI_quantiles_2024.csv,iso3c=PSE;date=2024,SPI.INDEX.PIL1,70,90
+SPI_quantiles_2024.csv,iso3c=TUR;date=2024,SPI.INDEX.PIL1,50,90
+SPI_quantiles_2024.csv,iso3c=XKX;date=2024,SPI.INDEX.PIL1,60,100
+SPI_quantiles_2024.csv,iso3c=CIV;date=2024,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles_2024.csv,iso3c=HKG;date=2024,SPI.INDEX.PIL1.quintile,Bottom 20%,2nd Quintile
+SPI_quantiles_2024.csv,iso3c=NLD;date=2024,SPI.INDEX.PIL1.quintile,3rd Quintile,Top Quintile
+SPI_quantiles_2024.csv,iso3c=PSE;date=2024,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles_2024.csv,iso3c=TUR;date=2024,SPI.INDEX.PIL1.quintile,Bottom 20%,Top Quintile
+SPI_quantiles_2024.csv,iso3c=XKX;date=2024,SPI.INDEX.PIL1.quintile,2nd Quintile,Top Quintile
+SPI_quantiles_2024.csv,iso3c=CHL;date=2024,SPI.INDEX.quintile,Top Quintile,4th Quintile
+SPI_quantiles_2024.csv,iso3c=COL;date=2024,SPI.INDEX.quintile,4th Quintile,3rd Quintile
+SPI_quantiles_2024.csv,iso3c=NLD;date=2024,SPI.INDEX.quintile,4th Quintile,Top Quintile
+SPI_quantiles_2024.csv,iso3c=SAU;date=2024,SPI.INDEX.quintile,4th Quintile,3rd Quintile
+SPI_quantiles_2024.csv,iso3c=TUR;date=2024,SPI.INDEX.quintile,3rd Quintile,4th Quintile
+SPI_quantiles_2024.csv,iso3c=ALB;date=2024,jitter_x,-0.08289441615303877,0.06474390325569866
+SPI_quantiles_2024.csv,iso3c=ARE;date=2024,jitter_x,-0.03109740914004602,-0.0763245725804942
+SPI_quantiles_2024.csv,iso3c=ARG;date=2024,jitter_x,0.03810231165151287,0.014988202214539413
+SPI_quantiles_2024.csv,iso3c=ARM;date=2024,jitter_x,0.06599889036877693,0.05055957546412207
+SPI_quantiles_2024.csv,iso3c=AUS;date=2024,jitter_x,0.10981806674537449,-0.0982031326020198
+SPI_quantiles_2024.csv,iso3c=BEL;date=2024,jitter_x,-0.09244868001909842,0.014824642246048939
+SPI_quantiles_2024.csv,iso3c=BFA;date=2024,jitter_x,0.03376638616077228,0.02080637599947341
+SPI_quantiles_2024.csv,iso3c=BGD;date=2024,jitter_x,-0.04241442408788639,-0.09806751444076184
+SPI_quantiles_2024.csv,iso3c=BGR;date=2024,jitter_x,-0.2498428529105266,0.09366988149583465
+SPI_quantiles_2024.csv,iso3c=BLR;date=2024,jitter_x,-0.09024626512505275,-0.1387398457352655
+SPI_quantiles_2024.csv,iso3c=BRA;date=2024,jitter_x,0.14191140816646128,-0.07832327285219293
+SPI_quantiles_2024.csv,iso3c=CAF;date=2024,jitter_x,0.1266771713557893,0.11391359054839229
+SPI_quantiles_2024.csv,iso3c=CHE;date=2024,jitter_x,0.12430387005850932,0.07466159768998464
+SPI_quantiles_2024.csv,iso3c=CHL;date=2024,jitter_x,0.07466159768998464,-0.08869014538931182
+SPI_quantiles_2024.csv,iso3c=CIV;date=2024,jitter_x,-0.09806751444076184,0.10606108890726318
+SPI_quantiles_2024.csv,iso3c=COD;date=2024,jitter_x,0.11391359054839229,-0.016376713364182584
+SPI_quantiles_2024.csv,iso3c=COL;date=2024,jitter_x,-0.07136932505433935,-0.005367010755772872
+SPI_quantiles_2024.csv,iso3c=CYP;date=2024,jitter_x,-0.05708793248387143,0.04963738818394273
+SPI_quantiles_2024.csv,iso3c=CZE;date=2024,jitter_x,0.046372989969560345,0.06859803230887859
+SPI_quantiles_2024.csv,iso3c=DEU;date=2024,jitter_x,-0.05178931128656771,-0.056882486100031895
+SPI_quantiles_2024.csv,iso3c=DOM;date=2024,jitter_x,-0.08957479994166347,-0.048332733956094234
+SPI_quantiles_2024.csv,iso3c=ECU;date=2024,jitter_x,0.11280681789892862,-0.08796117157751586
+SPI_quantiles_2024.csv,iso3c=EGY;date=2024,jitter_x,-0.1387398457352655,-0.09482591322958939
+SPI_quantiles_2024.csv,iso3c=FRA;date=2024,jitter_x,-0.08869014538931182,-0.01517974114959663
+SPI_quantiles_2024.csv,iso3c=GBR;date=2024,jitter_x,0.06788879723704007,-0.1315644582037273
+SPI_quantiles_2024.csv,iso3c=GEO;date=2024,jitter_x,-0.023318026538693852,0.12430387005850932
+SPI_quantiles_2024.csv,iso3c=GNB;date=2024,jitter_x,-0.1847972614950386,0.1266771713557893
+SPI_quantiles_2024.csv,iso3c=GRC;date=2024,jitter_x,-0.08827916169171601,-0.029297600999215308
+SPI_quantiles_2024.csv,iso3c=GTM;date=2024,jitter_x,0.11543531482633694,-0.03109740914004602
+SPI_quantiles_2024.csv,iso3c=HRV;date=2024,jitter_x,0.025442723069004965,-0.2498428529105266
+SPI_quantiles_2024.csv,iso3c=HUN;date=2024,jitter_x,-0.056882486100031895,0.023223467738004613
+SPI_quantiles_2024.csv,iso3c=IDN;date=2024,jitter_x,0.08015145459824495,0.13074808178764696
+SPI_quantiles_2024.csv,iso3c=IND;date=2024,jitter_x,0.02080637599947341,-0.14968857001684208
+SPI_quantiles_2024.csv,iso3c=IRL;date=2024,jitter_x,-0.07164367784889633,-0.09244868001909842
+SPI_quantiles_2024.csv,iso3c=ISL;date=2024,jitter_x,-0.018356883875854598,0.04663967242707365
+SPI_quantiles_2024.csv,iso3c=JAM;date=2024,jitter_x,0.03993526060358163,0.005631663735458391
+SPI_quantiles_2024.csv,iso3c=JOR;date=2024,jitter_x,-0.0763245725804942,-0.09024626512505275
+SPI_quantiles_2024.csv,iso3c=KAZ;date=2024,jitter_x,0.013568578264444069,-0.06623435091134525
+SPI_quantiles_2024.csv,iso3c=KEN;date=2024,jitter_x,0.005631663735458391,0.00478879907858437
+SPI_quantiles_2024.csv,iso3c=KGZ;date=2024,jitter_x,-0.09642607367073125,0.0867944771676224
+SPI_quantiles_2024.csv,iso3c=LKA;date=2024,jitter_x,-0.048332733956094234,0.05374398102826237
+SPI_quantiles_2024.csv,iso3c=LUX;date=2024,jitter_x,0.06664596808214367,0.05725855449651333
+SPI_quantiles_2024.csv,iso3c=LVA;date=2024,jitter_x,0.014824642246048939,0.0865816891927988
+SPI_quantiles_2024.csv,iso3c=MAR;date=2024,jitter_x,0.00478879907858437,0.03154496861108354
+SPI_quantiles_2024.csv,iso3c=MDA;date=2024,jitter_x,0.06859803230887859,0.025442723069004965
+SPI_quantiles_2024.csv,iso3c=MKD;date=2024,jitter_x,-0.021581690589234842,0.06664596808214367
+SPI_quantiles_2024.csv,iso3c=MLT;date=2024,jitter_x,0.06474390325569866,0.13422002970828498
+SPI_quantiles_2024.csv,iso3c=MNE;date=2024,jitter_x,0.10606108890726318,-0.07125133912387081
+SPI_quantiles_2024.csv,iso3c=MNG;date=2024,jitter_x,-0.028415002122192612,-0.08289441615303877
+SPI_quantiles_2024.csv,iso3c=MUS;date=2024,jitter_x,0.1187993752444903,0.03810231165151287
+SPI_quantiles_2024.csv,iso3c=MYS;date=2024,jitter_x,0.04963738818394273,0.13060127825707216
+SPI_quantiles_2024.csv,iso3c=NLD;date=2024,jitter_x,0.05725855449651333,-0.05178931128656771
+SPI_quantiles_2024.csv,iso3c=NRU;date=2024,jitter_x,-0.016376713364182584,-0.1847972614950386
+SPI_quantiles_2024.csv,iso3c=PAN;date=2024,jitter_x,0.014988202214539413,9.157207222900178e-4
+SPI_quantiles_2024.csv,iso3c=PER;date=2024,jitter_x,0.13074808178764696,-0.18473320652119674
+SPI_quantiles_2024.csv,iso3c=PHL;date=2024,jitter_x,0.05055957546412207,-0.018356883875854598
+SPI_quantiles_2024.csv,iso3c=PRY;date=2024,jitter_x,-0.07125133912387081,0.055634877970243725
+SPI_quantiles_2024.csv,iso3c=PSE;date=2024,jitter_x,0.05374398102826237,-0.09642607367073125
+SPI_quantiles_2024.csv,iso3c=RUS;date=2024,jitter_x,-0.07832327285219293,0.10150699413811565
+SPI_quantiles_2024.csv,iso3c=RWA;date=2024,jitter_x,0.03154496861108354,-0.04241442408788639
+SPI_quantiles_2024.csv,iso3c=SAU;date=2024,jitter_x,0.09366988149583465,0.0915225678780921
+SPI_quantiles_2024.csv,iso3c=SEN;date=2024,jitter_x,-0.18473320652119674,0.1187993752444903
+SPI_quantiles_2024.csv,iso3c=SGP;date=2024,jitter_x,-0.01517974114959663,-0.07164367784889633
+SPI_quantiles_2024.csv,iso3c=SLV;date=2024,jitter_x,0.055634877970243725,0.03993526060358163
+SPI_quantiles_2024.csv,iso3c=SRB;date=2024,jitter_x,0.13368215423909346,0.14191140816646128
+SPI_quantiles_2024.csv,iso3c=SVK;date=2024,jitter_x,0.0915225678780921,-0.05708793248387143
+SPI_quantiles_2024.csv,iso3c=THA;date=2024,jitter_x,0.01645838709121827,-0.028415002122192612
+SPI_quantiles_2024.csv,iso3c=TUN;date=2024,jitter_x,-0.14968857001684208,-0.08957479994166347
+SPI_quantiles_2024.csv,iso3c=TUR;date=2024,jitter_x,9.157207222900178e-4,-0.021581690589234842
+SPI_quantiles_2024.csv,iso3c=UKR;date=2024,jitter_x,0.0867944771676224,-0.04705593344156807
+SPI_quantiles_2024.csv,iso3c=URY;date=2024,jitter_x,-0.07088198328312338,0.03134402482806549
+SPI_quantiles_2024.csv,iso3c=USA;date=2024,jitter_x,0.18713677415230923,0.07186176319591445
+SPI_quantiles_2024.csv,iso3c=UZB;date=2024,jitter_x,-0.10358643039375942,0.13368215423909346
+SPI_quantiles_2024.csv,iso3c=ZAF;date=2024,jitter_x,0.10150699413811565,-0.020232262115150876
+SPI_quantiles_2024.csv,iso3c=ALB;date=2024,jitter_y,-0.004596150824737645,0.08075885060319996
+SPI_quantiles_2024.csv,iso3c=ARE;date=2024,jitter_y,-0.04773140282359365,0.09052508887106481
+SPI_quantiles_2024.csv,iso3c=ARG;date=2024,jitter_y,-0.007984155704121311,-0.027913623505382203
+SPI_quantiles_2024.csv,iso3c=ARM;date=2024,jitter_y,0.1202932085357688,-0.027653814246158627
+SPI_quantiles_2024.csv,iso3c=AUS;date=2024,jitter_y,-0.08755125457735169,0.010338982648431631
+SPI_quantiles_2024.csv,iso3c=BEL;date=2024,jitter_y,-0.038118194511236346,0.05336405446021996
+SPI_quantiles_2024.csv,iso3c=BFA;date=2024,jitter_y,0.1703422607144357,-0.1071840855657703
+SPI_quantiles_2024.csv,iso3c=BGD;date=2024,jitter_y,0.0352380951383518,-0.20841878240386486
+SPI_quantiles_2024.csv,iso3c=BGR;date=2024,jitter_y,-0.03067671063344703,0.09204353193853895
+SPI_quantiles_2024.csv,iso3c=BLR;date=2024,jitter_y,0.019404237513676537,-0.04954363326453768
+SPI_quantiles_2024.csv,iso3c=BRA;date=2024,jitter_y,-0.019399155016334015,0.10250699555603573
+SPI_quantiles_2024.csv,iso3c=CAF;date=2024,jitter_y,-0.1348832961179837,-0.04523760378375742
+SPI_quantiles_2024.csv,iso3c=CHE;date=2024,jitter_y,-0.03970381943591879,-0.045773196618438226
+SPI_quantiles_2024.csv,iso3c=CHL;date=2024,jitter_y,-0.045773196618438226,-0.17838860903844864
+SPI_quantiles_2024.csv,iso3c=CIV;date=2024,jitter_y,-0.20841878240386486,-0.059193088795222205
+SPI_quantiles_2024.csv,iso3c=COD;date=2024,jitter_y,-0.04523760378375742,0.06481377370670914
+SPI_quantiles_2024.csv,iso3c=COL;date=2024,jitter_y,-0.18026161600247115,-0.10465750358336733
+SPI_quantiles_2024.csv,iso3c=CYP;date=2024,jitter_y,-0.0067350062065995395,-0.11280681372839232
+SPI_quantiles_2024.csv,iso3c=CZE;date=2024,jitter_y,-0.03272826972305584,-0.027104524302368472
+SPI_quantiles_2024.csv,iso3c=DEU;date=2024,jitter_y,-0.08539522197908413,0.03552986822158293
+SPI_quantiles_2024.csv,iso3c=DOM;date=2024,jitter_y,-0.007182072938239144,-0.05239925069396831
+SPI_quantiles_2024.csv,iso3c=ECU;date=2024,jitter_y,0.07087548678569357,-0.02800811489888222
+SPI_quantiles_2024.csv,iso3c=EGY;date=2024,jitter_y,-0.04954363326453768,-0.029378601932264766
+SPI_quantiles_2024.csv,iso3c=FRA;date=2024,jitter_y,-0.17838860903844864,0.020150937300190522
+SPI_quantiles_2024.csv,iso3c=GBR;date=2024,jitter_y,-0.06719738775949301,0.08143080482244436
+SPI_quantiles_2024.csv,iso3c=GEO;date=2024,jitter_y,0.10376846697814034,-0.03970381943591879
+SPI_quantiles_2024.csv,iso3c=GNB;date=2024,jitter_y,0.02732854473733953,-0.1348832961179837
+SPI_quantiles_2024.csv,iso3c=GRC;date=2024,jitter_y,-0.011356086856581113,-0.1296521582994292
+SPI_quantiles_2024.csv,iso3c=GTM;date=2024,jitter_y,-0.017533815358259715,-0.04773140282359365
+SPI_quantiles_2024.csv,iso3c=HRV;date=2024,jitter_y,0.09848468944069252,-0.03067671063344703
+SPI_quantiles_2024.csv,iso3c=HUN;date=2024,jitter_y,0.03552986822158293,-0.13228620897297513
+SPI_quantiles_2024.csv,iso3c=IDN;date=2024,jitter_y,-0.16546311244289533,-0.027399057891956666
+SPI_quantiles_2024.csv,iso3c=IND;date=2024,jitter_y,-0.1071840855657703,0.06257745582423646
+SPI_quantiles_2024.csv,iso3c=IRL;date=2024,jitter_y,-0.16420528279179944,-0.038118194511236346
+SPI_quantiles_2024.csv,iso3c=ISL;date=2024,jitter_y,-0.023734239529630465,-0.03523099194972978
+SPI_quantiles_2024.csv,iso3c=JAM;date=2024,jitter_y,-0.03321586844965599,-0.0032877583640331595
+SPI_quantiles_2024.csv,iso3c=JOR;date=2024,jitter_y,0.09052508887106481,0.019404237513676537
+SPI_quantiles_2024.csv,iso3c=KAZ;date=2024,jitter_y,0.06323987573986234,0.10133904242609496
+SPI_quantiles_2024.csv,iso3c=KEN;date=2024,jitter_y,-0.0032877583640331595,-0.025916409746774283
+SPI_quantiles_2024.csv,iso3c=KGZ;date=2024,jitter_y,-0.04054753208548356,-0.01813289420281101
+SPI_quantiles_2024.csv,iso3c=LKA;date=2024,jitter_y,-0.05239925069396831,0.060738733448005115
+SPI_quantiles_2024.csv,iso3c=LUX;date=2024,jitter_y,-0.13625340095772087,-0.005940391021779046
+SPI_quantiles_2024.csv,iso3c=LVA;date=2024,jitter_y,0.05336405446021996,0.029968649773003505
+SPI_quantiles_2024.csv,iso3c=MAR;date=2024,jitter_y,-0.025916409746774283,0.07705338701934453
+SPI_quantiles_2024.csv,iso3c=MDA;date=2024,jitter_y,-0.027104524302368472,0.09848468944069252
+SPI_quantiles_2024.csv,iso3c=MKD;date=2024,jitter_y,-0.02469158187870085,-0.13625340095772087
+SPI_quantiles_2024.csv,iso3c=MLT;date=2024,jitter_y,0.08075885060319996,-0.04125983730684551
+SPI_quantiles_2024.csv,iso3c=MNE;date=2024,jitter_y,-0.059193088795222205,0.0985811850054782
+SPI_quantiles_2024.csv,iso3c=MNG;date=2024,jitter_y,0.025894118043164206,-0.004596150824737645
+SPI_quantiles_2024.csv,iso3c=MUS;date=2024,jitter_y,-0.006828740977756058,-0.007984155704121311
+SPI_quantiles_2024.csv,iso3c=MYS;date=2024,jitter_y,-0.11280681372839232,-0.13895150634974418
+SPI_quantiles_2024.csv,iso3c=NLD;date=2024,jitter_y,-0.005940391021779046,-0.08539522197908413
+SPI_quantiles_2024.csv,iso3c=NRU;date=2024,jitter_y,0.06481377370670914,0.02732854473733953
+SPI_quantiles_2024.csv,iso3c=PAN;date=2024,jitter_y,-0.027913623505382203,-0.012587430511121248
+SPI_quantiles_2024.csv,iso3c=PER;date=2024,jitter_y,-0.027399057891956666,0.01215815932393401
+SPI_quantiles_2024.csv,iso3c=PHL;date=2024,jitter_y,-0.027653814246158627,-0.023734239529630465
+SPI_quantiles_2024.csv,iso3c=PRY;date=2024,jitter_y,0.0985811850054782,-0.22904199531669747
+SPI_quantiles_2024.csv,iso3c=PSE;date=2024,jitter_y,0.060738733448005115,-0.04054753208548356
+SPI_quantiles_2024.csv,iso3c=RUS;date=2024,jitter_y,0.10250699555603573,-0.18510088316099577
+SPI_quantiles_2024.csv,iso3c=RWA;date=2024,jitter_y,0.07705338701934453,0.0352380951383518
+SPI_quantiles_2024.csv,iso3c=SAU;date=2024,jitter_y,0.09204353193853895,-0.05471760161792728
+SPI_quantiles_2024.csv,iso3c=SEN;date=2024,jitter_y,0.01215815932393401,-0.006828740977756058
+SPI_quantiles_2024.csv,iso3c=SGP;date=2024,jitter_y,0.020150937300190522,-0.16420528279179944
+SPI_quantiles_2024.csv,iso3c=SLV;date=2024,jitter_y,-0.22904199531669747,-0.03321586844965599
+SPI_quantiles_2024.csv,iso3c=SRB;date=2024,jitter_y,0.03377983348877988,-0.019399155016334015
+SPI_quantiles_2024.csv,iso3c=SVK;date=2024,jitter_y,-0.05471760161792728,-0.0067350062065995395
+SPI_quantiles_2024.csv,iso3c=THA;date=2024,jitter_y,0.19972796471465293,0.025894118043164206
+SPI_quantiles_2024.csv,iso3c=TUN;date=2024,jitter_y,0.06257745582423646,-0.007182072938239144
+SPI_quantiles_2024.csv,iso3c=TUR;date=2024,jitter_y,-0.012587430511121248,-0.02469158187870085
+SPI_quantiles_2024.csv,iso3c=UKR;date=2024,jitter_y,-0.01813289420281101,0.17885987368770812
+SPI_quantiles_2024.csv,iso3c=URY;date=2024,jitter_y,0.10314289518745737,-0.03255556426430735
+SPI_quantiles_2024.csv,iso3c=USA;date=2024,jitter_y,0.11170086965293063,0.05672684649085322
+SPI_quantiles_2024.csv,iso3c=UZB;date=2024,jitter_y,-2.5589517502521553e-4,0.03377983348877988
+SPI_quantiles_2024.csv,iso3c=ZAF;date=2024,jitter_y,-0.18510088316099577,0.26855217311044716
+SPI_treemap.csv,"country=Congo, Dem. Rep.;source_id=SPI.DIM1.5.INDEX",Score,40,50
+SPI_treemap.csv,country=Cote d'Ivoire;source_id=SPI.DIM1.5.INDEX,Score,80,100
+SPI_treemap.csv,"country=Hong Kong SAR, China;source_id=SPI.DIM1.5.INDEX",Score,40,60
+SPI_treemap.csv,country=Kosovo;source_id=SPI.DIM1.5.INDEX,Score,60,100
+SPI_treemap.csv,country=Netherlands;source_id=SPI.DIM1.5.INDEX,Score,80,100
+SPI_treemap.csv,country=Turkiye;source_id=SPI.DIM1.5.INDEX,Score,50,90
+SPI_treemap.csv,country=West Bank and Gaza;source_id=SPI.DIM1.5.INDEX,Score,70,90
+SPI_treemap.csv,country=Cote d'Ivoire;source_id=SPI.DIM1.5.INDEX,color,#FDE74C,#457B9D
+SPI_treemap.csv,country=Kosovo;source_id=SPI.DIM1.5.INDEX,color,#FDE74C,#457B9D
+SPI_treemap.csv,country=Netherlands;source_id=SPI.DIM1.5.INDEX,color,#FDE74C,#457B9D
+SPI_treemap.csv,"country=Congo, Dem. Rep.;source_id=SPI.DIM1.5.INDEX",value,0.4,0.5
+SPI_treemap.csv,country=Cote d'Ivoire;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_treemap.csv,"country=Hong Kong SAR, China;source_id=SPI.DIM1.5.INDEX",value,0.4,0.6
+SPI_treemap.csv,country=Kosovo;source_id=SPI.DIM1.5.INDEX,value,0.6,1
+SPI_treemap.csv,country=Netherlands;source_id=SPI.DIM1.5.INDEX,value,0.8,1
+SPI_treemap.csv,country=Turkiye;source_id=SPI.DIM1.5.INDEX,value,0.5,0.9
+SPI_treemap.csv,country=West Bank and Gaza;source_id=SPI.DIM1.5.INDEX,value,0.7,0.9
