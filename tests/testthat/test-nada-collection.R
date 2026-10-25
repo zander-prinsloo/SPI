@@ -148,7 +148,22 @@ test_that("under a release lock NADA URL evidence is reused regardless of age", 
   )
   evidence_path <- collect_nada_url_evidence(params, request_fn = function(url) fake_response(200), delay_fn = function(...) NULL)
   Sys.setFileTime(evidence_path, Sys.time() - 60 * 86400)
-  jsonlite::write_json(list(end_date = 2025), release_lock_path(params), auto_unbox = TRUE)
+  lock <- list(
+    schema_version = "spi-release-lock-v2",
+    end_date = 2025,
+    approved_by = "fixture",
+    approved_at = "2026-10-24T00:00:00Z",
+    odin_status = "provisional",
+    pip_release = "fixture",
+    excluded_sources = c("d2_2_odin", "d4_3_odin"),
+    artifacts = list(list(source_id = "fixture", path = "fixture.csv", sha256 = strrep("0", 64))),
+    controls = list(),
+    archive = "03_output_data/releases/fixture",
+    outputs = list()
+  )
+  lock$lock_sha256 <- .release_lock_digest(lock)
+  jsonlite::write_json(lock, release_lock_path(params), auto_unbox = TRUE)
+  writeLines(lock$lock_sha256, release_lock_integrity_path(params))
 
   expect_identical(
     collect_nada_url_evidence(params, request_fn = function(...) stop("URLs re-checked under a lock"), delay_fn = function(...) NULL),

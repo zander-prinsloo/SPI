@@ -228,6 +228,7 @@ test_that("the December run compares candidate outputs with the locked archive",
   )
   lock$lock_sha256 <- .release_lock_digest(lock)
   jsonlite::write_json(lock, release_lock_path(params), auto_unbox = TRUE)
+  writeLines(lock$lock_sha256, release_lock_integrity_path(params))
   paths <- write_release_diff(params)
   expect_identical(basename(paths), c("release_diff_2025.csv", "release_diff_2025.md"))
   expect_true(all(readr::read_csv(paths[[1]], show_col_types = FALSE)$allowed))

@@ -22,6 +22,15 @@ release_lock_path <- function(params) {
   file.path(params$collection_dir, sprintf("release_lock_%d.json", as.integer(params$end_date)))
 }
 
+#' Path of the detached integrity record for the release lock.
+#'
+#' @param params Pipeline parameters.
+#' @return The lock path with a `.sha256` suffix.
+#' @export
+release_lock_integrity_path <- function(params) {
+  paste0(release_lock_path(params), ".sha256")
+}
+
 #' Read the release lock, or NULL when none exists.
 #'
 #' @param params Pipeline parameters.
@@ -34,6 +43,14 @@ read_release_lock <- function(params) {
   }
   lock <- jsonlite::read_json(path, simplifyVector = FALSE)
   .release_lock_validate(lock, path)
+  integrity_path <- release_lock_integrity_path(params)
+  if (!file.exists(integrity_path)) {
+    stop("RELEASE LOCK INTEGRITY SIDECAR MISSING: ", integrity_path, call. = FALSE)
+  }
+  recorded_digest <- trimws(readLines(integrity_path, warn = FALSE))
+  if (length(recorded_digest) != 1L || !identical(recorded_digest, as.character(lock$lock_sha256))) {
+    stop("RELEASE LOCK INTEGRITY SIDECAR MISMATCH: ", integrity_path, call. = FALSE)
+  }
   if (!identical(as.integer(lock$end_date), as.integer(params$end_date))) {
     stop("RELEASE LOCK VINTAGE MISMATCH: ", path, call. = FALSE)
   }
@@ -75,6 +92,41 @@ read_release_lock <- function(params) {
   }
   if (!identical(as.character(lock$lock_sha256), .release_lock_digest(lock))) {
     stop("RELEASE LOCK SELF-HASH MISMATCH: ", path, call. = FALSE)
+  }
+  if (!is.list(lock$artifacts)) {
+    stop("RELEASE LOCK ARTIFACT LIST INVALID: ", path, call. = FALSE)
+  }
+  if (length(lock$artifacts) > 0L) {
+    artifact_paths <- vapply(lock$artifacts, function(artifact) {
+      as.character(artifact$path)
+    }, character(1))
+    artifact_hashes <- vapply(lock$artifacts, function(artifact) {
+      as.character(artifact$sha256)
+    }, character(1))
+    if (anyNA(artifact_paths) || any(!nzchar(artifact_paths)) || anyDuplicated(artifact_paths) > 0L ||
+        any(!grepl("^[0-9a-fA-F]{64}$", artifact_hashes))) {
+      stop("RELEASE LOCK ARTIFACT LIST INVALID: ", path, call. = FALSE)
+    }
+  }
+  invisible(TRUE)
+}
+
+.release_lock_check_required_sidecars <- function(registry, artifacts) {
+  if (!"expected_vintage_rule" %in% names(registry)) {
+    return(invisible(TRUE))
+  }
+  required_sources <- registry$source_id[registry$expected_vintage_rule == "release_identifier"]
+  if (length(required_sources) == 0L) {
+    return(invisible(TRUE))
+  }
+  rows <- artifacts[artifacts$source_id %in% required_sources, , drop = FALSE]
+  missing <- rows$relative[!file.exists(artifact_provenance_path(rows$path))]
+  if (length(missing) > 0L) {
+    stop(
+      "RELEASE LOCK: RELEASE-IDENTIFIER ARTIFACT(S) REQUIRE PROVENANCE SIDECARS: ",
+      paste(missing, collapse = ", "),
+      call. = FALSE
+    )
   }
   invisible(TRUE)
 }
@@ -253,6 +305,7 @@ write_release_lock <- function(params, approved_by,
     substitutions,
     include_sidecars = TRUE
   )
+  .release_lock_check_required_sidecars(registry, artifacts)
   absent <- artifacts$relative[!file.exists(artifacts$path)]
   if (length(absent) > 0L) {
     stop("RELEASE LOCK: COLLECTION ARTIFACT(S) MISSING: ", paste(absent, collapse = ", "), call. = FALSE)
@@ -320,6 +373,13 @@ write_release_lock <- function(params, approved_by,
   lock$lock_sha256 <- .release_lock_digest(lock)
   dir.create(dirname(lock_path), recursive = TRUE, showWarnings = FALSE)
   jsonlite::write_json(lock, lock_path, auto_unbox = TRUE, pretty = TRUE)
+  integrity_path <- release_lock_integrity_path(params)
+  integrity_partial <- paste0(integrity_path, ".partial")
+  writeLines(lock$lock_sha256, integrity_partial, useBytes = TRUE)
+  if (!file.rename(integrity_partial, integrity_path)) {
+    unlink(integrity_partial, force = TRUE)
+    stop("RELEASE LOCK INTEGRITY SIDECAR COULD NOT BE WRITTEN: ", integrity_path, call. = FALSE)
+  }
   lock_path
 }
 
@@ -345,6 +405,7 @@ verify_release_lock <- function(params,
     substitutions,
     include_sidecars = TRUE
   )
+  .release_lock_check_required_sidecars(registry, current)
   problems <- character()
   for (relative in locked) {
     path <- file.path(params$raw_dir, relative)
@@ -357,6 +418,10 @@ verify_release_lock <- function(params,
   added <- setdiff(current$relative, locked)
   if (length(added) > 0L) {
     problems <- c(problems, paste0(added, " (not in the lock)"))
+  }
+  removed <- setdiff(locked, current$relative)
+  if (length(removed) > 0L) {
+    problems <- c(problems, paste0(removed, " (no longer in the registry)"))
   }
   if (!is.null(lock$controls)) {
     for (control in lock$controls) {

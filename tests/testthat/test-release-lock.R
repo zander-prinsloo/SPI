@@ -130,6 +130,13 @@ test_that("a tampered lock allow-list or hash is rejected", {
   expect_error(verify_it(fixture), "RELEASE LOCK SELF-HASH MISMATCH")
 })
 
+test_that("the detached lock integrity record is enforced", {
+  fixture <- make_lock_fixture()
+  lock_it(fixture)
+  writeLines(strrep("0", 64), release_lock_integrity_path(fixture$params))
+  expect_error(verify_it(fixture), "RELEASE LOCK INTEGRITY SIDECAR MISMATCH")
+})
+
 test_that("a tampered provenance sidecar blocks verification", {
   fixture <- make_lock_fixture()
   lock_it(fixture)
