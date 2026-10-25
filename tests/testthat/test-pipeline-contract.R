@@ -242,6 +242,13 @@ test_that("collection artifacts are content dependencies of estimation", {
     "release_lock_artifacts",
     fixed = TRUE
   )
+  expect_match(
+    targets::tar_manifest(script = script)$command[
+      targets::tar_manifest(script = script)$name == "collection_gate"
+    ],
+    "collection_gate_digest",
+    fixed = TRUE
+  )
 })
 
 test_that("promotion waits for the provisional-to-final release diff", {

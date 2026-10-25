@@ -147,6 +147,11 @@ pipeline_targets <- function() {
         run_path = collection_run_file,
         parameters_hash = collection_parameters_hash(params)
       )
+      collection_gate_digest(
+        collection_input_files,
+        collection_status_file,
+        collection_run_file
+      )
     },
     format = "rds"
   )

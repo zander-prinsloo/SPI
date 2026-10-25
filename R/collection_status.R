@@ -431,3 +431,35 @@ validate_collection_status <- function(status_path, expected_source_ids = NULL,
 
   TRUE
 }
+
+#' Digest the collection inputs consumed by estimation.
+#'
+#' A boolean collection gate would rerun itself after a file-target
+#' invalidation but leave downstream targets apparently up to date. This
+#' digest makes current input bytes part of every downstream dependency.
+#'
+#' @param input_files Registry-resolved collection artifact paths.
+#' @param status_path Collection status CSV path.
+#' @param run_path Completed collection run marker path.
+#' @return A SHA-256 digest of paths and their current bytes.
+#' @export
+collection_gate_digest <- function(input_files, status_path, run_path) {
+  paths <- unique(c(input_files, status_path, run_path))
+  paths <- sort(paths[!is.na(paths) & nzchar(paths)])
+  if (length(paths) == 0L) {
+    stop("COLLECTION GATE DIGEST REQUIRES INPUT FILES.", call. = FALSE)
+  }
+  hashes <- vapply(paths, function(path) {
+    if (file.exists(path)) digest::digest(path, algo = "sha256", file = TRUE) else "MISSING"
+  }, character(1))
+  digest::digest(
+    as.character(jsonlite::toJSON(
+      list(path = paths, sha256 = hashes),
+      auto_unbox = TRUE,
+      digits = NA,
+      null = "null"
+    )),
+    algo = "sha256",
+    serialize = FALSE
+  )
+}

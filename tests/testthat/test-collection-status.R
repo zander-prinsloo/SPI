@@ -146,6 +146,21 @@ test_that("status gate requires a complete current run and registry coverage", {
   )
 })
 
+test_that("collection gate value changes when an input payload changes", {
+  root <- withr::local_tempdir()
+  input <- file.path(root, "input.csv")
+  status <- file.path(root, "status.csv")
+  run <- file.path(root, "run.json")
+  writeLines("v1", input)
+  writeLines("status", status)
+  writeLines("run", run)
+  first <- collection_gate_digest(input, status, run)
+  writeLines("v2", input)
+  second <- collection_gate_digest(input, status, run)
+  expect_match(first, "^[0-9a-f]{64}$")
+  expect_false(identical(first, second))
+})
+
 # --- 202611 readiness plan, Steps 5-6 ----------------------------------------
 
 
