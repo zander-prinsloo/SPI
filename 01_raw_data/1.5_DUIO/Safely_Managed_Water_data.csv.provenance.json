@@ -1,0 +1,10 @@
+{
+  "source_id": "d1_5_jmp",
+  "artifact_path": "01_raw_data/1.5_DUIO/Safely_Managed_Water_data.csv",
+  "sha256": "5f3c7febdca9d6d0e19771478529ff669ab35d70e9a5694996a24af99d36cd51",
+  "retrieved_at": "2026-10-24 00:12:40 UTC",
+  "release_identifier": "JMP country files, Updated August 2025; Updated March 2023 (retrieved 2026-10-24)",
+  "raw_path": "01_raw_data/1.5_DUIO/raw/jmp",
+  "countries": 217,
+  "jmp_release": ["Updated August 2025", "Updated March 2023"]
+}

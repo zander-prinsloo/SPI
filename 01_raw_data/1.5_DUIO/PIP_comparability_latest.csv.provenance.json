@@ -1,0 +1,8 @@
+{
+  "source_id": "d1_5_pip",
+  "artifact_path": "01_raw_data/1.5_DUIO/PIP_comparability_latest.csv",
+  "sha256": "94abd17c2d81a0c071c273fdaeae6d68529f6e8da5b81750adfffe835a119b9a",
+  "retrieved_at": "2026-10-24 00:11:02 UTC",
+  "release_identifier": "20260922_2021_01_02_PROD",
+  "raw_path": "01_raw_data/1.5_DUIO/raw/pip/pip_comparability-63186bc91db153eeca40a9db49e54bd225e6fff2c2e92468bd3546a00f0ee0c7.rds"
+}
