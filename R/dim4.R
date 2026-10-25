@@ -27,55 +27,64 @@ library(dplyr)
 # business survey. Censuses use a 10/20-year window; surveys use a 10-year
 # window with 3/2/1 survey thresholds.
 
-# Country-name aliases: the NADA files use the country names as they were
-# when the files were created, but the World Bank API (wb_countries) may
-# have renamed countries since. Map old names to current metadata names so
-# the NADA join is robust to API drift.
-.country_name_aliases <- c(
-  "Nauru" = "Naoero"
-  # Add more aliases here as the World Bank API renames countries.
-)
+# Catalogue companions: the microdata-catalogue evidence (<stem>_NADA.csv) is
+# normalized at collection time to CLASS.xlsx economy names plus ISO3 codes
+# (normalize_dim4_1_companions() in R/collect_dim4_1.R), with non-economies,
+# multi-country studies and blank-country rows recorded as exclusions in the
+# D4.1 manifest. Estimation joins the normalized companions by iso3c, so World
+# Bank API country-name changes cannot drop catalogue evidence.
 
-#' Map a NADA country name to the current metadata name
+#' Read a normalized D4.1 catalogue companion
 #'
-#' @param name Character: the country name as it appears in a NADA file.
-#' @return The current metadata name (or the input if no alias applies).
+#' @param raw_dir Root raw-data directory.
+#' @param data Companion stem (for example "D4.1.1.CEN.POPU").
+#' @param end_date Reference year.
+#' @return A tibble with iso3c, indicator_date and nada_dates.
 #' @noRd
-.map_nada_country <- function(name) {
-  if (exists("dim4_1_canonical_country", mode = "function")) {
-    return(dim4_1_canonical_country(name))
+.read_d41_companion <- function(raw_dir, data, end_date) {
+  path <- dim4_1_artifact_paths(raw_dir, end_date)$normalized_companion_files[[data]]
+  if (is.null(path)) {
+    stop("UNKNOWN D4.1 CATALOGUE COMPANION: ", data, call. = FALSE)
   }
-  if (name %in% names(.country_name_aliases)) {
-    .country_name_aliases[[name]]
-  } else {
-    name
+  if (!file.exists(path)) {
+    stop(
+      sprintf("D4.1 NORMALIZED COMPANION NOT FOUND: %s\n", path),
+      "Run the collection pipeline (_targets_data.R) to normalize the ",
+      "catalogue companions.",
+      call. = FALSE
+    )
   }
+  companion <- readr::read_csv(
+    path,
+    col_types = readr::cols_only(
+      iso3c = readr::col_character(),
+      indicator_date = readr::col_double(),
+      nada_dates = readr::col_character()
+    ),
+    progress = FALSE
+  )
+  if (anyNA(companion$iso3c) || anyNA(companion$indicator_date)) {
+    stop("D4.1 NORMALIZED COMPANION HAS MISSING KEYS: ", path, call. = FALSE)
+  }
+  companion
 }
 
-.filter_d41_companion_exclusions <- function(data, path, d41_manifest) {
-  if (is.null(d41_manifest$exclusions)) return(data)
-  exclusion <- d41_manifest$exclusions[[basename(path)]]
-  if (is.null(exclusion)) return(data)
-  keep <- !is.na(data$country) &
-    !(as.numeric(data$indicator_date) %in% as.numeric(exclusion$dates))
-  data[keep, , drop = FALSE]
-}
-
-#' Read the manual review file for a given vintage
+#' Read the manual review files for all vintages up to the current one
 #'
-#' The manual review file contains manual overrides for the census/survey
-#' indicators, produced during the data review for each vintage. Files are
-#' versioned by vintage year:
+#' The manual review files contain country-economist evidence for the
+#' census/survey indicators, produced during the data review for each vintage.
+#' Files are versioned by vintage year:
 #'
 #'   D4.1.Manual.Review.<YEAR>.xlsx   (e.g. D4.1.Manual.Review.2024.xlsx)
 #'
 #' The file for the CURRENT vintage (params$end_date) is always required.
-#' Historical vintage files (e.g. D4.1.Manual.Review.2023.xlsx) are read
-#' when present so that earlier years keep their manual overrides; they are
-#' optional because the base CSVs already contain the historical values.
+#' Historical vintage files are read when present so that earlier evidence is
+#' kept. Reviews are an additive evidence layer: all vintages are collapsed to
+#' one row per country, taking the union of the recorded values (a value is
+#' never dropped). With a single vintage the result equals that file.
 #'
 #' @param params List of pipeline parameters.
-#' @return A tibble with iso3c and the manual override columns.
+#' @return A tibble with one row per iso3c and the manual override columns.
 #' @noRd
 .read_manual_review <- function(params, review_path = NULL) {
   end_date <- params$end_date
@@ -109,9 +118,64 @@ library(dplyr)
   historical_paths <- historical_paths[file.exists(historical_paths)]
 
   all_paths <- c(current_path, historical_paths)
-  purrr::map_dfr(all_paths, function(p) {
-    readxl::read_xlsx(p)
+  reviews <- purrr::map_dfr(all_paths, function(p) {
+    review <- readxl::read_xlsx(p) %>%
+      dplyr::mutate(dplyr::across(dplyr::everything(), as.character))
+    if (exists("validate_dim4_1_review", mode = "function")) {
+      validate_dim4_1_review(
+        review,
+        country_metadata = params$country_metadata
+      )
+    }
+    keys <- trimws(review$iso3c)
+    keys <- keys[!is.na(keys) & nzchar(keys)]
+    if (anyDuplicated(keys) > 0L) {
+      stop(
+        sprintf("D4.1 MANUAL REVIEW HAS DUPLICATE COUNTRY KEYS in '%s'", basename(p)),
+        call. = FALSE
+      )
+    }
+    review %>%
+      dplyr::mutate(.vintage = stringr::str_extract(basename(p), "[0-9]{4}"))
   })
+
+  value_columns <- setdiff(names(reviews), c("iso3c", "country", "Evidence", ".vintage"))
+  union_values <- function(values) {
+    values <- trimws(values)
+    values <- unique(values[!is.na(values) & nzchar(values)])
+    if (length(values) == 0L) NA_character_ else paste(values, collapse = ", ")
+  }
+
+  labelled_evidence <- function(evidence, vintage) {
+    keep <- !is.na(evidence) & nzchar(trimws(evidence))
+    if (!any(keep)) return(NA_character_)
+    paste(unique(sprintf("%s: %s", vintage[keep], trimws(evidence[keep]))), collapse = "; ")
+  }
+
+  reviews %>%
+    dplyr::group_by(iso3c) %>%
+    dplyr::summarise(
+      country = dplyr::first(stats::na.omit(country)),
+      dplyr::across(dplyr::all_of(value_columns), union_values),
+      Evidence = if ("Evidence" %in% names(reviews)) labelled_evidence(Evidence, .vintage) else NA_character_,
+      .groups = "drop"
+    )
+}
+
+.d41_assert_review_keys <- function(base, review, input_var) {
+  nonempty <- !is.na(review[[input_var]]) &
+    nzchar(trimws(as.character(review[[input_var]])))
+  missing <- setdiff(review$iso3c[nonempty], base$iso3c)
+  if (length(missing) > 0L) {
+    stop(
+      "D4.1 MANUAL REVIEW HAS NONBLANK KEYS ABSENT FROM BASE WORKBOOK for ",
+      input_var,
+      ": ",
+      paste(sort(unique(missing)), collapse = ", "),
+      call. = FALSE
+    )
+  }
+  invisible(TRUE)
 }
 
 #' Combine year strings from base and manual review sources
@@ -185,8 +249,7 @@ library(dplyr)
 #' @param params    List of pipeline parameters.
 #' @return A tibble with iso3c, date, input_var, nada_dates, indicator.
 #' @export
-census_fun <- function(data, input_var, params, review_path = NULL,
-                       d41_manifest = NULL) {
+census_fun <- function(data, input_var, params, review_path = NULL) {
   end_date <- params$end_date
   raw_dir <- params$raw_dir
 
@@ -213,6 +276,7 @@ census_fun <- function(data, input_var, params, review_path = NULL,
   # vintage file is required; historical files are read when present.
   manual_raw <- .read_manual_review(params, review_path = review_path) %>%
     dplyr::select(iso3c, dplyr::all_of(input_var))
+  .d41_assert_review_keys(base_raw, manual_raw, input_var)
 
   # --- Merge base + manual and combine year strings --------------------------
   cs_start <- base_raw %>%
@@ -245,20 +309,11 @@ census_fun <- function(data, input_var, params, review_path = NULL,
     dplyr::select(iso3c, indicator_date, input_var)
 
   # --- Append NADA data on censuses ------------------------------------------
-  # The NADA files key on country NAME (e.g. "Nauru"), not iso3c. We map
-  # through country_metadata to iso3c. This is robust to World Bank API
-  # country-name drift (e.g. NRU was renamed "Nauru" -> "Naoero").
+  # The normalized catalogue companion is keyed on iso3c (CLASS.xlsx names
+  # plus a recorded crosswalk), so the join does not depend on World Bank API
+  # country names.
   cs_df <- cs_df %>%
-    dplyr::bind_rows(
-      readr::read_csv(file.path(raw_dir, "4.1_SOCS", paste0(data, "_NADA.csv"))) %>%
-        .filter_d41_companion_exclusions(
-          file.path(raw_dir, "4.1_SOCS", paste0(data, "_NADA.csv")),
-          d41_manifest
-        ) %>%
-        dplyr::mutate(country = purrr::map_chr(country, .map_nada_country)) %>%
-        dplyr::left_join(params$country_metadata, by = "country") %>%
-        dplyr::select(iso3c, indicator_date, nada_dates)
-    ) %>%
+    dplyr::bind_rows(.read_d41_companion(raw_dir, data, end_date)) %>%
     dplyr::group_by(iso3c, indicator_date) %>%
     dplyr::summarise(
       input_var = dplyr::first(stats::na.omit(input_var)),
@@ -313,8 +368,7 @@ census_fun <- function(data, input_var, params, review_path = NULL,
 #' @param params    List of pipeline parameters.
 #' @return A tibble with iso3c, date, input_var, nada_dates, indicator.
 #' @export
-survey_fun <- function(data, input_var, params, review_path = NULL,
-                       d41_manifest = NULL) {
+survey_fun <- function(data, input_var, params, review_path = NULL) {
   end_date <- params$end_date
   raw_dir <- params$raw_dir
 
@@ -341,6 +395,7 @@ survey_fun <- function(data, input_var, params, review_path = NULL,
   # vintage file is required; historical files are read when present.
   manual_raw <- .read_manual_review(params, review_path = review_path) %>%
     dplyr::select(iso3c, dplyr::all_of(input_var))
+  .d41_assert_review_keys(base_raw, manual_raw, input_var)
 
   # --- Merge base + manual and combine year strings --------------------------
   cs_start <- base_raw %>%
@@ -373,23 +428,11 @@ survey_fun <- function(data, input_var, params, review_path = NULL,
     dplyr::select(iso3c, indicator_date, input_var)
 
   # --- Append NADA data on surveys -------------------------------------------
-  # The NADA files key on country NAME (e.g. "Nauru"), not iso3c. We map
-  # through country_metadata to iso3c. This is robust to World Bank API
-  # country-name drift (e.g. NRU was renamed "Nauru" -> "Naoero").
+  # The normalized catalogue companion is keyed on iso3c (CLASS.xlsx names
+  # plus a recorded crosswalk), so the join does not depend on World Bank API
+  # country names.
   cs_df <- cs_df %>%
-    dplyr::bind_rows(
-      readr::read_csv(
-        file.path(raw_dir, "4.1_SOCS", paste0(data, "_NADA.csv")),
-        col_types = list(readr::col_character(), readr::col_double(), readr::col_character())
-      ) %>%
-        .filter_d41_companion_exclusions(
-          file.path(raw_dir, "4.1_SOCS", paste0(data, "_NADA.csv")),
-          d41_manifest
-        ) %>%
-        dplyr::mutate(country = purrr::map_chr(country, .map_nada_country)) %>%
-        dplyr::left_join(params$country_metadata, by = "country") %>%
-        dplyr::select(iso3c, indicator_date, nada_dates)
-    ) %>%
+    dplyr::bind_rows(.read_d41_companion(raw_dir, data, end_date)) %>%
     dplyr::group_by(iso3c, indicator_date) %>%
     dplyr::summarise(
       input_var = dplyr::first(stats::na.omit(input_var)),
@@ -444,7 +487,7 @@ combine_censuses_surveys <- function(params, grid, d41_manifest = NULL) {
   }
 
   # Population census
-  cs1_df <- census_fun("D4.1.1.CEN.POPU", "POP.CENSUS", params, review_path, d41_manifest) %>%
+  cs1_df <- census_fun("D4.1.1.CEN.POPU", "POP.CENSUS", params, review_path) %>%
     dplyr::rename(
       RAW.D4.1.1.POPU = input_var,
       SPI.D4.1.1.POPU = indicator
@@ -452,7 +495,7 @@ combine_censuses_surveys <- function(params, grid, d41_manifest = NULL) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Agriculture census
-  cs2_df <- census_fun("D4.1.2.CEN.AGRI", "AGRI.CENSUS", params, review_path, d41_manifest) %>%
+  cs2_df <- census_fun("D4.1.2.CEN.AGRI", "AGRI.CENSUS", params, review_path) %>%
     dplyr::rename(
       RAW.D4.1.2.AGRI = input_var,
       SPI.D4.1.2.AGRI = indicator
@@ -460,7 +503,7 @@ combine_censuses_surveys <- function(params, grid, d41_manifest = NULL) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Business/establishment census
-  cs3_df <- census_fun("D4.1.3.CEN.BIZZ", "BIZZ.CENSUS", params, review_path, d41_manifest) %>%
+  cs3_df <- census_fun("D4.1.3.CEN.BIZZ", "BIZZ.CENSUS", params, review_path) %>%
     dplyr::rename(
       RAW.D4.1.3.BIZZ = input_var,
       RAW.D4.1.3.BIZZ.CENSUS_nada = nada_dates,
@@ -469,7 +512,7 @@ combine_censuses_surveys <- function(params, grid, d41_manifest = NULL) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Household survey
-  cs4_df <- survey_fun("D4.1.4.SVY.HOUS", "HOUS.SURVEYS", params, review_path, d41_manifest) %>%
+  cs4_df <- survey_fun("D4.1.4.SVY.HOUS", "HOUS.SURVEYS", params, review_path) %>%
     dplyr::rename(
       RAW.D4.1.4.HOUS = input_var,
       RAW.D4.1.4.HOUS.SURVEYS_nada = nada_dates,
@@ -478,7 +521,7 @@ combine_censuses_surveys <- function(params, grid, d41_manifest = NULL) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Agriculture survey
-  cs5_df <- survey_fun("D4.1.5.SVY.AGRI", "AGRI.SURVEYS", params, review_path, d41_manifest) %>%
+  cs5_df <- survey_fun("D4.1.5.SVY.AGRI", "AGRI.SURVEYS", params, review_path) %>%
     dplyr::rename(
       RAW.D4.1.5.AGSVY = input_var,
       RAW.D4.1.5.AGRI.SURVEYS_nada = nada_dates,
@@ -487,7 +530,7 @@ combine_censuses_surveys <- function(params, grid, d41_manifest = NULL) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Labor force survey
-  cs6_df <- survey_fun("D4.1.6.SVY.LABR", "LABR.SURVEYS", params, review_path, d41_manifest) %>%
+  cs6_df <- survey_fun("D4.1.6.SVY.LABR", "LABR.SURVEYS", params, review_path) %>%
     dplyr::rename(
       RAW.D4.1.6.LABR = input_var,
       RAW.D4.1.6.LABR.SURVEYS_nada = nada_dates,
@@ -496,7 +539,7 @@ combine_censuses_surveys <- function(params, grid, d41_manifest = NULL) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Health/Demographic survey
-  cs7_df <- survey_fun("D4.1.7.SVY.HLTH", "HLTH.SURVEYS", params, review_path, d41_manifest) %>%
+  cs7_df <- survey_fun("D4.1.7.SVY.HLTH", "HLTH.SURVEYS", params, review_path) %>%
     dplyr::rename(
       RAW.D4.1.7.HLTH = input_var,
       RAW.D4.1.7.HLTH.SURVEYS_nada = nada_dates,
@@ -505,7 +548,7 @@ combine_censuses_surveys <- function(params, grid, d41_manifest = NULL) {
     dplyr::select(iso3c, date, dplyr::starts_with("SPI"), dplyr::starts_with("RAW"))
 
   # Business/establishment survey
-  cs8_df <- survey_fun("D4.1.8.SVY.BIZZ", "BIZZ.SURVEYS", params, review_path, d41_manifest) %>%
+  cs8_df <- survey_fun("D4.1.8.SVY.BIZZ", "BIZZ.SURVEYS", params, review_path) %>%
     dplyr::rename(
       RAW.D4.1.8.BZSVY = input_var,
       RAW.D4.1.8.BIZZ.SURVEYS_nada = nada_dates,
@@ -615,15 +658,14 @@ score_crvs <- function(wdi_metadata, params, grid) {
 
 #' Score the geospatial indicator
 #'
-#' Mirrors the "geo" chunk. Reads the ODIN data, applies the small-country
+#' Mirrors the "geo" chunk. Uses the ODIN data, applies the small-country
 #' adjustment, and produces RAW (0-100) and SPI (0-1) admin level scores.
 #'
 #' @param params List of pipeline parameters.
+#' @param odin_data Tibble from read_odin_data() (the same files as D2.2).
 #' @return A tibble with iso3c, date, and the GEO columns.
 #' @export
-score_geospatial <- function(params) {
-  end_date <- params$end_date
-
+score_geospatial <- function(params, odin_data = read_odin_data(params)) {
   # Countries where 1st admin level data is not included (small countries)
   geo_country_list <- c(
     "ADO", "AIA", "ATG", "BHR", "DMA", "HKG", "MAC", "MDV", "MLT", "MHL",
@@ -631,32 +673,7 @@ score_geospatial <- function(params) {
     "TON", "LIE"
   )
 
-  # Read ODIN data for each year (same files as D2.2)
-  geo_df <- purrr::map_dfr(2015:end_date, function(i) {
-    readr::read_csv(file.path(params$raw_dir, "2.2_DSOA", sprintf("ODIN_%d.csv", i))) %>%
-      tibble::as_tibble(.name_repair = "universal") %>%
-      dplyr::mutate(date = i) %>%
-      dplyr::filter(Data.categories %in% c("All Categories", "All categories")) %>%
-      dplyr::mutate(dplyr::across(
-        c(
-          "Indicator.coverage.and.disaggregation",
-          "Data.available.last.5.years",
-          "Data.available.last.10.years",
-          "First.administrative.level",
-          "Second.administrative.level",
-          "Coverage.subscore",
-          "Machine.readable",
-          "Non.proprietary",
-          "Download.options",
-          "Metadata.available",
-          "Terms.of.use",
-          "Openness.subscore",
-          "Overall.score"
-        ),
-        as.numeric
-      )) %>%
-      dplyr::select(-Year)
-  })
+  geo_df <- odin_data
 
   # Small countries: use coverage subscore for admin levels
   geo_df <- geo_df %>%
@@ -713,17 +730,43 @@ score_geospatial <- function(params) {
 #'
 #' @param params List of pipeline parameters.
 #' @param grid   The country x year grid.
+#' @param odin_data Tibble from read_odin_data().
 #' @return A tibble with iso3c, date, and the D4 indicator columns.
 #' @export
-combine_dim4 <- function(params, grid, d41_manifest = NULL) {
+combine_dim4 <- function(params, grid, d41_manifest = NULL,
+                         odin_data = read_odin_data(params)) {
+  combine_dim4_parts(
+    combine_dim4_core(params, grid, d41_manifest = d41_manifest),
+    score_geospatial(params, odin_data),
+    grid
+  )
+}
+
+#' Score the D4 indicators that do not use ODIN (D4.1 and CRVS)
+#'
+#' @param params List of pipeline parameters.
+#' @param grid   The country x year grid.
+#' @param d41_manifest Validated D4.1 collection manifest.
+#' @return A list with the `cs` (censuses and surveys) and `crvs` tables.
+#' @export
+combine_dim4_core <- function(params, grid, d41_manifest = NULL) {
   wdi_metadata <- read_wdi_metadata(params)
+  list(
+    cs = combine_censuses_surveys(params, grid, d41_manifest = d41_manifest),
+    crvs = score_crvs(wdi_metadata, params, grid)
+  )
+}
 
-  cs <- combine_censuses_surveys(params, grid, d41_manifest = d41_manifest)
-  crvs <- score_crvs(wdi_metadata, params, grid)
-  geo <- score_geospatial(params)
-
+#' Join the D4 parts onto the grid in the published column order
+#'
+#' @param core Result of combine_dim4_core().
+#' @param geo  Result of score_geospatial().
+#' @param grid The country x year grid.
+#' @return A tibble with iso3c, date, and the D4 indicator columns.
+#' @export
+combine_dim4_parts <- function(core, geo, grid) {
   grid %>%
-    dplyr::left_join(cs, by = c("iso3c", "date")) %>%
-    dplyr::left_join(crvs, by = c("iso3c", "date")) %>%
+    dplyr::left_join(core$cs, by = c("iso3c", "date")) %>%
+    dplyr::left_join(core$crvs, by = c("iso3c", "date")) %>%
     dplyr::left_join(geo)
 }

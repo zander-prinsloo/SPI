@@ -1,0 +1,17 @@
+catalogue_name,iso3c,note
+Cote d'Ivoire,CIV,Unaccented spelling of the CLASS name
+Curacao,CUW,"World Bank API name (wbstats), used by the catalogue script for PIP survey rows; CLASS uses Curaçao"
+Czechia,CZE,UN short name; CLASS uses Czech Republic
+Côte d'Ivoire,CIV,Straight apostrophe; CLASS uses a typographic apostrophe
+Democratic Republic of the Congo,COD,"UN name; CLASS uses Congo, Dem. Rep."
+Federal Republic of Somalia,SOM,Formal name; CLASS uses Somalia
+"Korea, Dem. Rep.",PRK,"Former World Bank short name; CLASS uses Korea, Dem. People's Rep."
+Naoero,NRU,"World Bank API name (wbstats), used by the catalogue script for PIP survey rows; CLASS uses Nauru"
+Puerto Rico (US),PRI,"World Bank API name (wbstats), used by the catalogue script for PIP survey rows; CLASS uses Puerto Rico"
+Republic of Cabo Verde,CPV,Formal name; CLASS uses Cabo Verde
+Sao Tome and Principe,STP,Unaccented spelling of the CLASS name
+"Somalia, Fed. Rep.",SOM,World Bank API name; CLASS uses Somalia
+Turkiye,TUR,Unaccented spelling of the CLASS name
+United Republic of Tanzania,TZA,Formal name; CLASS uses Tanzania
+Viet Nam,VNM,UN spelling; CLASS uses Vietnam
+Yemen,YEM,"Short name; CLASS uses Yemen, Rep."

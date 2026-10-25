@@ -1,0 +1,13 @@
+companion,catalogue_name,category,reason
+*,Anguilla,non_economy,Not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe
+*,Cook Islands,non_economy,Not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe
+*,Montserrat,non_economy,Not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe
+*,Niue,non_economy,Not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe
+D4.1.8.SVY.BIZZ,"Albania, Algeria, American Samoa...and 176 more",multi_country_study,Multi-country study; the catalogue entry cannot be attributed to a single economy
+D4.1.8.SVY.BIZZ,"Argentina, Bolivia, Ecuador, Peru, Paraguay, Uruguay",multi_country_study,Multi-country study; the catalogue entry cannot be attributed to a single economy
+D4.1.4.SVY.HOUS,<blank>,blank_country,"Catalogue rows without a country name; their years match the PIP survey years of Taiwan, China (TWN), which is outside the SPI country grid"
+D4.1.6.SVY.LABR,<blank>,blank_country,Catalogue rows without a country name; they cannot be attributed to an economy
+*,Cook Island,non_economy,"Spelling variant of Cook Islands; not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe"
+*,Serbia and Montenegro,multi_country_study,"Former state union (2003-2006) of two current economies (Serbia, Montenegro); its studies cannot be attributed to a single economy"
+D4.1.8.SVY.BIZZ,"Argentina, Bolivia, Ecuador...and 3 more",multi_country_study,"Multi-country study (the catalogue now truncates the six-country list); the catalogue entry cannot be attributed to a single economy"
+*,"Taiwan, China",outside_country_universe,"Outside the SPI country universe (TWN is not present in the canonical country snapshot)"
