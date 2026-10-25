@@ -145,7 +145,7 @@
     },
     {
       "kind": "rehearsal",
-      "path": "/tmp/spi-rep/rehearsal-final2/_rehearsal_summary.txt",
+      "path": "replication/spi-rep/rehearsal-final2/_rehearsal_summary.txt",
       "status": "passed"
     },
     {

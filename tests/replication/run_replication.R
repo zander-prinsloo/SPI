@@ -3,10 +3,10 @@
 # =============================================================================
 # Examples (run from the repository root):
 #   Rscript --vanilla tests/replication/run_replication.R \
-#     --code 8df2865 --vintage 2024 --out /tmp/spi-rep/baseline
+#     --code 8df2865 --vintage 2024 --out replication/spi-rep/baseline
 #   Rscript --vanilla tests/replication/run_replication.R \
-#     --code worktree --vintage 2024 --out /tmp/spi-rep/worktree \
-#     --compare /tmp/spi-rep/baseline
+#     --code worktree --vintage 2024 --out replication/spi-rep/worktree \
+#     --compare replication/spi-rep/baseline
 #   Add --allow-skips only for an explicitly accepted exception run.
 #
 # Created: 2026-10-23

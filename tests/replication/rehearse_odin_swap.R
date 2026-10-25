@@ -1,7 +1,8 @@
 # =============================================================================
 # ODIN-swap rehearsal in a sandbox
 # =============================================================================
-# Rehearses the December ODIN update without writing to the repository:
+# Rehearses the December ODIN update under replication/, separately from the
+# repository's published outputs:
 #   1. Builds a sandbox with the working-tree code and a raw-data symlink farm
 #      (the ODIN folder is copied so it can be changed; `_collection` is a
 #      sandbox folder whose existing files are symlinks).
@@ -37,10 +38,11 @@ repo_root <- normalizePath(".", mustWork = TRUE)
 source(file.path(repo_root, "tests", "replication", "replicate_vintage.R"))
 out <- arg_value("--out")
 if (is.null(out)) stop("--out IS REQUIRED.", call. = FALSE)
+out <- replication_local_directory(repo_root, out)
 keep <- "--keep-sandbox" %in% args
-dir.create(out, recursive = TRUE, showWarnings = FALSE)
 
-sandbox <- tempfile("spi-odin-rehearsal-", tmpdir = dirname(tempdir()))
+scratch <- replication_scratch_directory(repo_root)
+sandbox <- tempfile("spi-odin-rehearsal-", tmpdir = scratch)
 dir.create(sandbox, recursive = TRUE)
 cat("Rehearsal sandbox:", sandbox, "\n")
 

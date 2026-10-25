@@ -154,6 +154,29 @@ compound-gpid.md
 staging/
 _targets/
 
+# Repository-local working sandboxes contain copied code and raw-data symlinks.
+# Retained run outputs remain available under replication/spi-rep/.
+/replication/.scratch/
+
+# Recovered bulk downloads, historical runs and scratch helpers stay local.
+# Version the 202611 review CSVs and their supporting evidence explicitly.
+/replication/external-logs/
+/replication/jmp-probe/
+/replication/oecd-probe/
+/replication/r-session-artifacts/
+/replication/spi-gate/
+/replication/spi-rep/*
+!/replication/spi-rep/preview-p0p1/
+/replication/spi-rep/preview-p0p1/*
+!/replication/spi-rep/preview-p0p1/SPI_data.csv
+!/replication/spi-rep/preview-p0p1/SPI_index.csv
+!/replication/spi-rep/preview-p0p1/PROVISIONAL_ODIN.md
+!/replication/spi-rep/preview-p0p1/_estimation_manifest.json
+!/replication/spi-rep/preview-p0p1/revision_*.csv
+!/replication/spi-rep/preview-p0p1/revision_summary_2025.md
+!/replication/spi-rep/preview-p0p1/vintage_diff_2025.csv
+!/replication/spi-rep/preview-p0p1/vintage_diff_2025.md
+
 # SPI internal update notes (contains internal SharePoint links and team notes)
 /SPI updates.xlsx
 

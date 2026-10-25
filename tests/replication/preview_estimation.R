@@ -3,8 +3,8 @@
 # =============================================================================
 # Runs the reference-year estimation on the current collection artifacts
 # before the collection gate passes (attestations and reviews pending), for
-# draft revision evidence and review packages. Nothing is written to the
-# repository:
+# draft revision evidence and review packages. Outputs and the working sandbox
+# stay inside the repository, separate from published 03_output_data/:
 #   - the sandbox holds the working-tree code and a raw-data symlink farm
 #     (`_collection` is a sandbox folder whose existing files are symlinks);
 #   - the collection gate and the vintage-diff enforcement are neutralized in
@@ -32,11 +32,12 @@ repo_root <- normalizePath(".", mustWork = TRUE)
 source(file.path(repo_root, "tests", "replication", "replicate_vintage.R"))
 out <- arg_value("--out")
 if (is.null(out)) stop("--out IS REQUIRED.", call. = FALSE)
+out <- replication_local_directory(repo_root, out)
 keep <- "--keep-sandbox" %in% args
 legacy_e6 <- "--legacy-e6" %in% args
-dir.create(out, recursive = TRUE, showWarnings = FALSE)
 
-sandbox <- tempfile("spi-preview-", tmpdir = dirname(tempdir()))
+scratch <- replication_scratch_directory(repo_root)
+sandbox <- tempfile("spi-preview-", tmpdir = scratch)
 dir.create(sandbox, recursive = TRUE)
 cat("Preview sandbox:", sandbox, "\n")
 

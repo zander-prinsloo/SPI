@@ -51,6 +51,8 @@ for (file in list.files("R", full.names = TRUE, pattern = "[.]R$")) source(file)
 
 end_date <- 2025L
 out_dir <- file.path("docs", "revisions", "202611")
+scratch_dir <- file.path(here::here(), "replication", ".scratch")
+dir.create(scratch_dir, recursive = TRUE, showWarnings = FALSE)
 params <- load_params(here::here("config", "params.R"), require_country_metadata = TRUE)
 real_raw <- normalizePath(params$raw_dir, mustWork = TRUE)
 socs <- file.path(real_raw, "4.1_SOCS")
@@ -67,7 +69,7 @@ legacy$write_excel_csv <- function(x, file, ...) readr::write_excel_csv(as.data.
 eval(saver_expression[[1]], envir = legacy)
 
 run_saver <- function(data, indicator) {
-  out <- tempfile()
+  out <- tempfile("agriculture-saver-", tmpdir = scratch_dir)
   dir.create(out)
   legacy$output_dir <- paste0(out, "/")
   legacy$study_data <- data
@@ -127,7 +129,7 @@ resolvable <- function(data, stem, variant) {
 }
 
 score_variant <- function(survey, census, variant) {
-  root <- tempfile("agriculture-raw-")
+  root <- tempfile("agriculture-raw-", tmpdir = scratch_dir)
   dir.create(root)
   for (child in list.files(real_raw, no.. = TRUE)) {
     if (child == "4.1_SOCS") {

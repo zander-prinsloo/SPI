@@ -42,7 +42,7 @@ findings:
 
 ## Review scope and evidence
 
-Reviewed only the paths listed in `/tmp/spi-gate/review_canonical_scope.txt`,
+Reviewed only the paths listed in `replication/spi-gate/review_canonical_scope.txt`,
 excluding generated `.cg-docs/views/**` bodies. The review cross-referenced
 the current implementation and evidence against:
 
@@ -555,7 +555,7 @@ The remaining findings are manual or advisory because they affect release
 architecture, statistical methodology, source approvals, exception policy,
 or data-integrity gates.
 
-- **Exact 2024 replication**: `/tmp/spi-rep/step-e6-final` reports 12/12
+- **Exact 2024 replication**: `replication/spi-rep/step-e6-final` reports 12/12
   promoted outputs differentially comparable to the post-E5 reference; the
   replication test table remains 1,303 expectations with the same 13
   accepted X1 failures. The E6 fixture contains 2,349 country-level cells,

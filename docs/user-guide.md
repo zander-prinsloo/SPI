@@ -217,17 +217,23 @@ workbooks, catalogue refresh); the Working Group report
 `docs/revisions/202611-revision-report.md` explains the revisions and the
 method and process changes with this evidence.
 
-For the final sandbox preview, run:
+The retained 202611 review preview is in
+`replication/spi-rep/preview-p0p1/`; its `SPI_data.csv` and `SPI_index.csv`
+include reference year 2025 and provisional ODIN data. See
+`replication/README.md` for artifact locations and instructions that keep
+temporary files inside the repository.
+
+For the earlier final sandbox preview's evidence, run:
 
 ```sh
-Rscript docs/revisions/202611/attribute_revisions.R --current /tmp/spi-rep/preview-final
+Rscript docs/revisions/202611/attribute_revisions.R --current replication/spi-rep/preview-final
 Rscript docs/revisions/202611/e6_country_matching_impact.R \
-  --before /tmp/spi-rep/preview-pre-e6 \
-  --after /tmp/spi-rep/preview-final \
+  --before replication/spi-rep/preview-pre-e6 \
+  --after replication/spi-rep/preview-final \
   --label 202611
 Rscript docs/revisions/202611/e6_country_matching_impact.R \
-  --before /tmp/spi-rep/step16b \
-  --after /tmp/spi-rep/step-e6-final \
+  --before replication/spi-rep/step16b \
+  --after replication/spi-rep/step-e6-final \
   --label 2024_replication
 ```
 

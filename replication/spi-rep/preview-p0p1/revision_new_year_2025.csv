@@ -1,0 +1,54 @@
+indicator,dimension,countries,previous_year_countries,same_as_previous_year,changed,new_values,dropped_values,status
+SPI.D1.5.POV,D1.5,217,217,216,1,0,0,updated
+SPI.D1.5.CHLD.MORT,D1.5,217,217,209,8,0,0,updated
+SPI.D1.5.DT.TDS.DPPF.XP.ZS,D1.5,217,217,213,4,0,0,updated
+SPI.D1.5.SAFE.MAN.WATER,D1.5,217,217,217,0,0,0,identical to 2024 for every country
+SPI.D1.5.LFP,D1.5,217,217,214,3,0,0,updated
+SPI.D2.1.GDDS,D2.1,217,217,217,0,0,0,identical to 2024 for every country
+SPI.D2.2.Machine.readable,D2.2,197,197,197,0,0,0,provisional (ODIN)
+SPI.D2.2.Non.proprietary,D2.2,197,197,197,0,0,0,provisional (ODIN)
+SPI.D2.2.Download.options,D2.2,197,197,197,0,0,0,provisional (ODIN)
+SPI.D2.2.Metadata.available,D2.2,197,197,197,0,0,0,provisional (ODIN)
+SPI.D2.2.Terms.of.use,D2.2,197,197,197,0,0,0,provisional (ODIN)
+SPI.D2.2.Openness.subscore,D2.2,197,197,197,0,0,0,provisional (ODIN)
+SPI.D2.4.NADA,D2.4,191,191,191,0,0,0,identical to 2024 for every country
+SPI.D3.1.POV,D3.1,215,215,163,52,0,0,updated
+SPI.D3.2.HNGR,D3.2,215,215,139,76,0,0,updated
+SPI.D3.3.HLTH,D3.3,215,215,23,192,0,0,updated
+SPI.D3.4.EDUC,D3.4,215,215,180,35,0,0,updated
+SPI.D3.5.GEND,D3.5,215,215,177,38,0,0,updated
+SPI.D3.6.WTRS,D3.6,215,215,190,25,0,0,updated
+SPI.D3.7.ENRG,D3.7,215,215,162,53,0,0,updated
+SPI.D3.8.WORK,D3.8,215,215,192,23,0,0,updated
+SPI.D3.9.INDY,D3.9,215,215,111,104,0,0,updated
+SPI.D3.10.NEQL,D3.10,215,215,195,20,0,0,updated
+SPI.D3.11.CITY,D3.11,215,215,29,186,0,0,updated
+SPI.D3.12.CNSP,D3.12,215,215,164,51,0,0,updated
+SPI.D3.15.LAND,D3.15,215,215,210,5,0,0,updated
+SPI.D3.16.INST,D3.16,215,215,127,88,0,0,updated
+SPI.D3.17.PTNS,D3.17,215,215,163,52,0,0,updated
+SPI.D3.13.CLMT,D3.13,215,215,156,59,0,0,updated
+SPI.D3.NA,D3,215,215,215,0,0,0,identical to 2024 for every country
+SPI.D4.1.1.POPU,D4.1,190,190,180,10,0,0,updated
+SPI.D4.1.2.AGRI,D4.1,190,190,179,11,0,0,updated
+SPI.D4.1.3.BIZZ,D4.1,190,190,188,2,0,0,updated
+SPI.D4.1.4.HOUS,D4.1,190,190,190,0,0,0,identical to 2024 for every country
+SPI.D4.1.5.AGSVY,D4.1,190,190,190,0,0,0,identical to 2024 for every country
+SPI.D4.1.6.LABR,D4.1,196,196,195,1,0,0,updated
+SPI.D4.1.7.HLTH,D4.1,194,194,194,0,0,0,identical to 2024 for every country
+SPI.D4.1.8.BZSVY,D4.1,191,191,165,26,0,0,updated
+SPI.D4.2.3.CRVS,D4.2,217,217,217,0,0,0,identical to 2024 for every country
+SPI.D4.3.GEO.first.admin.level,D4.3,197,197,197,0,0,0,provisional (ODIN)
+SPI.D4.3.GEO.second.admin.level,D4.3,197,197,197,0,0,0,provisional (ODIN)
+SPI.D5.1.DILG,D5.1,186,183,176,7,3,0,updated
+SPI.D5.2.1.SNAU,D5.2,217,217,211,6,0,0,updated
+SPI.D5.2.2.NABY,D5.2,217,217,197,20,0,0,updated
+SPI.D5.2.3.CNIN,D5.2,191,191,191,0,0,0,identical to 2024 for every country
+SPI.D5.2.4.CPIBY,D5.2,193,193,148,45,0,0,updated
+SPI.D5.2.5.HOUS,D5.2,193,193,192,1,0,0,updated
+SPI.D5.2.6.EMPL,D5.2,191,191,191,0,0,0,identical to 2024 for every country
+SPI.D5.2.7.CGOV,D5.2,193,193,189,4,0,0,updated
+SPI.D5.2.8.FINA,D5.2,191,191,191,0,0,0,identical to 2024 for every country
+SPI.D5.2.9.MONY,D5.2,193,193,184,9,0,0,updated
+SPI.D5.2.10.GSBP,D5.2,191,191,191,0,0,0,identical to 2024 for every country
+SPI.D5.5.DIFI,D5.5,176,173,155,18,3,0,updated

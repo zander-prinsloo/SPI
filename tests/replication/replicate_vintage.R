@@ -2,7 +2,8 @@
 # Sandboxed vintage replication harness
 # =============================================================================
 # Rebuilds an SPI vintage with a chosen code version in a throwaway sandbox so
-# replication evidence can be produced without writing into the repository.
+# replication evidence can be produced separately from the published outputs.
+# Outputs and working sandboxes stay under this repository's replication/.
 #
 # The sandbox contains a copy of the pipeline code (from the working tree or a
 # git ref), the renv activation files, and an `01_raw_data/` "symlink farm":
@@ -18,6 +19,39 @@
 # =============================================================================
 
 source(file.path("tests", "replication", "legacy_e6_overrides.R"))
+
+# Resolve a run directory inside the repository before creating it. Check the
+# existing ancestor too, so symlinks cannot redirect writes outside the repo.
+replication_local_directory <- function(repo_root, path) {
+  repo_root <- normalizePath(repo_root, winslash = "/", mustWork = TRUE)
+  path <- gsub("\\\\", "/", path.expand(path))
+  if (!grepl("^(/|[A-Za-z]:[/\\\\])", path)) {
+    path <- file.path(repo_root, path)
+  }
+  parts <- strsplit(path, "/", fixed = TRUE)[[1]]
+  if (".." %in% parts || !startsWith(path, paste0(repo_root, "/"))) {
+    rlang::abort("Replication directories must be inside the repository.")
+  }
+  ancestor <- path
+  while (!dir.exists(ancestor)) ancestor <- dirname(ancestor)
+  ancestor <- normalizePath(ancestor, winslash = "/", mustWork = TRUE)
+  if (ancestor != repo_root &&
+      !startsWith(ancestor, paste0(repo_root, "/"))) {
+    rlang::abort("Replication directories cannot link outside the repository.")
+  }
+  dir.create(path, recursive = TRUE, showWarnings = FALSE)
+  return(normalizePath(path, winslash = "/", mustWork = TRUE))
+}
+
+# Child R sessions inherit TMPDIR, containing their temporary downloads and
+# intermediate files as well as their sandbox under replication/.scratch/.
+replication_scratch_directory <- function(repo_root) {
+  scratch <- replication_local_directory(
+    repo_root, file.path("replication", ".scratch")
+  )
+  Sys.setenv(TMPDIR = scratch, TMP = scratch, TEMP = scratch)
+  return(scratch)
+}
 
 # Parameters of the published 2024 vintage (202511), recovered from commit
 # d7b368f. Only the vintage-specific values differ from config/params.R.
@@ -136,7 +170,7 @@ copy_replication_code <- function(repo_root, sandbox, code = "worktree") {
       .run_command("rsync", c("-a", shQuote(file.path(repo_root, path)), shQuote(sandbox)))
     }
   } else {
-    archive <- tempfile(fileext = ".tar")
+    archive <- tempfile(tmpdir = sandbox, fileext = ".tar")
     .run_command(
       "git",
       c("-C", shQuote(repo_root), "archive", "--format=tar", "-o", shQuote(archive), shQuote(code), code_paths)
@@ -396,7 +430,9 @@ replication_result_status <- function(tests, comparison = NULL, allow_skips = FA
 #' Build a sandbox, run the vintage, and copy promoted outputs to `out`.
 replicate_vintage <- function(repo_root, out, code = "worktree", vintage = 2024,
                               keep_sandbox = FALSE, legacy_e6 = FALSE) {
-  sandbox <- tempfile("spi-replication-", tmpdir = dirname(tempdir()))
+  out <- replication_local_directory(repo_root, out)
+  scratch <- replication_scratch_directory(repo_root)
+  sandbox <- tempfile("spi-replication-", tmpdir = scratch)
   dir.create(sandbox, recursive = TRUE)
   cat("Replication sandbox:", sandbox, "\n")
   if (!keep_sandbox) on.exit(unlink(sandbox, recursive = TRUE, force = TRUE), add = TRUE)

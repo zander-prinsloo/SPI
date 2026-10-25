@@ -47,6 +47,8 @@ reference_commit <- "8df2865"
 previous_end_date <- 2024L
 current_end_date <- 2025L
 out_dir <- file.path("docs", "revisions", "202611")
+scratch_dir <- file.path(here::here(), "replication", ".scratch")
+dir.create(scratch_dir, recursive = TRUE, showWarnings = FALSE)
 args <- commandArgs(trailingOnly = TRUE)
 current_dir <- if ("--current" %in% args) args[[which(args == "--current") + 1L]] else NULL
 
@@ -71,7 +73,7 @@ with_vintage <- function(base, end_date, raw_dir = base$raw_dir, files = list())
 # Files are only written after their link is removed, so nothing is written
 # through to 01_raw_data.
 link_raw <- function(own) {
-  root <- tempfile("attribution-raw-")
+  root <- tempfile("attribution-raw-", tmpdir = scratch_dir)
   dir.create(root)
   for (child in list.files(real_raw, no.. = TRUE)) {
     if (child %in% own) {

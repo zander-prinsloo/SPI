@@ -1,0 +1,53 @@
+{
+  "end_date": 2025,
+  "checked_at": "2026-10-24 20:25:24 UTC",
+  "files": ["SPI_data.csv", "SPI_data.dta", "SPI_index.csv", "SPI_quantiles.csv", "SPI_quantiles_2025.csv", "SPI_indicators_2025.csv", "SPI_treemap.csv", "SPI_databank_country_and_aggregates.csv", "SPI_databank_country_and_aggregates_DCS.csv", "SPI_databank_country_and_aggregates_DCS_wide.csv", "SPI_databank_footnotes.csv", "SPL_admin_data_availability.csv", "vintage_diff_2025.csv", "vintage_diff_2025.md", "revision_summary_2025.md", "revision_indicators_2025.csv", "revision_index_2025.csv", "revision_new_year_2025.csv"],
+  "odin_status": "provisional",
+  "odin_files": [
+    {
+      "file": "ODIN_2015.csv",
+      "sha256": "e61641ad192af4ebf31b2d0da9d51426aba77a764b904842e6107a5042ce8f20"
+    },
+    {
+      "file": "ODIN_2016.csv",
+      "sha256": "3cbfb1ad7e3f7f117f58b4f8969681003fb23189464567f42b29703b66464fe6"
+    },
+    {
+      "file": "ODIN_2017.csv",
+      "sha256": "7f2214a266cc2e86bf40a963cd2e2c1c04eaaab44892eab837800b0b303656e2"
+    },
+    {
+      "file": "ODIN_2018.csv",
+      "sha256": "712397bf7b924920038983db9916ad159622cd9d089ceef69c1ad96c9897fe81"
+    },
+    {
+      "file": "ODIN_2019.csv",
+      "sha256": "712397bf7b924920038983db9916ad159622cd9d089ceef69c1ad96c9897fe81"
+    },
+    {
+      "file": "ODIN_2020.csv",
+      "sha256": "aa79c04ac8c44c548f4e253778cee5ffe2c5389c0972cd168df7f4e97dac40ef"
+    },
+    {
+      "file": "ODIN_2021.csv",
+      "sha256": "aa79c04ac8c44c548f4e253778cee5ffe2c5389c0972cd168df7f4e97dac40ef"
+    },
+    {
+      "file": "ODIN_2022.csv",
+      "sha256": "1a94b9e6f339ea05dbde3ca42f3d0a098aa18cc54ee3a638f22cf5b7e78d9021"
+    },
+    {
+      "file": "ODIN_2023.csv",
+      "sha256": "1a94b9e6f339ea05dbde3ca42f3d0a098aa18cc54ee3a638f22cf5b7e78d9021"
+    },
+    {
+      "file": "ODIN_2024.csv",
+      "sha256": "bc7e22680ca52a12e71dfafdf37cc99170325a2666c66c2cc2ffc0fded3a06f6"
+    },
+    {
+      "file": "ODIN_2025.csv",
+      "sha256": "5e98a4095856bc9e957c2ca1e658fa0eaae367c09e443bf6f024ba49cdfdcb3d"
+    }
+  ],
+  "odin_dependent_columns": ["SPI.D2.2.Machine.readable", "SPI.D2.2.Non.proprietary", "SPI.D2.2.Download.options", "SPI.D2.2.Metadata.available", "SPI.D2.2.Terms.of.use", "SPI.D2.2.Openness.subscore", "SPI.D4.3.GEO.first.admin.level", "SPI.D4.3.GEO.second.admin.level", "RAW.D2.2.Machine.readable", "RAW.D2.2.Non.proprietary", "RAW.D2.2.Download.options", "RAW.D2.2.Metadata.available", "RAW.D2.2.Terms.of.use", "RAW.D2.2.Openness.subscore", "RAW.D4.3.GEO.first.admin.level", "RAW.D4.3.GEO.second.admin.level", "SPI.INDEX.PIL2", "SPI.INDEX.PIL4", "SPI.INDEX", "SPI.DIM2.2.INDEX", "SPI.DIM4.3.INDEX"]
+}

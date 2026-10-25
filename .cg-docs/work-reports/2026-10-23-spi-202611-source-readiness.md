@@ -311,7 +311,7 @@
   coincide when `end_date = 2024`. The 202511 vintage has none, and with
   `end_date = 2025` the dates cannot coincide. The Step 21 report will check
   key uniqueness of the 2025 outputs.
-- Post-E5 differential reference for later gates: `/tmp/spi-rep/step16b`.
+- Post-E5 differential reference for later gates: `replication/spi-rep/step16b`.
 - **Step 17 done (code; live refresh pending)**: `dim4_1_refresh_catalogue()`
   runs an adapter into `4.1_SOCS/collection/staging-*`, requires all eight
   companions, validates them with the Step 16 rules (naming files from the
@@ -352,7 +352,7 @@
 - Full suite: 730 passed, 0 failed, 14 skipped. The first run found 2 errors
   in `test-scoring.R` (two census/survey tests still wrote name-keyed
   companions); fixed to write normalized companions.
-- Differential 2024 replication (worktree vs `/tmp/spi-rep/step16b`): 12 of
+- Differential 2024 replication (worktree vs `replication/spi-rep/step16b`): 12 of
   12 outputs identical; replication tests 1303 expectations, 13 failed,
   failure text identical; partial rebuild promoted.
 
@@ -474,7 +474,7 @@ attestations and reviews; the lock itself is written at approval.
   5. One non-ODIN artifact changed (`1.5_DUIO/PIP_comparability_latest.csv`):
      estimation stopped with `RELEASE LOCK MISMATCH` naming the file.
   No sandbox left behind. Summary and reports:
-  `/tmp/spi-rep/rehearsal/_rehearsal_summary.txt`.
+  `replication/spi-rep/rehearsal/_rehearsal_summary.txt`.
 - **Rehearsal finding fixed (jitter)**: the first complete step 4 stopped
   with `RELEASE DIFF BLOCKS PROMOTION: 44 change(s)`, all `jitter_x`/`jitter_y`
   in `SPI_quantiles_2025.csv` (22 rows each). `build_quantiles_2024()` draws
@@ -511,7 +511,7 @@ attestations and reviews; the lock itself is written at approval.
   VNM): 35 equal the published 2024 value (1) and 2 are reported refresh
   changes (0 to 1) in the vintage diff. No change (scoring rules are out of
   scope, and the current behaviour matches the published values).
-- Differential 2024 replication (worktree vs `/tmp/spi-rep/step16b`): 12 of
+- Differential 2024 replication (worktree vs `replication/spi-rep/step16b`): 12 of
   12 outputs and the replication-test table identical; 1303 expectations, 13
   failed, failure text identical (X1); partial rebuild promoted.
 - Network audit (C5): collector tests inject their fetchers or mock
@@ -532,7 +532,7 @@ technical lead's actions, commands, suggested commits).
   stronger rehearsal (brief, section 4).
 - **Pre-E6 baselines** (cannot be regenerated from the current code), kept
   in the session folder `files/handover-baselines/` with SHA-256 in the
-  brief: `/tmp/spi-rep/preview-pre-e6` and `/tmp/spi-rep/step16b`, plus
+  brief: `replication/spi-rep/preview-pre-e6` and `replication/spi-rep/step16b`, plus
   `preview-e6` and `step-e6`.
 
 ## Deviations
@@ -707,7 +707,7 @@ a requested step.
 - **ODIN rehearsal**: perturbing every all-category ODIN row produces 12,817
   changed cells, 0 outside the ODIN-dependent outputs; the unchanged rerun
   has a zero diff, and the non-ODIN tamper is blocked by the release lock.
-- **Final preview**: completed in `/tmp/spi-rep/preview-final`; revision
+- **Final preview**: completed in `replication/spi-rep/preview-final`; revision
   evidence is copied to `docs/revisions/202611/preview/`. The WG report now
   has no `[SOURCE NEEDED]` markers. The final full-suite gate is recorded
   below.
