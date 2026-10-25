@@ -583,6 +583,9 @@ inputs; they do not introduce additional SPI indicators.
   sources catalogue is used for D4.1 labour-force surveys and for the EMPL
   builder in `R/collect_d5_2.R`. Update the configured ILO catalogue input
   and rerun the collection target rather than running the legacy notebooks.
+  After the country-economist review is complete, attest the current review
+  workbook together with the eight source workbooks; the collection gate
+  rejects a review workbook that is missing or changed after attestation.
 - **Targets collection**: the collection pipeline now validates the eight
   workbooks and review workbook, runs the parameterized D4.1 preprocessing,
   validates the D4.1 catalogue companion files, and writes

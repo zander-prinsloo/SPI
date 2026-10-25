@@ -467,7 +467,7 @@ source_registry <- rbind(
       "5.2_DISM/D5.2.10.GSBP.Manual.Review.<END_DATE>.xlsx"
     ),
     availability_path = rep(NA_character_, 3),
-    expected_vintage_rule = c("end_date", "manual_attestation", "end_date"),
+    expected_vintage_rule = c("end_date", "manual_attestation", "manual_attestation"),
     age_warning_days = c(365, 365, 365),
     status_if_missing = c("blocking", "warning", "blocking"),
     analyst_action = c(
