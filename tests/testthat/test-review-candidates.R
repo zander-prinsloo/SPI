@@ -141,7 +141,12 @@ make_d41_candidate_root <- function(workbook = list(), catalogue = list(), revie
     reviewed <- review[[stem]]
     review_frame[[column]] <- if (is.null(reviewed)) NA_character_ else unname(reviewed[review_frame$iso3c])
   }
-  review_frame$Evidence <- NA_character_
+  reviewed_keys <- unique(unlist(lapply(review, names), use.names = FALSE))
+  review_frame$Evidence <- ifelse(
+    review_frame$iso3c %in% reviewed_keys,
+    "fixture evidence",
+    NA_character_
+  )
   writexl::write_xlsx(review_frame, file.path(raw, "4.1_SOCS", "raw", "D4.1.Manual.Review.2025.xlsx"))
   list(raw_dir = raw, end_date = 2025)
 }
