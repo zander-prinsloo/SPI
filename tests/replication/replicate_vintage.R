@@ -364,6 +364,35 @@ run_replication_tests <- function(repo_root, sandbox, out,
   invisible(file.path(out, "_replication_tests.csv"))
 }
 
+#' Determine the command-line replication result from recorded evidence.
+#'
+#' Skips are failures by default: an exception run must opt in explicitly
+#' with `--allow-skips` so a missing test cannot look like a passing run.
+replication_result_status <- function(tests, comparison = NULL, allow_skips = FALSE) {
+  failed <- sum(as.numeric(tests$failed), na.rm = TRUE)
+  errors <- sum(as.numeric(tests$error), na.rm = TRUE)
+  skipped <- sum(as.numeric(tests$skipped), na.rm = TRUE)
+  comparison_failures <- if (is.null(comparison)) {
+    0L
+  } else {
+    sum(
+      as.numeric(comparison$differing_cells) > 0 |
+        comparison$column != "<identical>",
+      na.rm = TRUE
+    )
+  }
+  status <- if (failed > 0L || errors > 0L || comparison_failures > 0L ||
+                (skipped > 0L && !isTRUE(allow_skips))) 1L else 0L
+  list(
+    status = status,
+    failed = failed,
+    errors = errors,
+    skipped = skipped,
+    comparison_failures = comparison_failures,
+    skips_accepted = skipped > 0L && isTRUE(allow_skips)
+  )
+}
+
 #' Build a sandbox, run the vintage, and copy promoted outputs to `out`.
 replicate_vintage <- function(repo_root, out, code = "worktree", vintage = 2024,
                               keep_sandbox = FALSE, legacy_e6 = FALSE) {
