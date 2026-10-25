@@ -1,0 +1,13 @@
+{
+  "source": "ILO Survey Catalog (NADA), LFS collection",
+  "endpoint": "https://www.ilo.org/surveyLib/index.php/catalog/export/csv?page=<n>&ps=100&collection[]=LFS",
+  "status": "retired",
+  "retirement_observed_at": "2026-10-24",
+  "retirement_notice": "HTTP 410 Gone: 'The ILO Survey Catalog, previously hosted on the NADA platform, has been permanently retired and is no longer available' (redirect to https://rplumber.ilo.org/files/website/410_SC.html); ILO points to https://ilostat.ilo.org",
+  "snapshot": "01_raw_data/4.1_SOCS/retired/ilo_survey_catalog_final_2026-10-20.csv",
+  "snapshot_sha256": "0fcb3a166b5dfceb12c8ffe23f11a287dbd7cb1927b6389113a3708472b8bc34",
+  "snapshot_rows": 1705,
+  "snapshot_retrieved": "2026-10-20, by microdata_library_pull.Rmd (written to 01_raw_data/4.1_SOCS/ilo_library_public_studies.csv)",
+  "snapshot_note": "Byte-identical to the 2025-10-16 download committed in efa9392: the catalogue did not change in its last year. 1,705 studies, year_start 1975-2025, 143 nations.",
+  "use": "Replayed page by page to the unmodified microdata_library_pull.Rmd by the D4.1 catalogue refresh (R/collect_dim4_1_prefetch.R) while the endpoint stays retired."
+}

@@ -1,0 +1,716 @@
+{
+  "schema_version": "spi-d4.1-collection-v2",
+  "end_date": 2025,
+  "naming": {
+    "class_file": {
+      "role": "naming_authority",
+      "path": "01_raw_data/misc/CLASS.xlsx",
+      "sha256": "18b4e6447f855a4fc3becb82dbbb45d2be42e70aa20fce6c61d0f501b1e07bb2",
+      "size_bytes": 68154,
+      "modified_at": "2026-10-23 14:04:56 UTC"
+    },
+    "crosswalk_file": {
+      "role": "naming_crosswalk",
+      "path": "config/d41_country_crosswalk.csv",
+      "sha256": "6b5396bca881a3571def9a181eab8f084c67a046cb81e9a7484091b3f0595e90",
+      "size_bytes": 1194,
+      "modified_at": "2026-10-24 10:11:35 UTC"
+    },
+    "exclusions_file": {
+      "role": "naming_exclusions",
+      "path": "config/d41_companion_exclusions.csv",
+      "sha256": "94956b4fea9a615126dc2103d828adfd0c4539e87bdf25b64a2afd90f5da810a",
+      "size_bytes": 1779,
+      "modified_at": "2026-10-24 19:48:30 UTC"
+    }
+  },
+  "inputs": {
+    "D4.1.1.CEN.POPU": {
+      "role": "manual_input_workbook",
+      "path": "01_raw_data/4.1_SOCS/raw/input/D2.1.CEN.POPU.xlsx",
+      "sha256": "9df9ffc603d9f5fb6a508f1cc18ba1c7afc5922e51522a12c498723a0b792e56",
+      "size_bytes": 68765,
+      "modified_at": "2026-10-20 16:58:45 UTC"
+    },
+    "D4.1.2.CEN.AGRI": {
+      "role": "manual_input_workbook",
+      "path": "01_raw_data/4.1_SOCS/raw/input/D2.2.CEN.AGRI.xlsx",
+      "sha256": "83d93bfc6c6a406113a9eb4441cb6af8ad8dc442787f937a301514abd959eb47",
+      "size_bytes": 73703,
+      "modified_at": "2026-10-20 17:28:04 UTC"
+    },
+    "D4.1.3.CEN.BIZZ": {
+      "role": "manual_input_workbook",
+      "path": "01_raw_data/4.1_SOCS/raw/input/D2.3.CEN.BIZZ.xlsx",
+      "sha256": "63c5c45dde75b603cbb699afeaf237b77d9287ba9a64efc159239b8238368abd",
+      "size_bytes": 76793,
+      "modified_at": "2026-10-20 17:34:23 UTC"
+    },
+    "D4.1.4.SVY.HOUS": {
+      "role": "manual_input_workbook",
+      "path": "01_raw_data/4.1_SOCS/raw/input/D2.4.SVY.HOUS.xlsx",
+      "sha256": "15b8489182b3728590c25f6b45fbf716746e3ac095a01d8b7486fe42fed36c01",
+      "size_bytes": 220870,
+      "modified_at": "2026-10-21 08:45:38 UTC"
+    },
+    "D4.1.5.SVY.AGRI": {
+      "role": "manual_input_workbook",
+      "path": "01_raw_data/4.1_SOCS/raw/input/D2.5.SVY.AGRI.xlsx",
+      "sha256": "ee87bebf99ff32ac0573d59f7322347e5afe22c866769abc92351f6cfb642311",
+      "size_bytes": 93321,
+      "modified_at": "2026-10-21 08:50:40 UTC"
+    },
+    "D4.1.6.SVY.LABR": {
+      "role": "manual_input_workbook",
+      "path": "01_raw_data/4.1_SOCS/raw/input/D2.6.SVY.LABR.xlsx",
+      "sha256": "97e69c462995f77c72edfa78e5ba61f3680b55fb0e38935cb7e29d6ea596750c",
+      "size_bytes": 94655,
+      "modified_at": "2026-10-21 10:59:46 UTC"
+    },
+    "D4.1.7.SVY.HLTH": {
+      "role": "manual_input_workbook",
+      "path": "01_raw_data/4.1_SOCS/raw/input/D2.7.SVY.HLTH.xlsx",
+      "sha256": "ac31cea62fccbcf51a50c7783c3acf420ad04adbd511d61c64d1f3258435ca80",
+      "size_bytes": 106614,
+      "modified_at": "2026-10-21 11:18:41 UTC"
+    },
+    "D4.1.8.SVY.BIZZ": {
+      "role": "manual_input_workbook",
+      "path": "01_raw_data/4.1_SOCS/raw/input/D2.8.SVY.BIZZ.xlsx",
+      "sha256": "91de4d54110ae6193e9fcae6b5a1af99abffd88a1f339e2c307720d2d64b6d05",
+      "size_bytes": 106966,
+      "modified_at": "2026-10-21 12:30:01 UTC"
+    }
+  },
+  "review": {
+    "path": "01_raw_data/4.1_SOCS/raw/D4.1.Manual.Review.2025.xlsx",
+    "end_date": 2025,
+    "sha256": "f22b6ee024ea0f986ee3398d8c7537024a4affc935fecf73116c32acb93f509f",
+    "rows": 217,
+    "evidence_rows": 0,
+    "override_count": 0
+  },
+  "derived": {
+    "D4.1.1.CEN.POPU": {
+      "role": "derived_indicator_csv",
+      "path": "01_raw_data/4.1_SOCS/raw/D4.1.1.CEN.POPU.2025.csv",
+      "sha256": "28886fc24df9fe2fc324e4dc5030dbd0005de611187454f4a3c7f22db8805996",
+      "size_bytes": 38741,
+      "modified_at": "2026-10-24 20:22:13 UTC"
+    },
+    "D4.1.2.CEN.AGRI": {
+      "role": "derived_indicator_csv",
+      "path": "01_raw_data/4.1_SOCS/raw/D4.1.2.CEN.AGRI.2025.csv",
+      "sha256": "90897dc2d297eeb2fbd72e3051b85f8ceb2783f344b2687da7ddc5d96b499c8e",
+      "size_bytes": 37708,
+      "modified_at": "2026-10-24 20:22:13 UTC"
+    },
+    "D4.1.3.CEN.BIZZ": {
+      "role": "derived_indicator_csv",
+      "path": "01_raw_data/4.1_SOCS/raw/D4.1.3.CEN.BIZZ.2025.csv",
+      "sha256": "1a77bab6a769dc32419d94e59d2525726135af0fe70077f689e049b078ee95df",
+      "size_bytes": 38683,
+      "modified_at": "2026-10-24 20:22:13 UTC"
+    },
+    "D4.1.4.SVY.HOUS": {
+      "role": "derived_indicator_csv",
+      "path": "01_raw_data/4.1_SOCS/raw/D4.1.4.SVY.HOUS.2025.csv",
+      "sha256": "aa9ed152ec009640bea39294a4de19012c1b4db70e03df93a50a90da54f1e412",
+      "size_bytes": 51431,
+      "modified_at": "2026-10-24 20:22:13 UTC"
+    },
+    "D4.1.5.SVY.AGRI": {
+      "role": "derived_indicator_csv",
+      "path": "01_raw_data/4.1_SOCS/raw/D4.1.5.SVY.AGRI.2025.csv",
+      "sha256": "36886c412aa1e6564c40fd4693acc39f0d906b0e3a31e288d41bb876b3b07846",
+      "size_bytes": 40435,
+      "modified_at": "2026-10-24 20:22:13 UTC"
+    },
+    "D4.1.6.SVY.LABR": {
+      "role": "derived_indicator_csv",
+      "path": "01_raw_data/4.1_SOCS/raw/D4.1.6.SVY.LABR.2025.csv",
+      "sha256": "91c08263d8401d3eeb65c9f78715eb17e22d0c5d72f97e9013c16b2055081ec9",
+      "size_bytes": 47857,
+      "modified_at": "2026-10-24 20:22:13 UTC"
+    },
+    "D4.1.7.SVY.HLTH": {
+      "role": "derived_indicator_csv",
+      "path": "01_raw_data/4.1_SOCS/raw/D4.1.7.SVY.HLTH.2025.csv",
+      "sha256": "8c9e4b4d51ac26089ff427d326df6e51f599472372a90339f930cf8572c44dec",
+      "size_bytes": 41099,
+      "modified_at": "2026-10-24 20:22:14 UTC"
+    },
+    "D4.1.8.SVY.BIZZ": {
+      "role": "derived_indicator_csv",
+      "path": "01_raw_data/4.1_SOCS/raw/D4.1.8.SVY.BIZZ.2025.csv",
+      "sha256": "42e6cc8102e0a559c2c537771fad3ec4d2a33d56cd87ba1a132462967e13e191",
+      "size_bytes": 44241,
+      "modified_at": "2026-10-24 20:22:14 UTC"
+    }
+  },
+  "catalogue_raw": {
+    "D4.1.1.CEN.POPU": {
+      "role": "d41_catalogue_raw",
+      "path": "01_raw_data/4.1_SOCS/D4.1.1.CEN.POPU_NADA.csv",
+      "sha256": "d7fc3ada17f50c9524165029bdd9546b955ba90505d363029a9f5c005b99ced4",
+      "size_bytes": 1502,
+      "modified_at": "2026-10-24 10:13:00 UTC"
+    },
+    "D4.1.2.CEN.AGRI": {
+      "role": "d41_catalogue_raw",
+      "path": "01_raw_data/4.1_SOCS/D4.1.2.CEN.AGRI_NADA.csv",
+      "sha256": "1585c9f7e089ae58878ed3f954116cdb66fb1013718a21d6e0948a7bc49b9c5b",
+      "size_bytes": 1417,
+      "modified_at": "2026-09-21 15:13:57 UTC"
+    },
+    "D4.1.3.CEN.BIZZ": {
+      "role": "d41_catalogue_raw",
+      "path": "01_raw_data/4.1_SOCS/D4.1.3.CEN.BIZZ_NADA.csv",
+      "sha256": "4e2743bab6294ffd15227c0fea7dd69c5a7b286395939e8b8c987a6a6395e2ef",
+      "size_bytes": 412,
+      "modified_at": "2026-10-24 10:13:00 UTC"
+    },
+    "D4.1.4.SVY.HOUS": {
+      "role": "d41_catalogue_raw",
+      "path": "01_raw_data/4.1_SOCS/D4.1.4.SVY.HOUS_NADA.csv",
+      "sha256": "6be6860c9394f91595eab1fd08986e838738fe2a73f0b3dab5f9f37b76e15293",
+      "size_bytes": 743537,
+      "modified_at": "2026-10-24 10:13:00 UTC"
+    },
+    "D4.1.5.SVY.AGRI": {
+      "role": "d41_catalogue_raw",
+      "path": "01_raw_data/4.1_SOCS/D4.1.5.SVY.AGRI_NADA.csv",
+      "sha256": "82dbca52fc12b1a38042a1fcecfa9b00d79f7884bf718c8f29226cf0adee4611",
+      "size_bytes": 38832,
+      "modified_at": "2026-10-24 10:13:00 UTC"
+    },
+    "D4.1.6.SVY.LABR": {
+      "role": "d41_catalogue_raw",
+      "path": "01_raw_data/4.1_SOCS/D4.1.6.SVY.LABR_NADA.csv",
+      "sha256": "2e2c9c5662d45143a4b5e7f571fce3f1dae35825eeb5ccc3f54bb74e18666d08",
+      "size_bytes": 462531,
+      "modified_at": "2026-10-24 10:13:00 UTC"
+    },
+    "D4.1.7.SVY.HLTH": {
+      "role": "d41_catalogue_raw",
+      "path": "01_raw_data/4.1_SOCS/D4.1.7.SVY.HLTH_NADA.csv",
+      "sha256": "41facefdab4420e54faefd1d09a4e42334037ea1a0dd6a8b6257a7ee9b9facf1",
+      "size_bytes": 242924,
+      "modified_at": "2026-10-24 10:13:00 UTC"
+    },
+    "D4.1.8.SVY.BIZZ": {
+      "role": "d41_catalogue_raw",
+      "path": "01_raw_data/4.1_SOCS/D4.1.8.SVY.BIZZ_NADA.csv",
+      "sha256": "35d9743d188a2aa201f8d78bdb4f08958f0b82454c92e64fb273b66b62d1db9e",
+      "size_bytes": 92087,
+      "modified_at": "2026-10-24 10:13:00 UTC"
+    }
+  },
+  "companions": {
+    "D4.1.1.CEN.POPU": {
+      "role": "d41_catalogue_companion",
+      "path": "01_raw_data/4.1_SOCS/collection/D4.1.1.CEN.POPU_NADA.iso3c.csv",
+      "sha256": "2420bfd89f8aff3e45704566fcb8dc4863e0f34e5eea668d4a9ef685bdf5865c",
+      "size_bytes": 1461,
+      "modified_at": "2026-10-24 20:22:14 UTC",
+      "raw_rows": 18,
+      "rows": 18,
+      "after_end_date": 0,
+      "duplicate_keys": 0,
+      "crosswalked": {
+        "Côte d'Ivoire": 1,
+        "Republic of Cabo Verde": 1
+      }
+    },
+    "D4.1.2.CEN.AGRI": {
+      "role": "d41_catalogue_companion",
+      "path": "01_raw_data/4.1_SOCS/collection/D4.1.2.CEN.AGRI_NADA.iso3c.csv",
+      "sha256": "ff06cbcf0c274e601c0a391c6f6c21c0820ffc7e1df851b2108f73bb782283cb",
+      "size_bytes": 1310,
+      "modified_at": "2026-10-24 20:22:14 UTC",
+      "raw_rows": 16,
+      "rows": 15,
+      "after_end_date": 0,
+      "duplicate_keys": 0,
+      "crosswalked": {
+        "United Republic of Tanzania": 2
+      }
+    },
+    "D4.1.3.CEN.BIZZ": {
+      "role": "d41_catalogue_companion",
+      "path": "01_raw_data/4.1_SOCS/collection/D4.1.3.CEN.BIZZ_NADA.iso3c.csv",
+      "sha256": "92ff33396cda12d4e3101a63a7c2c5d711ce00d0a2afec6f3132907fdbb88884",
+      "size_bytes": 401,
+      "modified_at": "2026-10-24 20:22:14 UTC",
+      "raw_rows": 5,
+      "rows": 5,
+      "after_end_date": 0,
+      "duplicate_keys": 0,
+      "crosswalked": []
+    },
+    "D4.1.4.SVY.HOUS": {
+      "role": "d41_catalogue_companion",
+      "path": "01_raw_data/4.1_SOCS/collection/D4.1.4.SVY.HOUS_NADA.iso3c.csv",
+      "sha256": "272ae31fafc75df4a3532b4dd52038860411cd571ab7a17473e94b2f4f2ded65",
+      "size_bytes": 741205,
+      "modified_at": "2026-10-24 20:22:14 UTC",
+      "raw_rows": 2437,
+      "rows": 2421,
+      "after_end_date": 0,
+      "duplicate_keys": 1,
+      "crosswalked": {
+        "Cote d'Ivoire": 12,
+        "Czechia": 24,
+        "Naoero": 1,
+        "Sao Tome and Principe": 3,
+        "Turkiye": 24,
+        "Viet Nam": 13
+      }
+    },
+    "D4.1.5.SVY.AGRI": {
+      "role": "d41_catalogue_companion",
+      "path": "01_raw_data/4.1_SOCS/collection/D4.1.5.SVY.AGRI_NADA.iso3c.csv",
+      "sha256": "0841cb966231d98c50494527fd96e0fc7282db4da8ee674b32957a90244a0830",
+      "size_bytes": 38899,
+      "modified_at": "2026-10-24 20:22:14 UTC",
+      "raw_rows": 139,
+      "rows": 139,
+      "after_end_date": 0,
+      "duplicate_keys": 15,
+      "crosswalked": {
+        "Côte d'Ivoire": 1,
+        "Democratic Republic of the Congo": 1,
+        "Sao Tome and Principe": 1,
+        "United Republic of Tanzania": 1,
+        "Yemen": 1
+      }
+    },
+    "D4.1.6.SVY.LABR": {
+      "role": "d41_catalogue_companion",
+      "path": "01_raw_data/4.1_SOCS/collection/D4.1.6.SVY.LABR_NADA.iso3c.csv",
+      "sha256": "9d9ab8daca91109bc0da21aa6b861c73cee3a3a4b6f6332eab83018ac876f7a5",
+      "size_bytes": 462908,
+      "modified_at": "2026-10-24 20:22:14 UTC",
+      "raw_rows": 1775,
+      "rows": 1772,
+      "after_end_date": 2,
+      "duplicate_keys": 0,
+      "crosswalked": {
+        "Cote d'Ivoire": 5,
+        "Czechia": 31,
+        "Somalia, Fed. Rep.": 1,
+        "Turkiye": 25,
+        "Viet Nam": 16
+      }
+    },
+    "D4.1.7.SVY.HLTH": {
+      "role": "d41_catalogue_companion",
+      "path": "01_raw_data/4.1_SOCS/collection/D4.1.7.SVY.HLTH_NADA.iso3c.csv",
+      "sha256": "37c9036f58254c3726270f73282788dff4b107b4ba7c78d73ff88d29a3fc7236",
+      "size_bytes": 242548,
+      "modified_at": "2026-10-24 20:22:14 UTC",
+      "raw_rows": 702,
+      "rows": 696,
+      "after_end_date": 0,
+      "duplicate_keys": 0,
+      "crosswalked": {
+        "Côte d'Ivoire": 7,
+        "Czechia": 2,
+        "Korea, Dem. Rep.": 1,
+        "Republic of Cabo Verde": 2,
+        "Turkiye": 4,
+        "Viet Nam": 8
+      }
+    },
+    "D4.1.8.SVY.BIZZ": {
+      "role": "d41_catalogue_companion",
+      "path": "01_raw_data/4.1_SOCS/collection/D4.1.8.SVY.BIZZ_NADA.iso3c.csv",
+      "sha256": "c0ad117e6ca07ed73c10bdd67fbc8934d043687a8769f531e1e80aa64bb39fe4",
+      "size_bytes": 91769,
+      "modified_at": "2026-10-24 20:22:14 UTC",
+      "raw_rows": 493,
+      "rows": 489,
+      "after_end_date": 0,
+      "duplicate_keys": 0,
+      "crosswalked": {
+        "Côte d'Ivoire": 3,
+        "Czechia": 4,
+        "Federal Republic of Somalia": 1,
+        "Republic of Cabo Verde": 2,
+        "Turkiye": 7,
+        "Viet Nam": 4
+      }
+    }
+  },
+  "exclusions": {
+    "D4.1.1.CEN.POPU": [],
+    "D4.1.2.CEN.AGRI": [
+      {
+        "catalogue_name": "Cook Islands",
+        "category": "non_economy",
+        "reason": "Not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe",
+        "rows": 1,
+        "dates": 2011
+      }
+    ],
+    "D4.1.3.CEN.BIZZ": [],
+    "D4.1.4.SVY.HOUS": [
+      {
+        "catalogue_name": "<blank>",
+        "category": "blank_country",
+        "reason": "Catalogue rows without a country name; their years match the PIP survey years of Taiwan, China (TWN), which is outside the SPI country grid",
+        "rows": 16,
+        "dates": [1981, 1986, 1991, 1995, 1997, 2000, 2005, 2007, 2010, 2013, 2016, 2017, 2018, 2019, 2020, 2021]
+      }
+    ],
+    "D4.1.5.SVY.AGRI": [],
+    "D4.1.6.SVY.LABR": [
+      {
+        "catalogue_name": "<blank>",
+        "category": "blank_country",
+        "reason": "Catalogue rows without a country name; they cannot be attributed to an economy",
+        "rows": 3,
+        "dates": [2019, 2020, 2023]
+      }
+    ],
+    "D4.1.7.SVY.HLTH": [
+      {
+        "catalogue_name": "Anguilla",
+        "category": "non_economy",
+        "reason": "Not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe",
+        "rows": 1,
+        "dates": 2008
+      },
+      {
+        "catalogue_name": "Cook Island",
+        "category": "non_economy",
+        "reason": "Spelling variant of Cook Islands; not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe",
+        "rows": 1,
+        "dates": 2010
+      },
+      {
+        "catalogue_name": "Montserrat",
+        "category": "non_economy",
+        "reason": "Not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe",
+        "rows": 1,
+        "dates": 2008
+      },
+      {
+        "catalogue_name": "Niue",
+        "category": "non_economy",
+        "reason": "Not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe",
+        "rows": 2,
+        "dates": [2010, 2019]
+      },
+      {
+        "catalogue_name": "Serbia and Montenegro",
+        "category": "multi_country_study",
+        "reason": "Former state union (2003-2006) of two current economies (Serbia, Montenegro); its studies cannot be attributed to a single economy",
+        "rows": 1,
+        "dates": 2000
+      }
+    ],
+    "D4.1.8.SVY.BIZZ": [
+      {
+        "catalogue_name": "Albania, Algeria, American Samoa...and 176 more",
+        "category": "multi_country_study",
+        "reason": "Multi-country study; the catalogue entry cannot be attributed to a single economy",
+        "rows": 1,
+        "dates": 2020
+      },
+      {
+        "catalogue_name": "Argentina, Bolivia, Ecuador...and 3 more",
+        "category": "multi_country_study",
+        "reason": "Multi-country study (the catalogue now truncates the six-country list); the catalogue entry cannot be attributed to a single economy",
+        "rows": 1,
+        "dates": 2017
+      },
+      {
+        "catalogue_name": "Serbia and Montenegro",
+        "category": "multi_country_study",
+        "reason": "Former state union (2003-2006) of two current economies (Serbia, Montenegro); its studies cannot be attributed to a single economy",
+        "rows": 1,
+        "dates": 2002
+      },
+      {
+        "catalogue_name": "Taiwan, China",
+        "category": "outside_country_universe",
+        "reason": "Outside the SPI country universe (TWN is not present in the canonical country snapshot)",
+        "rows": 1,
+        "dates": 2024
+      }
+    ]
+  },
+  "catalogue": {
+    "status": "validated_external_artifacts",
+    "refreshed": false,
+    "refresh": {},
+    "last_refresh": {
+      "adapter": "02_programs/misc_scripts/microdata_library_pull.Rmd",
+      "request": {
+        "script_sha256": "8d3b98547c29ade9da235264b052e0773d3c153a2d15307815806e3c304a9228",
+        "urls": [
+          "http://microdata.worldbank.org/index.php/api/catalog",
+          "http://microdatalib.worldbank.org/index.php/api/catalog",
+          "http://microdatalib.worldbank.org/index.php/api/catalog/",
+          "https://api.worldbank.org/pip/v1/survey-metadata",
+          "https://microdata.fao.org/index.php/api/catalog",
+          "https://microdata.fao.org/index.php/metadata/export/",
+          "https://www.ilo.org/surveyLib/index.php/catalog/export/csv?page=",
+          "https://www.ilo.org/surveyLib/index.php/catalog/export/csv?page=1&ps=100&collection[]=LFS"
+        ]
+      },
+      "started_at": "2026-10-24T10:12:04Z",
+      "finished_at": "2026-10-24T10:13:01Z",
+      "elapsed_seconds": 56.1,
+      "budget_seconds": 14400,
+      "companions": {
+        "D4.1.1.CEN.POPU": {
+          "rows": 18,
+          "sha256": "d7fc3ada17f50c9524165029bdd9546b955ba90505d363029a9f5c005b99ced4",
+          "refreshed": true
+        },
+        "D4.1.2.CEN.AGRI": {
+          "rows": 16,
+          "sha256": "1585c9f7e089ae58878ed3f954116cdb66fb1013718a21d6e0948a7bc49b9c5b",
+          "refreshed": false
+        },
+        "D4.1.3.CEN.BIZZ": {
+          "rows": 5,
+          "sha256": "4e2743bab6294ffd15227c0fea7dd69c5a7b286395939e8b8c987a6a6395e2ef",
+          "refreshed": true
+        },
+        "D4.1.4.SVY.HOUS": {
+          "rows": 2437,
+          "sha256": "6be6860c9394f91595eab1fd08986e838738fe2a73f0b3dab5f9f37b76e15293",
+          "refreshed": true
+        },
+        "D4.1.5.SVY.AGRI": {
+          "rows": 139,
+          "sha256": "82dbca52fc12b1a38042a1fcecfa9b00d79f7884bf718c8f29226cf0adee4611",
+          "refreshed": true
+        },
+        "D4.1.6.SVY.LABR": {
+          "rows": 1775,
+          "sha256": "2e2c9c5662d45143a4b5e7f571fce3f1dae35825eeb5ccc3f54bb74e18666d08",
+          "refreshed": true
+        },
+        "D4.1.7.SVY.HLTH": {
+          "rows": 702,
+          "sha256": "41facefdab4420e54faefd1d09a4e42334037ea1a0dd6a8b6257a7ee9b9facf1",
+          "refreshed": true
+        },
+        "D4.1.8.SVY.BIZZ": {
+          "rows": 493,
+          "sha256": "35d9743d188a2aa201f8d78bdb4f08958f0b82454c92e64fb273b66b62d1db9e",
+          "refreshed": true
+        }
+      },
+      "carried_forward": "D4.1.2.CEN.AGRI",
+      "promoted_files": [
+        "D4.1.1.CEN.POPU_NADA.csv",
+        "D4.1.2.CEN.AGRI_NADA_FAO.csv",
+        "D4.1.3.CEN.BIZZ_NADA.csv",
+        "D4.1.4.SVY.HOUS_NADA.csv",
+        "D4.1.5.SVY.AGRI_NADA_FAO.csv",
+        "D4.1.5.SVY.AGRI_NADA.csv",
+        "D4.1.6.SVY.LABR_NADA.csv",
+        "D4.1.7.SVY.HLTH_NADA.csv",
+        "D4.1.8.SVY.BIZZ_NADA.csv",
+        "fao_library_public_studies.csv",
+        "ilo_library_public_studies.csv",
+        "microdata_library_internal_studies.csv",
+        "microdata_library_public_studies.csv",
+        "microdata_library_surveys.csv"
+      ],
+      "fetch": {
+        "prefetch": {
+          "sources": {
+            "internal": {
+              "label": "World Bank microdata library (internal)",
+              "search_url": "http://microdatalib.worldbank.org/index.php/api/catalog/search?ps=20000",
+              "feeds_companions": true,
+              "found": 16852,
+              "returned": 16852,
+              "probe_found": {},
+              "details": 16852,
+              "ok": 16852,
+              "not_found": 0
+            },
+            "fao": {
+              "label": "FAO microdata catalogue",
+              "search_url": "https://microdata.fao.org/index.php/api/catalog/search?ps=20000",
+              "feeds_companions": true,
+              "found": 1786,
+              "returned": 1786,
+              "probe_found": {},
+              "details": 1786,
+              "ok": 1786,
+              "not_found": 0
+            },
+            "public": {
+              "label": "World Bank microdata library (public)",
+              "search_url": "http://microdata.worldbank.org/index.php/api/catalog/search?ps=10000",
+              "feeds_companions": false,
+              "found": {},
+              "returned": 0,
+              "probe_found": 7141,
+              "details": 0,
+              "ok": 0,
+              "not_found": 0
+            }
+          },
+          "requests": 18642,
+          "ok": 18642,
+          "not_found": 0,
+          "not_found_ids": [],
+          "failed": 0,
+          "extra_requests": 1,
+          "anomalies": "Search incomplete: http://microdata.worldbank.org/index.php/api/catalog/search?ps=10000 reported no study count but returned 0 rows; a one-row search reports 7141 studies. This list does not feed the D4.1 companions; the script receives the server's answer.",
+          "fetched": 0,
+          "reused": 18642,
+          "retried": 0,
+          "max_attempts": 4,
+          "max_age_days": 7,
+          "index": {
+            "path": "01_raw_data/4.1_SOCS/collection/catalogue_cache/catalogue_fetch_index.csv",
+            "sha256": "eca66697588440e15104a33803540d794408691e1da346d9970273167bfdfb5c"
+          },
+          "failures": {
+            "path": "01_raw_data/4.1_SOCS/collection/catalogue_cache/catalogue_fetch_failures.csv",
+            "blocking_rows": 0,
+            "documented_rows": 1
+          },
+          "started_at": "2026-10-24T10:12:05Z",
+          "finished_at": "2026-10-24T10:12:07Z",
+          "elapsed_seconds": 2.7
+        },
+        "retired_sources": {
+          "ilo_survey_catalog": {
+            "status": "retired",
+            "label": "ILO Survey Catalog (NADA), LFS collection",
+            "probe_url": "https://www.ilo.org/surveyLib/index.php/catalog/export/csv?page=1&ps=100&collection[]=LFS",
+            "http_status": 200,
+            "checked_at": "2026-10-24T10:12:09Z",
+            "snapshot": "01_raw_data/4.1_SOCS/retired/ilo_survey_catalog_final_2026-10-20.csv",
+            "snapshot_sha256": "0fcb3a166b5dfceb12c8ffe23f11a287dbd7cb1927b6389113a3708472b8bc34",
+            "snapshot_rows": 1705
+          }
+        },
+        "legacy_requests": {
+          "served_ok": 18641,
+          "served_not_found": 0,
+          "passthrough": [],
+          "passthrough_failures": [],
+          "retired_pages_served": 19,
+          "served_lines": 1,
+          "lines_passthrough": []
+        }
+      },
+      "matches_current_companions": true,
+      "changed_companions": []
+    },
+    "companion_files": ["/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/collection/D4.1.1.CEN.POPU_NADA.iso3c.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/collection/D4.1.2.CEN.AGRI_NADA.iso3c.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/collection/D4.1.3.CEN.BIZZ_NADA.iso3c.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/collection/D4.1.4.SVY.HOUS_NADA.iso3c.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/collection/D4.1.5.SVY.AGRI_NADA.iso3c.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/collection/D4.1.6.SVY.LABR_NADA.iso3c.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/collection/D4.1.7.SVY.HLTH_NADA.iso3c.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/collection/D4.1.8.SVY.BIZZ_NADA.iso3c.csv"],
+    "raw_companion_files": ["/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/D4.1.1.CEN.POPU_NADA.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/D4.1.2.CEN.AGRI_NADA.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/D4.1.3.CEN.BIZZ_NADA.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/D4.1.4.SVY.HOUS_NADA.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/D4.1.5.SVY.AGRI_NADA.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/D4.1.6.SVY.LABR_NADA.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/D4.1.7.SVY.HLTH_NADA.csv", "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/4.1_SOCS/D4.1.8.SVY.BIZZ_NADA.csv"],
+    "rows": [18, 15, 5, 2421, 139, 1772, 696, 489],
+    "exclusions": {
+      "D4.1.1.CEN.POPU": [],
+      "D4.1.2.CEN.AGRI": [
+        {
+          "catalogue_name": "Cook Islands",
+          "category": "non_economy",
+          "reason": "Not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe",
+          "rows": 1,
+          "dates": 2011
+        }
+      ],
+      "D4.1.3.CEN.BIZZ": [],
+      "D4.1.4.SVY.HOUS": [
+        {
+          "catalogue_name": "<blank>",
+          "category": "blank_country",
+          "reason": "Catalogue rows without a country name; their years match the PIP survey years of Taiwan, China (TWN), which is outside the SPI country grid",
+          "rows": 16,
+          "dates": [1981, 1986, 1991, 1995, 1997, 2000, 2005, 2007, 2010, 2013, 2016, 2017, 2018, 2019, 2020, 2021]
+        }
+      ],
+      "D4.1.5.SVY.AGRI": [],
+      "D4.1.6.SVY.LABR": [
+        {
+          "catalogue_name": "<blank>",
+          "category": "blank_country",
+          "reason": "Catalogue rows without a country name; they cannot be attributed to an economy",
+          "rows": 3,
+          "dates": [2019, 2020, 2023]
+        }
+      ],
+      "D4.1.7.SVY.HLTH": [
+        {
+          "catalogue_name": "Anguilla",
+          "category": "non_economy",
+          "reason": "Not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe",
+          "rows": 1,
+          "dates": 2008
+        },
+        {
+          "catalogue_name": "Cook Island",
+          "category": "non_economy",
+          "reason": "Spelling variant of Cook Islands; not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe",
+          "rows": 1,
+          "dates": 2010
+        },
+        {
+          "catalogue_name": "Montserrat",
+          "category": "non_economy",
+          "reason": "Not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe",
+          "rows": 1,
+          "dates": 2008
+        },
+        {
+          "catalogue_name": "Niue",
+          "category": "non_economy",
+          "reason": "Not a World Bank economy (absent from CLASS.xlsx); outside the SPI country universe",
+          "rows": 2,
+          "dates": [2010, 2019]
+        },
+        {
+          "catalogue_name": "Serbia and Montenegro",
+          "category": "multi_country_study",
+          "reason": "Former state union (2003-2006) of two current economies (Serbia, Montenegro); its studies cannot be attributed to a single economy",
+          "rows": 1,
+          "dates": 2000
+        }
+      ],
+      "D4.1.8.SVY.BIZZ": [
+        {
+          "catalogue_name": "Albania, Algeria, American Samoa...and 176 more",
+          "category": "multi_country_study",
+          "reason": "Multi-country study; the catalogue entry cannot be attributed to a single economy",
+          "rows": 1,
+          "dates": 2020
+        },
+        {
+          "catalogue_name": "Argentina, Bolivia, Ecuador...and 3 more",
+          "category": "multi_country_study",
+          "reason": "Multi-country study (the catalogue now truncates the six-country list); the catalogue entry cannot be attributed to a single economy",
+          "rows": 1,
+          "dates": 2017
+        },
+        {
+          "catalogue_name": "Serbia and Montenegro",
+          "category": "multi_country_study",
+          "reason": "Former state union (2003-2006) of two current economies (Serbia, Montenegro); its studies cannot be attributed to a single economy",
+          "rows": 1,
+          "dates": 2002
+        },
+        {
+          "catalogue_name": "Taiwan, China",
+          "category": "outside_country_universe",
+          "reason": "Outside the SPI country universe (TWN is not present in the canonical country snapshot)",
+          "rows": 1,
+          "dates": 2024
+        }
+      ]
+    }
+  }
+}

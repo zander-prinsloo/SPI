@@ -1,0 +1,2 @@
+"url","source","kind","id","blocking","attempts","message","last_attempt_at"
+"http://microdata.worldbank.org/index.php/api/catalog/search?ps=10000","public","search",,"FALSE","1","Search incomplete: http://microdata.worldbank.org/index.php/api/catalog/search?ps=10000 reported no study count but returned 0 rows; a one-row search reports 7141 studies. This list does not feed the D4.1 companions; the script receives the server's answer.","2026-10-24T08:32:14Z"
