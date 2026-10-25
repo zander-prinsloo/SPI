@@ -49,7 +49,52 @@ read_collection_attestations <- function(path) {
       call. = FALSE
     )
   }
-  record[, .attestation_columns, drop = FALSE]
+  record <- record[, .attestation_columns, drop = FALSE]
+  .validate_collection_attestations(record, path)
+  record
+}
+
+.validate_collection_attestations <- function(record, path = "<in-memory>") {
+  if (nrow(record) == 0L) {
+    return(invisible(TRUE))
+  }
+  required <- c("source_id", "artifact_path", "sha256", "attested_by", "attested_at")
+  blank <- vapply(record[required], function(column) {
+    is.na(column) | !nzchar(trimws(as.character(column)))
+  }, logical(nrow(record)))
+  if (any(blank)) {
+    bad <- unique(unlist(lapply(required, function(column) {
+      which(blank[, column])
+    }), use.names = FALSE))
+    stop(
+      "SOURCE ATTESTATION RECORD HAS BLANK REQUIRED FIELD(S) in ", path,
+      " at row(s): ", paste(bad, collapse = ", "),
+      call. = FALSE
+    )
+  }
+  sha256 <- trimws(as.character(record$sha256))
+  if (any(!grepl("^[0-9a-fA-F]{64}$", sha256))) {
+    stop("SOURCE ATTESTATION RECORD HAS INVALID SHA-256 in ", path, call. = FALSE)
+  }
+  parsed <- vapply(record$attested_at, function(value) {
+    !is.na(.parse_utc_time(value))
+  }, logical(1))
+  if (any(!parsed)) {
+    stop("SOURCE ATTESTATION RECORD HAS INVALID attested_at in ", path, call. = FALSE)
+  }
+  keys <- paste(
+    trimws(as.character(record$source_id)),
+    .collection_absolute_path(trimws(as.character(record$artifact_path))),
+    sep = "\r"
+  )
+  if (anyDuplicated(keys) > 0L) {
+    stop(
+      "SOURCE ATTESTATION RECORD HAS DUPLICATE source_id/artifact_path ROWS in ",
+      path,
+      call. = FALSE
+    )
+  }
+  invisible(TRUE)
 }
 
 .collection_relative_path <- function(path) {
@@ -92,6 +137,9 @@ attest_collection_sources <- function(source_ids, attested_by,
   if (missing(attested_by) || length(attested_by) != 1L || is.na(attested_by) || !nzchar(attested_by)) {
     stop("ATTESTATION REQUIRES A NON-BLANK attested_by.", call. = FALSE)
   }
+  if (length(source_ids) == 0L || anyNA(source_ids) || anyDuplicated(source_ids) > 0L) {
+    stop("ATTESTATION REQUIRES UNIQUE SOURCE IDS.", call. = FALSE)
+  }
   if (is.null(registry)) {
     registry <- load_source_registry(params$source_registry_file)
   }
@@ -129,6 +177,7 @@ attest_collection_sources <- function(source_ids, attested_by,
   path <- collection_attestation_path(params)
   existing <- read_collection_attestations(path)
   combined <- rbind(existing[!existing$source_id %in% source_ids, , drop = FALSE], do.call(rbind, rows))
+  .validate_collection_attestations(combined, path)
   dir.create(dirname(path), recursive = TRUE, showWarnings = FALSE)
   utils::write.csv(combined, path, row.names = FALSE, na = "")
   invisible(path)

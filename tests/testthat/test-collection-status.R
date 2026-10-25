@@ -96,11 +96,14 @@ test_that("status gate requires a complete current run and registry coverage", {
   )
   readr::write_csv(status, status_path)
   status_hash <- digest::digest(status_path, algo = "sha256", file = TRUE)
-  jsonlite::write_json(
-    list(collection_state = "complete", run_id = "run-1", status_sha256 = status_hash),
-    run_path,
-    auto_unbox = TRUE
+  run <- list(
+    collection_state = "complete",
+    run_id = "run-1",
+    parameters_hash = "hash-1",
+    status_sha256 = status_hash
   )
+  run$run_sha256 <- .collection_run_digest(run)
+  jsonlite::write_json(run, run_path, auto_unbox = TRUE)
 
   expect_true(validate_collection_status(
     status_path,
@@ -126,14 +129,20 @@ test_that("status gate requires a complete current run and registry coverage", {
     validate_collection_status(status_path, "present", run_path, "hash-1"),
     "NOT COMPLETE"
   )
-  jsonlite::write_json(
-    list(collection_state = "complete", run_id = "run-1", status_sha256 = "bad"),
-    run_path,
-    auto_unbox = TRUE
-  )
+  run$status_sha256 <- "bad"
+  run$run_sha256 <- .collection_run_digest(run)
+  jsonlite::write_json(run, run_path, auto_unbox = TRUE)
   expect_error(
     validate_collection_status(status_path, "present", run_path, "hash-1"),
     "STATUS HASH"
+  )
+
+  run$status_sha256 <- status_hash
+  run$run_sha256 <- "tampered"
+  jsonlite::write_json(run, run_path, auto_unbox = TRUE)
+  expect_error(
+    validate_collection_status(status_path, "present", run_path, "hash-1"),
+    "SELF-HASH"
   )
 })
 
@@ -191,6 +200,38 @@ test_that("manual sources pass only with a hash-matching attestation", {
   status <- evaluate_collection_status(registry, root, 2025, attestations = attestations)
   expect_equal(status$status, "blocking")
   expect_equal(status$reason, "attestation_hash_mismatch")
+})
+
+test_that("attestation records reject ambiguity and malformed approvals", {
+  root <- withr::local_tempdir()
+  artifact <- file.path(root, "artifact.csv")
+  writeLines("data", artifact)
+  path <- file.path(root, "attestations.csv")
+  valid <- data.frame(
+    source_id = "src",
+    artifact_path = .collection_relative_path(artifact),
+    sha256 = digest::digest(artifact, algo = "sha256", file = TRUE),
+    release_label = "release",
+    attested_by = "tester",
+    attested_at = "2026-10-25 12:00:00 UTC",
+    notes = "",
+    stringsAsFactors = FALSE
+  )
+  readr::write_csv(valid, path)
+  expect_no_error(read_collection_attestations(path))
+
+  readr::write_csv(rbind(valid, valid), path)
+  expect_error(read_collection_attestations(path), "DUPLICATE")
+
+  invalid <- valid
+  invalid$sha256 <- "not-a-hash"
+  readr::write_csv(invalid, path)
+  expect_error(read_collection_attestations(path), "INVALID SHA-256")
+
+  invalid <- valid
+  invalid$attested_at <- "not-a-time"
+  readr::write_csv(invalid, path)
+  expect_error(read_collection_attestations(path), "INVALID attested_at")
 })
 
 test_that("collected sources pass only with matching provenance and a release identifier", {

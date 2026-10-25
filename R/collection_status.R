@@ -11,6 +11,22 @@
   digest::digest(path, algo = "sha256", file = TRUE)
 }
 
+.collection_run_digest <- function(run) {
+  candidate <- run
+  candidate$run_sha256 <- NULL
+  digest::digest(
+    as.character(jsonlite::toJSON(
+      candidate,
+      auto_unbox = TRUE,
+      digits = NA,
+      null = "null",
+      pretty = FALSE
+    )),
+    algo = "sha256",
+    serialize = FALSE
+  )
+}
+
 #' Hash the collection-relevant parameter identity.
 #'
 #' @param params Pipeline parameter list.
@@ -79,6 +95,7 @@ start_collection_run <- function(params) {
     started_at = format(Sys.time(), tz = "UTC", usetz = TRUE),
     parameters_hash = collection_parameters_hash(params)
   )
+  run$run_sha256 <- .collection_run_digest(run)
   jsonlite::write_json(run, params$collection_run_file, auto_unbox = TRUE, pretty = TRUE)
   run
 }
@@ -104,6 +121,7 @@ complete_collection_run <- function(params, run) {
     algo = "sha256",
     file = TRUE
   )
+  run$run_sha256 <- .collection_run_digest(run)
   jsonlite::write_json(run, params$collection_run_file, auto_unbox = TRUE, pretty = TRUE)
   invisible(run)
 }
@@ -188,11 +206,11 @@ resolve_collection_artifact_path <- function(relative_path, collection_root, end
   attested_paths <- .collection_absolute_path(rows$artifact_path)
   for (path in artifact_paths) {
     hit <- which(attested_paths == normalizePath(path, winslash = "/", mustWork = FALSE))
-    if (length(hit) == 0L) {
+    if (length(hit) != 1L) {
       return(list(status = source$status_if_missing[[1]], reason = "attestation_missing",
                   observed = NA_character_, age = NA_real_))
     }
-    if (!identical(rows$sha256[[hit[[1]]]], .collection_sha256(path))) {
+    if (!identical(tolower(rows$sha256[[hit[[1]]]]), .collection_sha256(path))) {
       return(list(status = "blocking", reason = "attestation_hash_mismatch",
                   observed = NA_character_, age = NA_real_))
     }
@@ -270,6 +288,8 @@ evaluate_collection_status <- function(registry, collection_root, end_date,
   }
   if (is.null(attestations)) {
     attestations <- read_collection_attestations(NULL)
+  } else {
+    .validate_collection_attestations(attestations)
   }
 
   checked_at <- format(as.POSIXct(now, tz = "UTC"), tz = "UTC", usetz = TRUE)
@@ -385,6 +405,15 @@ validate_collection_status <- function(status_path, expected_source_ids = NULL,
     status_hash <- digest::digest(status_path, algo = "sha256", file = TRUE)
     if (!identical(status_hash, run$status_sha256)) {
       stop("COLLECTION STATUS HASH DOES NOT MATCH THE COMPLETED RUN.", call. = FALSE)
+    }
+    if (is.null(run$run_sha256) || length(run$run_sha256) != 1L ||
+        is.na(run$run_sha256) || !nzchar(run$run_sha256) ||
+        !identical(as.character(run$run_sha256), .collection_run_digest(run))) {
+      stop("COLLECTION RUN MARKER SELF-HASH MISMATCH.", call. = FALSE)
+    }
+    if (!is.null(parameters_hash) &&
+        !identical(as.character(run$parameters_hash), as.character(parameters_hash))) {
+      stop("COLLECTION RUN DOES NOT MATCH CURRENT PARAMETERS.", call. = FALSE)
     }
   }
   if (!is.null(parameters_hash) && !all(status$parameters_hash == parameters_hash)) {
