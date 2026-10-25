@@ -3,10 +3,13 @@
 # =============================================================================
 # Ported from the "unstats" chunk of 01-SPI_data_prep.Rmd.
 #
-# The UN SDG indicators are pre-computed in a separate pipeline
-# (https://github.com/stacybri/UN_Stats_SDG_Indicators_SPI) and saved as
-# SPI_D3_UNSD_data_5yr.csv in 01_raw_data/3_DP/<year>/. This pipeline reads
-# those files and renames the goal columns to the SPI naming convention.
+# The UN SDG indicators are scored per reference year and saved as
+# SPI_D3_UNSD_data_5yr.csv in 01_raw_data/3_DP/<year>/. Historical years are
+# frozen files (originally produced by
+# https://github.com/stacybri/UN_Stats_SDG_Indicators_SPI); the current year is
+# written by the collection pipeline in the same layout. This pipeline reads
+# each year from its own file and renames the goal columns to the SPI naming
+# convention.
 #
 # 16 indicators (D3.1-D3.17, excluding D3.14 Life Below Water which is not
 # relevant for landlocked countries).
@@ -59,38 +62,35 @@ un_sdg_data_read <- function(year, params) {
     dplyr::filter(date == year)
 }
 
-#' Read collection-produced SDG score inputs.
-#'
-#' Stops when the collection artifact is absent.
+#' Paths of the per-year D3 score files for the configured span.
 #'
 #' @param params List of pipeline parameters.
-#' @return A tibble with iso3c, date, and the SPI.D3.* columns.
+#' @return Character vector of `3_DP/<year>/SPI_D3_UNSD_data_5yr.csv` paths.
 #' @export
-read_sdg_collection_scores <- function(params) {
-  path <- file.path(
-    params$raw_dir,
-    "3_DP",
-    "collection",
-    "SPI_D3_UNSD_data_5yr.csv"
-  )
-  if (!file.exists(path)) {
-    stop(
-      "SDG COLLECTION SCORE ARTIFACT NOT FOUND: ", path,
-      "\nRun the data collection pipeline before estimation.",
-      call. = FALSE
-    )
-  }
-
-  readr::read_csv(path, show_col_types = FALSE) %>%
-    dplyr::filter(date %in% params$span) %>%
-    dplyr::select(iso3c, date, dplyr::starts_with("SPI.D3"))
+d3_year_file_paths <- function(params) {
+  file.path(params$raw_dir, "3_DP", params$span, "SPI_D3_UNSD_data_5yr.csv")
 }
 
-#' Combine the legacy per-year SDG data for all years.
+#' Combine the frozen per-year SDG data for all years.
+#'
+#' Mirrors the "unstats" chunk: each year's published D3 values come only
+#' from that year's own file, so earlier years stay frozen even when newer
+#' files recompute them. The current year's file is produced by the
+#' collection pipeline in the same layout.
 #'
 #' @param params List of pipeline parameters.
 #' @return A tibble with iso3c, date, and the SPI.D3.* columns.
 #' @export
 combine_dim3 <- function(params) {
-  read_sdg_collection_scores(params)
+  paths <- d3_year_file_paths(params)
+  missing <- paths[!file.exists(paths)]
+  if (length(missing) > 0L) {
+    stop(
+      "D3 YEAR FILE NOT FOUND: ", paste(missing, collapse = ", "),
+      "\nEach SPI year needs 3_DP/<year>/SPI_D3_UNSD_data_5yr.csv; the current",
+      " year is written by the data collection pipeline.",
+      call. = FALSE
+    )
+  }
+  purrr::map_dfr(params$span, un_sdg_data_read, params = params)
 }

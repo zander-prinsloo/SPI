@@ -1,23 +1,22 @@
 # =============================================================================
-# UN SDG API download target
+# UN SDG series for D4.2, D5.1 and D5.5
 # =============================================================================
-# Downloads UN SDG indicator data from the UN Stats SDG API:
-#   https://unstats.un.org/SDGAPI/v1/sdg/Series/Data?seriesCode=<CODE>
+# Port of 02_programs/misc_scripts/sdg_indicators_for_SPI.R. Each series is
+# requested from the UN SDG API DataCSV endpoint (2004 to end_date) through
+# the raw collection cache and transformed as the legacy script does:
+# date = TimePeriod, Nature = [Nature], geoAreaCode as character, join
+# iso_codes.csv (read as character) and the saved country snapshot, keep rows
+# with an iso3c. Outputs keep the legacy paths and column layout.
 #
-# Used by the pipeline for:
-#   - SPI.D5.1.DILG (statistical legislation, SDG 17.18.2)
-#   - SPI.D5.5.DIFI (statistical plan funded, SDG 17.18.3; SG_STT_NSDSFND)
-#   - SPI.D4.2.3.CRVS (birth registration, SDG 17.19.2)
+#   SG_REG_BRTH90N, SG_REG_DETH75N -> SPI.D4.2.3.CRVS
+#   SG_STT_FPOS                    -> SPI.D5.1.DILG
+#   SG_STT_NSDSFND                 -> SPI.D5.5.DIFI
 #
-# The original Rmd defines an un_pull() helper that fetches a series and
-# right-joins the UN iso3c codes. This target replicates that helper and
-# writes the fetched series to 01_raw_data/.
+# The legacy request body has a stray comma (`timePeriodStart=,2004`); the
+# port sends the well-formed parameter. The series start in 2015 and 2019 and
+# the scorers filter to the SPI span, so outputs are unaffected.
 #
-# NOTE: this target is OPT-IN. Running tar_make() by default does NOT
-# trigger it. The technical lead runs it explicitly when updating:
-#   targets::tar_make(pull_unsdg)
-#
-# Created: 2026-09-22
+# Created: 2026-09-22 (rewritten 2026-10-23 for the 202611 update)
 # =============================================================================
 
 # The pipe operator (%>%) comes from magrittr (loaded via tidyverse in the
@@ -25,100 +24,178 @@
 `%>%` <- magrittr::`%>%`
 
 # dplyr functions (if_else, case_when, etc.) are used unqualified throughout
-# this file, matching the tidyverse style of the original Rmds.
+# the pipeline files, matching the tidyverse style of the original Rmds.
 library(dplyr)
 
-#' Request raw UN SDG JSON bytes for one series.
+.unsdg_endpoint <- "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV"
+
+#' UN SDG series collected for the SPI, with outputs and registry sources.
 #'
-#' @param series Character series code.
-#' @return Raw JSON response bytes.
+#' @param raw_dir Root `01_raw_data` directory.
+#' @return A data frame with `series`, `source_id` and `path`.
 #' @export
-un_sdg_raw_request <- function(series) {
-  url <- paste0(
-    "https://unstats.un.org/SDGAPI/v1/sdg/Series/Data?seriesCode=",
-    series,
-    "&pageSize=10000"
+unsdg_series_specs <- function(raw_dir) {
+  data.frame(
+    series = c("SG_REG_BRTH90N", "SG_REG_DETH75N", "SG_STT_FPOS", "SG_STT_NSDSFND"),
+    source_id = c("d4_2_crvs", "d4_2_crvs", "d5_1_legislation", "d5_5_finance"),
+    path = file.path(raw_dir, c(
+      "4.2_SOAD/SG_REG_BRTH90N.csv",
+      "4.2_SOAD/SG_REG_DETH75N.csv",
+      "5.1_DILG/SG_STT_FPOS.csv",
+      "5.5_DIFI/SG_STT_NSDSFND.csv"
+    )),
+    stringsAsFactors = FALSE
   )
-  resp <- with_http_retry(function() httr::GET(url, httr::timeout(120)))
-  if (httr::status_code(resp) != 200) {
-    stop(sprintf("UN SDG API returned HTTP %d for series %s", httr::status_code(resp), series), call. = FALSE)
-  }
-  content <- httr::content(resp, as = "raw")
-  if (length(content) == 0L) {
-    stop(sprintf("UN SDG API returned no data for series %s", series), call. = FALSE)
-  }
-  content
 }
 
-#' Parse one raw UN SDG series response.
+#' Read iso_codes.csv as the legacy script does (three character columns).
 #'
-#' @param payload Raw JSON bytes.
-#' @param series Character series code.
-#' @param params Pipeline parameters.
-#' @return A tibble with iso3c, date, and series values.
+#' @param raw_dir Root `01_raw_data` directory.
+#' @return A tibble with `country`, `geoAreaCode` and `iso3c`.
 #' @export
-parse_un_sdg_raw <- function(payload, series, params) {
-  data <- jsonlite::fromJSON(
-    rawToChar(payload),
-    flatten = TRUE
-  )$data
-  if (is.null(data) || nrow(data) == 0) {
-    stop(sprintf("UN SDG API returned no data for series %s", series), call. = FALSE)
+read_unsdg_iso_codes <- function(raw_dir) {
+  path <- file.path(raw_dir, "metadata", "iso_codes.csv")
+  if (!file.exists(path)) {
+    stop("UN SDG ISO CODES NOT FOUND: ", path, call. = FALSE)
   }
-  iso3c <- readr::read_csv(file.path(params$raw_dir, "metadata", "iso_codes.csv"), show_col_types = FALSE)
-  data |>
-    tibble::as_tibble() |>
-    dplyr::mutate(date = timePeriodStart) |>
-    dplyr::right_join(iso3c, by = "geoAreaCode")
-}
-
-#' Pull one UN SDG series from the SDG API
-#'
-#' Mirrors the un_pull() helper in the original Rmd. Fetches all data for a
-#' series code and right-joins the UN iso3c codes so every country appears.
-#'
-#' @param series Character: the SDG series code (e.g. "SG_STT_FPOS").
-#' @param params List of pipeline parameters.
-#' @return A tibble with iso3c, date, and the series value columns.
-#' @export
-un_sdg_pull <- function(series, params) {
-  parse_un_sdg_raw(un_sdg_raw_request(series), series, params)
-}
-
-#' Download the UN SDG series used by the pipeline
-#'
-#' Fetches the legislation (SG_STT_FPOS), finance (SG_STT_NSDSFND), and birth
-#' registration (SG_REG_BRTH90N) series and writes them to 01_raw_data/.
-#'
-#' @param params List of pipeline parameters.
-#' @return A list of fetched series data frames.
-#' @export
-download_unsdg_series <- function(params) {
-  series_map <- list(
-    "SG_STT_FPOS" = file.path(params$raw_dir, "5.1_DILG", "SG_STT_FPOS.csv"),
-    "SG_STT_NSDSFND" = file.path(params$raw_dir, "5.5_DIFI", "SG_STT_NSDSFND.csv"),
-    "SG_REG_BRTH90N" = file.path(params$raw_dir, "4.2_SOAD", "SG_REG_BRTH90N.csv")
+  iso_codes <- readr::read_csv(
+    path,
+    col_types = list(readr::col_character(), readr::col_character(), readr::col_character())
   )
+  if (!identical(names(iso_codes), c("country", "geoAreaCode", "iso3c"))) {
+    stop("UN SDG ISO CODES MUST HAVE country, geoAreaCode AND iso3c.", call. = FALSE)
+  }
+  iso_codes
+}
 
-  results <- purrr::imap(series_map, function(out_path, series) {
-    message("Pulling UN SDG series ", series, "...")
+#' Transform one DataCSV series as sdg_indicators_for_SPI.R does.
+#'
+#' The legacy natural joins resolve to `geoAreaCode` (ISO lookup) and `iso3c`
+#' (country snapshot) for the DataCSV schema. Any other shared column would
+#' silently change those keys, so it stops instead.
+#'
+#' @param raw_data Data frame read from the DataCSV body.
+#' @param series Series code (for messages).
+#' @param iso_codes Lookup from [read_unsdg_iso_codes()].
+#' @param country_metadata Saved country snapshot.
+#' @return A list with the transformed `data` and the `dropped_codes`
+#'   (geography codes without an ISO3 code, dropped as in legacy).
+#' @export
+transform_unsdg_series <- function(raw_data, series, iso_codes, country_metadata) {
+  required <- c("TimePeriod", "[Nature]", "GeoAreaCode", "Value")
+  missing <- setdiff(required, names(raw_data))
+  if (length(missing) > 0L) {
+    stop(
+      sprintf("UN SDG SERIES SCHEMA MISMATCH for %s: missing %s", series, paste(missing, collapse = ", ")),
+      call. = FALSE
+    )
+  }
+  if (!"iso3c" %in% names(country_metadata)) {
+    stop("UN SDG COUNTRY SNAPSHOT MUST HAVE iso3c.", call. = FALSE)
+  }
+
+  data <- raw_data %>%
+    dplyr::mutate(
+      date = as.numeric(TimePeriod),
+      Nature = `[Nature]`,
+      geoAreaCode = as.character(GeoAreaCode)
+    )
+
+  clash <- unique(c(
+    setdiff(intersect(names(data), names(iso_codes)), "geoAreaCode"),
+    intersect(setdiff(names(data), "country"), setdiff(names(country_metadata), "iso3c"))
+  ))
+  if (length(clash) > 0L) {
+    stop(
+      sprintf("UN SDG SERIES COLUMN CLASH for %s: %s", series, paste(clash, collapse = ", ")),
+      call. = FALSE
+    )
+  }
+
+  joined <- data %>%
+    dplyr::left_join(iso_codes, by = "geoAreaCode", relationship = "many-to-one") %>%
+    dplyr::select(-country) %>%
+    dplyr::left_join(country_metadata, by = "iso3c", relationship = "many-to-one") %>%
+    dplyr::select(dplyr::all_of(colnames(country_metadata)), dplyr::everything())
+
+  list(
+    data = dplyr::filter(joined, !is.na(iso3c)),
+    dropped_codes = sort(unique(joined$geoAreaCode[is.na(joined$iso3c)]))
+  )
+}
+
+#' Collect the UN SDG series used by D4.2, D5.1 and D5.5.
+#'
+#' @param params Pipeline parameters (`raw_dir`, `span`, `end_date`,
+#'   `collection_age_warning_days`).
+#' @param country_metadata Saved country snapshot; defaults to
+#'   `params$country_metadata`.
+#' @param request_fn Function `(series, start_year, end_year)` returning the
+#'   DataCSV body; defaults to [sdg_api_csv_request()].
+#' @return A named list (by series) of output records.
+#' @export
+download_unsdg_series <- function(params, country_metadata = NULL,
+                                  request_fn = sdg_api_csv_request) {
+  if (is.null(country_metadata)) {
+    country_metadata <- params$country_metadata
+  }
+  if (is.null(country_metadata)) {
+    stop("UN SDG COLLECTION REQUIRES THE SAVED COUNTRY SNAPSHOT.", call. = FALSE)
+  }
+  iso_codes <- read_unsdg_iso_codes(params$raw_dir)
+  start_year <- min(params$span)
+  end_year <- params$end_date
+  max_age_days <- if (is.null(params$collection_age_warning_days)) Inf else params$collection_age_warning_days
+  specs <- unsdg_series_specs(params$raw_dir)
+
+  results <- lapply(seq_len(nrow(specs)), function(i) {
+    series <- specs$series[[i]]
     record <- collect_cached_raw(
       cache_dir = file.path(params$raw_dir, "_collection", "un_sdg", "raw"),
       source_id = paste0("un_sdg_", series),
       request = list(
-        endpoint = "https://unstats.un.org/SDGAPI/v1/sdg/Series/Data",
-        series = series
+        endpoint = .unsdg_endpoint,
+        series_code = series,
+        start_year = start_year,
+        end_year = end_year
       ),
       vintage = params$end_date,
-      collector_version = "un-sdg-json-v1",
-      fetch = function() un_sdg_raw_request(series),
-      max_age_days = params$collection_age_warning_days
+      collector_version = "un-sdg-datacsv-v1",
+      fetch = function() request_fn(series, start_year, end_year),
+      max_age_days = max_age_days
     )
-    df <- parse_un_sdg_raw(readBin(record$raw_path, "raw", file.info(record$raw_path)$size), series, params)
-    readr::write_csv(df, out_path)
-    message(sprintf("  wrote %s (%d rows)", out_path, nrow(df)))
-    df
-  })
 
-  results
+    raw_data <- readr::read_csv(record$raw_path, show_col_types = FALSE)
+    transformed <- transform_unsdg_series(raw_data, series, iso_codes, country_metadata)
+    if (length(transformed$dropped_codes) > 0L) {
+      warning(
+        sprintf(
+          "UN SDG GEOAREA CODES DROPPED for %s (no ISO3 code; legacy drops them too): %s",
+          series,
+          paste(transformed$dropped_codes, collapse = ", ")
+        ),
+        call. = FALSE
+      )
+    }
+
+    path <- specs$path[[i]]
+    dir.create(dirname(path), recursive = TRUE, showWarnings = FALSE)
+    readr::write_csv(transformed$data, path)
+    write_artifact_provenance(
+      path,
+      source_id = specs$source_id[[i]],
+      retrieved_at = record$retrieved_at,
+      release_identifier = sprintf("UN SDG API DataCSV retrieved %s", substr(record$retrieved_at, 1, 10)),
+      raw_path = record$raw_path,
+      extra = list(series_code = series, dropped_geo_area_codes = transformed$dropped_codes)
+    )
+    message(sprintf("UN SDG %s: wrote %s (%d rows)", series, path, nrow(transformed$data)))
+    list(
+      path = normalizePath(path, winslash = "/", mustWork = FALSE),
+      rows = nrow(transformed$data),
+      retrieved_at = record$retrieved_at,
+      raw_path = record$raw_path
+    )
+  })
+  stats::setNames(results, specs$series)
 }

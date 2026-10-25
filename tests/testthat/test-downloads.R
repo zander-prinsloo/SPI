@@ -23,6 +23,7 @@ library(testthat)
 source(file.path(here::here("R"), "collection_http.R"))
 source(file.path(here::here("R"), "collection_cache.R"))
 source(file.path(here::here("R"), "checkpoints.R"))
+source(file.path(here::here("R"), "dim2.R"))
 source(file.path(here::here("R"), "pull_wdi.R"))
 source(file.path(here::here("R"), "pull_ilo.R"))
 source(file.path(here::here("R"), "pull_imf.R"))
@@ -200,12 +201,29 @@ test_that("pull targets are no-ops when run_downloads = FALSE", {
 
 # --- Test: JMP download hard stop (P2.11) -----------------------------------
 
-test_that("jmp_country_download fails loudly on a non-200 response", {
-  # Use an invalid country code that the JMP API will not have. The
-  # function must STOP (not return an NA row) so the pull cannot silently
-  # produce incomplete data.
-  expect_error(
-    jmp_country_download("ZZZ", timeout = 10),
-    "JMP download failed"
+test_that("JMP workbook downloads fail loudly on a non-200 response", {
+  # The download must STOP (not return an empty sheet) so the pull cannot
+  # silently produce incomplete data. httr::GET is mocked: no network.
+  local_mocked_bindings(
+    GET = function(...) structure(list(status_code = 404L, url = "https://washdata.org"), class = "response"),
+    .package = "httr"
   )
+  expect_error(
+    jmp_download_workbook(jmp_country_url("ZZZ"), tempfile(fileext = ".xlsx")),
+    "JMP DOWNLOAD FAILED: HTTP 404"
+  )
+})
+
+test_that("checkpoint_odin requires every column the ODIN readers use", {
+  params <- test_params()
+  source_file <- file.path(params$raw_dir, "2.2_DSOA", sprintf("ODIN_%d.csv", params$end_date))
+  data <- readr::read_csv(source_file, show_col_types = FALSE)
+  raw <- withr::local_tempdir()
+  dir.create(file.path(raw, "2.2_DSOA"))
+  readr::write_csv(
+    data[, setdiff(names(data), "Second administrative level")],
+    file.path(raw, "2.2_DSOA", basename(source_file))
+  )
+  params$raw_dir <- raw
+  expect_error(verify_odin_data(params), "ODIN SCHEMA MISMATCH.*Second.administrative.level")
 })
