@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SH_HIV_INCD",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SH_HIV_INCD",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:44:38 UTC",
+  "compression": "gzip",
+  "response_bytes": 16431413,
+  "response_sha256": "d35c0e675865a4ef0a450b0626a8a36a4c20edddeea21ce043dad77ddfb39a65",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_HIV_INCD-fbda92097a010db016cdb5047cebe752951fdf31d2e618c2f15500701c0b3fc9.raw",
+  "bytes": 463524,
+  "sha256": "7e15a4edff778669c6b4d0221a22765f15a87eb7472744ce4e9d47e485ecc22c",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_HIV_INCD-fbda92097a010db016cdb5047cebe752951fdf31d2e618c2f15500701c0b3fc9.raw.json"
+}

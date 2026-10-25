@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_NY_GDP_PCAP",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "NY_GDP_PCAP",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:47:53 UTC",
+  "compression": "gzip",
+  "response_bytes": 1320168,
+  "response_sha256": "72aded30b808b1e00dbc0219966ed349d17cd7d40d5fc8339271c488f28df0df",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_NY_GDP_PCAP-5983f126d392aa8003b1cc3e13c5953e1ee8ae0f5164283ace155324884c6e58.raw",
+  "bytes": 43770,
+  "sha256": "f8761a0d5237bef06656f45d50c5381c7e92e68c7ad9e71d4e0702921986d0af",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_NY_GDP_PCAP-5983f126d392aa8003b1cc3e13c5953e1ee8ae0f5164283ace155324884c6e58.raw.json"
+}

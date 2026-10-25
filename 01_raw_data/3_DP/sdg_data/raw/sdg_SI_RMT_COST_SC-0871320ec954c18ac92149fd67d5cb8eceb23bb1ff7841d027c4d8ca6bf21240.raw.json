@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SI_RMT_COST_SC",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SI_RMT_COST_SC",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:24:16 UTC",
+  "compression": "gzip",
+  "response_bytes": 1163596,
+  "response_sha256": "b9ed75da9aad856063f1c51fbeb5eb6cb375e5ce2639b6f6a4a2b893a815ba1a",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SI_RMT_COST_SC-0871320ec954c18ac92149fd67d5cb8eceb23bb1ff7841d027c4d8ca6bf21240.raw",
+  "bytes": 37683,
+  "sha256": "4c910839b7f981cecd6225f68eae0b42f58361f38a254af4a32ee49b4ba763a1",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SI_RMT_COST_SC-0871320ec954c18ac92149fd67d5cb8eceb23bb1ff7841d027c4d8ca6bf21240.raw.json"
+}

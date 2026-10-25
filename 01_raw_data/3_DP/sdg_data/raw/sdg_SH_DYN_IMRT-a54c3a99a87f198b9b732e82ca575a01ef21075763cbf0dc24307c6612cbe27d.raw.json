@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SH_DYN_IMRT",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SH_DYN_IMRT",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:43:27 UTC",
+  "compression": "gzip",
+  "response_bytes": 3109867,
+  "response_sha256": "423847371c7c0f4a0515cdb00fafb4ec17b76e60f8e8952dfa7a085787a938c2",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_DYN_IMRT-a54c3a99a87f198b9b732e82ca575a01ef21075763cbf0dc24307c6612cbe27d.raw",
+  "bytes": 312311,
+  "sha256": "193ae995503c0a3e60a889e4d7d0d2c6f5126116799261b029e3cebc69e435f3",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_DYN_IMRT-a54c3a99a87f198b9b732e82ca575a01ef21075763cbf0dc24307c6612cbe27d.raw.json"
+}

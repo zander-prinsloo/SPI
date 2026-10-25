@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_ER_H2O_IWRMD_MI",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "ER_H2O_IWRMD_MI",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:05:49 UTC",
+  "compression": "gzip",
+  "response_bytes": 174044,
+  "response_sha256": "ae2f53e5f2aab1f5f4783d8f351a07a31e40a75d60e76a358ed7c9a8b3814532",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_H2O_IWRMD_MI-aeb79c5525d757d683384ea4a8b05e5ff431772d3c0033b607429235767fae60.raw",
+  "bytes": 10428,
+  "sha256": "847db7d853aa8023e0a5db0fb91742a3a96ec4a3534d274c6fd2828aea206449",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_H2O_IWRMD_MI-aeb79c5525d757d683384ea4a8b05e5ff431772d3c0033b607429235767fae60.raw.json"
+}

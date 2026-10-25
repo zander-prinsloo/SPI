@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_EN_SCP_FSHGDP",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "EN_SCP_FSHGDP",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:25:37 UTC",
+  "compression": "gzip",
+  "response_bytes": 373567,
+  "response_sha256": "635aa65e48e2322957483669f551e01c19589957bf6ee6eb8ef22c4a0cdc68c8",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EN_SCP_FSHGDP-49008f95ebdc875b496c521792f3c375893b41e18626e1a628328967df409487.raw",
+  "bytes": 11032,
+  "sha256": "a4dd5f62612459ba8ab5684160a7b30a00c61395965b97d2145ec8fe8e6647f3",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EN_SCP_FSHGDP-49008f95ebdc875b496c521792f3c375893b41e18626e1a628328967df409487.raw.json"
+}

@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_IS_RDP_FRGVOL",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "IS_RDP_FRGVOL",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:48:51 UTC",
+  "compression": "gzip",
+  "response_bytes": 406977,
+  "response_sha256": "f204b9b51d846a7e57d869f0b3211bd200342a20f0a319a0df902974184d9c57",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_IS_RDP_FRGVOL-82b0e493df4ad938f2766ee6bc0c06175a6e73b068f343f75db0202d1e935590.raw",
+  "bytes": 29135,
+  "sha256": "dfa2f313683d85a250bae3c7646de70cfc288b9ed0aa4772968979b74b24e872",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_IS_RDP_FRGVOL-82b0e493df4ad938f2766ee6bc0c06175a6e73b068f343f75db0202d1e935590.raw.json"
+}

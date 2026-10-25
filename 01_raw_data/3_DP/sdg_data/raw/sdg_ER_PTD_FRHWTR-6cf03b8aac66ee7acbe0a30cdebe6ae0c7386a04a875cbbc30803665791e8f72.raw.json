@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_ER_PTD_FRHWTR",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "ER_PTD_FRHWTR",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:26:20 UTC",
+  "compression": "gzip",
+  "response_bytes": 2708981,
+  "response_sha256": "f0910cad962e10804d211dcdad0da323858c5c9d6325ed8ce833c55c7ed45774",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_PTD_FRHWTR-6cf03b8aac66ee7acbe0a30cdebe6ae0c7386a04a875cbbc30803665791e8f72.raw",
+  "bytes": 52131,
+  "sha256": "731f9139c23187996ac417d8fb37ad1ee6937bed828a403fe5afb5cd5937fad8",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_PTD_FRHWTR-6cf03b8aac66ee7acbe0a30cdebe6ae0c7386a04a875cbbc30803665791e8f72.raw.json"
+}

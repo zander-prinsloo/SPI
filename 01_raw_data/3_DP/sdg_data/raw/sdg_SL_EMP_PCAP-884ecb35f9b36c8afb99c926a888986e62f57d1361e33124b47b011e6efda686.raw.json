@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SL_EMP_PCAP",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SL_EMP_PCAP",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:42:41 UTC",
+  "compression": "gzip",
+  "response_bytes": 1344447,
+  "response_sha256": "a3940c17788d50fee6ae1fb198ea3ea9da54ad318785406f266749b2f9371c65",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SL_EMP_PCAP-884ecb35f9b36c8afb99c926a888986e62f57d1361e33124b47b011e6efda686.raw",
+  "bytes": 47221,
+  "sha256": "ca78365cecf467a4b2de21069aba5fe858ea33b250d121ba466930b48d10ee5d",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SL_EMP_PCAP-884ecb35f9b36c8afb99c926a888986e62f57d1361e33124b47b011e6efda686.raw.json"
+}

@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_EG_TBA_H2CORL",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "EG_TBA_H2CORL",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:05:58 UTC",
+  "compression": "gzip",
+  "response_bytes": 220207,
+  "response_sha256": "c0d51e85f8e703c2120fab6c55d5be03abe45fc25a55e1092f844beb78aa2d3b",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EG_TBA_H2CORL-416f623db6b91ab7f9543046ae44be937ed2cb30692cb1aa09481fddb0023f53.raw",
+  "bytes": 7234,
+  "sha256": "eaac13b11ca00a4a270490552bfda2bee8df46fe6252d567969c6ab74e9b67fb",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EG_TBA_H2CORL-416f623db6b91ab7f9543046ae44be937ed2cb30692cb1aa09481fddb0023f53.raw.json"
+}

@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SM_DTH_MIGR",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SM_DTH_MIGR",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:22:34 UTC",
+  "compression": "gzip",
+  "response_bytes": 255722,
+  "response_sha256": "b00696b07843de8c570b9209428ce61be3b555e2b83cd0dd17b477247886040c",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SM_DTH_MIGR-dac844884694349a80d99af02df88147ecf0c6756c2a5f861cb0865fe1a144e9.raw",
+  "bytes": 11554,
+  "sha256": "58f06a5dd6a02ebb46bdcb3add4cd7d40fb2dd6e70365d22173d83752ff0402b",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SM_DTH_MIGR-dac844884694349a80d99af02df88147ecf0c6756c2a5f861cb0865fe1a144e9.raw.json"
+}

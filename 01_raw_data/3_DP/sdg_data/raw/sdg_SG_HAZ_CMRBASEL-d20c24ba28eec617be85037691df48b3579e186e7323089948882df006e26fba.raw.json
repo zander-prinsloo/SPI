@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SG_HAZ_CMRBASEL",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SG_HAZ_CMRBASEL",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:24:51 UTC",
+  "compression": "gzip",
+  "response_bytes": 220911,
+  "response_sha256": "67017972b01b2de6332cd5f4a91d2af1014a8da4ba565b18dc507c4c3c42dbb9",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_HAZ_CMRBASEL-d20c24ba28eec617be85037691df48b3579e186e7323089948882df006e26fba.raw",
+  "bytes": 10139,
+  "sha256": "cf9b55e894f4d355de1e63afcbf645f3b987d13edca24e273ca31702b48b3f46",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_HAZ_CMRBASEL-d20c24ba28eec617be85037691df48b3579e186e7323089948882df006e26fba.raw.json"
+}

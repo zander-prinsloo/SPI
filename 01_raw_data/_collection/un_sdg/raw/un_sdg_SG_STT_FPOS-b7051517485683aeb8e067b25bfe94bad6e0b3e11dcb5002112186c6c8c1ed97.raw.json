@@ -1,0 +1,17 @@
+{
+  "source_id": "un_sdg_SG_STT_FPOS",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SG_STT_FPOS",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "un-sdg-datacsv-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-24 00:30:38 UTC",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/_collection/un_sdg/raw/un_sdg_SG_STT_FPOS-b7051517485683aeb8e067b25bfe94bad6e0b3e11dcb5002112186c6c8c1ed97.raw",
+  "bytes": 798016,
+  "sha256": "a653ab91b4d955aeeb2eea4a9956ef161c6d690bcb7e147b3d6fdcb249bd5634",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/_collection/un_sdg/raw/un_sdg_SG_STT_FPOS-b7051517485683aeb8e067b25bfe94bad6e0b3e11dcb5002112186c6c8c1ed97.raw.json"
+}

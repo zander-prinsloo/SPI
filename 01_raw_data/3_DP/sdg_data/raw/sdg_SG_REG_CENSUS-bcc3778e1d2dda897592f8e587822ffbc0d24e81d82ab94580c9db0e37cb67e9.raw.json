@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SG_REG_CENSUS",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SG_REG_CENSUS",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:35:36 UTC",
+  "compression": "gzip",
+  "response_bytes": 3719,
+  "response_sha256": "742f47d85a8db5361e3a56d41bcbdf09ec8c6b8f0b33991ed10f5d43547ddc45",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_REG_CENSUS-bcc3778e1d2dda897592f8e587822ffbc0d24e81d82ab94580c9db0e37cb67e9.raw",
+  "bytes": 586,
+  "sha256": "696b3020ac14b026886e0225d2070534baeda24b89a3c42f56f214f184df72e1",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_REG_CENSUS-bcc3778e1d2dda897592f8e587822ffbc0d24e81d82ab94580c9db0e37cb67e9.raw.json"
+}

@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SI_POV_EMP1",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SI_POV_EMP1",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:36:31 UTC",
+  "compression": "gzip",
+  "response_bytes": 3001503,
+  "response_sha256": "9823c7c096f4b5aa31b0492a124cc3775b4947685236d544083d94be657ec2c8",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SI_POV_EMP1-7a829686dacb554aaf18067e289026d2533827aade3abe0ca6e95d36181ab8b2.raw",
+  "bytes": 96633,
+  "sha256": "c9b9f9873377fcf03359b658698f7685d2acaf53594827013765a3cf17738198",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SI_POV_EMP1-7a829686dacb554aaf18067e289026d2533827aade3abe0ca6e95d36181ab8b2.raw.json"
+}

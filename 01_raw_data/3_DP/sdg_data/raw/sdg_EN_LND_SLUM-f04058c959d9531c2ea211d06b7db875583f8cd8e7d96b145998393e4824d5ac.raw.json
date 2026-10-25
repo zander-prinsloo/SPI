@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_EN_LND_SLUM",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "EN_LND_SLUM",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:24:22 UTC",
+  "compression": "gzip",
+  "response_bytes": 562776,
+  "response_sha256": "e5f322b54301533dbdb1731e68d91876c17182d6b2354d46c11f0273045d4593",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EN_LND_SLUM-f04058c959d9531c2ea211d06b7db875583f8cd8e7d96b145998393e4824d5ac.raw",
+  "bytes": 23717,
+  "sha256": "04cca9705306afd9464e34aa848a07a0561096b3b27efc48894beb4f5882f995",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EN_LND_SLUM-f04058c959d9531c2ea211d06b7db875583f8cd8e7d96b145998393e4824d5ac.raw.json"
+}

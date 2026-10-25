@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_FB_CBK_BRCH",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "FB_CBK_BRCH",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:48:00 UTC",
+  "compression": "gzip",
+  "response_bytes": 751227,
+  "response_sha256": "58c751c331e4cc172cadd142e8b39a1add6d729a2e7e5804c2cb4830778db693",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_FB_CBK_BRCH-395fddb4d55e1e3df7ea6df11d375a73b0a686c5e7f77ac7df06574d42c83233.raw",
+  "bytes": 63002,
+  "sha256": "518a8f98a24cf02386cf99a5dcc5af02e40ce68ae61dfefa7ba8f80e26899d3e",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_FB_CBK_BRCH-395fddb4d55e1e3df7ea6df11d375a73b0a686c5e7f77ac7df06574d42c83233.raw.json"
+}

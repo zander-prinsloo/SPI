@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SG_DMK_PARLMP_UC",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SG_DMK_PARLMP_UC",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:31:13 UTC",
+  "compression": "gzip",
+  "response_bytes": 431788,
+  "response_sha256": "c732b48a9e5075a8646106a8bcc5dc7d2b1c8364a6f0eb39b06c4079a8ced39b",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_DMK_PARLMP_UC-919ea331ec3c2c993b95f1cecb4bef7b91cede3a278ede27c0a53de11a58703b.raw",
+  "bytes": 10763,
+  "sha256": "2013c802dca188d9026c09ee70b8cb765241d4bf06dcd77361bd19520790a206",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_DMK_PARLMP_UC-919ea331ec3c2c993b95f1cecb4bef7b91cede3a278ede27c0a53de11a58703b.raw.json"
+}

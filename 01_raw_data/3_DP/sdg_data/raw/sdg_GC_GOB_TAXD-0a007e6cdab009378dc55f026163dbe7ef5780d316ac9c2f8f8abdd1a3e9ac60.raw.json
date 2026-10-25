@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_GC_GOB_TAXD",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "GC_GOB_TAXD",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:32:13 UTC",
+  "compression": "gzip",
+  "response_bytes": 627735,
+  "response_sha256": "be7348e4f05d478c513e3eced1ecdc822c294e1e9f55685f6d6e2a3487697c14",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_GC_GOB_TAXD-0a007e6cdab009378dc55f026163dbe7ef5780d316ac9c2f8f8abdd1a3e9ac60.raw",
+  "bytes": 40936,
+  "sha256": "b667181aad407c7baea6f13740cc2da3ed39c06e35889bd6c56a5b7ad6d7b0d1",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_GC_GOB_TAXD-0a007e6cdab009378dc55f026163dbe7ef5780d316ac9c2f8f8abdd1a3e9ac60.raw.json"
+}

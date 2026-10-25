@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_ER_CBD_NAGOYA",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "ER_CBD_NAGOYA",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:30:04 UTC",
+  "compression": "gzip",
+  "response_bytes": 850726,
+  "response_sha256": "d8ff3bf7e4d1d47d070dc1eb9841471187614996bb4f1cd4946955a4b9924c9c",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_CBD_NAGOYA-c9246f6bdf2ec6d2988d273d00127ffa2d4f74d37f7a1ba0c8dd85a4548d737e.raw",
+  "bytes": 12621,
+  "sha256": "1040ad7401ccfb835a5cc7301d61545a67fff75a16288fa87aa217166acb5113",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_CBD_NAGOYA-c9246f6bdf2ec6d2988d273d00127ffa2d4f74d37f7a1ba0c8dd85a4548d737e.raw.json"
+}

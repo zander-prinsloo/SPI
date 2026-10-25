@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_ER_IAS_NATBUD",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "ER_IAS_NATBUD",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:30:26 UTC",
+  "compression": "gzip",
+  "response_bytes": 120940,
+  "response_sha256": "37102767c393e4c33de523b0689bb349bd393c856cc4d93cdb707696b8a71e18",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_IAS_NATBUD-6b6025dffb8e851e4375c11699dd705e2c71e976bb2b0339aba35a400291f0a2.raw",
+  "bytes": 3435,
+  "sha256": "9e71da98b376ade6a4aea9883ceba47b86f3ca3e1f8fa79b32cf12cfe521b794",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_IAS_NATBUD-6b6025dffb8e851e4375c11699dd705e2c71e976bb2b0339aba35a400291f0a2.raw.json"
+}

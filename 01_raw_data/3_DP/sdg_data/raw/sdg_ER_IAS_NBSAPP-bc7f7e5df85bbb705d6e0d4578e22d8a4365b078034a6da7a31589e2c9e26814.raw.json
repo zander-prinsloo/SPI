@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_ER_IAS_NBSAPP",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "ER_IAS_NBSAPP",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:30:28 UTC",
+  "compression": "gzip",
+  "response_bytes": 27355,
+  "response_sha256": "d94213b6205cbb5cae4533c0ad8e3b21bd00a03b742b3a54079a9ac13d9a4dec",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_IAS_NBSAPP-bc7f7e5df85bbb705d6e0d4578e22d8a4365b078034a6da7a31589e2c9e26814.raw",
+  "bytes": 1230,
+  "sha256": "c8ff7180c8ce1c7da4c998ee1efa61104bb787d7baa73e54d8d73375b4162674",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_IAS_NBSAPP-bc7f7e5df85bbb705d6e0d4578e22d8a4365b078034a6da7a31589e2c9e26814.raw.json"
+}

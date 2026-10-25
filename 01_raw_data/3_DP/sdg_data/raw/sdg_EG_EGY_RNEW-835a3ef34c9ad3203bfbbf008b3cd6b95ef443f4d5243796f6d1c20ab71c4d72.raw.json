@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_EG_EGY_RNEW",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "EG_EGY_RNEW",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:42:35 UTC",
+  "compression": "gzip",
+  "response_bytes": 32444657,
+  "response_sha256": "04666bc54175e572cde232f47fd4ad6fc16d909aa006206b560107c6042ed3e4",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EG_EGY_RNEW-835a3ef34c9ad3203bfbbf008b3cd6b95ef443f4d5243796f6d1c20ab71c4d72.raw",
+  "bytes": 654481,
+  "sha256": "ae58459d38612b1ad7f97af616d64cf3cf5b5171e8c62d48d817976f6b0f04bc",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EG_EGY_RNEW-835a3ef34c9ad3203bfbbf008b3cd6b95ef443f4d5243796f6d1c20ab71c4d72.raw.json"
+}

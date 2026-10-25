@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SG_HAZ_CMRSTHOLM",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SG_HAZ_CMRSTHOLM",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:24:52 UTC",
+  "compression": "gzip",
+  "response_bytes": 217796,
+  "response_sha256": "24ba902a2b0dd1f5aa0e58bc982b9ed6602e948162e589e8ed96f97e5285fb9e",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_HAZ_CMRSTHOLM-a88c57fe0396e91e6eff585f1f38d8b9cf76593a8a2d32fb139823a31addb23d.raw",
+  "bytes": 9867,
+  "sha256": "d6671c38abe4f0aee74e5372f04489665d7bab1630717e1ef8d4951c46e3cd13",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_HAZ_CMRSTHOLM-a88c57fe0396e91e6eff585f1f38d8b9cf76593a8a2d32fb139823a31addb23d.raw.json"
+}

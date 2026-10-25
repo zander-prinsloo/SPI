@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SG_GEN_PARLNT",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SG_GEN_PARLNT",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:04:32 UTC",
+  "compression": "gzip",
+  "response_bytes": 361869,
+  "response_sha256": "c238cf41d7fb416924a873ea7cf125e8b77fefdcc2466e490a62906ce9078683",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_GEN_PARLNT-9d8bbe470bbc73e8c760a5a4251a283b1da47c2c1324fe64b7a7b825e87a6590.raw",
+  "bytes": 15020,
+  "sha256": "f5bda8e1879bd8439145dea5ee1d642b989f542bea6caf67991da677cab12e4a",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_GEN_PARLNT-9d8bbe470bbc73e8c760a5a4251a283b1da47c2c1324fe64b7a7b825e87a6590.raw.json"
+}

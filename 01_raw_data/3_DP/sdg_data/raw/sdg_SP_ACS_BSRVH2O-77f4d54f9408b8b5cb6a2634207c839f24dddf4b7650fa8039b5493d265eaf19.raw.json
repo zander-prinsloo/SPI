@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SP_ACS_BSRVH2O",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SP_ACS_BSRVH2O",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:36:44 UTC",
+  "compression": "gzip",
+  "response_bytes": 4289844,
+  "response_sha256": "650929e2172e4a1eddcf0ab9f4521227adcfb1fbd53daaa79b8e90eea94c0096",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SP_ACS_BSRVH2O-77f4d54f9408b8b5cb6a2634207c839f24dddf4b7650fa8039b5493d265eaf19.raw",
+  "bytes": 169651,
+  "sha256": "54c642b2fd438b4dbb1ebcb6fb408ab511deb623df3667bc951a418aeba828c0",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SP_ACS_BSRVH2O-77f4d54f9408b8b5cb6a2634207c839f24dddf4b7650fa8039b5493d265eaf19.raw.json"
+}

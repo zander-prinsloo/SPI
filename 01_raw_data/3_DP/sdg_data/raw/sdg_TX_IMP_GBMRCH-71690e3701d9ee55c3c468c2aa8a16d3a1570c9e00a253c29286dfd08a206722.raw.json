@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_TX_IMP_GBMRCH",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "TX_IMP_GBMRCH",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:34:00 UTC",
+  "compression": "gzip",
+  "response_bytes": 1479483,
+  "response_sha256": "3cd6ffc32a6ea285e90ae499433d92ffdd2960c44d6b9ffdc93f9fba176542c4",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_TX_IMP_GBMRCH-71690e3701d9ee55c3c468c2aa8a16d3a1570c9e00a253c29286dfd08a206722.raw",
+  "bytes": 59365,
+  "sha256": "df7af2273de7bf78db6bed35d09677e9df6037e2ce7e5383c03ee376dea7b286",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_TX_IMP_GBMRCH-71690e3701d9ee55c3c468c2aa8a16d3a1570c9e00a253c29286dfd08a206722.raw.json"
+}

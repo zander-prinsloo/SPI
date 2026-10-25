@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_EN_ATM_GHGT_NAIP",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "EN_ATM_GHGT_NAIP",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:25:28 UTC",
+  "compression": "gzip",
+  "response_bytes": 212,
+  "response_sha256": "60165d715a1772c33ac54a150e5b2ac701d0f3cb378f2261c1cec1750ca1ea62",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EN_ATM_GHGT_NAIP-816aab1ceefb1c2886c15bd96dd9f0c72f2c2fb1ba5ab8703be0ae89eb34fd55.raw",
+  "bytes": 169,
+  "sha256": "a952509e256bb914896f73c93d17ba3b7d00eed431d1f094b233919fe034a99b",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EN_ATM_GHGT_NAIP-816aab1ceefb1c2886c15bd96dd9f0c72f2c2fb1ba5ab8703be0ae89eb34fd55.raw.json"
+}

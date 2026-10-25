@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SG_DMK_JDC_HGR",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SG_DMK_JDC_HGR",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:31:38 UTC",
+  "compression": "gzip",
+  "response_bytes": 529544,
+  "response_sha256": "cd712f048d82d7f9617314b5e85d52b6f309d1ff85f74ff4555f2a71298327ff",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_DMK_JDC_HGR-ed9ba5f031b49260c4c50c03452f665dc8649e5d32860f4ca658f50796266739.raw",
+  "bytes": 24218,
+  "sha256": "39cfb104d2e3e3280486f0c5624a0337b5531a5bdd852ab60258c516ea933b2c",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_DMK_JDC_HGR-ed9ba5f031b49260c4c50c03452f665dc8649e5d32860f4ca658f50796266739.raw.json"
+}

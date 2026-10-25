@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SH_STA_STNTN",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SH_STA_STNTN",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:38:58 UTC",
+  "compression": "gzip",
+  "response_bytes": 4302891,
+  "response_sha256": "cbbb416f47b41b5a37a2abd59c2d207807cdde8ad30104ac25291ec944358b51",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_STA_STNTN-5783e7d5d3ab9697bd32c419e0aee90ac5af87bb04f4a350657aebc1ffacb5e8.raw",
+  "bytes": 193298,
+  "sha256": "5439544b53ccb24fbeda43f053cd90bb417ca0288760c3afed0c2a04d31eb93b",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_STA_STNTN-5783e7d5d3ab9697bd32c419e0aee90ac5af87bb04f4a350657aebc1ffacb5e8.raw.json"
+}

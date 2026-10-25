@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_EN_ATM_CO2",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "EN_ATM_CO2",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:49:44 UTC",
+  "compression": "gzip",
+  "response_bytes": 2159374,
+  "response_sha256": "c1ecd1bc1bad06f2f876bdd7d7c25f87ee838e431adee8288983a44e6394457a",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EN_ATM_CO2-5559db8039164f246ffd97f45d112022e1e74d6fc8a58bccfca9663334ab68ee.raw",
+  "bytes": 71213,
+  "sha256": "2f5390ddef58ef9d70374126d4979623831590aaa559894523336ddfcd82b799",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EN_ATM_CO2-5559db8039164f246ffd97f45d112022e1e74d6fc8a58bccfca9663334ab68ee.raw.json"
+}

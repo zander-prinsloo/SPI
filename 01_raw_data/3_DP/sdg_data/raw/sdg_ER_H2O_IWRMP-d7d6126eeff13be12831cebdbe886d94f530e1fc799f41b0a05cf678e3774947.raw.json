@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_ER_H2O_IWRMP",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "ER_H2O_IWRMP",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:05:45 UTC",
+  "compression": "gzip",
+  "response_bytes": 95330,
+  "response_sha256": "a5dcbe20b0c2714d99dbaab57940ea60b4a197795cc765a8b2daff13a27f5ffc",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_H2O_IWRMP-d7d6126eeff13be12831cebdbe886d94f530e1fc799f41b0a05cf678e3774947.raw",
+  "bytes": 3156,
+  "sha256": "ecdedfcaf7cf620f8e2b5c6cf606e54b3dd2bf9ab0811a28c01376be06b5c39c",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_H2O_IWRMP-d7d6126eeff13be12831cebdbe886d94f530e1fc799f41b0a05cf678e3774947.raw.json"
+}

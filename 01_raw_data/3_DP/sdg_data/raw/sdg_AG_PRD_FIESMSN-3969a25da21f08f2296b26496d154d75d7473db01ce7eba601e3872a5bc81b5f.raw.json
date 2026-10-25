@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_AG_PRD_FIESMSN",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "AG_PRD_FIESMSN",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:38:19 UTC",
+  "compression": "gzip",
+  "response_bytes": 2238375,
+  "response_sha256": "4eb3fca7ff6b0c203e225a6d764c077c5b0af043d02c2c0734d27db8b4f105cf",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_AG_PRD_FIESMSN-3969a25da21f08f2296b26496d154d75d7473db01ce7eba601e3872a5bc81b5f.raw",
+  "bytes": 118672,
+  "sha256": "59c8b1dcf80656fe3646e54a27614c9a783fbdaeadfb5710de8cb13ba24cd32e",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_AG_PRD_FIESMSN-3969a25da21f08f2296b26496d154d75d7473db01ce7eba601e3872a5bc81b5f.raw.json"
+}

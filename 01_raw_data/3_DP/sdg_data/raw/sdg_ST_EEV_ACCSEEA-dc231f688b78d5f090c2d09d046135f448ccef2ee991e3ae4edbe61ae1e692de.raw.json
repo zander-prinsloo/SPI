@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_ST_EEV_ACCSEEA",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "ST_EEV_ACCSEEA",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:25:01 UTC",
+  "compression": "gzip",
+  "response_bytes": 776936,
+  "response_sha256": "6d103e6bb2278a9eb6763b83653305855f905c59922387b38bfb1a0a944e3b20",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ST_EEV_ACCSEEA-dc231f688b78d5f090c2d09d046135f448ccef2ee991e3ae4edbe61ae1e692de.raw",
+  "bytes": 23797,
+  "sha256": "31a3e99de943a4360ba6039d37deaa8748c03ad84d968499b16cae0a0914e41a",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ST_EEV_ACCSEEA-dc231f688b78d5f090c2d09d046135f448ccef2ee991e3ae4edbe61ae1e692de.raw.json"
+}

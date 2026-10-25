@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_NV_IND_TECH",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "NV_IND_TECH",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:50:15 UTC",
+  "compression": "gzip",
+  "response_bytes": 820257,
+  "response_sha256": "05848246564faca7c81bfe133fd36cce5d5b8debdbde0b28b944beb44ee57e2e",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_NV_IND_TECH-e5e555cbe813c7992e7a80c1ef7283018866eec8a7b85105e35f8698f7524adf.raw",
+  "bytes": 30771,
+  "sha256": "f7452c4cc04e803f3f6b901b0d0d3feff2f2f827ec18e5ff1ce7d500ca2221a1",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_NV_IND_TECH-e5e555cbe813c7992e7a80c1ef7283018866eec8a7b85105e35f8698f7524adf.raw.json"
+}

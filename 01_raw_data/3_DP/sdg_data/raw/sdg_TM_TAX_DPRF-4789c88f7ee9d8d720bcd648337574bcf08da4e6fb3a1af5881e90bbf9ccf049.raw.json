@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_TM_TAX_DPRF",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "TM_TAX_DPRF",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:35:10 UTC",
+  "compression": "gzip",
+  "response_bytes": 7657019,
+  "response_sha256": "7ebd9a48f703b6ec80f94d5f562034c52a8ba572643203b9f927ab1ec741e323",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_TM_TAX_DPRF-4789c88f7ee9d8d720bcd648337574bcf08da4e6fb3a1af5881e90bbf9ccf049.raw",
+  "bytes": 223051,
+  "sha256": "649d8894c2f8939e51b2461ecbedd369f94702c068da75ae22db25346b862594",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_TM_TAX_DPRF-4789c88f7ee9d8d720bcd648337574bcf08da4e6fb3a1af5881e90bbf9ccf049.raw.json"
+}

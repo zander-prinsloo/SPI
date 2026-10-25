@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SE_TOT_RUPI",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SE_TOT_RUPI",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:01:57 UTC",
+  "compression": "gzip",
+  "response_bytes": 378096,
+  "response_sha256": "447d54f897703e8e93f8dee3e2c2d99d36a09fd142fd0b1ae082ce942e5699b0",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SE_TOT_RUPI-dcf7005df1b3642337d869fcd5d519b5c51390efdfcb5f621708553f680f5d32.raw",
+  "bytes": 12291,
+  "sha256": "4f81f39b85765693aa17a21ea4f273ef294816bb2998dc92b3354bf19bfb7d90",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SE_TOT_RUPI-dcf7005df1b3642337d869fcd5d519b5c51390efdfcb5f621708553f680f5d32.raw.json"
+}

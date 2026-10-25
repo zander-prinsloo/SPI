@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_AG_LND_FRSTBIOPHA",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "AG_LND_FRSTBIOPHA",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:26:37 UTC",
+  "compression": "gzip",
+  "response_bytes": 264184,
+  "response_sha256": "e9a6ab34cf875c7dc11a63bf83e3798635c684d5b24af49e61546239954a9637",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_AG_LND_FRSTBIOPHA-b92654d83e9559b48f656f9d12c6cf7b2cedb9c34d84d30c8dceff025057c763.raw",
+  "bytes": 11809,
+  "sha256": "fc98b6aa90914f0122c0d8b1a557c1a0138387e6b68eb66d09cec2fa606df094",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_AG_LND_FRSTBIOPHA-b92654d83e9559b48f656f9d12c6cf7b2cedb9c34d84d30c8dceff025057c763.raw.json"
+}

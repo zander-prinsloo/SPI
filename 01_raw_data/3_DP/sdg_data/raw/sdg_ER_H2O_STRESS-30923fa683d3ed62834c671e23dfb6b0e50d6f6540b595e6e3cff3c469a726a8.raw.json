@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_ER_H2O_STRESS",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "ER_H2O_STRESS",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:05:18 UTC",
+  "compression": "gzip",
+  "response_bytes": 4936095,
+  "response_sha256": "d63fd26787f8a2ac883480f127f5af810b639b8e1d75f05fba1456db74afa002",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_H2O_STRESS-30923fa683d3ed62834c671e23dfb6b0e50d6f6540b595e6e3cff3c469a726a8.raw",
+  "bytes": 120596,
+  "sha256": "231e2441eef62a9b096aeadf115144ee900e2e08e75d03c46718c777b9951689",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_H2O_STRESS-30923fa683d3ed62834c671e23dfb6b0e50d6f6540b595e6e3cff3c469a726a8.raw.json"
+}

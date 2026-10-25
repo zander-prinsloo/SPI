@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_GR_G14_GDP",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "GR_G14_GDP",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:32:04 UTC",
+  "compression": "gzip",
+  "response_bytes": 701992,
+  "response_sha256": "645dc31b4942c45214b91f7bdabb3689fbc7cd94a8d176f39e517b1a5f5636b4",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_GR_G14_GDP-c4d90ae59508198d9bbd48e851aa0388cee7ce945a105597b61f42e4583e10fd.raw",
+  "bytes": 40629,
+  "sha256": "146c3ad10fca5e8db66577b1e6b0aeaeee2c3ada8b1abda996882c6b59a0418f",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_GR_G14_GDP-c4d90ae59508198d9bbd48e851aa0388cee7ce945a105597b61f42e4583e10fd.raw.json"
+}

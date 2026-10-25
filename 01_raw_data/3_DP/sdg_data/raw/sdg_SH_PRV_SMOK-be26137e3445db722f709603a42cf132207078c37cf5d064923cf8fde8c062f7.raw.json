@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SH_PRV_SMOK",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SH_PRV_SMOK",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:46:22 UTC",
+  "compression": "gzip",
+  "response_bytes": 1324903,
+  "response_sha256": "d385d76a3c0ee2f1a3d1f7ed8af96ba4f393cb2a1b318518bda3e39db7e79e65",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_PRV_SMOK-be26137e3445db722f709603a42cf132207078c37cf5d064923cf8fde8c062f7.raw",
+  "bytes": 45774,
+  "sha256": "3d2b61b65883b1875b886f3670562acff1f87d225c7eaa4a5b3ae5a6a70bddee",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_PRV_SMOK-be26137e3445db722f709603a42cf132207078c37cf5d064923cf8fde8c062f7.raw.json"
+}

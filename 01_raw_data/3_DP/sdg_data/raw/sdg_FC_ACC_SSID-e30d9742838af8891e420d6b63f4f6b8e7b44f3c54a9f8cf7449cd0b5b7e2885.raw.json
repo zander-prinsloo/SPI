@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_FC_ACC_SSID",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "FC_ACC_SSID",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:49:31 UTC",
+  "compression": "gzip",
+  "response_bytes": 120611,
+  "response_sha256": "720516214a1ba1d7eb91af58e3b303aa244f1b8d2aa3dee0b62d2e20bebea057",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_FC_ACC_SSID-e30d9742838af8891e420d6b63f4f6b8e7b44f3c54a9f8cf7449cd0b5b7e2885.raw",
+  "bytes": 6161,
+  "sha256": "d20660706cb783c3e0ebfaaa00c319e29a5b1cfa9a8c7b4ca4cb196733421fcf",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_FC_ACC_SSID-e30d9742838af8891e420d6b63f4f6b8e7b44f3c54a9f8cf7449cd0b5b7e2885.raw.json"
+}

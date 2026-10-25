@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_ER_IAS_LEGIS",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "ER_IAS_LEGIS",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:30:23 UTC",
+  "compression": "gzip",
+  "response_bytes": 334062,
+  "response_sha256": "15f1b928a2aa4dfb684b318b6af8ec7cefd3357fad27bafd380a643708823f37",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_IAS_LEGIS-0d42944591e432cec8091e272e42d2fe714ef756aa5d768a26614eec96247c1e.raw",
+  "bytes": 6132,
+  "sha256": "58a6f9e740673a74866a969851f75b3f17509ed345a3d19b0965b3377705557b",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_IAS_LEGIS-0d42944591e432cec8091e272e42d2fe714ef756aa5d768a26614eec96247c1e.raw.json"
+}

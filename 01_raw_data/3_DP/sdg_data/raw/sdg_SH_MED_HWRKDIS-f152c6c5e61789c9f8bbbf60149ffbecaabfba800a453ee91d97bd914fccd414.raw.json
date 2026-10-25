@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SH_MED_HWRKDIS",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SH_MED_HWRKDIS",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:47:24 UTC",
+  "compression": "gzip",
+  "response_bytes": 1262963,
+  "response_sha256": "08d1bbb26c7f267f247bd7e22a0f27162bbea012f0c37f4aa3f8661392bb9c76",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_MED_HWRKDIS-f152c6c5e61789c9f8bbbf60149ffbecaabfba800a453ee91d97bd914fccd414.raw",
+  "bytes": 39117,
+  "sha256": "c5ed2fefbbe83c247449ae1ffe90a19b7560e6001d93e19e76efad8f366047a2",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_MED_HWRKDIS-f152c6c5e61789c9f8bbbf60149ffbecaabfba800a453ee91d97bd914fccd414.raw.json"
+}

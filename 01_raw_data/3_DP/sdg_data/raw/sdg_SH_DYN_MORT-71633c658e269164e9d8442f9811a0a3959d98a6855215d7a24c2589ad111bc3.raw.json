@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SH_DYN_MORT",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SH_DYN_MORT",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:43:09 UTC",
+  "compression": "gzip",
+  "response_bytes": 3277039,
+  "response_sha256": "eb592fd4c2619ff52964d81691c3bd68c9e712d53868b8e1f183c713b7d1e82a",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_DYN_MORT-71633c658e269164e9d8442f9811a0a3959d98a6855215d7a24c2589ad111bc3.raw",
+  "bytes": 313737,
+  "sha256": "d7b670eb12b8b715f37e613f87ff69f582b779a55e4bc724a6038a5ddd8bed17",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_DYN_MORT-71633c658e269164e9d8442f9811a0a3959d98a6855215d7a24c2589ad111bc3.raw.json"
+}

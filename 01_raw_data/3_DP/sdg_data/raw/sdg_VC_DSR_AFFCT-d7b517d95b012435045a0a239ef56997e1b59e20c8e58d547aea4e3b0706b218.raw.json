@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_VC_DSR_AFFCT",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "VC_DSR_AFFCT",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:37:05 UTC",
+  "compression": "gzip",
+  "response_bytes": 2868713,
+  "response_sha256": "d223dc239b9b48cd3457b6e4ea4b594ed7fa1f55e99a95359c5909c3d97eaf26",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_VC_DSR_AFFCT-d7b517d95b012435045a0a239ef56997e1b59e20c8e58d547aea4e3b0706b218.raw",
+  "bytes": 66775,
+  "sha256": "d6fdc8bc973212fc10d3a79f6bf5a06e8db729c0c084972a8e3a34bd316cb14d",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_VC_DSR_AFFCT-d7b517d95b012435045a0a239ef56997e1b59e20c8e58d547aea4e3b0706b218.raw.json"
+}

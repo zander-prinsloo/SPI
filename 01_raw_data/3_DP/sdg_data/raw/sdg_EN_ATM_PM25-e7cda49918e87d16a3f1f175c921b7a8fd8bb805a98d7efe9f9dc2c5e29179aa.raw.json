@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_EN_ATM_PM25",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "EN_ATM_PM25",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:24:45 UTC",
+  "compression": "gzip",
+  "response_bytes": 4401460,
+  "response_sha256": "e0590d7a4e9f9e52bb67ef414f58ffaaa3cf94e1a0c110cc5c51c79b5c05b78d",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EN_ATM_PM25-e7cda49918e87d16a3f1f175c921b7a8fd8bb805a98d7efe9f9dc2c5e29179aa.raw",
+  "bytes": 185843,
+  "sha256": "3bf783bd4a7d3e4e285222439b1ea1a7308b16b408ce6c7f7f4288d021a78a9c",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EN_ATM_PM25-e7cda49918e87d16a3f1f175c921b7a8fd8bb805a98d7efe9f9dc2c5e29179aa.raw.json"
+}

@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SG_HAZ_CMRMNTRL",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SG_HAZ_CMRMNTRL",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:24:49 UTC",
+  "compression": "gzip",
+  "response_bytes": 234500,
+  "response_sha256": "9e7011bfb3dfefe3ab15944d934adedf644f0a34cb3cb5f70d382e336d4b701b",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_HAZ_CMRMNTRL-b246161d6dae02c6b7e346c8afa1bcfe001bc43c03a6e6aebd8bc2ea6f20df31.raw",
+  "bytes": 9701,
+  "sha256": "8b8bc04256ab4f00d71a210fe31910368b3b6b0338d91809739a2bf8addbda55",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SG_HAZ_CMRMNTRL-b246161d6dae02c6b7e346c8afa1bcfe001bc43c03a6e6aebd8bc2ea6f20df31.raw.json"
+}

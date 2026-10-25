@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_FB_ATM_TOTL",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "FB_ATM_TOTL",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:47:57 UTC",
+  "compression": "gzip",
+  "response_bytes": 744626,
+  "response_sha256": "26d23bdf555160464e28d9307b03b03a494a51a828c3ce659b4a387c773d9456",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_FB_ATM_TOTL-eeb4441c6e80891f5721d6e8963b16376dd8e0190b72c0c7c8750d414c583e4a.raw",
+  "bytes": 60759,
+  "sha256": "0e4ebbddbc69b8b1e99dabec13dac7c929d450d3cb389b94378ea4281a74ebf4",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_FB_ATM_TOTL-eeb4441c6e80891f5721d6e8963b16376dd8e0190b72c0c7c8750d414c583e4a.raw.json"
+}

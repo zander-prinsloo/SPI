@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_ER_MTN_TOTL",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "ER_MTN_TOTL",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:28:01 UTC",
+  "compression": "gzip",
+  "response_bytes": 1408091,
+  "response_sha256": "9d9b82a25589354bcc896977bc09f003b1d30a0bf466fa90a5d3e00e3b023dbc",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_MTN_TOTL-56d66c1b6ffbdf5a6b55827bf225a1f8a4d9481f61a2fe2ba1b65b4872c22a2f.raw",
+  "bytes": 45908,
+  "sha256": "cfdf217a2a68191ec04d0d6dd41cbf478a78388683ab5e08d935dc979445715b",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_ER_MTN_TOTL-56d66c1b6ffbdf5a6b55827bf225a1f8a4d9481f61a2fe2ba1b65b4872c22a2f.raw.json"
+}

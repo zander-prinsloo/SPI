@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SH_HAP_ASMORT",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SH_HAP_ASMORT",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:46:07 UTC",
+  "compression": "gzip",
+  "response_bytes": 62126,
+  "response_sha256": "3dacf9d597d650e77c59c168c0934d01f9881307e6b92ea33cc9dc539be0eeb0",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_HAP_ASMORT-377cfcad16095a33aaa6c5d38de172c43a55b4f397a9dfa7c6607f88904e14bb.raw",
+  "bytes": 3413,
+  "sha256": "d27fece097bc9a7479f5ca0c7f3d14f615bc5a6de3b12a4a4eaf97932fd0af7b",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_HAP_ASMORT-377cfcad16095a33aaa6c5d38de172c43a55b4f397a9dfa7c6607f88904e14bb.raw.json"
+}

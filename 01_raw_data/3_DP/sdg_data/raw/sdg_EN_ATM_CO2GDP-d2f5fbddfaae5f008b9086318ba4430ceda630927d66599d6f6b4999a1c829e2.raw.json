@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_EN_ATM_CO2GDP",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "EN_ATM_CO2GDP",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:49:57 UTC",
+  "compression": "gzip",
+  "response_bytes": 1235667,
+  "response_sha256": "2afe68b0cbb59f66059add2e18e9d007d0b4c787ff723d0cbc5be203f6b5266c",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EN_ATM_CO2GDP-d2f5fbddfaae5f008b9086318ba4430ceda630927d66599d6f6b4999a1c829e2.raw",
+  "bytes": 40066,
+  "sha256": "17c7361f1c6d9cd695dc41011dc1a3d3d8ced0bb164bf28315d9e8ef450a112f",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_EN_ATM_CO2GDP-d2f5fbddfaae5f008b9086318ba4430ceda630927d66599d6f6b4999a1c829e2.raw.json"
+}

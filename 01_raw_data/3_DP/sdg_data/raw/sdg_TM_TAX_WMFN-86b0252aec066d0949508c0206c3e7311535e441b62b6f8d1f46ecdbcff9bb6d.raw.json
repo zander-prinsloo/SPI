@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_TM_TAX_WMFN",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "TM_TAX_WMFN",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 23:33:37 UTC",
+  "compression": "gzip",
+  "response_bytes": 3879272,
+  "response_sha256": "0681b2aea0f3c4a13934ceec6f0b4a224dd971ddda487ebde1e02a7cc139644d",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_TM_TAX_WMFN-86b0252aec066d0949508c0206c3e7311535e441b62b6f8d1f46ecdbcff9bb6d.raw",
+  "bytes": 143327,
+  "sha256": "7cab3da2ea201e0acf8a69ebe538dccb477c0dc097497d9a6f672ff6b92212f7",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_TM_TAX_WMFN-86b0252aec066d0949508c0206c3e7311535e441b62b6f8d1f46ecdbcff9bb6d.raw.json"
+}

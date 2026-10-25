@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_SH_STA_ANEM_PREG",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "SH_STA_ANEM_PREG",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:39:36 UTC",
+  "compression": "gzip",
+  "response_bytes": 1245380,
+  "response_sha256": "2d62673b2300cec2c64928eb40166d3c2ada4c5fe7a5ec21d48c3e101e848ce1",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_STA_ANEM_PREG-3b1d304cbd530c4456a306371bf2b8f1aa0a864e4921a5abdca688eae85e28c4.raw",
+  "bytes": 61505,
+  "sha256": "04d04ced03b3a675957d730e65f8540cf1d0d6ace9860fff7448f80024388b74",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_SH_STA_ANEM_PREG-3b1d304cbd530c4456a306371bf2b8f1aa0a864e4921a5abdca688eae85e28c4.raw.json"
+}

@@ -1,0 +1,20 @@
+{
+  "source_id": "sdg_NV_IND_MANF_CD",
+  "request": {
+    "endpoint": "https://unstats.un.org/SDGAPI/v1/sdg/Series/DataCSV",
+    "series_code": "NV_IND_MANF_CD",
+    "start_year": 2004,
+    "end_year": 2025
+  },
+  "vintage": 2025,
+  "collector_version": "sdg-datacsv-legacy-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 22:49:22 UTC",
+  "compression": "gzip",
+  "response_bytes": 1637938,
+  "response_sha256": "18c3752065895837ba345840fadac2d7b8cdaa81560856bdf5373c7affd1603a",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_NV_IND_MANF_CD-2d41417322902b29efdc13e1a730e8dcf8a8321bf5dda34c360c4a3b8f44a345.raw",
+  "bytes": 50012,
+  "sha256": "814eac8d2c86f54f99972ba6001e2fe000b6d3584bff4118e808998b914eb3e7",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/3_DP/sdg_data/raw/sdg_NV_IND_MANF_CD-2d41417322902b29efdc13e1a730e8dcf8a8321bf5dda34c360c4a3b8f44a345.raw.json"
+}
