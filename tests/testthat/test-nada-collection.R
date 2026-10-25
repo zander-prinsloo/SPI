@@ -7,6 +7,7 @@ library(testthat)
 
 source(file.path(here::here("R"), "collect_manual_review.R"))
 source(file.path(here::here("R"), "collection_http.R"))
+source(file.path(here::here("R"), "release_lock.R"))
 nada_collection_path <- file.path(here::here("R"), "collect_nada.R")
 if (file.exists(nada_collection_path)) {
   source(nada_collection_path)
@@ -130,6 +131,38 @@ test_that("NADA URL evidence is reused while fresh", {
   expect_equal(readr::read_csv(evidence_path, show_col_types = FALSE)$NADA_working,
                c(TRUE, TRUE))
   expect_true(file.exists(review_path))
+})
+
+test_that("under a release lock NADA URL evidence is reused regardless of age", {
+  root <- tempfile("nada-lock-")
+  dir.create(file.path(root, "2.4_DSDS"), recursive = TRUE)
+  dir.create(file.path(root, "_collection"))
+  readr::write_csv(
+    data.frame(iso3c = "AAA", country = "A", NADA = 1, NADA_text = "https://a.example/nada", date = 2024),
+    file.path(root, "2.4_DSDS", "D2.4.NADA.2024.csv")
+  )
+  write_nada_review(root)
+  params <- list(
+    raw_dir = root, collection_dir = file.path(root, "_collection"), end_date = 2025,
+    refresh_nada_urls = FALSE, nada_url_max_age_days = 30, nada_url_delay_seconds = 0
+  )
+  evidence_path <- collect_nada_url_evidence(params, request_fn = function(url) fake_response(200), delay_fn = function(...) NULL)
+  Sys.setFileTime(evidence_path, Sys.time() - 60 * 86400)
+  jsonlite::write_json(list(end_date = 2025), release_lock_path(params), auto_unbox = TRUE)
+
+  expect_identical(
+    collect_nada_url_evidence(params, request_fn = function(...) stop("URLs re-checked under a lock"), delay_fn = function(...) NULL),
+    evidence_path
+  )
+  expect_error(
+    collect_nada_url_evidence(utils::modifyList(params, list(refresh_nada_urls = TRUE)), request_fn = function(...) fake_response(200)),
+    "NOT ALLOWED UNDER A RELEASE LOCK"
+  )
+  unlink(evidence_path)
+  expect_error(
+    collect_nada_url_evidence(params, request_fn = function(...) stop("URLs re-checked under a lock"), delay_fn = function(...) NULL),
+    "NADA URL EVIDENCE MUST BE REUSED UNDER A RELEASE LOCK"
+  )
 })
 
 test_that("malformed fresh NADA evidence is rejected", {

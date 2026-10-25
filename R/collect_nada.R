@@ -253,14 +253,30 @@ collect_nada_url_evidence <- function(params, request_fn = NULL, delay_fn = NULL
 
   max_age <- if (is.null(params$nada_url_max_age_days)) Inf else params$nada_url_max_age_days
   refresh <- isTRUE(params$refresh_nada_urls)
-  cache_is_fresh <- file.exists(paths$evidence) &&
-    as.numeric(difftime(Sys.time(), file.info(paths$evidence)$mtime, units = "days")) <= max_age
+  # Under a release lock (December ODIN update) the locked evidence is reused
+  # whatever its age; re-checking URLs could change D2.4 after approval.
+  locked <- !is.null(params$collection_dir) && !is.null(read_release_lock(params))
+  if (locked && refresh) {
+    stop(
+      "NADA URL REFRESH IS NOT ALLOWED UNDER A RELEASE LOCK: set refresh_nada_urls <- FALSE.",
+      call. = FALSE
+    )
+  }
+  cache_is_fresh <- file.exists(paths$evidence) && (locked ||
+    as.numeric(difftime(Sys.time(), file.info(paths$evidence)$mtime, units = "days")) <= max_age)
   if (!refresh && cache_is_fresh) {
     cached <- readr::read_csv(paths$evidence, show_col_types = FALSE)
     if (.nada_evidence_matches_sites(cached, sites)) {
       .validate_nada_evidence(cached, sites)
       return(paths$evidence)
     }
+  }
+  if (locked) {
+    stop(
+      "NADA URL EVIDENCE MUST BE REUSED UNDER A RELEASE LOCK, but ", paths$evidence,
+      " is missing or does not match the review sites.",
+      call. = FALSE
+    )
   }
 
   if (is.null(request_fn)) {
