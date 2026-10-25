@@ -1,0 +1,20 @@
+{
+  "source_id": "oecd_sdg",
+  "request": {
+    "endpoint": "https://sdmx.oecd.org/public/rest/data/OECD.WISE.RSB,DSD_SDG@DF_SDG,1.0/all?dimensionAtObservation=AllDimensions&format=csvfilewithlabels"
+  },
+  "vintage": 2025,
+  "collector_version": "oecd-sdg-csv-gzip-v1",
+  "payload_type": "serialized_structured_response",
+  "retrieved_at": "2026-10-23 21:17:17 UTC",
+  "download_url": "https://sdmx.oecd.org/public/rest/data/OECD.WISE.RSB,DSD_SDG@DF_SDG,1.0/all?dimensionAtObservation=AllDimensions&format=csvfilewithlabels",
+  "download_effective_url": "https://sdmx.oecd.org/public/rest/data/OECD.WISE.RSB,DSD_SDG@DF_SDG,1.0/all?dimensionAtObservation=AllDimensions&format=csvfilewithlabels",
+  "download_sha256": "05a82d93346978d61cc1486151c12257539001e945189aba3f44adca8c4bb241",
+  "download_bytes": 329643383,
+  "compression": "gzip",
+  "dataflow": "OECD.WISE.RSB:DSD_SDG@DF_SDG(1.0)",
+  "raw_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/oecd_data/raw/oecd_sdg-fe72c54f4a49e7e51860f711fc3626badd175d348cb9e5856c9517a46ac303e6.raw",
+  "bytes": 5019161,
+  "sha256": "0e5fb0826da1d89c36e4b0555b184f483d4c284f5987d9a45733b649d52f8cd1",
+  "provenance_path": "/Users/zprinsloo/Library/CloudStorage/OneDrive-WBG/spi/technical-work/SPI-Zander/SPI/01_raw_data/oecd_data/raw/oecd_sdg-fe72c54f4a49e7e51860f711fc3626badd175d348cb9e5856c9517a46ac303e6.raw.json"
+}
