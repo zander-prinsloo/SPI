@@ -47,6 +47,27 @@ load_params <- function(params_file = here::here("config", "params.R"),
   as.list(env, all.names = TRUE)
 }
 
+#' Read the ODIN status from the parameters file
+#'
+#' Kept out of the `params` target value so that switching from
+#' "provisional" to "official" reruns only the output manifest.
+#'
+#' @param params_file Path to config/params.R.
+#' @return "provisional" or "official".
+#' @export
+read_odin_status <- function(params_file = here::here("config", "params.R")) {
+  env <- new.env(parent = globalenv())
+  sys.source(params_file, envir = env)
+  status <- env$odin_status
+  if (!(identical(status, "provisional") || identical(status, "official"))) {
+    stop(
+      "ODIN STATUS MUST BE 'provisional' OR 'official' in ", params_file,
+      call. = FALSE
+    )
+  }
+  status
+}
+
 #' Read the UN iso3c country code table
 #'
 #' Ported from the "set-parameters" chunk. Reads the iso_codes.csv metadata

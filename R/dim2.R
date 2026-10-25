@@ -96,44 +96,192 @@ score_sdds <- function(wdi_metadata, params, grid) {
 # 100 to get a 0-1 score. Five components: Machine.readable, Non.proprietary,
 # Download.options, Metadata.available, Terms.of.use.
 
+# ODIN columns read by SPI.D2.2 (score_odin) and SPI.D4.3 (score_geospatial),
+# named as after readr's universal name repair.
+odin_required_columns <- c(
+  "Year", "Country.Code", "Data.categories",
+  "Indicator.coverage.and.disaggregation", "Data.available.last.5.years",
+  "Data.available.last.10.years", "First.administrative.level",
+  "Second.administrative.level", "Coverage.subscore", "Machine.readable",
+  "Non.proprietary", "Download.options", "Metadata.available",
+  "Terms.of.use", "Openness.subscore", "Overall.score"
+)
+
+#' List the ODIN files read for 2015 to the reference year
+#'
+#' The paths are a file target in the estimation pipeline, so replacing
+#' ODIN_<end_date>.csv (the December swap) invalidates only the ODIN targets
+#' and their downstream outputs.
+#'
+#' @param params List of pipeline parameters.
+#' @return Character vector of ODIN_<year>.csv paths.
+#' @export
+odin_file_paths <- function(params) {
+  paths <- file.path(
+    params$raw_dir,
+    "2.2_DSOA",
+    sprintf("ODIN_%d.csv", 2015:params$end_date)
+  )
+  missing <- paths[!file.exists(paths)]
+  if (length(missing) > 0L) {
+    stop("ODIN FILE NOT FOUND: ", paste(missing, collapse = ", "), call. = FALSE)
+  }
+  paths
+}
+
+odin_country_exclusions <- function(params) {
+  path <- params$odin_country_exclusions_file
+  if (is.null(path) || is.na(path) || !nzchar(path)) {
+    path <- here::here("config", "odin_country_exclusions.csv")
+  }
+  if (!file.exists(path)) {
+    stop("ODIN COUNTRY EXCLUSIONS FILE NOT FOUND: ", path, call. = FALSE)
+  }
+  exclusions <- readr::read_csv(
+    path,
+    col_types = readr::cols(.default = readr::col_character()),
+    progress = FALSE
+  )
+  required <- c("iso3c", "country", "category", "reason")
+  missing <- setdiff(required, names(exclusions))
+  if (length(missing) > 0L) {
+    stop(
+      "ODIN COUNTRY EXCLUSIONS SCHEMA MISMATCH: missing ",
+      paste(missing, collapse = ", "),
+      call. = FALSE
+    )
+  }
+  exclusions <- exclusions[required]
+  if (nrow(exclusions) == 0L ||
+      anyNA(exclusions$iso3c) ||
+      any(!nzchar(trimws(exclusions$iso3c))) ||
+      anyDuplicated(exclusions$iso3c) > 0L ||
+      any(exclusions$category != "outside_country_universe")) {
+    stop("ODIN COUNTRY EXCLUSIONS ARE INVALID: ", path, call. = FALSE)
+  }
+  exclusions
+}
+
+odin_country_crosswalk <- function(params) {
+  path <- params$odin_country_crosswalk_file
+  if (is.null(path) || is.na(path) || !nzchar(path)) {
+    path <- here::here("config", "odin_country_crosswalk.csv")
+  }
+  if (!file.exists(path)) {
+    stop("ODIN COUNTRY CROSSWALK FILE NOT FOUND: ", path, call. = FALSE)
+  }
+  crosswalk <- readr::read_csv(
+    path,
+    col_types = readr::cols(.default = readr::col_character()),
+    progress = FALSE
+  )
+  required <- c("source_code", "iso3c", "country", "reason")
+  missing <- setdiff(required, names(crosswalk))
+  if (length(missing) > 0L) {
+    stop(
+      "ODIN COUNTRY CROSSWALK SCHEMA MISMATCH: missing ",
+      paste(missing, collapse = ", "),
+      call. = FALSE
+    )
+  }
+  crosswalk <- crosswalk[required]
+  if (nrow(crosswalk) == 0L ||
+      anyNA(crosswalk[c("source_code", "iso3c")]) ||
+      any(!nzchar(trimws(crosswalk$source_code))) ||
+      any(!nzchar(trimws(crosswalk$iso3c))) ||
+      anyDuplicated(crosswalk$source_code) > 0L) {
+    stop("ODIN COUNTRY CROSSWALK IS INVALID: ", path, call. = FALSE)
+  }
+  crosswalk
+}
+
 #' Read and combine the ODIN openness data
 #'
 #' Reads ODIN_<year>.csv for 2015:end_date, keeps the "All Categories" rows,
-#' and binds them together.
+#' and binds them together. Every file must contain all the columns that
+#' SPI.D2.2 and SPI.D4.3 read (`odin_required_columns`, names after readr's
+#' universal repair). The same data feed score_odin() and score_geospatial().
 #'
 #' @param params List of pipeline parameters.
+#' @param paths ODIN file paths (default: odin_file_paths(params)).
 #' @return A tibble of ODIN openness scores.
 #' @export
-read_odin_data <- function(params) {
-  end_date <- params$end_date
-  years <- 2015:end_date
-
-  purrr::map_dfr(years, function(i) {
-    file_path <- file.path(params$raw_dir, "2.2_DSOA", sprintf("ODIN_%d.csv", i))
-    readr::read_csv(file_path) %>%
-      tibble::as_tibble(.name_repair = "universal") %>%
-      dplyr::mutate(date = i) %>%
-      dplyr::filter(Data.categories %in% c("All Categories", "All categories")) %>%
-      # Convert the score columns to numeric
-      dplyr::mutate(dplyr::across(
-        c(
-          "Indicator.coverage.and.disaggregation",
-          "Data.available.last.5.years",
-          "Data.available.last.10.years",
-          "First.administrative.level",
-          "Second.administrative.level",
-          "Coverage.subscore",
-          "Machine.readable",
-          "Non.proprietary",
-          "Download.options",
-          "Metadata.available",
-          "Terms.of.use",
-          "Openness.subscore",
-          "Overall.score"
+read_odin_data <- function(params, paths = odin_file_paths(params)) {
+  exclusions <- odin_country_exclusions(params)
+  crosswalk <- odin_country_crosswalk(params)
+  numeric_columns <- c(
+    "Indicator.coverage.and.disaggregation",
+    "Data.available.last.5.years",
+    "Data.available.last.10.years",
+    "First.administrative.level",
+    "Second.administrative.level",
+    "Coverage.subscore",
+    "Machine.readable",
+    "Non.proprietary",
+    "Download.options",
+    "Metadata.available",
+    "Terms.of.use",
+    "Openness.subscore",
+    "Overall.score"
+  )
+  purrr::map_dfr(paths, function(file_path) {
+    i <- as.integer(sub("^ODIN_([0-9]{4})[.]csv$", "\\1", basename(file_path)))
+    data <- readr::read_csv(file_path) %>%
+      tibble::as_tibble(.name_repair = "universal")
+    missing <- setdiff(odin_required_columns, names(data))
+    if (length(missing) > 0L) {
+      stop(
+        sprintf(
+          "ODIN SCHEMA MISMATCH in '%s': missing column(s) %s",
+          basename(file_path),
+          paste(missing, collapse = ", ")
         ),
-        as.numeric
-      )) %>%
-      dplyr::select(-Year)
+        call. = FALSE
+      )
+    }
+    data <- data %>%
+      dplyr::mutate(date = i) %>%
+      dplyr::filter(Data.categories %in% c("All Categories", "All categories"))
+    data <- dplyr::filter(data, !Country.Code %in% exclusions$iso3c)
+    mapped <- match(data$Country.Code, crosswalk$source_code)
+    data$Country.Code[!is.na(mapped)] <- crosswalk$iso3c[mapped[!is.na(mapped)]]
+
+    for (column in numeric_columns) {
+      raw <- as.character(data[[column]])
+      numeric <- suppressWarnings(as.numeric(raw))
+      allowed_missing <- is.na(raw) | !nzchar(trimws(raw)) | trimws(raw) %in% c("-", "NA", "N/A")
+      invalid <- !allowed_missing & is.na(numeric)
+      if (any(invalid)) {
+        stop(
+          sprintf(
+            "ODIN NUMERIC VALUE INVALID in '%s', column '%s': %s",
+            basename(file_path),
+            column,
+            paste(utils::head(unique(raw[invalid]), 5), collapse = ", ")
+          ),
+          call. = FALSE
+        )
+      }
+      data[[column]] <- numeric
+    }
+
+    if (anyDuplicated(data[c("Country.Code", "date")]) > 0L) {
+      stop(
+        sprintf("ODIN DUPLICATE COUNTRY-YEAR in '%s'", basename(file_path)),
+        call. = FALSE
+      )
+    }
+    if (!is.null(params$country_metadata) && nrow(params$country_metadata) > 0L) {
+      unknown <- setdiff(unique(data$Country.Code), params$country_metadata$iso3c)
+      if (length(unknown) > 0L) {
+        stop(
+          "ODIN UNKNOWN COUNTRY CODE(S): ",
+          paste(sort(unknown), collapse = ", "),
+          call. = FALSE
+        )
+      }
+    }
+    dplyr::select(data, -Year)
   })
 }
 
@@ -310,18 +458,41 @@ score_nada <- function(params) {
 #'
 #' @param params List of pipeline parameters.
 #' @param grid   The country x year grid.
+#' @param odin_data Tibble from read_odin_data().
 #' @return A tibble with iso3c, date, and the D2 indicator columns.
 #' @export
-combine_dim2 <- function(params, grid) {
+combine_dim2 <- function(params, grid, odin_data = read_odin_data(params)) {
+  combine_dim2_parts(
+    combine_dim2_core(params, grid),
+    score_odin(odin_data, params),
+    grid
+  )
+}
+
+#' Score the D2 indicators that do not use ODIN (SDDS and NADA)
+#'
+#' @param params List of pipeline parameters.
+#' @param grid   The country x year grid.
+#' @return A list with the `sdds` and `nada` score tables.
+#' @export
+combine_dim2_core <- function(params, grid) {
   wdi_metadata <- read_wdi_metadata(params)
+  list(
+    sdds = score_sdds(wdi_metadata, params, grid),
+    nada = score_nada(params)
+  )
+}
 
-  sdds <- score_sdds(wdi_metadata, params, grid)
-  odin <- score_odin(read_odin_data(params), params)
-  nada <- score_nada(params)
-
-  # Join all onto the grid
+#' Join the D2 parts onto the grid in the published column order
+#'
+#' @param core Result of combine_dim2_core().
+#' @param odin Result of score_odin().
+#' @param grid The country x year grid.
+#' @return A tibble with iso3c, date, and the D2 indicator columns.
+#' @export
+combine_dim2_parts <- function(core, odin, grid) {
   grid %>%
-    dplyr::left_join(sdds, by = c("iso3c", "date")) %>%
+    dplyr::left_join(core$sdds, by = c("iso3c", "date")) %>%
     dplyr::left_join(odin, by = c("iso3c", "date")) %>%
-    dplyr::left_join(nada, by = c("iso3c", "date"))
+    dplyr::left_join(core$nada, by = c("iso3c", "date"))
 }

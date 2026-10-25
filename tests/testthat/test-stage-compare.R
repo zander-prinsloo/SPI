@@ -13,12 +13,9 @@
 #   2. Target comparison: compares pipeline targets (via tar_read) against
 #      fixtures. Used during porting for intermediate stages.
 #
-# NOTE (P2.18): the final-file tests SKIP when a staging file is missing.
-# This is intentional -- the harness runs both during porting (when staging
-# may not exist yet) and after a full run. The C7 protection test in
-# test-fixtures.R independently fails loudly if the pipeline ever deletes
-# or modifies historical outputs, so a broken pipeline cannot silently
-# pass the suite.
+# Final-file tests fail when a release manifest or required output is missing.
+# Porting work may opt into the old skip behavior explicitly with
+# SPI_COMPARISON_MODE=porting; release validation must never skip.
 #
 # Created: 2026-09-21
 # =============================================================================
@@ -27,6 +24,7 @@ library(testthat)
 
 # Source the comparison utilities
 source(file.path(here::here("R"), "compare.R"))
+source(file.path(here::here("R"), "output_manifest.R"))
 
 # --- Helper: read a fixture CSV ----------------------------------------------
 
@@ -39,11 +37,30 @@ read_fixture <- function(fname) {
 read_staged <- function(fname) {
   manifest_path <- file.path(here::here("03_output_data"), "_estimation_manifest.json")
   if (!file.exists(manifest_path)) {
-    return(NULL)
+    if (identical(Sys.getenv("SPI_COMPARISON_MODE"), "porting")) {
+      return(NULL)
+    }
+    stop("RELEASE COMPARISON REQUIRES 03_output_data/_estimation_manifest.json", call. = FALSE)
+  }
+  manifest <- jsonlite::read_json(manifest_path, simplifyVector = TRUE)
+  if (is.null(manifest$end_date) || is.null(manifest$files)) {
+    stop("RELEASE COMPARISON MANIFEST IS INCOMPLETE: ", manifest_path, call. = FALSE)
+  }
+  required <- expected_estimation_outputs(as.integer(manifest$end_date))
+  missing_manifest_files <- setdiff(required, manifest$files)
+  if (length(missing_manifest_files) > 0L) {
+    stop(
+      "RELEASE COMPARISON MANIFEST OUTPUT SET IS INCOMPLETE: ",
+      paste(missing_manifest_files, collapse = ", "),
+      call. = FALSE
+    )
   }
   path <- file.path(here::here("03_output_data"), fname)
   if (!file.exists(path)) {
-    return(NULL)  # stage not yet produced
+    if (identical(Sys.getenv("SPI_COMPARISON_MODE"), "porting")) {
+      return(NULL)
+    }
+    stop("RELEASE COMPARISON OUTPUT MISSING: ", path, call. = FALSE)
   }
   readr::read_csv(path)
 }
@@ -79,6 +96,11 @@ test_that("staged SPI_data.csv matches the 202511 vintage", {
   spi_raw_cols <- setdiff(spi_raw_cols, "SPI.D1.5.LFP")
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(spi_raw_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(spi_raw_cols))
+  # E5 exception: the cells enumerated in
+  # tests/fixtures/exceptions/E5_d41_name_normalization.csv (D4.1 catalogue
+  # evidence now joined by ISO3; docs/CHANGELOG.md) are blanked in both frames.
+  staged_sub <- mask_exception_cells(staged_sub, "SPI_data.csv", "new")
+  fixture_sub <- mask_exception_cells(fixture_sub, "SPI_data.csv", "baseline")
 
   result <- compare_frames(staged_sub, fixture_sub, key_cols = c("iso3c", "date"))
   expect_true(
@@ -113,6 +135,11 @@ test_that("staged SPI_index.csv matches the 202511 vintage", {
   ))
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(idx_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(idx_cols))
+  # E5 exception: the cells enumerated in
+  # tests/fixtures/exceptions/E5_d41_name_normalization.csv (D4.1 catalogue
+  # evidence now joined by ISO3; docs/CHANGELOG.md) are blanked in both frames.
+  staged_sub <- mask_exception_cells(staged_sub, "SPI_index.csv", "new")
+  fixture_sub <- mask_exception_cells(fixture_sub, "SPI_index.csv", "baseline")
 
   result <- compare_frames(staged_sub, fixture_sub, key_cols = c("iso3c", "date"))
   expect_true(
@@ -152,6 +179,11 @@ test_that("staged SPI_quantiles.csv matches the 202511 vintage", {
   ))
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(value_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(value_cols))
+  # E5 exception: the cells enumerated in
+  # tests/fixtures/exceptions/E5_d41_name_normalization.csv (D4.1 catalogue
+  # evidence now joined by ISO3; docs/CHANGELOG.md) are blanked in both frames.
+  staged_sub <- mask_exception_cells(staged_sub, "SPI_quantiles.csv", "new")
+  fixture_sub <- mask_exception_cells(fixture_sub, "SPI_quantiles.csv", "baseline")
 
   result <- compare_frames(staged_sub, fixture_sub, key_cols = c("iso3c", "date"))
   expect_true(
@@ -181,6 +213,11 @@ test_that("staged SPI_quantiles_2024.csv matches the 202511 vintage", {
   )
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(value_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(value_cols))
+  # E5 exception: the cells enumerated in
+  # tests/fixtures/exceptions/E5_d41_name_normalization.csv (D4.1 catalogue
+  # evidence now joined by ISO3; docs/CHANGELOG.md) are blanked in both frames.
+  staged_sub <- mask_exception_cells(staged_sub, "SPI_quantiles_2024.csv", "new")
+  fixture_sub <- mask_exception_cells(fixture_sub, "SPI_quantiles_2024.csv", "baseline")
 
   result <- compare_frames(staged_sub, fixture_sub, key_cols = c("iso3c", "date"))
   expect_true(
@@ -211,6 +248,11 @@ test_that("staged SPI_indicators_2024.csv matches the 202511 vintage", {
   value_cols <- setdiff(value_cols, c("SPI.D1.5.LFP", "SPI.DIM1.5.INDEX"))
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(value_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(value_cols))
+  # E5 exception: the cells enumerated in
+  # tests/fixtures/exceptions/E5_d41_name_normalization.csv (D4.1 catalogue
+  # evidence now joined by ISO3; docs/CHANGELOG.md) are blanked in both frames.
+  staged_sub <- mask_exception_cells(staged_sub, "SPI_indicators_2024.csv", "new")
+  fixture_sub <- mask_exception_cells(fixture_sub, "SPI_indicators_2024.csv", "baseline")
 
   result <- compare_frames(staged_sub, fixture_sub, key_cols = c("iso3c", "date"))
   expect_true(
@@ -237,6 +279,11 @@ test_that("staged SPI_treemap.csv matches the 202511 vintage", {
   )
   staged_sub <- staged %>% dplyr::select(country, dplyr::all_of(value_cols))
   fixture_sub <- fixture %>% dplyr::select(country, dplyr::all_of(value_cols))
+  # E5 exception: the cells enumerated in
+  # tests/fixtures/exceptions/E5_d41_name_normalization.csv (D4.1 catalogue
+  # evidence now joined by ISO3; docs/CHANGELOG.md) are blanked in both frames.
+  staged_sub <- mask_exception_cells(staged_sub, "SPI_treemap.csv", "new")
+  fixture_sub <- mask_exception_cells(fixture_sub, "SPI_treemap.csv", "baseline")
 
   # compare_frames compares all common columns; drop the key column from
   # the value comparison by comparing only the value columns.
@@ -309,6 +356,10 @@ test_that("staged databank files match the 202511 vintage", {
     code_col <- if ("Country" %in% names(staged)) "Country" else "iso3c"
     staged_sub <- staged[staged[[code_col]] %in% country_codes, ]
     fixture_sub <- fixture[fixture[[code_col]] %in% country_codes, ]
+
+    # E5 exception: enumerated D4.1 catalogue cells (docs/CHANGELOG.md).
+    staged_sub <- mask_exception_cells(staged_sub, fname, "new")
+    fixture_sub <- mask_exception_cells(fixture_sub, fname, "baseline")
 
     # E4 exclusion: the LFP-affected series (SPI.D1.5.LFP and its
     # downstream aggregates SPI.DIM1.5.INDEX, SPI.INDEX.PIL1, SPI.INDEX)

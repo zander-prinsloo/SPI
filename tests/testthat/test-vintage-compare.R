@@ -18,17 +18,37 @@ library(testthat)
 
 # Source the comparison utilities
 source(file.path(here::here("R"), "compare.R"))
+source(file.path(here::here("R"), "output_manifest.R"))
 
 # --- Helper: read staged / fixture files -------------------------------------
 
 read_staged <- function(fname) {
   manifest_path <- file.path(here::here("03_output_data"), "_estimation_manifest.json")
   if (!file.exists(manifest_path)) {
-    return(NULL)
+    if (identical(Sys.getenv("SPI_COMPARISON_MODE"), "porting")) {
+      return(NULL)
+    }
+    stop("RELEASE COMPARISON REQUIRES 03_output_data/_estimation_manifest.json", call. = FALSE)
+  }
+  manifest <- jsonlite::read_json(manifest_path, simplifyVector = TRUE)
+  if (is.null(manifest$end_date) || is.null(manifest$files)) {
+    stop("RELEASE COMPARISON MANIFEST IS INCOMPLETE: ", manifest_path, call. = FALSE)
+  }
+  required <- expected_estimation_outputs(as.integer(manifest$end_date))
+  missing_manifest_files <- setdiff(required, manifest$files)
+  if (length(missing_manifest_files) > 0L) {
+    stop(
+      "RELEASE COMPARISON MANIFEST OUTPUT SET IS INCOMPLETE: ",
+      paste(missing_manifest_files, collapse = ", "),
+      call. = FALSE
+    )
   }
   path <- file.path(here::here("03_output_data"), fname)
   if (!file.exists(path)) {
-    return(NULL)
+    if (identical(Sys.getenv("SPI_COMPARISON_MODE"), "porting")) {
+      return(NULL)
+    }
+    stop("RELEASE COMPARISON OUTPUT MISSING: ", path, call. = FALSE)
   }
   readr::read_csv(path)
 }
@@ -59,6 +79,11 @@ test_that("staged SPI_data.csv matches the vintage within tolerance", {
   spi_raw_cols <- setdiff(spi_raw_cols, "SPI.D1.5.LFP")
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(spi_raw_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(spi_raw_cols))
+  # E5 exception: the cells enumerated in
+  # tests/fixtures/exceptions/E5_d41_name_normalization.csv (D4.1 catalogue
+  # evidence now joined by ISO3; docs/CHANGELOG.md) are blanked in both frames.
+  staged_sub <- mask_exception_cells(staged_sub, "SPI_data.csv", "new")
+  fixture_sub <- mask_exception_cells(fixture_sub, "SPI_data.csv", "baseline")
 
   result <- compare_frames(staged_sub, fixture_sub, key_cols = c("iso3c", "date"))
   expect_true(
@@ -89,6 +114,11 @@ test_that("staged SPI_index.csv matches the vintage within tolerance", {
   ))
   staged_sub <- staged %>% dplyr::select(iso3c, date, dplyr::all_of(idx_cols))
   fixture_sub <- fixture %>% dplyr::select(iso3c, date, dplyr::all_of(idx_cols))
+  # E5 exception: the cells enumerated in
+  # tests/fixtures/exceptions/E5_d41_name_normalization.csv (D4.1 catalogue
+  # evidence now joined by ISO3; docs/CHANGELOG.md) are blanked in both frames.
+  staged_sub <- mask_exception_cells(staged_sub, "SPI_index.csv", "new")
+  fixture_sub <- mask_exception_cells(fixture_sub, "SPI_index.csv", "baseline")
 
   result <- compare_frames(staged_sub, fixture_sub, key_cols = c("iso3c", "date"))
   expect_true(

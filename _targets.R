@@ -37,10 +37,11 @@ library(tarchetypes)
 
 # --- Global targets options --------------------------------------------------
 tar_option_set(
-  # Reproducibility: fixed seed for targets' stochastic steps (tar_rep and
-  # similar). NOTE: this does NOT seed rnorm() inside ordinary target
-  # commands -- the jitter columns in SPI_quantiles_2024.csv use unseeded
-  # rnorm() and are the documented exception E2 (see docs/CHANGELOG.md).
+  # Reproducibility: {targets} derives a deterministic, target-specific seed
+  # from this value, so random draws inside target commands (for example the
+  # jitter columns in SPI_quantiles_<year>.csv) reproduce exactly on rebuild.
+  # The original Rmd jitter was unseeded, so those columns still differ from
+  # the published vintage (documented exception E2, see docs/CHANGELOG.md).
   seed = 2024,
   # Fail loudly: stop the pipeline on the first error (R8). A failing
   # target halts the run so the technical lead sees the error immediately.
@@ -85,9 +86,20 @@ pipeline_targets <- function() {
     command = "config/params.R",
     format = "file"
   )
+  # `odin_status` is read separately and removed from `params`, so switching
+  # it to "official" in December reruns only the output manifest.
   params <- tar_target(
     name = "params",
-    command = load_params(params_file, require_country_metadata = TRUE),
+    command = {
+      loaded <- load_params(params_file, require_country_metadata = TRUE)
+      loaded$odin_status <- NULL
+      loaded
+    },
+    format = "rds"
+  )
+  odin_status <- tar_target(
+    name = "odin_status",
+    command = read_odin_status(params_file),
     format = "rds"
   )
 
@@ -113,27 +125,60 @@ pipeline_targets <- function() {
   )
   estimation_source_registry <- tar_target(
     name = "estimation_source_registry",
-    command = load_source_registry(source_registry_file),
+    command = load_source_registry(estimation_source_registry_file),
     format = "rds"
+  )
+  collection_input_files <- tar_target(
+    name = "collection_input_files",
+    command = release_lock_artifacts(
+      params,
+      registry = estimation_source_registry,
+      substitutions = collection_artifact_substitutions(params)
+    )$path,
+    format = "file"
   )
   collection_gate <- tar_target(
     name = "collection_gate",
-    command = validate_collection_status(
-      collection_status_file,
-      expected_source_ids = estimation_source_registry$source_id,
-      run_path = collection_run_file,
-      parameters_hash = collection_parameters_hash(params)
-    ),
+    command = {
+      collection_input_files
+      validate_collection_status(
+        collection_status_file,
+        expected_source_ids = estimation_source_registry$source_id,
+        run_path = collection_run_file,
+        parameters_hash = collection_parameters_hash(params)
+      )
+    },
     format = "rds"
+  )
+  # The candidate folder is created when missing but never wiped: each writer
+  # target below owns its files and {targets} reruns a writer whose file is
+  # missing or changed, so partial rebuilds still produce a complete set.
+  # With a release lock (written at approval of the provisional outputs),
+  # every non-ODIN collection artifact must still match it before outputs
+  # are written. Checked on every run; the value is constant, so a passing
+  # check never invalidates downstream targets.
+  release_lock_verification <- tar_target(
+    name = "release_lock_verification",
+    command = {
+      collection_gate
+      verify_release_lock(
+        params,
+        registry = estimation_source_registry,
+        substitutions = collection_artifact_substitutions(params)
+      )
+      TRUE
+    },
+    format = "rds",
+    cue = tar_cue(mode = "always")
   )
   output_prepare <- tar_target(
     name = "output_prepare",
     command = {
       collection_gate
-      prepare_output_candidate(params$estimation_write_dir)
+      release_lock_verification
+      ensure_output_candidate(params$estimation_write_dir)
     },
-    format = "rds",
-    cue = tar_cue(mode = "always")
+    format = "rds"
   )
 
   # --- Stage A: Data prep ----------------------------------------------------
@@ -159,42 +204,87 @@ pipeline_targets <- function() {
 
   # --- Dimension 1.5: Data use by international organizations ----------------
   # (from the "3.1", "aki_3.3", "3.15_debt", "safely_managed_scored", "lfp",
-  # and "aki_combine" chunks of 01-SPI_data_prep.Rmd)
+  # and "aki_combine" chunks of 01-SPI_data_prep.Rmd). The ILO area-name
+  # config (correction E6) is a file target, so editing it reruns D1.5.
+  ilo_area_names_files <- tar_target(
+    name = "ilo_area_names_files",
+    command = c(params$ilo_area_crosswalk_file, params$ilo_area_exclusions_file),
+    format = "file"
+  )
   dim1_5 <- tar_target(
     name = "dim1_5",
     command = {
       collection_gate
+      ilo_area_names_files
       combine_dim1_5(params, country_grid)
     },
     format = "rds"
   )
 
   # --- Dimension 2: Data services --------------------------------------------
-  # (from the "idds", "online_access", and "nada" chunks)
-  dim2 <- tar_target(
-    name = "dim2",
+  # (from the "idds", "online_access", and "nada" chunks). The ODIN files are
+  # file targets read once (`odin_data`) for D2.2 and D4.3, so replacing
+  # ODIN_<end_date>.csv (the December swap) reruns only the ODIN targets and
+  # their downstream outputs.
+  odin_files <- tar_target(
+    name = "odin_files",
+    command = odin_file_paths(params),
+    format = "file"
+  )
+
+  odin_data <- tar_target(
+    name = "odin_data",
     command = {
       collection_gate
-      combine_dim2(params, country_grid)
+      read_odin_data(params, odin_files)
     },
     format = "rds"
   )
 
+  dim2_core <- tar_target(
+    name = "dim2_core",
+    command = {
+      collection_gate
+      combine_dim2_core(params, country_grid)
+    },
+    format = "rds"
+  )
+
+  dim2_odin <- tar_target(
+    name = "dim2_odin",
+    command = score_odin(odin_data, params),
+    format = "rds"
+  )
+
+  dim2 <- tar_target(
+    name = "dim2",
+    command = combine_dim2_parts(dim2_core, dim2_odin, country_grid),
+    format = "rds"
+  )
+
   # --- Dimension 3: Data products (UN SDG) -----------------------------------
-  # (from the "unstats" chunk)
+  # (from the "unstats" chunk). Every per-year score file is a file target so
+  # a new or replaced year file invalidates dim3.
+  d3_year_files <- tar_target(
+    name = "d3_year_files",
+    command = d3_year_file_paths(params),
+    format = "file"
+  )
+
   dim3 <- tar_target(
     name = "dim3",
     command = {
       collection_gate
+      d3_year_files
       combine_dim3(params)
     },
     format = "rds"
   )
 
   # --- Dimension 4: Data sources ---------------------------------------------
-  # (from the "cs", "crvs", and "geo" chunks)
-  dim4 <- tar_target(
-    name = "dim4",
+  # (from the "cs", "crvs", and "geo" chunks). D4.3 uses the shared ODIN data.
+  dim4_core <- tar_target(
+    name = "dim4_core",
     command = {
       collection_gate
       manifest <- jsonlite::read_json(d41_manifest_file, simplifyVector = FALSE)
@@ -203,8 +293,20 @@ pipeline_targets <- function() {
         raw_dir = params$raw_dir,
         end_date = params$end_date
       )
-      combine_dim4(params, country_grid, d41_manifest = manifest)
+      combine_dim4_core(params, country_grid, d41_manifest = manifest)
     },
+    format = "rds"
+  )
+
+  dim4_geo <- tar_target(
+    name = "dim4_geo",
+    command = score_geospatial(params, odin_data),
+    format = "rds"
+  )
+
+  dim4 <- tar_target(
+    name = "dim4",
+    command = combine_dim4_parts(dim4_core, dim4_geo, country_grid),
     format = "rds"
   )
 
@@ -224,72 +326,103 @@ pipeline_targets <- function() {
   # --- Append + save: final SPI data -----------------------------------------
   # (from the "append" and "save" chunks of 01-SPI_data_prep.Rmd)
   # Combines all dimensions, adds population, carries forward SPI values,
-  # applies the OECD high-income adjustment, and writes SPI_data.csv/.dta
-  # to 03_output_data/ after collection validation.
+  # and applies the OECD high-income adjustment. `spi_data_files` writes
+  # SPI_data.csv/.dta to the candidate folder after collection validation.
   spi_data <- tar_target(
     name = "spi_data",
     command = {
       output_prepare
       dims <- list(dim1_5, dim2, dim3, dim4, dim5)
-      final <- append_spi(dims, params, country_grid)
-      save_spi(final, params)
-      final
+      append_spi(dims, params, country_grid)
     },
     format = "rds"
+  )
+  spi_data_files <- tar_target(
+    name = "spi_data_files",
+    command = unlist(save_spi(spi_data, params), use.names = FALSE),
+    format = "file"
   )
 
   # --- Stage B: Index --------------------------------------------------------
   # (from the "data", "index_weights", "index", and "saver" chunks of
   # 02-SPI_index.Rmd)
-  # Builds the nested index (dimension -> pillar -> overall) and writes
-  # SPI_index.csv to 03_output_data/ after collection validation.
+  # Builds the nested index (dimension -> pillar -> overall) from the written
+  # SPI_data.csv (the Rmd's round trip); `spi_index_file` writes SPI_index.csv.
   spi_index <- tar_target(
     name = "spi_index",
     command = {
-      idx <- build_index(spi_data, params)
-      save_index(idx, params)
-      idx
+      spi_data_files
+      build_index(spi_data, params)
     },
     format = "rds"
+  )
+  spi_index_file <- tar_target(
+    name = "spi_index_file",
+    command = save_index(spi_index, params),
+    format = "file"
   )
 
   # --- Stage D: Misc outputs -------------------------------------------------
   # (from misc_scripts/SPI_quantiles.R, SPI_treemap.R, databank.R, and the
-  # "aspire" chunk of 01-SPI_data_prep.Rmd)
+  # "aspire" chunk of 01-SPI_data_prep.Rmd). These builders read the written
+  # SPI_index.csv / SPI_data.csv, so they depend on the writer file targets.
 
-  # Quantiles and indicators (SPI_quantiles.csv, SPI_quantiles_2024.csv,
-  # SPI_indicators_2024.csv)
+  # Quantiles and indicators (SPI_quantiles.csv, SPI_quantiles_<year>.csv,
+  # SPI_indicators_<year>.csv)
   quantiles <- tar_target(
     name = "quantiles",
     command = {
+      spi_index_file
       q <- build_quantiles(spi_index, params)
       q24 <- build_quantiles_2024(spi_index, q, params)
-      save_quantiles(q, q24$quantiles_2024, q24$indicators_2024, params)
-      q
+      list(
+        quantiles = q,
+        quantiles_latest = q24$quantiles_2024,
+        indicators_latest = q24$indicators_2024
+      )
     },
     format = "rds"
+  )
+  quantiles_files <- tar_target(
+    name = "quantiles_files",
+    command = save_quantiles(
+      quantiles$quantiles,
+      quantiles$quantiles_latest,
+      quantiles$indicators_latest,
+      params
+    ),
+    format = "file"
   )
 
   # Treemap (SPI_treemap.csv)
   treemap <- tar_target(
     name = "treemap",
     command = {
-      t <- build_treemap(spi_index, params)
-      save_treemap(t, params)
-      t
+      spi_index_file
+      build_treemap(spi_index, params)
     },
     format = "rds"
+  )
+  treemap_file <- tar_target(
+    name = "treemap_file",
+    command = save_treemap(treemap, params),
+    format = "file"
   )
 
   # Databank outputs (SPI_databank_country_and_aggregates*.csv, footnotes)
   databank <- tar_target(
     name = "databank",
     command = {
-      d <- build_databank(spi_index, spi_data, params)
-      save_databank(d, params)
-      d
+      spi_index_file
+      spi_data_files
+      build_databank(spi_index, spi_data, params)
     },
     format = "rds"
+  )
+  databank_files <- tar_target(
+    name = "databank_files",
+    command = unlist(save_databank(databank, params), use.names = FALSE),
+    format = "file"
   )
 
   # SPL admin data availability (SPL_admin_data_availability.csv)
@@ -297,30 +430,116 @@ pipeline_targets <- function() {
     name = "spl_admin",
     command = {
       output_prepare
-      s <- build_spl_admin(params)
-      save_spl_admin(s, params)
-      s
+      build_spl_admin(params)
     },
     format = "rds"
+  )
+  spl_admin_file <- tar_target(
+    name = "spl_admin_file",
+    command = save_spl_admin(spl_admin, params),
+    format = "file"
+  )
+
+  # Validate the complete candidate set and promote it. Returning the promoted
+  # paths as a file target means a missing or edited final file is re-promoted.
+  # --- Vintage-diff policy report -------------------------------------------
+  # Compares the candidate SPI_data.csv with the previous published vintage
+  # for 2004 to end_date - 1. Changes in frozen dimensions (D2, D3, D4.3, D5)
+  # block promotion unless approved in the approvals file; refresh-dimension
+  # changes (D1.5, D4.1, D4.2) are reported.
+  previous_vintage_file <- tar_target(
+    name = "previous_vintage_file",
+    command = vintage_diff_previous_path(params),
+    format = "file"
+  )
+  vintage_diff_approvals_file <- tar_target(
+    name = "vintage_diff_approvals_file",
+    command = ensure_vintage_diff_approvals(vintage_diff_approvals_path(params)),
+    format = "file"
+  )
+  vintage_diff <- tar_target(
+    name = "vintage_diff",
+    command = {
+      spi_data_files
+      write_vintage_diff(
+        params$estimation_write_dir,
+        previous_vintage_file,
+        vintage_diff_approvals_file,
+        params$end_date
+      )
+    },
+    format = "file"
+  )
+
+  # Revision evidence for the Working Group (R/revision_report.R): indicator
+  # revisions from the vintage diff, index score/rank/quintile revisions
+  # against the previous published SPI_index, and reference-year coverage.
+  previous_index_file <- tar_target(
+    name = "previous_index_file",
+    command = revision_previous_index_path(params),
+    format = "file"
+  )
+  revision_report <- tar_target(
+    name = "revision_report",
+    command = {
+      spi_data_files
+      spi_index_file
+      vintage_diff
+      write_revision_report(
+        params$estimation_write_dir,
+        previous_index_file,
+        params$end_date,
+        odin_status = odin_status,
+        provisional_columns = odin_dependent_columns(params$estimation_write_dir)
+      )
+    },
+    format = "file"
+  )
+
+  # --- Provisional-to-final release diff ------------------------------------
+  # With a release lock, compares every candidate output with the archived
+  # provisional outputs; only ODIN-dependent values may change. Without a lock
+  # it does nothing.
+  release_diff <- tar_target(
+    name = "release_diff",
+    command = {
+      release_lock_verification
+      spi_data_files
+      spi_index_file
+      quantiles_files
+      treemap_file
+      databank_files
+      spl_admin_file
+      write_release_diff(params)
+    },
+    format = "rds",
+    cue = tar_cue(mode = "always")
   )
 
   output_manifest <- tar_target(
     name = "output_manifest",
     command = {
-      spi_data
-      spi_index
-      quantiles
-      treemap
-      databank
-      spl_admin
-      validate_output_manifest(params$estimation_write_dir, params$end_date)
+      release_diff
+      vintage_diff
+      revision_report
+      spi_data_files
+      spi_index_file
+      quantiles_files
+      treemap_file
+      databank_files
+      spl_admin_file
+      validate_output_manifest(
+        params$estimation_write_dir,
+        params$end_date,
+        odin = list(status = odin_status, files = odin_files)
+      )
       promote_output_set(
         params$estimation_write_dir,
         params$output_dir,
         params$end_date
       )
     },
-    format = "rds"
+    format = "file"
   )
 
   # ===========================================================================
@@ -331,26 +550,49 @@ pipeline_targets <- function() {
   list(
     params_file,
     params,
+    odin_status,
     collection_status_file,
     collection_run_file,
     d41_manifest_file,
     source_registry_file,
     estimation_source_registry,
+    collection_input_files,
     collection_gate,
+    release_lock_verification,
     output_prepare,
     iso_codes,
     country_grid,
+    ilo_area_names_files,
     dim1_5,
+    odin_files,
+    odin_data,
+    dim2_core,
+    dim2_odin,
     dim2,
+    d3_year_files,
     dim3,
+    dim4_core,
+    dim4_geo,
     dim4,
     dim5,
     spi_data,
+    spi_data_files,
     spi_index,
+    spi_index_file,
     quantiles,
+    quantiles_files,
     treemap,
+    treemap_file,
     databank,
+    databank_files,
     spl_admin,
+    spl_admin_file,
+    previous_vintage_file,
+    vintage_diff_approvals_file,
+    vintage_diff,
+    previous_index_file,
+    revision_report,
+    release_diff,
     output_manifest
     # Collection-stage API and manual checkpoints are defined in
     # `_targets_data.R`; estimation consumes their validated artifacts.
