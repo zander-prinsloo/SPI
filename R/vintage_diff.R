@@ -57,6 +57,77 @@ vintage_diff_policy <- function(columns) {
 #' @param params Pipeline parameters.
 #' @return `previous_vintages/SPI_data_<end_date - 1>.csv` under raw_dir.
 #' @export
+vintage_baseline_manifest_path <- function(params) {
+  file.path(params$raw_dir, "previous_vintages", "manifest.json")
+}
+
+#' Read and verify the approved previous-vintage baseline inventory.
+#'
+#' The inventory is a small, versioned allow-list. Every file it names must
+#' exist under `previous_vintages/` and match its recorded SHA-256; a file is
+#' not accepted merely because its filename is the expected one.
+#'
+#' @param params Pipeline parameters.
+#' @return The validated manifest invisibly.
+#' @export
+read_vintage_baseline_manifest <- function(params) {
+  path <- vintage_baseline_manifest_path(params)
+  if (!file.exists(path)) {
+    stop(
+      "VINTAGE BASELINE MANIFEST NOT FOUND: ", path,
+      ". Record approved SHA-256 hashes for the previous published files.",
+      call. = FALSE
+    )
+  }
+  manifest <- jsonlite::read_json(path, simplifyVector = FALSE)
+  required <- c("schema_version", "approved_by", "approved_at", "files")
+  missing <- setdiff(required, names(manifest))
+  if (length(missing) > 0L || !identical(manifest$schema_version, "spi-vintage-baseline-v1")) {
+    stop("VINTAGE BASELINE MANIFEST SCHEMA INVALID: ", path, call. = FALSE)
+  }
+  if (length(manifest$approved_by) != 1L || !nzchar(trimws(manifest$approved_by)) ||
+      length(manifest$approved_at) != 1L ||
+      is.na(as.POSIXct(manifest$approved_at, format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"))) {
+    stop("VINTAGE BASELINE MANIFEST APPROVAL METADATA INVALID: ", path, call. = FALSE)
+  }
+  if (!is.list(manifest$files) || length(manifest$files) == 0L) {
+    stop("VINTAGE BASELINE MANIFEST HAS NO FILES: ", path, call. = FALSE)
+  }
+  previous_dir <- normalizePath(dirname(path), winslash = "/", mustWork = TRUE)
+  paths <- vapply(manifest$files, function(entry) as.character(entry$path), character(1))
+  hashes <- vapply(manifest$files, function(entry) as.character(entry$sha256), character(1))
+  if (anyNA(paths) || any(!nzchar(paths)) || anyDuplicated(paths) > 0L ||
+      any(!grepl("^[0-9a-fA-F]{64}$", hashes))) {
+    stop("VINTAGE BASELINE MANIFEST FILE ENTRIES INVALID: ", path, call. = FALSE)
+  }
+  resolved <- vapply(paths, function(relative) {
+    candidate <- normalizePath(file.path(dirname(path), relative), winslash = "/", mustWork = FALSE)
+    if (!startsWith(candidate, paste0(previous_dir, "/"))) {
+      stop("VINTAGE BASELINE MANIFEST FILE OUTSIDE previous_vintages: ", relative, call. = FALSE)
+    }
+    candidate
+  }, character(1))
+  missing_files <- paths[!file.exists(resolved)]
+  if (length(missing_files) > 0L) {
+    stop("VINTAGE BASELINE FILE(S) NOT FOUND: ", paste(missing_files, collapse = ", "), call. = FALSE)
+  }
+  actual <- vapply(resolved, digest::digest, character(1), algo = "sha256", file = TRUE)
+  changed <- paths[tolower(actual) != tolower(hashes)]
+  if (length(changed) > 0L) {
+    stop("VINTAGE BASELINE HASH MISMATCH: ", paste(changed, collapse = ", "), call. = FALSE)
+  }
+  manifest$resolved_files <- resolved
+  manifest
+}
+
+vintage_baseline_control_paths <- function(params) {
+  if (!file.exists(vintage_baseline_manifest_path(params))) {
+    return(character())
+  }
+  manifest <- read_vintage_baseline_manifest(params)
+  c(vintage_baseline_manifest_path(params), manifest$resolved_files)
+}
+
 vintage_diff_previous_path <- function(params) {
   path <- file.path(
     params$raw_dir,
@@ -65,6 +136,10 @@ vintage_diff_previous_path <- function(params) {
   )
   if (!file.exists(path)) {
     stop("PREVIOUS VINTAGE NOT FOUND: ", path, call. = FALSE)
+  }
+  manifest <- read_vintage_baseline_manifest(params)
+  if (!any(normalizePath(path, winslash = "/", mustWork = TRUE) == manifest$resolved_files)) {
+    stop("PREVIOUS VINTAGE IS NOT IN THE APPROVED BASELINE MANIFEST: ", path, call. = FALSE)
   }
   path
 }

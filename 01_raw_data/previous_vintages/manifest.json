@@ -1,0 +1,43 @@
+{
+  "schema_version": "spi-vintage-baseline-v1",
+  "approved_by": "SPI technical team",
+  "approved_at": "2026-10-25T00:00:00Z",
+  "files": [
+    {
+      "path": "SPI_data_2019.csv",
+      "role": "published_data",
+      "vintage": 2019,
+      "sha256": "af2536063015aa0605ad4bb35ee81ca58940f9d4faaf376f9acc3b6091f65cfd"
+    },
+    {
+      "path": "SPI_data_2020.csv",
+      "role": "published_data",
+      "vintage": 2020,
+      "sha256": "7b1f756f2a128c0c63fa72eafcc6cf82f19209d20838b01f5f88cd7701563543"
+    },
+    {
+      "path": "SPI_data_2022.csv",
+      "role": "published_data",
+      "vintage": 2022,
+      "sha256": "5aff45c2fed22c9e70f7ea37dd7658565b2c7e9ece561376400db3cb594e4fa8"
+    },
+    {
+      "path": "SPI_data_2023.csv",
+      "role": "published_data",
+      "vintage": 2023,
+      "sha256": "1bcf8a88b621cca43e4ec388741f06616c33aefe7f617b027d98363bdef9d7bb"
+    },
+    {
+      "path": "SPI_data_2024.csv",
+      "role": "published_data",
+      "vintage": 2024,
+      "sha256": "f72953b1be69b49a9b8c418d91adf65702bdd999875bf216d73e873ab4dbe2eb"
+    },
+    {
+      "path": "SPI_index_2024.csv",
+      "role": "published_index",
+      "vintage": 2024,
+      "sha256": "9f8798ec6e466ca050994d4dc1d1c419e3e16f679c8cdfdef5476172de8ffa4a"
+    }
+  ]
+}

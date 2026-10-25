@@ -448,9 +448,17 @@ pipeline_targets <- function() {
   # for 2004 to end_date - 1. Changes in frozen dimensions (D2, D3, D4.3, D5)
   # block promotion unless approved in the approvals file; refresh-dimension
   # changes (D1.5, D4.1, D4.2) are reported.
+  vintage_baseline_manifest_file <- tar_target(
+    name = "vintage_baseline_manifest_file",
+    command = vintage_baseline_manifest_path(params),
+    format = "file"
+  )
   previous_vintage_file <- tar_target(
     name = "previous_vintage_file",
-    command = vintage_diff_previous_path(params),
+    command = {
+      vintage_baseline_manifest_file
+      vintage_diff_previous_path(params)
+    },
     format = "file"
   )
   vintage_diff_approvals_file <- tar_target(
@@ -477,7 +485,10 @@ pipeline_targets <- function() {
   # against the previous published SPI_index, and reference-year coverage.
   previous_index_file <- tar_target(
     name = "previous_index_file",
-    command = revision_previous_index_path(params),
+    command = {
+      vintage_baseline_manifest_file
+      revision_previous_index_path(params)
+    },
     format = "file"
   )
   revision_report <- tar_target(
@@ -588,6 +599,7 @@ pipeline_targets <- function() {
     databank_files,
     spl_admin,
     spl_admin_file,
+    vintage_baseline_manifest_file,
     previous_vintage_file,
     vintage_diff_approvals_file,
     vintage_diff,

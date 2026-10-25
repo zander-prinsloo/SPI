@@ -41,6 +41,34 @@ write_vintages <- function(candidate_changes = list(), approvals = NULL, end_dat
   )
 }
 
+test_that("previous vintages require an approved hash manifest", {
+  root <- withr::local_tempdir(.local_envir = parent.frame())
+  previous <- file.path(root, "previous_vintages")
+  dir.create(previous)
+  path <- file.path(previous, "SPI_data_2024.csv")
+  writeLines(c("iso3c,date,SPI.D1.5.POV", "AAA,2024,1"), path)
+  jsonlite::write_json(
+    list(
+      schema_version = "spi-vintage-baseline-v1",
+      approved_by = "fixture",
+      approved_at = "2026-10-25T00:00:00Z",
+      files = list(list(
+        path = basename(path),
+        role = "published_data",
+        vintage = 2024,
+        sha256 = digest::digest(path, algo = "sha256", file = TRUE)
+      ))
+    ),
+    file.path(previous, "manifest.json"),
+    auto_unbox = TRUE,
+    pretty = TRUE
+  )
+  params <- list(raw_dir = root, end_date = 2025)
+  expect_identical(vintage_diff_previous_path(params), path)
+  writeLines(c("iso3c,date,SPI.D1.5.POV", "AAA,2024,2"), path)
+  expect_error(vintage_diff_previous_path(params), "VINTAGE BASELINE HASH MISMATCH")
+})
+
 run_diff <- function(setup) {
   build_vintage_diff(
     candidate = file.path(setup$candidate_dir, "SPI_data.csv"),
