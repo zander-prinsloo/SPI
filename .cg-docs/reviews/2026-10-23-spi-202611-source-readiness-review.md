@@ -4,37 +4,37 @@ depth: full
 type: standard
 plan: .cg-docs/plans/2026-10-23-spi-202611-source-readiness.md
 findings:
-  P0.1: open
-  P0.2: open
-  P0.3: open
-  P0.4: open
-  P0.5: open
-  P0.6: open
-  P0.7: open
+  P0.1: fixed
+  P0.2: fixed
+  P0.3: fixed
+  P0.4: fixed
+  P0.5: fixed
+  P0.6: fixed
+  P0.7: fixed
   P0.8: fixed
   P0.9: open
   P0.10: open
-  P1.1: open
-  P1.2: open
-  P1.3: open
-  P1.4: open
-  P1.5: open
-  P1.6: open
+  P1.1: fixed
+  P1.2: fixed
+  P1.3: fixed
+  P1.4: fixed
+  P1.5: fixed
+  P1.6: fixed
   P1.7: open
-  P1.8: open
-  P1.9: open
+  P1.8: fixed
+  P1.9: fixed
   P1.10: fixed
   P1.11: open
-  P2.1: open
-  P2.2: open
+  P2.1: fixed
+  P2.2: fixed
   P2.3: fixed
-  P2.4: open
+  P2.4: fixed
   P2.5: fixed
-  P2.6: open
-  P2.7: open
-  P2.8: open
-  P2.9: open
-  P2.10: open
+  P2.6: fixed
+  P2.7: fixed
+  P2.8: fixed
+  P2.9: fixed
+  P2.10: fixed
   P3.1: open
 ---
 
