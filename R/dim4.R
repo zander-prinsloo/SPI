@@ -195,8 +195,11 @@ library(dplyr)
   bx <- if (is.na(b)) "" else trimws(b)
 
   # Detect "Register based census" robustly
-  has_reg <- grepl("\\bregister\\b.*\\bbased\\b.*\\bcensus\\b", ax, ignore.case = TRUE) ||
-    grepl("\\bregister\\b.*\\bbased\\b.*\\bcensus\\b", bx, ignore.case = TRUE)
+  has_reg <- any(grepl(
+    "^register[ -]based[ -]census$",
+    trimws(unlist(strsplit(paste(c(ax, bx), collapse = ","), ",", fixed = TRUE))),
+    ignore.case = TRUE
+  ))
 
   # Extract 4-digit years from both strings
   yrs <- c(

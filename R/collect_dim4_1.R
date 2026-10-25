@@ -1937,20 +1937,17 @@ dim4_1_merge_review_values <- function(base_values, review_values,
   vapply(seq_along(base_values), function(index) {
     base <- if (is.na(base_values[[index]])) "" else trimws(as.character(base_values[[index]]))
     review <- if (is.na(review_values[[index]])) "" else trimws(as.character(review_values[[index]]))
-    combined <- paste(c(base, review)[nzchar(c(base, review))], collapse = ", ")
-    if (register_based && grepl("register.*based.*census", combined, ignore.case = TRUE)) {
-      remaining <- gsub(
-        "register.*based.*census",
-        "",
-        combined,
-        ignore.case = TRUE
-      )
-      remaining <- trimws(gsub(",+", " ", remaining))
-      combined <- paste(
-        c("Register based census", remaining)[nzchar(c("Register based census", remaining))],
-        collapse = ", "
-      )
+    tokens <- trimws(unlist(strsplit(paste(c(base, review), collapse = ","), ",", fixed = TRUE)))
+    tokens <- tokens[nzchar(tokens)]
+    register_token <- register_based & grepl(
+      "^register[ -]based[ -]census$",
+      tokens,
+      ignore.case = TRUE
+    )
+    if (any(register_token)) {
+      tokens <- c("Register based census", tokens[!register_token])
     }
+    combined <- paste(unique(tokens), collapse = ", ")
     if (nzchar(combined)) combined else NA_character_
   }, character(1))
 }
