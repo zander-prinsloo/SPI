@@ -1,31 +1,158 @@
 {
   "schemaVersion": "compound-gpid-active-state-v1",
-  "updatedAt": "2026-10-21T00:00:00Z",
+  "updatedAt": "2026-10-24T19:04:18Z",
   "workflow": "/cg-work",
-  "status": "blocked",
+  "status": "handoff",
   "branch": "feat/d41-manual-collection-pipeline",
-  "plan": ".cg-docs/plans/2026-10-21-nada-gsbp-collection-pipeline.md",
-  "executionReport": ".cg-docs/work-reports/2026-10-21-nada-gsbp-collection-pipeline.md",
-  "currentPhase": 1,
+  "plan": ".cg-docs/plans/2026-10-23-spi-202611-source-readiness.md",
+  "executionReport": ".cg-docs/work-reports/2026-10-23-spi-202611-source-readiness.md",
+  "currentPhase": 7,
   "evidenceStatus": [
-    {"id": "V1", "status": "passed", "artifact": "tests/testthat/test-manual-review.R (20 passed)"},
-    {"id": "V2", "status": "passed", "artifact": "tests/testthat/test-nada-collection.R (20 passed)"},
-    {"id": "V3", "status": "pending", "artifact": "tests/testthat/test-gsbp-collection.R"},
-    {"id": "V4", "status": "pending", "artifact": "NADA/GSBP regression tests"},
-    {"id": "V5", "status": "passed", "artifact": "299 passed; 0 failed; 200 warnings; 12 skips"},
-    {"id": "V6", "status": "passed", "artifact": "NADA output rebuilt; 190/190 evidence; zero auto-zeros"},
-    {"id": "V7", "status": "blocked", "artifact": "collection_status stops at missing 2025 D4.1 microdata"},
-    {"id": "V8", "status": "pending", "artifact": "git diff constraint check"},
-    {"id": "V9", "status": "pending", "artifact": "docs/user-guide.md"}
+    {
+      "id": "V1",
+      "status": "passed",
+      "artifact": "differential 2024 replication (tests/replication); accepted exception X1"
+    },
+    {
+      "id": "V2",
+      "status": "passed",
+      "artifact": "partial rebuild check (tests/replication)"
+    },
+    {
+      "id": "V3",
+      "status": "passed",
+      "artifact": "test-collection-status.R, test-collection-attestation.R; suite 403/0; differential replication 12/12 identical"
+    },
+    {
+      "id": "V4",
+      "status": "passed",
+      "artifact": "collector tests; UN SDG and JMP parity with legacy code"
+    },
+    {
+      "id": "V5",
+      "status": "passed",
+      "artifact": "01_raw_data/1.5_DUIO/collection/jmp_calibration_2025.md (exact port, 100%)"
+    },
+    {
+      "id": "V6",
+      "status": "passed",
+      "artifact": "test-oecd-collection.R: unmodified oecd_bulk_download.R vs port on a real 226-row sample; mutation check"
+    },
+    {
+      "id": "V7",
+      "status": "passed",
+      "artifact": "live D3"
+    },
+    {
+      "id": "V8",
+      "status": "passed",
+      "artifact": "test-d5-2-collection.R (EMPL 2024 rebuild 190/190, CNIN/FINA builders), test-gsbp-collection.R (2024 regression)"
+    },
+    {
+      "id": "V9",
+      "status": "passed",
+      "artifact": "D4.1"
+    },
+    {
+      "id": "V10",
+      "status": "passed",
+      "artifact": "ODIN"
+    },
+    {
+      "id": "V11",
+      "status": "pending",
+      "artifact": "collection rerun after the D4.1 refresh: complete, 17 blocking rows (attestation_missing) + 1 GSBP warning; 853 review candidates"
+    },
+    {
+      "id": "V12",
+      "status": "pending",
+      "artifact": "sandbox preview with E6 complete; vintage diff: D1.5 478, D4.1 362, D4.2 5 reported; 1 frozen change awaiting decision (COL SPI.D5.5.DIFI 2024 0->1)"
+    },
+    {
+      "id": "V13",
+      "status": "passed",
+      "artifact": "all-row ODIN rehearsal: lock 104 files; unchanged diff 0; 12,817 ODIN changes, 0 outside allowed outputs; non-ODIN change blocked"
+    },
+    {
+      "id": "V14",
+      "status": "passed",
+      "artifact": "git diff -- 02_programs/ empty; OECD script SHA-256 unchanged"
+    },
+    {
+      "id": "V15",
+      "status": "passed",
+      "artifact": "user guide, ODIN guide, CHANGELOG, README; path check"
+    },
+    {
+      "id": "V16",
+      "status": "passed",
+      "artifact": "E6 impact and attribution complete; cache-integrity and attribution-gate safe fixes tested; 2,349-cell fixture exact"
+    },
+    {
+      "id": "V17",
+      "status": "passed",
+      "artifact": "full suite after review safe fixes: 1,055 passed, 0 failed, 14 skipped, 206 audited warnings"
+    }
   ],
   "unresolvedDecisions": [
-    {"id": "D1", "summary": "Provide eight missing 2025 D4.1 microdata files before full collection certification", "blocking": true}
+    "Technical lead: review D4.1 crosswalk and exclusion additions, and ILO crosswalk/exclusion config",
+    "Step 23: attest 17 blocking manual sources and the GSBP desk review",
+    "Step 23: circulate reviewer package; review 853 candidates and complete CNIN, FINA, GSBP and D4.1 workbooks",
+    "Vintage diff: approve or keep COL SPI.D5.5.DIFI 2024 (0 -> 1); publication waits for decision",
+    "Working Group: decide FAO filter, FAO agricultural census list and five territories, CNIN/FINA, JMP 2027, internal library, retired ILO catalog; review E6 and aggregation-order evidence",
+    "Step 24: write_release_lock(params, approved_by = ...) after provisional release approval"
   ],
   "artifactRefs": [
-    {"kind": "plan", "path": ".cg-docs/plans/2026-10-21-nada-gsbp-collection-pipeline.md", "status": "active"},
-    {"kind": "execution-report", "path": ".cg-docs/work-reports/2026-10-21-nada-gsbp-collection-pipeline.md", "status": "active"},
-    {"kind": "review", "path": ".cg-docs/reviews/2026-10-21-nada-gsbp-collection-pipeline-review.md", "status": "open"},
-    {"kind": "prior-plan", "path": ".cg-docs/plans/2026-10-20-d41-manual-collection-pipeline.md", "status": "blocked"}
+    {
+      "kind": "plan",
+      "path": ".cg-docs/plans/2026-10-23-spi-202611-source-readiness.md",
+      "status": "active"
+    },
+    {
+      "kind": "execution-report",
+      "path": ".cg-docs/work-reports/2026-10-23-spi-202611-source-readiness.md",
+      "status": "active"
+    },
+    {
+      "kind": "brainstorm",
+      "path": ".cg-docs/brainstorms/2026-10-23-spi-202611-source-readiness.md",
+      "status": "decided"
+    },
+    {
+      "kind": "handover",
+      "path": ".cg-docs/work-reports/2026-10-24-spi-202611-handover.md",
+      "status": "open"
+    },
+    {
+      "kind": "report",
+      "path": "docs/revisions/202611-revision-report.md",
+      "status": "draft"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/revisions/202611/e6",
+      "status": "complete"
+    },
+    {
+      "kind": "fixture",
+      "path": "tests/fixtures/exceptions/E6_d15_country_matching.csv",
+      "status": "verified"
+    },
+    {
+      "kind": "evidence",
+      "path": "docs/revisions/202611/preview",
+      "status": "complete"
+    },
+    {
+      "kind": "rehearsal",
+      "path": "/tmp/spi-rep/rehearsal-final2/_rehearsal_summary.txt",
+      "status": "passed"
+    },
+    {
+      "kind": "review",
+      "path": ".cg-docs/reviews/2026-10-23-spi-202611-source-readiness-review.md",
+      "status": "open"
+    }
   ],
-  "nextCommand": "/cg-work phase1"
+  "nextCommand": "/cg-work phase7 (after Step 23 attestations, reviewer workbooks, and the DIFI decision)"
 }

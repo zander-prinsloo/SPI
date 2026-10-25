@@ -1,0 +1,511 @@
+iso3c,country,date,spi,rank_before,rank_after,quintile_before,quintile_after
+EST,Estonia,2016,80.59,22,23,Top Quintile,Top Quintile
+CZE,Czechia,2016,80,23,24,Top Quintile,Top Quintile
+ARM,Armenia,2016,79.74,24,25,Top Quintile,Top Quintile
+MEX,Mexico,2016,79.69,25,26,Top Quintile,Top Quintile
+CHL,Chile,2016,79.68,26,27,Top Quintile,Top Quintile
+DNK,Denmark,2016,79.64,27,28,Top Quintile,Top Quintile
+NZL,New Zealand,2016,78.96,28,29,Top Quintile,Top Quintile
+NOR,Norway,2016,78.82,29,30,Top Quintile,Top Quintile
+LTU,Lithuania,2016,78.57,30,31,Top Quintile,Top Quintile
+CRI,Costa Rica,2016,78.37,31,32,Top Quintile,Top Quintile
+THA,Thailand,2016,77.69,32,34,Top Quintile,Top Quintile
+ISR,Israel,2016,77.38,33,35,Top Quintile,4th Quintile
+GEO,Georgia,2016,77.04,34,36,Top Quintile,4th Quintile
+EGY,"Egypt, Arab Rep.",2016,76.27,35,37,4th Quintile,4th Quintile
+KOR,"Korea, Rep.",2016,76.17,36,38,4th Quintile,4th Quintile
+ZAF,South Africa,2016,76.15,37,39,4th Quintile,4th Quintile
+JPN,Japan,2016,76.12,38,40,4th Quintile,4th Quintile
+BGR,Bulgaria,2016,75.01,39,41,4th Quintile,4th Quintile
+BEL,Belgium,2016,74.95,40,42,4th Quintile,4th Quintile
+MUS,Mauritius,2016,74.73,41,43,4th Quintile,4th Quintile
+BRA,Brazil,2016,74.28,42,44,4th Quintile,4th Quintile
+LKA,Sri Lanka,2016,73.56,44,45,4th Quintile,4th Quintile
+PHL,Philippines,2016,73.24,45,46,4th Quintile,4th Quintile
+ETH,Ethiopia,2016,51.32,105,106,2nd Quintile,2nd Quintile
+JAM,Jamaica,2016,51.03,106,107,2nd Quintile,2nd Quintile
+TJK,Tajikistan,2016,50.89,107,108,2nd Quintile,2nd Quintile
+BWA,Botswana,2016,50.59,108,109,2nd Quintile,2nd Quintile
+BDI,Burundi,2016,50.47,109,110,2nd Quintile,2nd Quintile
+NAM,Namibia,2016,49.87,110,111,2nd Quintile,2nd Quintile
+MDV,Maldives,2016,49.8,111,112,2nd Quintile,2nd Quintile
+IRN,"Iran, Islamic Rep.",2016,49.68,112,113,2nd Quintile,2nd Quintile
+MLI,Mali,2016,49.68,113,114,2nd Quintile,2nd Quintile
+BFA,Burkina Faso,2016,49.47,114,115,2nd Quintile,2nd Quintile
+LSO,Lesotho,2016,49.04,115,116,2nd Quintile,2nd Quintile
+BEN,Benin,2016,48.49,116,117,2nd Quintile,2nd Quintile
+NPL,Nepal,2016,48.23,117,118,2nd Quintile,2nd Quintile
+NIC,Nicaragua,2016,48.19,118,119,2nd Quintile,2nd Quintile
+BLZ,Belize,2016,48.06,119,120,2nd Quintile,2nd Quintile
+AUS,Australia,2017,85.06,16,17,Top Quintile,Top Quintile
+HUN,Hungary,2017,84.54,17,18,Top Quintile,Top Quintile
+LVA,Latvia,2017,84.34,18,19,Top Quintile,Top Quintile
+CRI,Costa Rica,2017,84.25,19,20,Top Quintile,Top Quintile
+GRC,Greece,2017,83.87,20,21,Top Quintile,Top Quintile
+NZL,New Zealand,2017,83.55,21,22,Top Quintile,Top Quintile
+GBR,United Kingdom,2017,83.17,22,23,Top Quintile,Top Quintile
+NOR,Norway,2017,82.62,23,24,Top Quintile,Top Quintile
+POL,Poland,2017,82.58,24,25,Top Quintile,Top Quintile
+ARM,Armenia,2017,82.05,25,26,Top Quintile,Top Quintile
+ISR,Israel,2017,81.68,26,27,Top Quintile,Top Quintile
+DNK,Denmark,2017,81.12,27,28,Top Quintile,Top Quintile
+CZE,Czechia,2017,80.47,28,29,Top Quintile,Top Quintile
+GEO,Georgia,2017,80.25,29,30,Top Quintile,Top Quintile
+EST,Estonia,2017,80.19,30,32,Top Quintile,Top Quintile
+KGZ,Kyrgyz Republic,2017,80.13,31,33,Top Quintile,Top Quintile
+CHL,Chile,2017,78.92,32,34,Top Quintile,Top Quintile
+LTU,Lithuania,2017,78.65,33,35,Top Quintile,Top Quintile
+KOR,"Korea, Rep.",2017,78.5,34,36,Top Quintile,4th Quintile
+JPN,Japan,2017,78.05,35,37,Top Quintile,4th Quintile
+BGR,Bulgaria,2017,76.75,37,38,4th Quintile,4th Quintile
+THA,Thailand,2017,76.25,38,39,4th Quintile,4th Quintile
+TZA,Tanzania,2017,62.48,77,78,3rd Quintile,3rd Quintile
+GTM,Guatemala,2017,62.16,78,79,3rd Quintile,3rd Quintile
+BOL,Bolivia,2017,61.75,79,80,3rd Quintile,3rd Quintile
+FJI,Fiji,2017,61.66,80,81,3rd Quintile,3rd Quintile
+HND,Honduras,2017,61.21,81,82,3rd Quintile,3rd Quintile
+AZE,Azerbaijan,2017,60.7,82,83,3rd Quintile,3rd Quintile
+MNE,Montenegro,2017,60.63,83,84,3rd Quintile,3rd Quintile
+SEN,Senegal,2017,60.38,84,85,3rd Quintile,3rd Quintile
+TUN,Tunisia,2017,60.32,85,86,3rd Quintile,3rd Quintile
+ZMB,Zambia,2017,60.28,86,87,3rd Quintile,3rd Quintile
+BGD,Bangladesh,2017,59.6,87,88,3rd Quintile,3rd Quintile
+PAK,Pakistan,2017,59.49,88,89,3rd Quintile,3rd Quintile
+TGO,Togo,2017,59.45,89,90,3rd Quintile,3rd Quintile
+VNM,Viet Nam,2017,59.12,90,91,3rd Quintile,3rd Quintile
+WSM,Samoa,2017,58.59,91,92,3rd Quintile,3rd Quintile
+MOZ,Mozambique,2017,56.39,100,101,3rd Quintile,3rd Quintile
+ETH,Ethiopia,2017,56.37,101,102,3rd Quintile,3rd Quintile
+NGA,Nigeria,2017,56.04,102,103,3rd Quintile,3rd Quintile
+CPV,Cabo Verde,2017,55.91,103,104,3rd Quintile,3rd Quintile
+BIH,Bosnia and Herzegovina,2017,55.86,104,105,3rd Quintile,2nd Quintile
+PRY,Paraguay,2017,55.74,105,106,2nd Quintile,2nd Quintile
+TJK,Tajikistan,2017,55.62,106,107,2nd Quintile,2nd Quintile
+BTN,Bhutan,2017,55.19,107,108,2nd Quintile,2nd Quintile
+CHN,China,2017,55.17,108,109,2nd Quintile,2nd Quintile
+KHM,Cambodia,2017,54.86,109,110,2nd Quintile,2nd Quintile
+JOR,Jordan,2017,54.84,110,111,2nd Quintile,2nd Quintile
+LSO,Lesotho,2017,54.71,111,112,2nd Quintile,2nd Quintile
+BDI,Burundi,2017,54.49,112,113,2nd Quintile,2nd Quintile
+ARE,United Arab Emirates,2017,54.34,113,114,2nd Quintile,2nd Quintile
+JAM,Jamaica,2017,54.09,114,115,2nd Quintile,2nd Quintile
+MMR,Myanmar,2017,53.88,115,116,2nd Quintile,2nd Quintile
+MLI,Mali,2017,53.87,116,117,2nd Quintile,2nd Quintile
+NPL,Nepal,2017,53.23,117,118,2nd Quintile,2nd Quintile
+SYC,Seychelles,2017,52.98,118,119,2nd Quintile,2nd Quintile
+NAM,Namibia,2017,52.94,119,120,2nd Quintile,2nd Quintile
+BFA,Burkina Faso,2017,52.92,120,121,2nd Quintile,2nd Quintile
+ITA,Italy,2018,88.19,7,8,Top Quintile,Top Quintile
+AUT,Austria,2018,87.84,8,9,Top Quintile,Top Quintile
+ESP,Spain,2018,87.52,9,10,Top Quintile,Top Quintile
+DEU,Germany,2018,87.44,10,11,Top Quintile,Top Quintile
+USA,United States,2018,87.25,11,12,Top Quintile,Top Quintile
+JPN,Japan,2018,87.03,12,13,Top Quintile,Top Quintile
+CZE,Czechia,2018,86.89,13,14,Top Quintile,Top Quintile
+EST,Estonia,2018,86.76,14,15,Top Quintile,Top Quintile
+CAN,Canada,2018,86.57,15,16,Top Quintile,Top Quintile
+FRA,France,2018,86.49,16,17,Top Quintile,Top Quintile
+MEX,Mexico,2018,86.43,17,18,Top Quintile,Top Quintile
+IRL,Ireland,2018,86.3,18,19,Top Quintile,Top Quintile
+CHE,Switzerland,2018,86.26,19,20,Top Quintile,Top Quintile
+PRT,Portugal,2018,85.96,20,22,Top Quintile,Top Quintile
+SVK,Slovak Republic,2018,85.39,21,23,Top Quintile,Top Quintile
+LTU,Lithuania,2018,85.11,22,24,Top Quintile,Top Quintile
+KOR,"Korea, Rep.",2018,84.81,23,25,Top Quintile,Top Quintile
+HUN,Hungary,2018,84.64,24,26,Top Quintile,Top Quintile
+GRC,Greece,2018,84.45,25,27,Top Quintile,Top Quintile
+AUS,Australia,2018,84.36,26,28,Top Quintile,Top Quintile
+LVA,Latvia,2018,83.67,28,29,Top Quintile,Top Quintile
+NZL,New Zealand,2018,83.5,29,30,Top Quintile,Top Quintile
+CRI,Costa Rica,2018,83.36,30,31,Top Quintile,Top Quintile
+GBR,United Kingdom,2018,83.19,31,32,Top Quintile,Top Quintile
+ARM,Armenia,2018,83.06,32,33,Top Quintile,Top Quintile
+BGR,Bulgaria,2018,82.34,33,34,Top Quintile,Top Quintile
+BEL,Belgium,2018,82.19,34,35,Top Quintile,Top Quintile
+ISR,Israel,2018,81.69,35,36,Top Quintile,4th Quintile
+CHL,Chile,2018,80.5,36,37,4th Quintile,4th Quintile
+CYP,Cyprus,2018,79.88,37,38,4th Quintile,4th Quintile
+KAZ,Kazakhstan,2018,79.27,38,39,4th Quintile,4th Quintile
+LUX,Luxembourg,2018,78.86,39,40,4th Quintile,4th Quintile
+GEO,Georgia,2018,78.78,40,41,4th Quintile,4th Quintile
+ALB,Albania,2018,78.6,41,42,4th Quintile,4th Quintile
+KGZ,Kyrgyz Republic,2018,78.32,42,43,4th Quintile,4th Quintile
+ISL,Iceland,2018,78.29,43,44,4th Quintile,4th Quintile
+ROU,Romania,2018,78.17,44,45,4th Quintile,4th Quintile
+MKD,North Macedonia,2018,70.81,63,64,4th Quintile,4th Quintile
+HRV,Croatia,2018,70.52,64,65,4th Quintile,4th Quintile
+MYS,Malaysia,2018,70.45,65,66,4th Quintile,4th Quintile
+SLV,El Salvador,2018,69.94,66,67,4th Quintile,4th Quintile
+UKR,Ukraine,2018,69.23,67,68,4th Quintile,4th Quintile
+ARG,Argentina,2018,68.94,68,69,4th Quintile,4th Quintile
+AZE,Azerbaijan,2018,68.49,69,70,4th Quintile,4th Quintile
+PER,Peru,2018,68.27,70,71,4th Quintile,3rd Quintile
+URY,Uruguay,2018,67.8,71,72,3rd Quintile,3rd Quintile
+IND,India,2018,67.09,72,73,3rd Quintile,3rd Quintile
+PRY,Paraguay,2018,57.64,101,102,3rd Quintile,3rd Quintile
+SYC,Seychelles,2018,57.58,102,103,3rd Quintile,3rd Quintile
+MLI,Mali,2018,57.43,103,104,3rd Quintile,3rd Quintile
+IRN,"Iran, Islamic Rep.",2018,57.26,104,105,3rd Quintile,2nd Quintile
+CMR,Cameroon,2018,57.06,105,106,2nd Quintile,2nd Quintile
+NER,Niger,2018,56.89,106,107,2nd Quintile,2nd Quintile
+MOZ,Mozambique,2018,56.6,107,108,2nd Quintile,2nd Quintile
+CPV,Cabo Verde,2018,56.55,108,109,2nd Quintile,2nd Quintile
+JOR,Jordan,2018,56.22,109,110,2nd Quintile,2nd Quintile
+TJK,Tajikistan,2018,56.19,110,111,2nd Quintile,2nd Quintile
+CHN,China,2018,56.04,111,112,2nd Quintile,2nd Quintile
+DZA,Algeria,2018,55.92,112,113,2nd Quintile,2nd Quintile
+LCA,St. Lucia,2018,55.91,113,114,2nd Quintile,2nd Quintile
+KWT,Kuwait,2018,55.72,114,115,2nd Quintile,2nd Quintile
+SAU,Saudi Arabia,2018,55.12,115,116,2nd Quintile,2nd Quintile
+KEN,Kenya,2018,54.96,116,117,2nd Quintile,2nd Quintile
+TLS,Timor-Leste,2018,54.95,117,118,2nd Quintile,2nd Quintile
+BFA,Burkina Faso,2018,54.85,118,119,2nd Quintile,2nd Quintile
+BDI,Burundi,2018,54.82,119,120,2nd Quintile,2nd Quintile
+BWA,Botswana,2018,54.81,120,121,2nd Quintile,2nd Quintile
+AGO,Angola,2018,54.57,121,122,2nd Quintile,2nd Quintile
+NGA,Nigeria,2018,54.24,122,123,2nd Quintile,2nd Quintile
+ITA,Italy,2019,88.2,8,9,Top Quintile,Top Quintile
+DEU,Germany,2019,87.83,9,10,Top Quintile,Top Quintile
+CAN,Canada,2019,87.47,10,11,Top Quintile,Top Quintile
+IRL,Ireland,2019,87.38,11,12,Top Quintile,Top Quintile
+USA,United States,2019,87.26,12,13,Top Quintile,Top Quintile
+JPN,Japan,2019,87.14,13,14,Top Quintile,Top Quintile
+AUT,Austria,2019,86.79,14,15,Top Quintile,Top Quintile
+CZE,Czechia,2019,86.73,15,16,Top Quintile,Top Quintile
+EST,Estonia,2019,86.41,16,18,Top Quintile,Top Quintile
+PRT,Portugal,2019,86.26,17,19,Top Quintile,Top Quintile
+FRA,France,2019,86.23,18,20,Top Quintile,Top Quintile
+CHE,Switzerland,2019,86.18,19,21,Top Quintile,Top Quintile
+MEX,Mexico,2019,86.17,20,22,Top Quintile,Top Quintile
+CRI,Costa Rica,2019,85.78,21,23,Top Quintile,Top Quintile
+SVK,Slovak Republic,2019,85.6,22,24,Top Quintile,Top Quintile
+GRC,Greece,2019,85.36,23,25,Top Quintile,Top Quintile
+LTU,Lithuania,2019,84.94,24,26,Top Quintile,Top Quintile
+HUN,Hungary,2019,84.83,25,27,Top Quintile,Top Quintile
+KOR,"Korea, Rep.",2019,84.62,26,28,Top Quintile,Top Quintile
+AUS,Australia,2019,84.24,28,29,Top Quintile,Top Quintile
+NZL,New Zealand,2019,83.5,29,30,Top Quintile,Top Quintile
+LVA,Latvia,2019,83.39,30,31,Top Quintile,Top Quintile
+GBR,United Kingdom,2019,83.04,31,32,Top Quintile,Top Quintile
+BEL,Belgium,2019,82.8,32,33,Top Quintile,Top Quintile
+CHL,Chile,2019,82.44,33,34,Top Quintile,Top Quintile
+ARM,Armenia,2019,82.23,34,35,Top Quintile,Top Quintile
+BGR,Bulgaria,2019,81.99,35,36,Top Quintile,4th Quintile
+GEO,Georgia,2019,81.73,36,37,4th Quintile,4th Quintile
+ISR,Israel,2019,81.47,37,38,4th Quintile,4th Quintile
+KGZ,Kyrgyz Republic,2019,80.81,38,39,4th Quintile,4th Quintile
+MDA,Moldova,2019,80.32,39,40,4th Quintile,4th Quintile
+BLR,Belarus,2019,79.8,40,41,4th Quintile,4th Quintile
+CYP,Cyprus,2019,79.62,41,42,4th Quintile,4th Quintile
+BRA,Brazil,2019,79.26,42,43,4th Quintile,4th Quintile
+ROU,Romania,2019,79.18,43,44,4th Quintile,4th Quintile
+KAZ,Kazakhstan,2019,78.9,44,45,4th Quintile,4th Quintile
+LUX,Luxembourg,2019,78.67,45,46,4th Quintile,4th Quintile
+SLV,El Salvador,2019,69.46,66,67,4th Quintile,4th Quintile
+ARG,Argentina,2019,69.44,67,68,4th Quintile,4th Quintile
+MYS,Malaysia,2019,68.89,68,69,4th Quintile,4th Quintile
+AZE,Azerbaijan,2019,68.47,69,70,4th Quintile,4th Quintile
+IND,India,2019,68.38,70,71,4th Quintile,3rd Quintile
+PER,Peru,2019,68.01,71,72,3rd Quintile,3rd Quintile
+UGA,Uganda,2019,67.74,72,73,3rd Quintile,3rd Quintile
+URY,Uruguay,2019,66.99,73,74,3rd Quintile,3rd Quintile
+TJK,Tajikistan,2019,56.43,114,115,2nd Quintile,2nd Quintile
+TLS,Timor-Leste,2019,56.38,115,116,2nd Quintile,2nd Quintile
+KHM,Cambodia,2019,56.2,116,117,2nd Quintile,2nd Quintile
+LBN,Lebanon,2019,55.53,117,118,2nd Quintile,2nd Quintile
+QAT,Qatar,2019,55.52,118,119,2nd Quintile,2nd Quintile
+WSM,Samoa,2019,55.39,119,120,2nd Quintile,2nd Quintile
+LSO,Lesotho,2019,55.22,120,121,2nd Quintile,2nd Quintile
+BFA,Burkina Faso,2019,54.46,121,122,2nd Quintile,2nd Quintile
+MRT,Mauritania,2019,54.4,122,123,2nd Quintile,2nd Quintile
+TZA,Tanzania,2019,54.23,123,124,2nd Quintile,2nd Quintile
+UZB,Uzbekistan,2019,53.91,124,125,2nd Quintile,2nd Quintile
+MDV,Maldives,2019,53.69,125,126,2nd Quintile,2nd Quintile
+LAO,Lao PDR,2019,53.29,126,127,2nd Quintile,2nd Quintile
+NPL,Nepal,2019,52.89,127,128,2nd Quintile,2nd Quintile
+CMR,Cameroon,2019,52.8,128,129,2nd Quintile,2nd Quintile
+MLI,Mali,2019,52.77,129,130,2nd Quintile,2nd Quintile
+LBR,Liberia,2019,52.6,130,131,2nd Quintile,2nd Quintile
+IRL,Ireland,2020,88.7,7,8,Top Quintile,Top Quintile
+ITA,Italy,2020,88.62,8,9,Top Quintile,Top Quintile
+AUT,Austria,2020,88.45,9,10,Top Quintile,Top Quintile
+CRI,Costa Rica,2020,88,10,11,Top Quintile,Top Quintile
+ESP,Spain,2020,87.93,11,12,Top Quintile,Top Quintile
+CZE,Czechia,2020,87.89,12,13,Top Quintile,Top Quintile
+DEU,Germany,2020,87.81,13,14,Top Quintile,Top Quintile
+JPN,Japan,2020,87.76,14,15,Top Quintile,Top Quintile
+FRA,France,2020,87.55,15,16,Top Quintile,Top Quintile
+CAN,Canada,2020,87.44,16,17,Top Quintile,Top Quintile
+CHE,Switzerland,2020,87.42,17,18,Top Quintile,Top Quintile
+PRT,Portugal,2020,87.15,18,19,Top Quintile,Top Quintile
+USA,United States,2020,86.9,19,20,Top Quintile,Top Quintile
+EST,Estonia,2020,86.55,20,21,Top Quintile,Top Quintile
+KOR,"Korea, Rep.",2020,86.5,21,22,Top Quintile,Top Quintile
+GEO,Georgia,2020,86.5,22,23,Top Quintile,Top Quintile
+MEX,Mexico,2020,86.33,23,24,Top Quintile,Top Quintile
+SVK,Slovak Republic,2020,86.26,24,25,Top Quintile,Top Quintile
+HUN,Hungary,2020,86.09,25,27,Top Quintile,Top Quintile
+GRC,Greece,2020,85.95,26,28,Top Quintile,Top Quintile
+LTU,Lithuania,2020,85.09,27,29,Top Quintile,Top Quintile
+ROU,Romania,2020,84.46,29,30,Top Quintile,Top Quintile
+LVA,Latvia,2020,84.07,30,31,Top Quintile,Top Quintile
+AUS,Australia,2020,83.73,31,32,Top Quintile,Top Quintile
+NZL,New Zealand,2020,83.67,32,33,Top Quintile,Top Quintile
+BLR,Belarus,2020,83.65,33,34,Top Quintile,Top Quintile
+GBR,United Kingdom,2020,83.55,34,35,Top Quintile,Top Quintile
+BGR,Bulgaria,2020,83.38,35,36,Top Quintile,Top Quintile
+MNG,Mongolia,2020,83.18,36,37,Top Quintile,Top Quintile
+ARM,Armenia,2020,82.94,37,38,Top Quintile,4th Quintile
+CHL,Chile,2020,82.64,38,39,4th Quintile,4th Quintile
+BEL,Belgium,2020,82.29,39,40,4th Quintile,4th Quintile
+MDA,Moldova,2020,82.26,40,41,4th Quintile,4th Quintile
+KGZ,Kyrgyz Republic,2020,82.02,41,42,4th Quintile,4th Quintile
+ISR,Israel,2020,81.96,42,43,4th Quintile,4th Quintile
+SGP,Singapore,2020,81.53,43,44,4th Quintile,4th Quintile
+ALB,Albania,2020,81.32,44,45,4th Quintile,4th Quintile
+SRB,Serbia,2020,80.86,45,46,4th Quintile,4th Quintile
+LUX,Luxembourg,2020,80.58,46,47,4th Quintile,4th Quintile
+ISL,Iceland,2020,79.94,47,48,4th Quintile,4th Quintile
+THA,Thailand,2020,79.28,48,49,4th Quintile,4th Quintile
+BRA,Brazil,2020,79.17,49,50,4th Quintile,4th Quintile
+PHL,Philippines,2020,79.15,50,51,4th Quintile,4th Quintile
+COL,Colombia,2020,79.07,51,52,4th Quintile,4th Quintile
+KAZ,Kazakhstan,2020,78.52,52,53,4th Quintile,4th Quintile
+CYP,Cyprus,2020,76.79,57,58,4th Quintile,4th Quintile
+EGY,"Egypt, Arab Rep.",2020,76.34,58,59,4th Quintile,4th Quintile
+HRV,Croatia,2020,76.01,59,60,4th Quintile,4th Quintile
+UKR,Ukraine,2020,76.01,60,61,4th Quintile,4th Quintile
+ZAF,South Africa,2020,75.5,61,62,4th Quintile,4th Quintile
+MLT,Malta,2020,74.49,62,63,4th Quintile,4th Quintile
+ECU,Ecuador,2020,74.2,63,64,4th Quintile,4th Quintile
+IDN,Indonesia,2020,74.09,64,65,4th Quintile,4th Quintile
+MUS,Mauritius,2020,74.08,65,66,4th Quintile,4th Quintile
+IND,India,2020,73.49,66,67,4th Quintile,4th Quintile
+KEN,Kenya,2020,61.32,100,101,3rd Quintile,3rd Quintile
+BGD,Bangladesh,2020,61.31,101,102,3rd Quintile,3rd Quintile
+NER,Niger,2020,60.79,102,103,3rd Quintile,3rd Quintile
+CPV,Cabo Verde,2020,60.77,103,104,3rd Quintile,3rd Quintile
+BOL,Bolivia,2020,60.7,104,105,3rd Quintile,3rd Quintile
+MWI,Malawi,2020,60.68,105,106,3rd Quintile,3rd Quintile
+JAM,Jamaica,2020,60.44,106,107,3rd Quintile,3rd Quintile
+BEN,Benin,2020,60.36,107,108,3rd Quintile,3rd Quintile
+KWT,Kuwait,2020,60.18,108,109,3rd Quintile,3rd Quintile
+WSM,Samoa,2020,59.59,109,110,3rd Quintile,2nd Quintile
+AGO,Angola,2020,59.17,110,111,2nd Quintile,2nd Quintile
+BWA,Botswana,2020,58.83,111,112,2nd Quintile,2nd Quintile
+NGA,Nigeria,2020,58.79,112,113,2nd Quintile,2nd Quintile
+LBN,Lebanon,2020,58.72,113,114,2nd Quintile,2nd Quintile
+LBR,Liberia,2020,58.43,114,115,2nd Quintile,2nd Quintile
+HND,Honduras,2020,58.04,115,116,2nd Quintile,2nd Quintile
+CHN,China,2020,57.48,116,117,2nd Quintile,2nd Quintile
+TTO,Trinidad and Tobago,2020,44.54,156,157,Bottom 20%,Bottom 20%
+ATG,Antigua and Barbuda,2020,44.47,157,158,Bottom 20%,Bottom 20%
+PNG,Papua New Guinea,2020,44.44,158,159,Bottom 20%,Bottom 20%
+SLB,Solomon Islands,2020,43.63,159,160,Bottom 20%,Bottom 20%
+SVN,Slovenia,2021,93.07,7,8,Top Quintile,Top Quintile
+IRL,Ireland,2021,92.82,8,9,Top Quintile,Top Quintile
+USA,United States,2021,92.75,9,10,Top Quintile,Top Quintile
+ITA,Italy,2021,92.49,10,11,Top Quintile,Top Quintile
+DEU,Germany,2021,92.14,11,12,Top Quintile,Top Quintile
+CZE,Czechia,2021,92.01,12,13,Top Quintile,Top Quintile
+PRT,Portugal,2021,91.57,13,14,Top Quintile,Top Quintile
+ESP,Spain,2021,91.53,14,15,Top Quintile,Top Quintile
+LTU,Lithuania,2021,91.11,15,16,Top Quintile,Top Quintile
+CRI,Costa Rica,2021,91,16,17,Top Quintile,Top Quintile
+AUT,Austria,2021,90.96,17,18,Top Quintile,Top Quintile
+FRA,France,2021,90.78,18,19,Top Quintile,Top Quintile
+JPN,Japan,2021,90.71,19,20,Top Quintile,Top Quintile
+SVK,Slovak Republic,2021,90.52,20,21,Top Quintile,Top Quintile
+CHE,Switzerland,2021,90.39,21,22,Top Quintile,Top Quintile
+GEO,Georgia,2021,90.03,22,23,Top Quintile,Top Quintile
+HUN,Hungary,2021,89.93,23,24,Top Quintile,Top Quintile
+GRC,Greece,2021,89.91,24,25,Top Quintile,Top Quintile
+LVA,Latvia,2021,87.98,30,31,Top Quintile,Top Quintile
+BEL,Belgium,2021,87.97,31,32,Top Quintile,Top Quintile
+BGR,Bulgaria,2021,87.48,32,33,Top Quintile,Top Quintile
+GBR,United Kingdom,2021,87.36,33,34,Top Quintile,Top Quintile
+AUS,Australia,2021,87,34,35,Top Quintile,Top Quintile
+EST,Estonia,2021,86.87,35,36,Top Quintile,Top Quintile
+CYP,Cyprus,2021,86.57,36,37,Top Quintile,Top Quintile
+HRV,Croatia,2021,86.52,37,38,Top Quintile,4th Quintile
+CHL,Chile,2021,86.44,38,39,4th Quintile,4th Quintile
+ARM,Armenia,2021,85.81,39,40,4th Quintile,4th Quintile
+ALB,Albania,2021,85.78,40,41,4th Quintile,4th Quintile
+LUX,Luxembourg,2021,85.59,41,42,4th Quintile,4th Quintile
+MDA,Moldova,2021,85.33,42,43,4th Quintile,4th Quintile
+SGP,Singapore,2021,85.07,43,44,4th Quintile,4th Quintile
+ISR,Israel,2021,84.91,44,45,4th Quintile,4th Quintile
+MNG,Mongolia,2021,84.5,45,46,4th Quintile,4th Quintile
+KGZ,Kyrgyz Republic,2021,84.29,46,47,4th Quintile,4th Quintile
+MKD,North Macedonia,2021,83.69,47,48,4th Quintile,4th Quintile
+ISL,Iceland,2021,83.42,48,49,4th Quintile,4th Quintile
+COL,Colombia,2021,82.75,49,50,4th Quintile,4th Quintile
+THA,Thailand,2021,82.68,50,51,4th Quintile,4th Quintile
+KAZ,Kazakhstan,2021,82.65,51,52,4th Quintile,4th Quintile
+ROU,Romania,2021,82.57,52,53,4th Quintile,4th Quintile
+PHL,Philippines,2021,81.92,53,54,4th Quintile,4th Quintile
+MLT,Malta,2021,81.61,54,56,4th Quintile,4th Quintile
+RUS,Russian Federation,2021,81.5,55,57,4th Quintile,4th Quintile
+BRA,Brazil,2021,81.21,56,58,4th Quintile,4th Quintile
+SRB,Serbia,2021,81.15,57,59,4th Quintile,4th Quintile
+ZAF,South Africa,2021,81.04,58,60,4th Quintile,4th Quintile
+URY,Uruguay,2021,80.94,59,61,4th Quintile,4th Quintile
+UKR,Ukraine,2021,80.06,61,62,4th Quintile,4th Quintile
+LKA,Sri Lanka,2021,79.61,62,63,4th Quintile,4th Quintile
+IDN,Indonesia,2021,78.79,63,64,4th Quintile,4th Quintile
+ECU,Ecuador,2021,78.57,64,65,4th Quintile,4th Quintile
+MNE,Montenegro,2021,78.2,65,66,4th Quintile,4th Quintile
+JAM,Jamaica,2021,71.23,84,85,3rd Quintile,3rd Quintile
+UZB,Uzbekistan,2021,71.06,85,86,3rd Quintile,3rd Quintile
+BIH,Bosnia and Herzegovina,2021,70.86,86,87,3rd Quintile,3rd Quintile
+DOM,Dominican Republic,2021,70.69,87,88,3rd Quintile,3rd Quintile
+BFA,Burkina Faso,2021,70.43,88,89,3rd Quintile,3rd Quintile
+RWA,Rwanda,2021,70.2,89,90,3rd Quintile,3rd Quintile
+PRY,Paraguay,2021,70.05,90,91,3rd Quintile,3rd Quintile
+MAR,Morocco,2021,69.96,91,92,3rd Quintile,3rd Quintile
+BGD,Bangladesh,2021,69.9,92,93,3rd Quintile,3rd Quintile
+TGO,Togo,2021,69.77,93,94,3rd Quintile,3rd Quintile
+NER,Niger,2021,68.39,94,95,3rd Quintile,3rd Quintile
+PAK,Pakistan,2021,68.34,95,96,3rd Quintile,3rd Quintile
+KEN,Kenya,2021,68.07,96,97,3rd Quintile,3rd Quintile
+CPV,Cabo Verde,2021,67.38,97,98,3rd Quintile,3rd Quintile
+GMB,"Gambia, The",2021,67.38,98,99,3rd Quintile,3rd Quintile
+VCT,St. Vincent and the Grenadines,2021,48.54,160,161,Bottom 20%,Bottom 20%
+EST,Estonia,2022,91.89,8,9,Top Quintile,Top Quintile
+USA,United States,2022,91.88,9,10,Top Quintile,Top Quintile
+CAN,Canada,2022,91.82,10,11,Top Quintile,Top Quintile
+DEU,Germany,2022,91.78,11,12,Top Quintile,Top Quintile
+ESP,Spain,2022,91.5,12,13,Top Quintile,Top Quintile
+ITA,Italy,2022,91.45,13,14,Top Quintile,Top Quintile
+FRA,France,2022,90.84,14,15,Top Quintile,Top Quintile
+LTU,Lithuania,2022,90.57,15,16,Top Quintile,Top Quintile
+JPN,Japan,2022,90.29,16,17,Top Quintile,Top Quintile
+AUT,Austria,2022,90.1,17,18,Top Quintile,Top Quintile
+CRI,Costa Rica,2022,90.09,18,19,Top Quintile,Top Quintile
+IRL,Ireland,2022,89.76,19,20,Top Quintile,Top Quintile
+CZE,Czechia,2022,89.62,20,21,Top Quintile,Top Quintile
+GEO,Georgia,2022,89.57,21,22,Top Quintile,Top Quintile
+LVA,Latvia,2022,89.05,22,23,Top Quintile,Top Quintile
+CHE,Switzerland,2022,89.04,23,24,Top Quintile,Top Quintile
+MEX,Mexico,2022,88.97,24,25,Top Quintile,Top Quintile
+GRC,Greece,2022,88.75,25,26,Top Quintile,Top Quintile
+SVK,Slovak Republic,2022,88.47,26,27,Top Quintile,Top Quintile
+BLR,Belarus,2022,88.46,27,28,Top Quintile,Top Quintile
+KOR,"Korea, Rep.",2022,88.46,28,29,Top Quintile,Top Quintile
+BEL,Belgium,2022,88.37,29,30,Top Quintile,Top Quintile
+HRV,Croatia,2022,84.84,43,44,4th Quintile,4th Quintile
+KGZ,Kyrgyz Republic,2022,84.65,44,45,4th Quintile,4th Quintile
+ALB,Albania,2022,84.43,45,46,4th Quintile,4th Quintile
+MDA,Moldova,2022,84.08,46,47,4th Quintile,4th Quintile
+THA,Thailand,2022,83.97,47,48,4th Quintile,4th Quintile
+ARM,Armenia,2022,83.06,48,49,4th Quintile,4th Quintile
+MKD,North Macedonia,2022,82.55,49,50,4th Quintile,4th Quintile
+COL,Colombia,2022,82.22,50,51,4th Quintile,4th Quintile
+MNG,Mongolia,2022,81.99,51,52,4th Quintile,4th Quintile
+KAZ,Kazakhstan,2022,81.93,52,53,4th Quintile,4th Quintile
+MLT,Malta,2022,81.67,53,54,4th Quintile,4th Quintile
+PHL,Philippines,2022,81.45,54,55,4th Quintile,4th Quintile
+ZAF,South Africa,2022,81.24,55,56,4th Quintile,4th Quintile
+BRA,Brazil,2022,81.08,56,57,4th Quintile,4th Quintile
+RUS,Russian Federation,2022,80.99,57,58,4th Quintile,4th Quintile
+SRB,Serbia,2022,79.82,58,59,4th Quintile,4th Quintile
+JOR,Jordan,2022,78.62,59,61,4th Quintile,4th Quintile
+IDN,Indonesia,2022,78.6,60,62,4th Quintile,4th Quintile
+ECU,Ecuador,2022,78.58,61,63,4th Quintile,4th Quintile
+UKR,Ukraine,2022,77.52,63,64,4th Quintile,4th Quintile
+PER,Peru,2022,77.17,64,65,4th Quintile,4th Quintile
+LKA,Sri Lanka,2022,77.06,65,66,4th Quintile,4th Quintile
+IND,India,2022,76.94,66,67,4th Quintile,4th Quintile
+URY,Uruguay,2022,76.67,67,68,4th Quintile,4th Quintile
+MUS,Mauritius,2022,76.52,68,69,4th Quintile,4th Quintile
+ARG,Argentina,2022,76.47,69,70,4th Quintile,4th Quintile
+SAU,Saudi Arabia,2022,76.39,70,71,4th Quintile,4th Quintile
+EGY,"Egypt, Arab Rep.",2022,75.95,71,72,4th Quintile,4th Quintile
+ARE,United Arab Emirates,2022,75.92,72,73,4th Quintile,4th Quintile
+MYS,Malaysia,2022,75.83,73,74,4th Quintile,4th Quintile
+UZB,Uzbekistan,2022,75.79,74,75,4th Quintile,4th Quintile
+SEN,Senegal,2022,75.63,75,76,4th Quintile,3rd Quintile
+TUN,Tunisia,2022,75.25,76,77,3rd Quintile,3rd Quintile
+MAR,Morocco,2022,67.99,92,93,3rd Quintile,3rd Quintile
+RWA,Rwanda,2022,67.68,93,94,3rd Quintile,3rd Quintile
+BFA,Burkina Faso,2022,67.08,94,95,3rd Quintile,3rd Quintile
+BOL,Bolivia,2022,67.02,95,96,3rd Quintile,3rd Quintile
+NER,Niger,2022,66.77,96,97,3rd Quintile,3rd Quintile
+VNM,Viet Nam,2022,66.72,97,98,3rd Quintile,3rd Quintile
+QAT,Qatar,2022,66.71,98,99,3rd Quintile,3rd Quintile
+GMB,"Gambia, The",2022,66,99,100,3rd Quintile,3rd Quintile
+MMR,Myanmar,2022,65.94,100,101,3rd Quintile,3rd Quintile
+BLZ,Belize,2022,65.84,101,102,3rd Quintile,3rd Quintile
+BEN,Benin,2022,65.74,102,103,3rd Quintile,3rd Quintile
+UGA,Uganda,2022,65.26,103,104,3rd Quintile,3rd Quintile
+CPV,Cabo Verde,2022,65.2,104,105,3rd Quintile,3rd Quintile
+KIR,Kiribati,2022,47.25,163,164,Bottom 20%,Bottom 20%
+BDI,Burundi,2022,46.86,164,165,Bottom 20%,Bottom 20%
+PRT,Portugal,2023,93.78,8,9,Top Quintile,Top Quintile
+ITA,Italy,2023,93.64,9,10,Top Quintile,Top Quintile
+LTU,Lithuania,2023,93.48,10,11,Top Quintile,Top Quintile
+CAN,Canada,2023,93.46,11,12,Top Quintile,Top Quintile
+USA,United States,2023,93.43,12,13,Top Quintile,Top Quintile
+FRA,France,2023,92.83,13,14,Top Quintile,Top Quintile
+EST,Estonia,2023,92.79,14,15,Top Quintile,Top Quintile
+AUT,Austria,2023,92.65,15,16,Top Quintile,Top Quintile
+DEU,Germany,2023,92.47,16,17,Top Quintile,Top Quintile
+MEX,Mexico,2023,91.64,17,18,Top Quintile,Top Quintile
+KOR,"Korea, Rep.",2023,91.45,18,19,Top Quintile,Top Quintile
+LVA,Latvia,2023,91.43,19,20,Top Quintile,Top Quintile
+IRL,Ireland,2023,91.42,20,21,Top Quintile,Top Quintile
+NZL,New Zealand,2023,91.31,21,22,Top Quintile,Top Quintile
+CZE,Czechia,2023,91.04,22,23,Top Quintile,Top Quintile
+JPN,Japan,2023,90.94,23,24,Top Quintile,Top Quintile
+GRC,Greece,2023,90.58,24,25,Top Quintile,Top Quintile
+CHE,Switzerland,2023,90.29,25,26,Top Quintile,Top Quintile
+HUN,Hungary,2023,90.22,26,27,Top Quintile,Top Quintile
+BEL,Belgium,2023,90.16,27,28,Top Quintile,Top Quintile
+MDA,Moldova,2023,86.07,42,43,4th Quintile,4th Quintile
+MLT,Malta,2023,85.66,43,44,4th Quintile,4th Quintile
+ALB,Albania,2023,85.08,44,45,4th Quintile,4th Quintile
+MKD,North Macedonia,2023,84.96,45,46,4th Quintile,4th Quintile
+SRB,Serbia,2023,84.07,46,47,4th Quintile,4th Quintile
+THA,Thailand,2023,83.58,47,48,4th Quintile,4th Quintile
+ARM,Armenia,2023,83.36,48,49,4th Quintile,4th Quintile
+COL,Colombia,2023,83.27,49,50,4th Quintile,4th Quintile
+KAZ,Kazakhstan,2023,82.81,50,51,4th Quintile,4th Quintile
+MNG,Mongolia,2023,82.71,51,52,4th Quintile,4th Quintile
+PHL,Philippines,2023,82.7,52,53,4th Quintile,4th Quintile
+UZB,Uzbekistan,2023,81.99,53,54,4th Quintile,4th Quintile
+SAU,Saudi Arabia,2023,81.86,54,55,4th Quintile,4th Quintile
+ISL,Iceland,2023,81.74,55,56,4th Quintile,4th Quintile
+ZAF,South Africa,2023,81.7,56,57,4th Quintile,4th Quintile
+URY,Uruguay,2023,81.1,57,58,4th Quintile,4th Quintile
+IDN,Indonesia,2023,81.09,58,59,4th Quintile,4th Quintile
+RUS,Russian Federation,2023,80.95,59,60,4th Quintile,4th Quintile
+BRA,Brazil,2023,80.64,60,61,4th Quintile,4th Quintile
+MYS,Malaysia,2023,80.09,61,63,4th Quintile,4th Quintile
+BLR,Belarus,2023,79.4,62,64,4th Quintile,4th Quintile
+ARG,Argentina,2023,79.19,63,65,4th Quintile,4th Quintile
+PER,Peru,2023,78.72,64,66,4th Quintile,4th Quintile
+MUS,Mauritius,2023,78.68,66,67,4th Quintile,4th Quintile
+ECU,Ecuador,2023,78.47,67,68,4th Quintile,4th Quintile
+JOR,Jordan,2023,78.45,68,69,4th Quintile,4th Quintile
+UKR,Ukraine,2023,78.41,69,70,4th Quintile,4th Quintile
+LKA,Sri Lanka,2023,78.2,70,71,4th Quintile,4th Quintile
+EGY,"Egypt, Arab Rep.",2023,77.79,71,72,4th Quintile,4th Quintile
+KGZ,Kyrgyz Republic,2023,77.78,72,73,4th Quintile,4th Quintile
+IND,India,2023,77.31,73,74,4th Quintile,4th Quintile
+ARE,United Arab Emirates,2023,77.31,74,75,4th Quintile,4th Quintile
+GTM,Guatemala,2023,76.94,75,76,4th Quintile,3rd Quintile
+SEN,Senegal,2023,76.88,76,77,3rd Quintile,3rd Quintile
+PAK,Pakistan,2023,68.91,93,94,3rd Quintile,3rd Quintile
+BOL,Bolivia,2023,68.86,94,95,3rd Quintile,3rd Quintile
+BIH,Bosnia and Herzegovina,2023,68.78,95,96,3rd Quintile,3rd Quintile
+GMB,"Gambia, The",2023,68.59,96,97,3rd Quintile,3rd Quintile
+BEN,Benin,2023,68.04,97,98,3rd Quintile,3rd Quintile
+NER,Niger,2023,66.91,98,99,3rd Quintile,3rd Quintile
+BLZ,Belize,2023,66.79,99,100,3rd Quintile,3rd Quintile
+AZE,Azerbaijan,2023,66.79,100,101,3rd Quintile,3rd Quintile
+QAT,Qatar,2023,66.79,101,102,3rd Quintile,3rd Quintile
+UGA,Uganda,2023,66.63,102,103,3rd Quintile,3rd Quintile
+GHA,Ghana,2023,66.24,103,104,3rd Quintile,3rd Quintile
+GRD,Grenada,2023,49.07,161,162,Bottom 20%,Bottom 20%
+VCT,St. Vincent and the Grenadines,2023,48.39,162,163,Bottom 20%,Bottom 20%
+CAF,Central African Republic,2023,47.27,163,164,Bottom 20%,Bottom 20%

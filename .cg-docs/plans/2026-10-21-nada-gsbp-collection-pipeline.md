@@ -11,6 +11,7 @@ deviation-policy: "ask"
 artifact-schema-version: 1
 phases: 2  # convenience hint -- may be stale; always recount from ## Phase headers
 tags: [nada, gsbp, dimension-2.4, dimension-5.2, manual-review, collection, targets, regression]
+superseded-by: ".cg-docs/plans/2026-10-23-spi-202611-source-readiness.md"
 ---
 
 # Plan: Integrate D2.4 NADA and D5.2.10 GSBP into the SPI Collection Pipeline

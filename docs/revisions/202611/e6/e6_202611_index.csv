@@ -1,0 +1,202 @@
+iso3c,country,date,spi_before,spi_after,spi_change,pillar1_before,pillar1_after,rank_before,rank_after,ranked,quintile_before,quintile_after
+BOL,Bolivia,2010,,,,40,60,,,0,,
+BOL,Bolivia,2011,,,,40,60,,,0,,
+BOL,Bolivia,2012,,,,40,50,,,0,,
+BOL,Bolivia,2013,,,,40,50,,,0,,
+BOL,Bolivia,2014,,,,40,50,,,0,,
+BOL,Bolivia,2015,,,,60,70,,,0,,
+BOL,Bolivia,2016,54.44,58.44,4,80,100,91,79,167,3rd Quintile,3rd Quintile
+BOL,Bolivia,2017,58.08,62.08,4,80,100,92,80,174,3rd Quintile,3rd Quintile
+BOL,Bolivia,2018,59.07,63.07,4,80,100,95,83,174,3rd Quintile,3rd Quintile
+BOL,Bolivia,2019,59.32,63.32,4,80,100,97,85,174,3rd Quintile,3rd Quintile
+BOL,Bolivia,2020,61.03,65.03,4,80,100,101,89,182,3rd Quintile,3rd Quintile
+BOL,Bolivia,2021,67.48,71.48,4,80,100,96,85,182,3rd Quintile,3rd Quintile
+BOL,Bolivia,2022,63.35,67.35,4,60,80,110,97,187,3rd Quintile,3rd Quintile
+BOL,Bolivia,2023,68.86,72.86,4,80,100,94,83,187,3rd Quintile,3rd Quintile
+BOL,Bolivia,2024,70.23,74.23,4,80,100,92,85,188,3rd Quintile,3rd Quintile
+BOL,Bolivia,2025,68.38,72.38,4,80,100,99,91,188,3rd Quintile,3rd Quintile
+CIV,Cote d'Ivoire,2012,,,,30,50,,,0,,
+CIV,Cote d'Ivoire,2013,,,,30,50,,,0,,
+CIV,Cote d'Ivoire,2014,,,,20,40,,,0,,
+CIV,Cote d'Ivoire,2015,,,,50,70,,,0,,
+CIV,Cote d'Ivoire,2016,47.59,51.59,4,70,90,118,104,167,2nd Quintile,2nd Quintile
+CIV,Cote d'Ivoire,2017,52.81,56.82,4,70,90,117,100,174,2nd Quintile,3rd Quintile
+CIV,Cote d'Ivoire,2018,53.94,57.94,4,70,90,119,101,174,2nd Quintile,3rd Quintile
+CIV,Cote d'Ivoire,2019,52.44,56.44,4,70,90,131,113,174,2nd Quintile,2nd Quintile
+CIV,Cote d'Ivoire,2020,57.47,61.47,4,70,90,116,101,182,2nd Quintile,3rd Quintile
+CIV,Cote d'Ivoire,2021,67.36,71.36,4,80,100,98,86,182,3rd Quintile,3rd Quintile
+CIV,Cote d'Ivoire,2022,64.42,68.42,4,80,100,103,94,187,3rd Quintile,3rd Quintile
+CIV,Cote d'Ivoire,2023,65.56,69.56,4,80,100,102,95,187,3rd Quintile,3rd Quintile
+CIV,Cote d'Ivoire,2024,70.87,74.87,4,80,100,91,82,188,3rd Quintile,3rd Quintile
+CIV,Cote d'Ivoire,2025,71.96,75.96,4,80,100,92,76,188,3rd Quintile,3rd Quintile
+COD,"Congo, Dem. Rep.",2012,,,,30,50,,,0,,
+COD,"Congo, Dem. Rep.",2013,,,,30,50,,,0,,
+COD,"Congo, Dem. Rep.",2014,,,,30,50,,,0,,
+COD,"Congo, Dem. Rep.",2015,,,,50,70,,,0,,
+COD,"Congo, Dem. Rep.",2016,,,,50,70,,,167,,
+COD,"Congo, Dem. Rep.",2017,33.12,35.12,2,53.4,63.4,162,159,174,Bottom 20%,Bottom 20%
+COD,"Congo, Dem. Rep.",2018,40.96,42.96,2,53.4,63.4,158,154,174,Bottom 20%,Bottom 20%
+COD,"Congo, Dem. Rep.",2019,30.42,32.42,2,40,50,166,164,174,Bottom 20%,Bottom 20%
+COD,"Congo, Dem. Rep.",2020,47.18,49.18,2,60,70,155,151,182,Bottom 20%,Bottom 20%
+COD,"Congo, Dem. Rep.",2021,47.43,49.43,2,40,50,160,159,182,Bottom 20%,Bottom 20%
+COD,"Congo, Dem. Rep.",2022,45.65,47.65,2,40,50,163,161,187,Bottom 20%,Bottom 20%
+COD,"Congo, Dem. Rep.",2023,50.44,52.44,2,60,70,160,155,187,Bottom 20%,Bottom 20%
+COD,"Congo, Dem. Rep.",2024,49.94,51.94,2,60,70,161,161,188,Bottom 20%,Bottom 20%
+COD,"Congo, Dem. Rep.",2025,50.25,52.25,2,60,70,164,162,188,Bottom 20%,Bottom 20%
+CPV,Cabo Verde,2010,,,,20,40,,,0,,
+CPV,Cabo Verde,2011,,,,20,40,,,0,,
+CPV,Cabo Verde,2012,,,,20,40,,,0,,
+CPV,Cabo Verde,2013,,,,20,40,,,0,,
+CPV,Cabo Verde,2014,,,,20,30,,,0,,
+CPV,Cabo Verde,2015,,,,40,60,,,0,,
+CPV,Cabo Verde,2016,49.01,53.01,4,60,80,112,99,167,2nd Quintile,3rd Quintile
+CPV,Cabo Verde,2017,51.91,55.91,4,60,80,119,103,174,2nd Quintile,3rd Quintile
+CPV,Cabo Verde,2018,52.55,56.55,4,60,80,129,107,174,2nd Quintile,2nd Quintile
+CPV,Cabo Verde,2019,52.67,56.67,4,60,80,129,111,174,2nd Quintile,2nd Quintile
+CPV,Cabo Verde,2020,56.77,60.77,4,60,80,119,103,182,2nd Quintile,3rd Quintile
+CPV,Cabo Verde,2021,63.38,67.38,4,60,80,113,98,182,2nd Quintile,3rd Quintile
+CPV,Cabo Verde,2022,61.2,65.2,4,60,80,118,105,187,2nd Quintile,3rd Quintile
+CPV,Cabo Verde,2023,56.52,60.52,4,60,80,143,129,187,2nd Quintile,2nd Quintile
+CPV,Cabo Verde,2024,55.87,59.87,4,60,80,145,132,188,2nd Quintile,2nd Quintile
+CPV,Cabo Verde,2025,55.84,59.84,4,60,80,147,134,188,2nd Quintile,2nd Quintile
+HKG,"Hong Kong SAR, China",2010,,,,0,20,,,0,,
+HKG,"Hong Kong SAR, China",2011,,,,0,20,,,0,,
+HKG,"Hong Kong SAR, China",2012,,,,0,20,,,0,,
+HKG,"Hong Kong SAR, China",2013,,,,0,20,,,0,,
+HKG,"Hong Kong SAR, China",2014,,,,0,20,,,0,,
+HKG,"Hong Kong SAR, China",2015,,,,20,40,,,0,,
+HKG,"Hong Kong SAR, China",2016,,,,40,60,,,167,,
+HKG,"Hong Kong SAR, China",2017,,,,40,60,,,174,,
+HKG,"Hong Kong SAR, China",2018,,,,40,60,,,174,,
+HKG,"Hong Kong SAR, China",2019,,,,40,60,,,174,,
+HKG,"Hong Kong SAR, China",2020,,,,40,60,,,182,,
+HKG,"Hong Kong SAR, China",2021,,,,40,60,,,182,,
+HKG,"Hong Kong SAR, China",2022,,,,40,60,,,187,,
+HKG,"Hong Kong SAR, China",2023,,,,40,60,,,187,,
+HKG,"Hong Kong SAR, China",2024,,,,40,60,,,188,,
+HKG,"Hong Kong SAR, China",2025,,,,40,60,,,188,,
+IRN,"Iran, Islamic Rep.",2010,,,,40,60,,,0,,
+IRN,"Iran, Islamic Rep.",2011,,,,40,60,,,0,,
+IRN,"Iran, Islamic Rep.",2012,,,,40,60,,,0,,
+IRN,"Iran, Islamic Rep.",2013,,,,40,60,,,0,,
+IRN,"Iran, Islamic Rep.",2014,,,,40,60,,,0,,
+IRN,"Iran, Islamic Rep.",2015,,,,60,80,,,0,,
+IRN,"Iran, Islamic Rep.",2016,45.68,49.68,4,80,100,125,112,167,2nd Quintile,2nd Quintile
+IRN,"Iran, Islamic Rep.",2017,45.14,49.14,4,60,80,141,128,174,Bottom 20%,2nd Quintile
+IRN,"Iran, Islamic Rep.",2018,53.26,57.26,4,60,80,125,104,174,2nd Quintile,3rd Quintile
+IRN,"Iran, Islamic Rep.",2019,53.36,57.36,4,60,80,124,108,174,2nd Quintile,2nd Quintile
+IRN,"Iran, Islamic Rep.",2020,48.17,52.17,4,60,80,152,139,182,Bottom 20%,2nd Quintile
+IRN,"Iran, Islamic Rep.",2021,53.72,57.72,4,60,80,150,137,182,Bottom 20%,2nd Quintile
+IRN,"Iran, Islamic Rep.",2022,54.15,58.15,4,60,80,147,135,187,2nd Quintile,2nd Quintile
+IRN,"Iran, Islamic Rep.",2023,58.96,62.96,4,46.6,66.6,136,116,187,2nd Quintile,2nd Quintile
+IRN,"Iran, Islamic Rep.",2024,59.52,63.52,4,46.6,66.6,132,117,188,2nd Quintile,2nd Quintile
+IRN,"Iran, Islamic Rep.",2025,58.51,62.51,4,46.6,66.6,139,128,188,2nd Quintile,2nd Quintile
+MAC,"Macao SAR, China",2010,,,,0,20,,,0,,
+MAC,"Macao SAR, China",2011,,,,0,20,,,0,,
+MAC,"Macao SAR, China",2012,,,,0,20,,,0,,
+MAC,"Macao SAR, China",2013,,,,0,20,,,0,,
+MAC,"Macao SAR, China",2014,,,,0,20,,,0,,
+MAC,"Macao SAR, China",2015,,,,20,40,,,0,,
+MAC,"Macao SAR, China",2016,,,,40,60,,,167,,
+MAC,"Macao SAR, China",2017,,,,40,60,,,174,,
+MAC,"Macao SAR, China",2018,,,,40,60,,,174,,
+MAC,"Macao SAR, China",2019,,,,40,60,,,174,,
+MAC,"Macao SAR, China",2020,,,,40,60,,,182,,
+NLD,Netherlands,2004,,,,10,30,,,0,,
+NLD,Netherlands,2005,,,,20,40,,,0,,
+NLD,Netherlands,2006,,,,20,40,,,0,,
+NLD,Netherlands,2007,,,,20,40,,,0,,
+NLD,Netherlands,2008,,,,20,40,,,0,,
+NLD,Netherlands,2009,,,,20,40,,,0,,
+NLD,Netherlands,2010,,,,40,60,,,0,,
+NLD,Netherlands,2011,,,,40,60,,,0,,
+NLD,Netherlands,2012,,,,40,60,,,0,,
+NLD,Netherlands,2013,,,,40,60,,,0,,
+NLD,Netherlands,2014,,,,40,60,,,0,,
+NLD,Netherlands,2015,,,,60,80,,,0,,
+NLD,Netherlands,2016,74.14,78.14,4,80,100,43,33,167,4th Quintile,Top Quintile
+NLD,Netherlands,2017,76.22,80.22,4,80,100,39,31,174,4th Quintile,Top Quintile
+NLD,Netherlands,2018,84.22,88.22,4,80,100,27,7,174,Top Quintile,Top Quintile
+NLD,Netherlands,2019,84.27,88.27,4,80,100,28,8,174,Top Quintile,Top Quintile
+NLD,Netherlands,2020,84.92,88.92,4,80,100,29,7,182,Top Quintile,Top Quintile
+NLD,Netherlands,2021,89.36,93.36,4,80,100,25,7,182,Top Quintile,Top Quintile
+NLD,Netherlands,2022,88.16,92.16,4,80,100,31,8,187,Top Quintile,Top Quintile
+NLD,Netherlands,2023,89.98,93.98,4,80,100,27,8,187,Top Quintile,Top Quintile
+NLD,Netherlands,2024,85.13,89.13,4,80,100,39,24,188,4th Quintile,Top Quintile
+NLD,Netherlands,2025,86.96,90.96,4,80,100,37,13,188,Top Quintile,Top Quintile
+PSE,West Bank and Gaza,2010,,,,40,60,,,0,,
+PSE,West Bank and Gaza,2011,,,,40,60,,,0,,
+PSE,West Bank and Gaza,2012,,,,40,60,,,0,,
+PSE,West Bank and Gaza,2013,,,,40,60,,,0,,
+PSE,West Bank and Gaza,2014,,,,40,60,,,0,,
+PSE,West Bank and Gaza,2015,,,,60,80,,,0,,
+PSE,West Bank and Gaza,2016,,,,60,80,,,167,,
+PSE,West Bank and Gaza,2017,58.51,62.51,4,70,90,91,77,174,3rd Quintile,3rd Quintile
+PSE,West Bank and Gaza,2018,67.04,71.04,4,70,90,74,63,174,3rd Quintile,4th Quintile
+PSE,West Bank and Gaza,2019,66.76,70.76,4,70,90,74,66,174,3rd Quintile,4th Quintile
+PSE,West Bank and Gaza,2020,73.19,77.19,4,70,90,67,58,182,4th Quintile,4th Quintile
+PSE,West Bank and Gaza,2021,77.86,81.86,4,70,90,68,55,182,4th Quintile,4th Quintile
+PSE,West Bank and Gaza,2022,74.93,78.93,4,60,80,78,61,187,3rd Quintile,4th Quintile
+PSE,West Bank and Gaza,2023,76.35,80.35,4,70,90,77,60,187,3rd Quintile,4th Quintile
+PSE,West Bank and Gaza,2024,74.4,78.4,4,70,90,83,72,188,3rd Quintile,4th Quintile
+PSE,West Bank and Gaza,2025,76.3,80.3,4,70,90,75,67,188,4th Quintile,4th Quintile
+TUR,Turkiye,2004,,,,20,40,,,0,,
+TUR,Turkiye,2005,,,,20,40,,,0,,
+TUR,Turkiye,2006,,,,20,40,,,0,,
+TUR,Turkiye,2007,,,,20,40,,,0,,
+TUR,Turkiye,2008,,,,20,40,,,0,,
+TUR,Turkiye,2009,,,,20,40,,,0,,
+TUR,Turkiye,2010,,,,20,60,,,0,,
+TUR,Turkiye,2011,,,,20,60,,,0,,
+TUR,Turkiye,2012,,,,20,60,,,0,,
+TUR,Turkiye,2013,,,,20,60,,,0,,
+TUR,Turkiye,2014,,,,20,60,,,0,,
+TUR,Turkiye,2015,,,,40,80,,,0,,
+TUR,Turkiye,2016,72.65,80.65,8,60,100,46,22,167,4th Quintile,Top Quintile
+TUR,Turkiye,2017,77.2,85.2,8,60,100,36,17,174,4th Quintile,Top Quintile
+TUR,Turkiye,2018,77.99,85.99,8,60,100,44,22,174,4th Quintile,Top Quintile
+TUR,Turkiye,2019,78.47,86.47,8,60,100,45,17,174,4th Quintile,Top Quintile
+TUR,Turkiye,2020,78.15,86.15,8,60,100,54,26,182,4th Quintile,Top Quintile
+TUR,Turkiye,2021,80.08,88.08,8,50,90,61,31,182,4th Quintile,Top Quintile
+TUR,Turkiye,2022,77.72,85.72,8,50,90,63,43,187,4th Quintile,4th Quintile
+TUR,Turkiye,2023,78.68,86.68,8,50,90,64,42,187,4th Quintile,4th Quintile
+TUR,Turkiye,2024,79.35,87.35,8,50,90,67,33,188,4th Quintile,Top Quintile
+TUR,Turkiye,2025,79.36,87.36,8,50,90,66,37,188,4th Quintile,Top Quintile
+VEN,"Venezuela, RB",2010,,,,40,60,,,0,,
+VEN,"Venezuela, RB",2011,,,,30,50,,,0,,
+VEN,"Venezuela, RB",2012,,,,20,40,,,0,,
+VEN,"Venezuela, RB",2013,,,,20,40,,,0,,
+VEN,"Venezuela, RB",2014,,,,20,40,,,0,,
+VEN,"Venezuela, RB",2015,,,,40,60,,,0,,
+VEN,"Venezuela, RB",2016,41.18,45.18,4,40,60,139,128,167,Bottom 20%,2nd Quintile
+VEN,"Venezuela, RB",2017,48.17,52.17,4,60,80,135,120,174,2nd Quintile,2nd Quintile
+VEN,"Venezuela, RB",2018,45.04,49.04,4,46.6,66.6,151,146,174,Bottom 20%,Bottom 20%
+VEN,"Venezuela, RB",2019,43.87,47.87,4,46.6,66.6,152,149,174,Bottom 20%,Bottom 20%
+VEN,"Venezuela, RB",2020,43.95,47.95,4,46.6,66.6,158,154,182,Bottom 20%,Bottom 20%
+VEN,"Venezuela, RB",2021,45.57,49.57,4,46.6,66.6,165,158,182,Bottom 20%,Bottom 20%
+VEN,"Venezuela, RB",2022,44.63,46.63,2,60,70,167,163,187,Bottom 20%,Bottom 20%
+VEN,"Venezuela, RB",2023,35.39,37.39,2,40,50,182,179,187,Bottom 20%,Bottom 20%
+VEN,"Venezuela, RB",2024,35.46,37.46,2,40,50,183,181,188,Bottom 20%,Bottom 20%
+VEN,"Venezuela, RB",2025,35.2,37.2,2,40,50,184,182,188,Bottom 20%,Bottom 20%
+XKX,Kosovo,2004,,,,0,20,,,0,,
+XKX,Kosovo,2005,,,,20,40,,,0,,
+XKX,Kosovo,2006,,,,20,40,,,0,,
+XKX,Kosovo,2007,,,,20,40,,,0,,
+XKX,Kosovo,2008,,,,20,40,,,0,,
+XKX,Kosovo,2009,,,,20,40,,,0,,
+XKX,Kosovo,2010,,,,20,50,,,0,,
+XKX,Kosovo,2011,,,,20,50,,,0,,
+XKX,Kosovo,2012,,,,20,50,,,0,,
+XKX,Kosovo,2013,,,,20,50,,,0,,
+XKX,Kosovo,2014,,,,20,50,,,0,,
+XKX,Kosovo,2015,,,,40,70,,,0,,
+XKX,Kosovo,2016,,,,40,70,,,167,,
+XKX,Kosovo,2017,,,,60,90,,,174,,
+XKX,Kosovo,2018,,,,60,90,,,174,,
+XKX,Kosovo,2019,,,,60,90,,,174,,
+XKX,Kosovo,2020,,,,60,90,,,182,,
+XKX,Kosovo,2021,,,,60,90,,,182,,
+XKX,Kosovo,2022,,,,60,90,,,187,,
+XKX,Kosovo,2023,,,,60,90,,,187,,
+XKX,Kosovo,2024,,,,60,90,,,188,,
+XKX,Kosovo,2025,,,,60,90,,,188,,

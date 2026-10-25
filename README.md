@@ -96,9 +96,10 @@ recommended way to run SPI updates going forward.
 To run the pipeline:
 
 ```r
-renv::restore()          # first time only
-targets::tar_make()      # run the full pipeline
-testthat::test_local()   # run the test suite
+renv::restore()                              # first time only
+targets::tar_make(script = "_targets_data.R", store = "_targets_data")  # collection
+targets::tar_make()                          # estimation
+testthat::test_dir("tests/testthat")         # test suite (not an R package)
 ```
 
 Run the collection pipeline before estimation. Collection artifacts, raw
@@ -106,4 +107,9 @@ responses, normalized inputs, availability tables, and status reports are kept
 under `01_raw_data/` (including `01_raw_data/_collection/`). The estimation
 pipeline writes the validated final output set directly to `03_output_data/`
 after the collection gate passes. See `docs/user-guide.md` for the full
-technical-team update procedure.
+technical-team update procedure, including the 202611 run order (section 3):
+review candidates and workbooks, attestations, the vintage-diff report for
+frozen history, and the provisional ODIN marker (`docs/odin-delayed-update.md`).
+Revisions to published values, and the method and process changes behind
+them, are reported to the SPI Working Group in
+`docs/revisions/202611-revision-report.md`.

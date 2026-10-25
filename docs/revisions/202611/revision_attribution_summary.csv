@@ -1,0 +1,32 @@
+dimension,indicator,cause,cells
+D1.5,SPI.D1.5.CHLD.MORT,E6 country matching,63
+D1.5,SPI.D1.5.CHLD.MORT,source update,49
+D1.5,SPI.D1.5.CHLD.MORT,window shift (new reference year),10
+D1.5,SPI.D1.5.LFP,E4 LFP window correction,383
+D1.5,SPI.D1.5.LFP,E6 country matching + E4 LFP window correction,94
+D1.5,SPI.D1.5.LFP,source update,41
+D1.5,SPI.D1.5.LFP,window shift (new reference year),8
+D1.5,SPI.D1.5.LFP,E4 LFP window correction + source update,1
+D1.5,SPI.D1.5.POV,source update,29
+D1.5,SPI.D1.5.POV,window shift (new reference year),10
+D1.5,SPI.D1.5.SAFE.MAN.WATER,source update,10
+D1.5,SPI.D1.5.SAFE.MAN.WATER,window shift (new reference year),8
+D4.1,SPI.D4.1.2.AGRI,E5 name normalization,1
+D4.1,SPI.D4.1.4.HOUS,window shift (new reference year),25
+D4.1,SPI.D4.1.4.HOUS,catalogue refresh,4
+D4.1,SPI.D4.1.5.AGSVY,inputs updated after the 202511 release (X1),7
+D4.1,SPI.D4.1.5.AGSVY,E5 name normalization,4
+D4.1,SPI.D4.1.5.AGSVY,catalogue refresh,2
+D4.1,SPI.D4.1.5.AGSVY,window shift (new reference year),2
+D4.1,SPI.D4.1.6.LABR,window shift (new reference year),24
+D4.1,SPI.D4.1.6.LABR,catalogue refresh,1
+D4.1,SPI.D4.1.7.HLTH,catalogue refresh,106
+D4.1,SPI.D4.1.7.HLTH,window shift (new reference year),47
+D4.1,SPI.D4.1.7.HLTH,E5 name normalization,31
+D4.1,SPI.D4.1.7.HLTH,inputs updated after the 202511 release (X1),9
+D4.1,SPI.D4.1.7.HLTH,2025 workbooks and review,4
+D4.1,SPI.D4.1.8.BZSVY,catalogue refresh,64
+D4.1,SPI.D4.1.8.BZSVY,inputs updated after the 202511 release (X1),17
+D4.1,SPI.D4.1.8.BZSVY,window shift (new reference year),11
+D4.1,SPI.D4.1.8.BZSVY,E5 name normalization,3
+D4.2,SPI.D4.2.3.CRVS,source update,5

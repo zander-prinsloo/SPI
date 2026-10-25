@@ -44,8 +44,12 @@ SPI vintage is 202511, with reference year 2024; preserve its approved
 D5.2 carry-forward inputs.
 
 ODIN is delayed for this update. The previous ODIN vintage may be used only as
-an explicitly labelled provisional stand-in. It must be replaced and the ODIN-
-dependent outputs rebuilt before the 202611 results are released.
+an explicitly labelled provisional stand-in: keep `odin_status <-
+"provisional"` in `config/params.R`, which writes
+`03_output_data/PROVISIONAL_ODIN.md` and records the ODIN file hashes and the
+ODIN-dependent columns in `_estimation_manifest.json`. It must be replaced and
+the ODIN-dependent outputs rebuilt before the 202611 results are released
+(`docs/odin-delayed-update.md`).
 
 ### Pipeline structure
 
@@ -56,9 +60,10 @@ The pipeline mirrors the original Rmd structure as a sequence of targets:
 | Collection | `source_registry`, `pip_collection`, `world_bank_inputs`, `sdg_collection`, `jmp_collection`, `unsdg_collection`, `manual_checkpoints`, `collection_status` | source downloads and collection scripts |
 | Parameters | `params`, `iso_codes`, `country_grid` | `01-SPI_data_prep.Rmd` "set-parameters" + "spi_df" |
 | Dimension 1.5 | `dim1_5` | "3.1", "aki_3.3", "3.15_debt", "safely_managed_scored", "lfp" |
-| Dimension 2 | `dim2` | "idds", "online_access", "nada" |
+| ODIN inputs | `odin_files`, `odin_data` | ODIN_2015.csv to ODIN_<end_date>.csv, shared by D2.2 and D4.3 |
+| Dimension 2 | `dim2_core` (SDDS, NADA), `dim2_odin` (D2.2), `dim2` | "idds", "online_access", "nada" |
 | Dimension 3 | `dim3` | "unstats" |
-| Dimension 4 | `dim4` | "cs", "crvs", "geo" |
+| Dimension 4 | `dim4_core` (D4.1, D4.2), `dim4_geo` (D4.3), `dim4` | "cs", "crvs", "geo" |
 | Dimension 5 | `dim5` | "legislation_governance", "standards_meta", "snau", "naby", "cnin", "cpiby", "hous", "empl", "cgov", "fina", "mony", "gsbp", "msc", "finance" |
 | Append + save | `spi_data` | "append" + "save" |
 | Index | `spi_index` | `02-SPI_index.Rmd` "data", "index_weights", "index", "saver" |
@@ -66,6 +71,9 @@ The pipeline mirrors the original Rmd structure as a sequence of targets:
 | Treemap | `treemap` | `misc_scripts/SPI_treemap.R` |
 | Databank | `databank` | `misc_scripts/databank.R` |
 | SPL admin | `spl_admin` | `misc_scripts/` (ASPIRE) |
+| Vintage diff | `previous_vintage_file`, `vintage_diff_approvals_file`, `vintage_diff` | revision-policy check (section 3) |
+| Release lock | `release_lock_verification`, `release_diff` | provisional-to-final checks (`docs/odin-delayed-update.md`) |
+| Promotion | `output_manifest` (with `odin_status`) | complete output set to `03_output_data/` |
 | Collection | `pip_collection`, `world_bank_inputs`, `sdg_collection`, `jmp_collection`, `unsdg_collection`, `manual_checkpoints`, `collection_status` | see section 5 |
 
 ## 2. Prerequisites
@@ -98,7 +106,30 @@ read.csv("01_raw_data/_collection/collection_status.csv")
 file.edit("01_raw_data/_collection/collection_status.md")
 ```
 
-Resolve every `blocking` item before running estimation:
+Resolve every `blocking` item before running estimation. Manual source files
+(registry rule `manual_attestation`, for example IGME, ILO and the IMF
+workbooks) block with `attestation_missing` until the technical lead confirms
+the release and records a hash-bound attestation. Editing an attested file
+afterwards blocks again with `attestation_hash_mismatch`. Collected sources
+(rule `release_identifier`) need a provenance sidecar
+(`<artifact>.provenance.json`) written by their collector. Freshness comes from
+these records, never from file modification times.
+
+```r
+for (f in list.files("R", full.names = TRUE)) source(f)
+params <- load_params()
+attest_collection_sources(
+  c("d1_5_igme", "d1_5_ilo"),
+  attested_by = "Technical lead name",
+  release_label = "UN IGME 2025; ILOSTAT 2026-10-06 bulk files",
+  params = params
+)
+```
+
+Attestations are written to
+`01_raw_data/_collection/source_attestations_<end_date>.csv`. Re-run the
+collection pipeline afterwards so the status report reflects them, then run
+estimation:
 
 ```r
 targets::tar_make(
@@ -106,6 +137,150 @@ targets::tar_make(
   store = "_targets"
 )
 ```
+
+### 202611 run order
+
+1. Run the full test suite (`testthat::test_dir("tests/testthat")`).
+2. Run collection (`_targets_data.R`).
+3. Refresh the D4.1 catalogue on the World Bank network (see "Catalogue
+   refresh" in section 4.4) and rerun collection.
+4. Circulate the review package to the reviewers and collect the filled
+   review workbooks (see "Review workbooks and candidates" below); check the
+   evidence and attest the manual sources (`attest_collection_sources()`).
+5. Rerun collection until `collection_status.csv` has no blocking rows and
+   `collection_run.json` is complete.
+6. Run estimation (`_targets.R`).
+7. Read `03_output_data/.candidate/vintage_diff_2025.md`. If frozen history
+   changed and the change is intended, record it in the approvals file and
+   rerun estimation.
+8. Read `revision_summary_2025.md` (revision evidence, below), rerun
+   `Rscript docs/revisions/202611/attribute_revisions.R`, and update the
+   numbers in `docs/revisions/202611-revision-report.md` for the Working
+   Group.
+9. Confirm that `03_output_data/PROVISIONAL_ODIN.md` is present before
+   circulating the outputs internally.
+10. After approval, write the release lock (`write_release_lock()`); in
+    December replace ODIN and rerun as described in
+    `docs/odin-delayed-update.md`.
+11. After the final (official ODIN) release, copy the published
+    `03_output_data/SPI_data.csv` and `SPI_index.csv` to
+    `01_raw_data/previous_vintages/SPI_data_2025.csv` and
+    `SPI_index_2025.csv`; the next vintage compares against them.
+
+The E6 country-matching evidence is generated with
+`Rscript docs/revisions/202611/e6_country_matching_impact.R` for both the
+202611 preview and the 2024 differential replication. It reports indicator
+changes, corrected-country scores and ranks, rank/quintile side effects, and
+regional, income and world aggregates. The attribution script must report
+zero unexplained cells and zero differences from the pipeline's final step
+before the Working Group report is circulated.
+
+### Revision policy and the vintage-diff report
+
+Estimation compares the candidate `SPI_data.csv` with
+`01_raw_data/previous_vintages/SPI_data_<end_date - 1>.csv` for 2004 to
+`end_date - 1` and writes `vintage_diff_<end_date>.csv` and `.md` next to
+the outputs:
+
+| Dimensions | Policy | History changes |
+|---|---|---|
+| D1.5, D4.1, D4.2 | Refresh and revise history | Reported |
+| D2 (SDDS, ODIN, NADA), D3, D4.3, D5 | Freeze history; add `end_date` only | Block promotion unless approved |
+
+D5.1 and D5.5 keep the legacy full-series refresh, so their history may
+change; each change needs an approval like any frozen change. Duplicate
+country-year keys in the candidate always block. Approvals go in
+`01_raw_data/_collection/vintage_diff_approvals_<end_date>.csv` (created
+empty by the pipeline) with the columns `indicator`, `iso3c`, `date`,
+`reason` and `approved_by`; `*` matches any indicator, country or year, and
+every row needs a reason and an approver. The report lists approvals that
+match no change.
+
+### Revision evidence for the Working Group
+
+After the vintage diff, the `revision_report` target writes four files next
+to the outputs (promoted with them):
+
+| File | Content |
+|---|---|
+| `revision_summary_<end_date>.md` | readable summary of the three tables below |
+| `revision_indicators_<end_date>.csv` | per revised indicator: cells, countries, years, up/down/new/removed, policy and approval status |
+| `revision_index_<end_date>.csv` | overall index and pillars for every year of the previous index: previous and revised score, rank and overall-index quintile (rule of `R/quantiles.R`) |
+| `revision_new_year_<end_date>.csv` | per indicator in the reference year: coverage, values equal to the previous year (carried-forward sources show "identical"), new and dropped values, provisional ODIN columns |
+
+The index comparison reads the previous published index from
+`01_raw_data/previous_vintages/SPI_index_<end_date - 1>.csv`; the run stops
+if it is missing. `docs/revisions/202611/attribute_revisions.R` recomputes
+the refreshed indicators one input group at a time and attributes every
+revised value to its cause (window shift, source update, E4, E5, E6, 2025
+workbooks, catalogue refresh); the Working Group report
+`docs/revisions/202611-revision-report.md` explains the revisions and the
+method and process changes with this evidence.
+
+For the final sandbox preview, run:
+
+```sh
+Rscript docs/revisions/202611/attribute_revisions.R --current /tmp/spi-rep/preview-final
+Rscript docs/revisions/202611/e6_country_matching_impact.R \
+  --before /tmp/spi-rep/preview-pre-e6 \
+  --after /tmp/spi-rep/preview-final \
+  --label 202611
+Rscript docs/revisions/202611/e6_country_matching_impact.R \
+  --before /tmp/spi-rep/step16b \
+  --after /tmp/spi-rep/step-e6-final \
+  --label 2024_replication
+```
+
+### Review workbooks and candidates
+
+The collection writes `01_raw_data/_collection/review_candidates_<YEAR>.csv`
+(columns `source_id`, `iso3c`, `country`, `current_value`, `reason`,
+`evidence_hint`) and summarizes it in `collection_status.md`. The candidates
+are informational; overrides go in the per-vintage review workbooks, which are
+created once as blank templates and never overwritten:
+
+| Source | Candidates | Review workbook |
+|---|---|---|
+| D5.2.3 CNIN | not ISIC Rev.4 or NACE Rev.2; historical overrides | `5.2_DISM/D5.2.3.CNIN.Manual.Review.<YEAR>.xlsx` |
+| D5.2.8 FINA | blank, other or not found; IMF text mentions GFSM 2014 | `5.2_DISM/D5.2.8.FINA.Manual.Review.<YEAR>.xlsx` |
+| D5.2.10 GSBP | no GSBPM evidence | `5.2_DISM/D5.2.10.GSBP.Manual.Review.<YEAR>.xlsx` |
+| D5.2.6 EMPL | catalogue countries without an ISO3 code | correct `ilo_sources_catalog.csv` |
+| D4.1 | no census/survey, outside the scoring window, catalogue changes the score | `4.1_SOCS/raw/D4.1.Manual.Review.<YEAR>.xlsx` |
+
+CNIN, FINA and GSBP overrides need an entry in the workbook's `Evidence`
+column (collection stops with `MANUAL REVIEW OVERRIDE REQUIRES EVIDENCE`
+otherwise). Record the source of D4.1 additions in its `Evidence` column as
+well.
+
+**Candidate history.** Every collection run regenerates the candidate list.
+When the list changes, the previous list is kept unchanged in
+`01_raw_data/_collection/review_candidates_history/` as
+`review_candidates_<YEAR>.<write time>.<SHA-256 prefix>.csv`, and
+`review_candidates_<YEAR>_changes.csv` there records the rows added and
+removed per source. Cite the file name (or hash) of the list that was sent
+to reviewers, so later changes can be traced; a list already archived is
+never copied twice.
+
+**Review package.** Reviewers work from the collection outputs only (not
+from new ODIN data or other reviewers' workbooks). For each source, send:
+
+1. the candidate rows for that source (`source_id`), from the current
+   `review_candidates_<YEAR>.csv`, with the file name and SHA-256 of the full
+   list;
+2. the blank review workbook for that source (table above); the
+   `current_value` column shows what the pipeline holds now (the
+   carried-forward value for CNIN, FINA and GSBP; the recorded years for
+   D4.1) and `evidence_hint` where to look;
+3. the instructions: confirm or change the value only with evidence a third
+   party can check (publication, metadata page or catalogue entry, with a
+   link and access date) in the `Evidence` column; leave countries without
+   evidence blank (the carried-forward value stands); never edit the
+   candidate list.
+
+Place the returned workbooks at the paths in the table, rerun collection,
+and attest the reviewed sources (`d5_2_cnin_review`, `d5_2_fina_review`,
+`d5_2_10_gsbp_review`) once the evidence is checked. A workbook edited after its
+attestation blocks again (`attestation_hash_mismatch`).
 
 To inspect either graph:
 
@@ -144,7 +319,12 @@ identifies whether each source is API-backed, manual, external, or unavailable.
 Each report row includes the expected vintage rule, age warning, artifact path,
 status, and analyst action.
 
-1. Run the microdata library pull: `02_programs/misc_scripts/microdata_library_pull.Rmd`
+1. Run the collection pipeline. To refresh the D4.1 catalogue, set
+   `run_downloads <- TRUE` in `config/params.R`, run
+   `targets::tar_make(names = "d41_catalogue_collection",
+   script = "_targets_data.R", store = "_targets_data")`, then restore
+   `run_downloads <- FALSE` and rerun collection. Do not run the legacy
+   catalogue notebook directly.
 2. Download the new CLASS file:
    `https://databankfiles.worldbank.org/public/ddpext_download/site-content/CLASS.xlsx`
    and place it in `01_raw_data/misc/CLASS.xlsx`. Rename the old CLASS file with "_VINTAGE".
@@ -165,7 +345,7 @@ recent file (`WDI_metadata_<end_date+1>.csv`) is the one to update.
 | 1.5.1 PIP | Povcalnet PIP comparability | Run the collection pipeline; the locked `pipr` package writes `PIP_comparability_latest.csv` and its cached provenance artifact |
 | 1.5.2 Child mortality | UN IGME | Use `UN IGME 2025.csv` from childmortality.org and place it in `01_raw_data/1.5_DUIO/` |
 | 1.5.3 Debt service | WDI metadata | Use `WDI_metadata_2026.csv` for the 202611 update |
-| 1.5.4 Safely managed water | JMP washdata API | Run through pipeline, save to `1.5_DUIO/Safely_Managed_Water_data.csv` |
+| 1.5.4 Safely managed water | JMP country files ("Data Summary" sheet) | Run through pipeline, save to `1.5_DUIO/Safely_Managed_Water_data.csv` |
 | 1.5.5 ILO labor force | ILO ilostat | Use the 2026-10-06 modelled (2WAP) and survey (DWAP) Excel downloads |
 | 2.1 SDDS | WDI metadata (IMF) | Automatic via WDI metadata |
 | 2.2 ODIN | Open Data Watch | Use the documented provisional stand-in until the 2025 release arrives |
@@ -250,14 +430,33 @@ inputs; they do not introduce additional SPI indicators.
 
 #### 1.5.4 Safely managed water (JMP)
 
-- **Source**: WHO/UNICEF JMP washdata API.
+- **Source**: WHO/UNICEF JMP country files
+  (`https://washdata.org/data/country/<ISO3>/household/download`), sheet
+  "Data Summary". Kosovo uses the Serbia file.
 - **File**: `01_raw_data/1.5_DUIO/Safely_Managed_Water_data.csv`
-- **Update**: Run the collection pipeline. It downloads and caches the JMP
-  country files before writing the normalized combined source file.
+- **Update**: Run the collection pipeline. For each country it downloads the
+  workbook, caches only the "Data Summary" sheet (every cell as text) in
+  `01_raw_data/1.5_DUIO/raw/jmp/` with the workbook URL, SHA-256 and release
+  stamp in the provenance record, and discards the workbook. It then applies
+  the original `hyper_read()` method (`01-SPI_data_prep.Rmd`, chunk
+  `safely_managed`) unchanged and records the JMP release in the output's
+  provenance sidecar.
 - **Required normalized columns**: `iso3c`, `geo`, `year`, and `data_quality`.
-  The collector also preserves `source`, `type`, `data_available`, and
-  `data_value`. `geo` must contain the `Rural`, `Urban`, or `National`
-  categories used by the score.
+  The collector also preserves `source`, `type`, `data_available`,
+  `data_value`, and `max_value`. `geo` must contain the `Rural`, `Urban`, or
+  `National` categories used by the score.
+- **Known behaviours of the current method** (kept for comparability; see
+  `docs/jmp-safely-managed-water-brief.md`):
+  - D1: the coverage rule credits every year when an area's highest value
+    is at least 99.5 or at most 0.5. Areas without data are coded -99, so
+    they receive the same credit; a country with no JMP sources scores 1.
+  - D2: national columns are recognised by the `_n` suffix, but most JMP
+    files now label national totals `_t`, so national values are not read.
+    Because of D1, every country still receives national credit (at least
+    0.5).
+
+  Correcting both would change 52 countries in 2024. That correction is a
+  separate methodology decision, recorded on the roadmap.
 
 #### 1.5.5 ILO labor force
 
@@ -330,11 +529,19 @@ inputs; they do not introduce additional SPI indicators.
 
 #### 3.x UN SDG data products
 
-- **Source**: UN SDG database.
-- **Files**: raw per-series responses under `01_raw_data/3_DP/sdg_data/raw/`,
-  normalized series under `01_raw_data/3_DP/sdg_data/normalized/`, binary
-  availability tables under `01_raw_data/3_DP/availability/`, and the
-  collection score input at `01_raw_data/3_DP/collection/SPI_D3_UNSD_data_5yr.csv`.
+- **Source**: UN SDG database (DataCSV endpoint), blended with the OECD SDG
+  database.
+- **Files**: raw per-series responses (Tier-1 series only) cached under
+  `01_raw_data/3_DP/sdg_data/raw/`; the OECD scores at
+  `01_raw_data/oecd_data/OECD_data_scored.csv` (written by the
+  `oecd_collection` target from the cached bulk download in
+  `01_raw_data/oecd_data/raw/`, a port of `oecd_bulk_download.R`); and the
+  current year's scores at `01_raw_data/3_DP/<end_date>/SPI_D3_UNSD_data_5yr.csv`.
+  Earlier year folders are frozen published inputs and are never rewritten.
+- **Method**: a port of `02_programs/misc_scripts/un_stats_cleaning.Rmd`
+  (`un_pull()`, the OECD blend, the country-year grid fill and `un_aki_fun()`
+  with the 5-year window), checked against the unmodified Rmd code. A series
+  listed under several goals or indicators counts under each of them.
 - **Indicator list (methodology input)**:
   `01_raw_data/metadata/SDG_indicator_list.csv` is not produced by the SPI and
   is not refreshed each vintage. It defines which SDG series are scored
@@ -368,31 +575,14 @@ inputs; they do not introduce additional SPI indicators.
 - **Manual review**: `01_raw_data/4.1_SOCS/raw/D4.1.Manual.Review.<YEAR>.xlsx`
   (one per vintage; the current vintage file is required, historical files
   are read when present).
-- **Update**: Run the microdata library pull
-  (`02_programs/misc_scripts/microdata_library_pull.Rmd`) and the
-  preprocess script
-  (`02_programs/misc_scripts/preprocess-manual-data-4.1-and-5.2.10.R`),
-  which reads the `input/` Excel files and writes the per-year CSVs. For
-  the ILO catalog, download `sources_en.csv` from
-  <https://ilostat.ilo.org/data/national-sources-catalogue/> and rename to
-  `ilo_sources_catalog.csv` in `01_raw_data/4.1_SOCS/`. The microdata pull
-  reads this file to build the labour-force survey companion
-  (`D4.1.6.SVY.LABR_NADA.csv`). Keep the prior vintage copies alongside it for
-  provenance: `ilo_sources_catalog_2024.csv` (the input to the 2024 SPI update)
-  and `ilo_sources_catalog_2023.csv`. No current script reads the dated copies.
-  The catalogue also feeds dimension 5.2.6 (EMPL), but this link is **not yet
-  in the pipeline**. The `ISCE` flag in
-  `01_raw_data/5.2_DISM/D5.2.6.EMPL.<YEAR>.csv` is built from the
-  labour-force survey rows of this file by the manual IMF DSBB notebook
-  (`02_programs/misc_scripts/imf_dsbb_scrape.ipynb`, cell 10). That cell
-  reads a hardcoded 2024 SharePoint path and filters on
-  `Source type == "Labour force survey"`. The microdata pull filters on
-  `Source == "Labour Force Survey"`, a different column. The R pipeline
-  (`R/dim5.R`, `score_empl()`) scores the resulting `ISCE` column but does not
-  read the catalogue. Consequently the 5.2.6 flags for the current vintage have
-  not been regenerated from the new download. Until this is wired into the
-  pipeline, refresh them by re-running the notebook logic against the current
-  `ilo_sources_catalog.csv`.
+- **Update**: The collection target validates the eight current-vintage
+  workbook CSVs and the manual review workbook, normalizes the catalogue
+  companions, and writes the D4.1 manifest. The catalogue refresh is
+  opt-in and uses the cached adapter described above. The ILO Survey Catalog
+  is replayed from its final retired snapshot; the current ILO national
+  sources catalogue is used for D4.1 labour-force surveys and for the EMPL
+  builder in `R/collect_d5_2.R`. Update the configured ILO catalogue input
+  and rerun the collection target rather than running the legacy notebooks.
 - **Targets collection**: the collection pipeline now validates the eight
   workbooks and review workbook, runs the parameterized D4.1 preprocessing,
   validates the D4.1 catalogue companion files, and writes
@@ -412,19 +602,135 @@ inputs; they do not introduce additional SPI indicators.
   artifacts. Missing files, invalid sheets or columns, duplicate country keys,
   missing country metadata, stale derived files, and invalid companion files
   stop the collection run with an action for the technical lead.
+- **Workbook checks**: year values must be comma-separated four-digit years
+  (census workbooks may also say `Register based census`), and each workbook
+  must still list every country of the previous year's derived CSV
+  (`D4.1.*.<YEAR - 1>.csv`). Other text (for example `c. 2015` or
+  `2011; 2021`) or a dropped country stops preprocessing; correct the
+  workbook.
 - **Catalogue companions**: D4.1 uses files such as
   `01_raw_data/4.1_SOCS/D4.1.*_NADA.csv` as catalogue evidence for the eight
   census/survey indicators. These are distinct from the Dimension 2.4
   `D2.4.NADA.<YEAR>.csv` indicator. Existing companions are validated by
   default; programmatic refresh is an explicit external/opt-in operation and
   must complete before the manifest can pass.
+- **Catalogue refresh** (World Bank network required): with
+  `run_downloads <- TRUE`, the `d41_catalogue_collection` target runs
+  `02_programs/misc_scripts/microdata_library_pull.Rmd` unchanged in a
+  separate R process, with its output redirected to a staging folder
+  (`01_raw_data/4.1_SOCS/collection/staging-*`, removed afterwards). The
+  refreshed files replace the previous ones only when all eight companions
+  were produced and pass the normalization rules below; a failure, or a run
+  longer than `d41_catalogue_budget_minutes` (default 240), leaves the
+  previous set in place. The script writes seven companions; it never writes
+  `D4.1.2.CEN.AGRI_NADA.csv` (agricultural censuses; it writes the FAO list to
+  `D4.1.2.CEN.AGRI_NADA_FAO.csv`, which the estimation does not read), so that
+  file is carried forward unchanged and recorded as `carried_forward` (last
+  changed February 2024). Run only this target, then set `run_downloads`
+  back to `FALSE` and rerun the collection:
+
+  ```r
+  # config/params.R: run_downloads <- TRUE
+  targets::tar_make(names = "d41_catalogue_collection",
+                    script = "_targets_data.R", store = "_targets_data")
+  # config/params.R: run_downloads <- FALSE
+  targets::tar_make(script = "_targets_data.R", store = "_targets_data")
+  ```
+
+- **Catalogue prefetch**: the script requests one metadata page per study in
+  the internal World Bank library (16,852 studies in October 2026) and the
+  FAO library, one at a time, about 8.5 hours, and wraps each request in
+  `possibly()`, so a failed request would silently become a blank series
+  label. Before the script runs, the collection therefore requests exactly
+  the URLs the script builds (three catalogue searches, then every detail
+  page they list) with `d41_catalogue_connections` (8) concurrent
+  connections, about 65 minutes, and serves them to the unmodified script
+  from a cache (`R/collect_dim4_1_prefetch.R`):
+  - Every response is indexed in
+    `4.1_SOCS/collection/catalogue_cache/catalogue_fetch_index.csv`
+    (versioned): URL, HTTP status, attempts, time, size and SHA-256. The
+    bodies (`responses/*.json.gz`, about 130 MB, not versioned) can be
+    deleted once the refresh is accepted; the index keeps their hashes.
+  - A study the catalogue does not hold (HTTP 400 `IDNO-NOT-FOUND`, HTTP 404)
+    is requested twice, listed in the index as `not_found`, and gets the
+    legacy blank. Any other failure (network error, other HTTP status, a
+    response that is not JSON) is retried up to `d41_catalogue_max_attempts`
+    (4) times; if it persists, the refresh stops before the script runs and
+    `catalogue_fetch_failures.csv` lists every failed URL. Rerunning the
+    target retries only the failed and missing requests; responses younger
+    than `d41_catalogue_cache_max_age_days` (7) are reused.
+  - Each search must return every study it reports. The public library now
+    answers page sizes above its cap with an empty result; that list feeds no
+    D4.1 companion, so the gap is recorded as a non-blocking row
+    (`blocking = FALSE`) in the failure log with the true study count. An
+    incomplete internal or FAO search stops the refresh.
+  - The PIP survey metadata the script reads with `readLines()` is fetched
+    and cached the same way. A request the script makes outside the cache is
+    logged, and a failure there stops the refresh even though `possibly()` hid
+    it from the script; an error inside the script is also written to
+    `catalogue_fetch_failures.csv` (`source = legacy_script`).
+  - **Retired source**: the ILO Survey Catalog (one of the script's three
+    labour force survey sources) was permanently retired in 2026 (HTTP 410
+    notice pointing to ILOSTAT). Its final snapshot,
+    `4.1_SOCS/retired/ilo_survey_catalog_final_2026-10-20.csv` (1,705
+    studies; byte-identical to the October 2025 download; provenance in the
+    `.provenance.json` next to it), is replayed to the script page by page,
+    so no recorded survey is lost. Before each refresh the endpoint is
+    checked: if it no longer shows the retirement notice, the refresh stops
+    (`AVAILABLE AGAIN` or `COULD NOT CONFIRM`) so that live data is not
+    hidden.
+  - The refresh record (script hash, endpoints, timing, prefetch counts,
+    companion rows and hashes) is written to the manifest
+    (`catalogue$refresh`) and to `4.1_SOCS/collection/catalogue_refresh.json`;
+    later runs without a refresh carry it as `catalogue$last_refresh`, with
+    `matches_current_companions` false if a companion was changed afterwards.
+- **New catalogue names**: a refreshed catalogue can bring names the
+  crosswalk does not know. Normalization lists every unknown name of every
+  companion in one error; the October 2026 refresh added the World Bank API
+  names `Naoero`, `Curacao` and `Puerto Rico (US)` (used by the script for
+  PIP survey rows) to the crosswalk and excluded `Cook Island` (non-economy)
+  and `Serbia and Montenegro` (former state union of two current economies).
+- **Studies dated after the reference year**: a catalogue pulled after the
+  reference year lists studies that started later (for example 2026 labour
+  force surveys in an October 2026 pull). As in the legacy scoring they never
+  count for an earlier reference year; they are kept and counted
+  (`after_end_date` in the manifest). Dates more than two years after
+  `end_date` stop collection as a likely parsing error.
+- **Legacy FAO filter**: the script keeps FAO studies with
+  `created <= 2023`. `created` is text ("2024/04/09 09:46:19"), so the
+  comparison keeps only studies catalogued in 2022 or earlier. This legacy
+  behaviour is kept for 202611; its effect is reported in the 202611
+  revision report (`docs/revisions/202611-revision-report.md`).
+- **Country names follow CLASS.xlsx**: the collection normalizes each raw
+  companion (kept unchanged) to
+  `01_raw_data/4.1_SOCS/collection/D4.1.*_NADA.iso3c.csv` with the ISO3 code
+  and the CLASS economy name, and estimation joins these files by ISO3 code.
+  Names are matched against `01_raw_data/misc/CLASS.xlsx` ("List of
+  economies") and `config/d41_country_crosswalk.csv` (catalogue spellings
+  such as `Republic of Cabo Verde`). Entries that are not economies are
+  dropped only when listed in `config/d41_companion_exclusions.csv` with a
+  category (`non_economy`, `multi_country_study`, `blank_country`) and a
+  reason; the D4.1 manifest records every exclusion with its row count and
+  years, plus the hashes of the three naming files. Any other unmatched
+  name stops collection with `UNKNOWN COUNTRY NAME(S)`: add a crosswalk row
+  for an economy, or an exclusion row for a non-economy, then rerun
+  `d41_manifest`.
+- **Economist-review candidates**: the collection writes D4.1 rows (source
+  id = indicator stem, for example `D4.1.4.SVY.HOUS`) to
+  `01_raw_data/_collection/review_candidates_<YEAR>.csv`: countries with no
+  census or survey recorded, countries whose latest census is more than 10
+  years old (register-based censuses excepted) or whose latest survey is
+  outside the 12-year window, and countries where catalogue evidence alone
+  changes the score. Record confirmed additions with evidence in
+  `D4.1.Manual.Review.<YEAR>.xlsx`; the list is informational and does not
+  block collection.
 - **Required CSV structure**: each current-vintage file must contain `iso3c`
   and its indicator-specific year field (for example `POP.CENSUS`, `AGRI.CENSUS`,
   `BIZZ.CENSUS`, `HOUS.SVY`, `AGRI.SVY`, `LABR.SVY`, `HLTH.SVY`, or
   `BIZZ.SVY`). The corresponding `D4.1.Manual.Review.<YEAR>.xlsx` must contain
-  `iso3c` and the same indicator columns. NADA companion files must contain
-  `country` plus the indicator date fields used by the matching census/survey
-  function.
+  `iso3c` and the same indicator columns. Raw NADA companion files must
+  contain `country`, `indicator_date`, `nada_dates`, and `nada_title`; the
+  normalized companions add `iso3c` and carry the CLASS `country` name.
 
 #### 4.2.3 CRVS
 
@@ -512,35 +818,41 @@ estimation; `warning` and `informational` rows remain visible for analyst QA.
 
 ### 5.1 Manual download checkpoints
 
-These targets verify that manually-downloaded source files are present and
-schema-valid. They run by default and **fail loudly** (R8) with download
+The collection target `manual_checkpoints` (`run_collection_checkpoints()`)
+verifies that manually downloaded source files are present and schema-valid.
+It runs with every collection run and **fails loudly** (R8) with download
 instructions when a file is missing or the format changed:
 
 ```r
 targets::tar_make(script = "_targets_data.R", store = "_targets_data")
 ```
 
-| Target | Source | Expected file | Download instructions |
+| Check | Source | Expected file | Download instructions |
 |--------|--------|---------------|----------------------|
-| `checkpoint_wdi` | WDI catalog | `01_raw_data/metadata/WDI_metadata_<YEAR>.csv` | <https://datacatalog.worldbank.org/int/search/dataset/0037712> |
-| `checkpoint_ilo` | ILO bulk explorer | `01_raw_data/1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-20261006T1235.xlsx` + `EAP_DWAP_SEX_AGE_RT_A-20261006T1234.xlsx` | <https://www.ilo.org/shinyapps/bulkexplorer2/> (modelled + survey, sex=Total, age 15+) |
-| `checkpoint_odin` | Open Data Watch | `01_raw_data/2.2_DSOA/ODIN_<YEAR>.csv` | <https://odin.opendatawatch.com> |
-| `checkpoint_nada` | NSO websites | `01_raw_data/2.4_DSDS/D2.4.NADA.<YEAR>.csv` | Run `02_programs/misc_scripts/nada_check.R` |
-| `checkpoint_microdata` | Microdata libraries | `01_raw_data/4.1_SOCS/raw/D4.1.*.<YEAR>.csv` (8 files) | Run `02_programs/misc_scripts/microdata_library_pull.Rmd` |
-| `checkpoint_unigme` | UN IGME | `01_raw_data/1.5_DUIO/UN IGME 2025.csv` | <https://childmortality.org> |
+| `checkpoint_wdi_metadata()` | WDI catalog | `01_raw_data/metadata/WDI_metadata_<YEAR>.csv` | <https://datacatalog.worldbank.org/int/search/dataset/0037712> |
+| `checkpoint_ilo_lfp()` | ILO bulk explorer | `01_raw_data/1.5_DUIO/EAP_2WAP_SEX_AGE_RT_A-20261006T1235.xlsx` + `EAP_DWAP_SEX_AGE_RT_A-20261006T1234.xlsx` | <https://www.ilo.org/shinyapps/bulkexplorer2/> (modelled + survey, sex=Total, age 15+) |
+| `verify_odin_data()` | Open Data Watch | `01_raw_data/2.2_DSOA/ODIN_<YEAR>.csv` | <https://odin.opendatawatch.com> |
+| `nada_output` target | NSO websites | `01_raw_data/2.4_DSDS/D2.4.NADA.<YEAR>.csv` | See section 4.4, 2.4 NADA |
+| `d41_manifest` target | Microdata libraries | `01_raw_data/4.1_SOCS/raw/D4.1.*.<YEAR>.csv` (8 files) | See section 4.4, 4.1 Censuses and surveys |
+| `verify_unigme_data()` | UN IGME | `01_raw_data/1.5_DUIO/UN IGME 2025.csv` | <https://childmortality.org> |
 
-When a checkpoint fails, read the error message — it contains the exact
-download instructions for that source.
+The IMF workbook check (`checkpoint_imf_workbook()`) also runs here. When a
+check fails, read the error message — it contains the exact download
+instructions for that source.
 
 ## 6. Troubleshooting
 
 ### 6.1 A checkpoint fails with "FILE NOT FOUND"
 
 The source file is missing. Read the error message for the exact download
-instructions, download the file, and re-run the checkpoint:
+instructions, download the file, and re-run the checks:
 
 ```r
-targets::tar_make(checkpoint_<name>)
+targets::tar_make(
+  names = "manual_checkpoints",
+  script = "_targets_data.R",
+  store = "_targets_data"
+)
 ```
 
 ### 6.2 A checkpoint fails with "SCHEMA MISMATCH"
@@ -550,14 +862,28 @@ its layout). The pipeline refuses to proceed because the estimates would be
 wrong. Investigate the source download, update the schema registry in
 `config/params.R` (or the checkpoint in `R/checkpoints.R`), and re-run.
 
-### 6.3 The pipeline fails on a source read
+### 6.3 An ILO or IGME country is missing from D1.5
+
+The D1.5 readers fail loudly rather than silently scoring an unrecognised
+area as zero. For ILO errors of the form `ILO AREA NAMES NOT RECOGNISED`,
+check whether the label is an SPI economy. Add an economy to
+`config/ilo_area_crosswalk.csv` with its SPI ISO3 code, or record a regional,
+income or non-economy area in `config/ilo_area_exclusions.csv`. The config is
+validated against `metadata/iso_codes.csv` and the collected SPI country
+metadata. For an IGME error of the form `UN IGME AREA CODES NOT RECOGNISED`,
+verify the file's `REF_AREA` code and add a reviewed alias to
+`unigme_area_code_aliases` in `R/dim1_5.R`; do not add a name-only fallback.
+The two ILO config files are tracked by the `ilo_area_names_files` target, so
+editing them invalidates D1.5 and its downstream outputs.
+
+### 6.4 The pipeline fails on a source read
 
 Every source read is schema-validated (R8). If a source file is missing or
 its format changed, the pipeline stops with a precise report. Fix the source
 file and re-run `targets::tar_make()` — targets resumes from the failed
 target.
 
-### 6.4 A test fails in the stage-compare suite
+### 6.5 A test fails in the stage-compare suite
 
 The staged output differs from the vintage fixture. Read the failure message
 for the exact column and row. Common causes:
@@ -571,7 +897,7 @@ for the exact column and row. Common causes:
 - **Vintage artifact**: databank aggregate rows were generated from an
   earlier index vintage. Country-level values are identical.
 
-### 6.5 renv is out of sync
+### 6.6 renv is out of sync
 
 If you see "The project is out-of-sync", run:
 
@@ -580,7 +906,7 @@ renv::status()      # see what changed
 renv::snapshot()    # update the lockfile after adding packages
 ```
 
-### 6.6 The pipeline is slow
+### 6.7 The pipeline is slow
 
 The pipeline uses incremental re-runs: `targets::tar_make()` only rebuilds
 targets whose inputs changed. The slow steps are the API pulls (JMP ~200
@@ -654,7 +980,7 @@ target rebuilds when any of its dependencies (files or targets) changed.
 Run the full suite:
 
 ```r
-testthat::test_local()
+testthat::test_dir("tests/testthat")
 ```
 
 The suite covers:

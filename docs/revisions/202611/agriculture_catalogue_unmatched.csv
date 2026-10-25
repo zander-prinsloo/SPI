@@ -1,0 +1,42 @@
+variant,companion,catalogue_name,iso3c,resolution
+both_all_years,D4.1.2.CEN.AGRI,Bolivia (Plurinational State of),BOL,M49 table (iso_codes.csv)
+both_all_years,D4.1.2.CEN.AGRI,Egypt,EGY,M49 table (iso_codes.csv)
+both_all_years,D4.1.2.CEN.AGRI,Iran (Islamic Republic of),IRN,M49 table (iso_codes.csv)
+both_all_years,D4.1.2.CEN.AGRI,Lao People's Democratic Republic,LAO,M49 table (iso_codes.csv)
+both_all_years,D4.1.2.CEN.AGRI,Netherlands (Kingdom of the),NLD,M49 alias
+both_all_years,D4.1.2.CEN.AGRI,Palestine,PSE,M49 alias
+both_all_years,D4.1.2.CEN.AGRI,Republic of Korea,KOR,M49 table (iso_codes.csv)
+both_all_years,D4.1.2.CEN.AGRI,Saint Lucia,LCA,M49 table (iso_codes.csv)
+both_all_years,D4.1.2.CEN.AGRI,Slovakia,SVK,M49 table (iso_codes.csv)
+both_all_years,D4.1.2.CEN.AGRI,United Kingdom of Great Britain and Northern Ireland,GBR,M49 table (iso_codes.csv)
+both_all_years,D4.1.2.CEN.AGRI,United States Virgin Islands,VIR,M49 table (iso_codes.csv)
+both_all_years,D4.1.2.CEN.AGRI,United States of America,USA,M49 table (iso_codes.csv)
+both_all_years,D4.1.2.CEN.AGRI,Venezuela (Bolivarian Republic of),VEN,M49 table (iso_codes.csv)
+both_all_years,D4.1.5.SVY.AGRI,"Afghanistan, Albania, Armenia...and 88 more",,"unresolved, left out"
+fao_census_list,D4.1.2.CEN.AGRI,Bolivia (Plurinational State of),BOL,M49 table (iso_codes.csv)
+fao_census_list,D4.1.2.CEN.AGRI,Egypt,EGY,M49 table (iso_codes.csv)
+fao_census_list,D4.1.2.CEN.AGRI,Iran (Islamic Republic of),IRN,M49 table (iso_codes.csv)
+fao_census_list,D4.1.2.CEN.AGRI,Lao People's Democratic Republic,LAO,M49 table (iso_codes.csv)
+fao_census_list,D4.1.2.CEN.AGRI,Netherlands (Kingdom of the),NLD,M49 alias
+fao_census_list,D4.1.2.CEN.AGRI,Palestine,PSE,M49 alias
+fao_census_list,D4.1.2.CEN.AGRI,Republic of Korea,KOR,M49 table (iso_codes.csv)
+fao_census_list,D4.1.2.CEN.AGRI,Saint Lucia,LCA,M49 table (iso_codes.csv)
+fao_census_list,D4.1.2.CEN.AGRI,Slovakia,SVK,M49 table (iso_codes.csv)
+fao_census_list,D4.1.2.CEN.AGRI,United Kingdom of Great Britain and Northern Ireland,GBR,M49 table (iso_codes.csv)
+fao_census_list,D4.1.2.CEN.AGRI,United States Virgin Islands,VIR,M49 table (iso_codes.csv)
+fao_census_list,D4.1.2.CEN.AGRI,United States of America,USA,M49 table (iso_codes.csv)
+fao_census_list,D4.1.2.CEN.AGRI,Venezuela (Bolivarian Republic of),VEN,M49 table (iso_codes.csv)
+fao_census_list_all_years,D4.1.2.CEN.AGRI,Bolivia (Plurinational State of),BOL,M49 table (iso_codes.csv)
+fao_census_list_all_years,D4.1.2.CEN.AGRI,Egypt,EGY,M49 table (iso_codes.csv)
+fao_census_list_all_years,D4.1.2.CEN.AGRI,Iran (Islamic Republic of),IRN,M49 table (iso_codes.csv)
+fao_census_list_all_years,D4.1.2.CEN.AGRI,Lao People's Democratic Republic,LAO,M49 table (iso_codes.csv)
+fao_census_list_all_years,D4.1.2.CEN.AGRI,Netherlands (Kingdom of the),NLD,M49 alias
+fao_census_list_all_years,D4.1.2.CEN.AGRI,Palestine,PSE,M49 alias
+fao_census_list_all_years,D4.1.2.CEN.AGRI,Republic of Korea,KOR,M49 table (iso_codes.csv)
+fao_census_list_all_years,D4.1.2.CEN.AGRI,Saint Lucia,LCA,M49 table (iso_codes.csv)
+fao_census_list_all_years,D4.1.2.CEN.AGRI,Slovakia,SVK,M49 table (iso_codes.csv)
+fao_census_list_all_years,D4.1.2.CEN.AGRI,United Kingdom of Great Britain and Northern Ireland,GBR,M49 table (iso_codes.csv)
+fao_census_list_all_years,D4.1.2.CEN.AGRI,United States Virgin Islands,VIR,M49 table (iso_codes.csv)
+fao_census_list_all_years,D4.1.2.CEN.AGRI,United States of America,USA,M49 table (iso_codes.csv)
+fao_census_list_all_years,D4.1.2.CEN.AGRI,Venezuela (Bolivarian Republic of),VEN,M49 table (iso_codes.csv)
+fao_surveys_all_years,D4.1.5.SVY.AGRI,"Afghanistan, Albania, Armenia...and 88 more",,"unresolved, left out"

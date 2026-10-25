@@ -56,6 +56,43 @@
           "title": "Integrate D2.4 NADA and D5.2.10 GSBP into the SPI Collection Pipeline",
           "status": "active",
           "plan": ".cg-docs/plans/2026-10-21-nada-gsbp-collection-pipeline.md"
+        },
+        {
+          "id": "spi-202611-source-readiness-legacy-faithful-fixes-for-every-blocked-source",
+          "title": "SPI 202611 source readiness: legacy-faithful fixes for every blocked source (brainstorm: .cg-docs/brainstorms/2026-10-23-spi-202611-source-readiness.md)",
+          "status": "active",
+          "plan": ".cg-docs/plans/2026-10-23-spi-202611-source-readiness.md"
+        },
+        {
+          "id": "native-port-of-the-d4-1-microdata-catalogue-pull-replacing-the-legacy-rmd-purl-adapter",
+          "title": "Native port of the D4.1 microdata catalogue pull, replacing the legacy-Rmd purl adapter",
+          "status": "idea",
+          "plan": null
+        },
+        {
+          "id": "imf-data-api-source-for-d5-2-3-cnin-and-d5-2-8-fina-to-replace-the-dead-dsbb-scraper",
+          "title": "IMF data API source for D5.2.3 CNIN and D5.2.8 FINA to replace the dead DSBB scraper (must be carefully checked for comparability with prior vintages)",
+          "status": "idea",
+          "plan": null
+        },
+        {
+          "id": "review-the-world-bank-internal-microdata-library-dependency-against-the-open-data-constraint",
+          "title": "Review the World Bank internal microdata library dependency against the open-data constraint",
+          "status": "idea",
+          "plan": null
+        },
+        {
+          "id": "audit-other-name-based-country-joins-igme-ilo-against-class-xlsx-economy-names",
+          "title": "Audit other name-based country joins (IGME, ILO) against CLASS.xlsx economy names",
+          "status": "idea",
+          "plan": null
+        },
+        {
+          "id": "jmp-safely-managed-water-methodology-review-of-d1-d2-corrections-option-b-before-the-2027-jmp-release",
+          "title": "JMP safely managed water: methodology review of D1/D2 corrections (Option B) before the 2027 JMP release",
+          "status": "idea",
+          "plan": null,
+          "description": "SPI.D1.5.SAFE.MAN.WATER keeps the original method for 202611 (Option A, exact port of hyper_read). Two behaviours depart from the written definition: D1, areas without JMP data are credited as full coverage (the coverage rule max_value >= 99.5 | max_value <= 0.5 also fires on the -99 no-data sentinel); D2, national columns are read by the outdated `_n` suffix while JMP now uses `_t`. Correcting both (Option B) changes 52 countries in 2024 (up to 4 SPI points; 103 rank changes). Review with a full back-cast and public note before the 2027 JMP release. Evidence: docs/jmp-safely-managed-water-brief.md."
         }
       ]
     }

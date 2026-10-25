@@ -14,6 +14,7 @@ failing-steps: [5, 6, 7]
 phases: 5
 artifact-schema-version: 1
 tags: [spi, dimension-4.1, manual-collection, microdata, targets, preprocessing, provenance]
+superseded-by: ".cg-docs/plans/2026-10-23-spi-202611-source-readiness.md"
 ---
 
 # Plan: Integrate Dimension 4.1 Manual Collection into the SPI Collection Pipeline

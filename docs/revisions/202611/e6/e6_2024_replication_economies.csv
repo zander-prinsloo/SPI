@@ -1,0 +1,11 @@
+iso3c,country,indicator,cells,years,before_values,after_values,mean_change
+NLD,Netherlands,SPI.D1.5.CHLD.MORT,21,2004-2024,0 (21),1 (21),1
+TUR,Turkiye,SPI.D1.5.CHLD.MORT,21,2004-2024,0 (21),1 (21),1
+XKX,Kosovo,SPI.D1.5.CHLD.MORT,21,2004-2024,0 (21),1 (21),1
+CIV,Cote d'Ivoire,SPI.D1.5.LFP,13,2012-2024,0 (13),1 (13),1
+COD,"Congo, Dem. Rep.",SPI.D1.5.LFP,10,"2012-2016, 2020-2024",0 (10),"1.0 (5), 0.5 (5)",0.75
+HKG,"Hong Kong SAR, China",SPI.D1.5.LFP,15,2010-2024,0 (15),1 (15),1
+MAC,"Macao SAR, China",SPI.D1.5.LFP,11,2010-2020,0 (11),1 (11),1
+PSE,West Bank and Gaza,SPI.D1.5.LFP,15,2010-2024,0 (15),1 (15),1
+TUR,Turkiye,SPI.D1.5.LFP,15,2010-2024,0 (15),1 (15),1
+XKX,Kosovo,SPI.D1.5.LFP,15,2010-2024,0 (15),1 (15),1

@@ -13,6 +13,7 @@ failing-steps: [9]
 phases: 7
 artifact-schema-version: 1
 tags: [spi, targets, data-collection, api, caching, provenance, sdg, testing, reproducibility]
+superseded-by: ".cg-docs/plans/2026-10-23-spi-202611-source-readiness.md"
 ---
 
 # Plan: Registry-Driven SPI Data Collection Pipeline Before Estimation
