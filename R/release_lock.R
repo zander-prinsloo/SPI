@@ -323,6 +323,9 @@ write_release_lock <- function(params, approved_by,
   if (exists("vintage_baseline_control_paths", mode = "function")) {
     controls <- c(controls, vintage_baseline_control_paths(params))
   }
+  if (!is.null(params$odin_release_record_file) && file.exists(params$odin_release_record_file)) {
+    controls <- c(controls, params$odin_release_record_file)
+  }
   controls <- unique(controls[!is.na(controls) & nzchar(controls)])
   missing_controls <- controls[!file.exists(controls)]
   if (length(missing_controls) > 0L) {

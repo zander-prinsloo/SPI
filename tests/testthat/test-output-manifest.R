@@ -154,7 +154,23 @@ make_odin_candidate <- function(end_date = 2025) {
   odin_files <- file.path(odin_dir, sprintf("ODIN_%d.csv", c(end_date - 1L, end_date)))
   writeLines(c("a", "1"), odin_files[[1]])
   writeLines(c("a", "2"), odin_files[[2]])
-  list(candidate = candidate, odin_files = odin_files, end_date = end_date)
+  list(
+    candidate = candidate,
+    odin_files = odin_files,
+    end_date = end_date,
+    odin_release_record = list(
+      schema_version = "spi-odin-release-v1",
+      source_url = "https://odin.opendatawatch.com",
+      release_label = "ODIN official fixture",
+      released_at = "2026-12-07T00:00:00Z",
+      approved_by = "fixture",
+      files = lapply(odin_files, function(path) list(
+        file = basename(path),
+        sha256 = digest::digest(path, algo = "sha256", file = TRUE),
+        provisional_sha256 = strrep("0", 64)
+      ))
+    )
+  )
 }
 
 test_that("a provisional ODIN run records its status and writes the marker", {
@@ -197,13 +213,34 @@ test_that("an official ODIN run removes the provisional marker", {
   validate_output_manifest(
     setup$candidate,
     setup$end_date,
-    odin = list(status = "official", files = setup$odin_files)
+    odin = list(status = "official", files = setup$odin_files),
+    odin_release_record = setup$odin_release_record
   )
   expect_false(file.exists(file.path(setup$candidate, "PROVISIONAL_ODIN.md")))
   promote_output_set(setup$candidate, output, setup$end_date)
   expect_false(file.exists(file.path(output, "PROVISIONAL_ODIN.md")))
   manifest <- jsonlite::read_json(file.path(output, "_estimation_manifest.json"))
   expect_identical(manifest$odin_status, "official")
+})
+
+test_that("official ODIN outputs require a release record that replaces provisional hashes", {
+  setup <- make_odin_candidate()
+  expect_error(
+    validate_output_manifest(
+      setup$candidate,
+      setup$end_date,
+      odin = list(status = "official", files = setup$odin_files)
+    ),
+    "REQUIRE A VALIDATED RELEASE RECORD"
+  )
+  unchanged <- setup$odin_release_record
+  unchanged$files[[1]]$provisional_sha256 <- unchanged$files[[1]]$sha256
+  record_path <- tempfile(fileext = ".json")
+  jsonlite::write_json(unchanged, record_path, auto_unbox = TRUE)
+  expect_error(
+    read_odin_release_record(record_path, setup$odin_files),
+    "DOES NOT REPLACE THE PROVISIONAL HASH"
+  )
 })
 
 test_that("an unknown ODIN status stops", {

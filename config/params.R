@@ -62,6 +62,7 @@ dim4_1_manifest_file <- file.path(
 )
 odin_country_exclusions_file <- here::here("config", "odin_country_exclusions.csv")
 odin_country_crosswalk_file <- here::here("config", "odin_country_crosswalk.csv")
+odin_release_record_file <- file.path(raw_dir, "2.2_DSOA", "ODIN_release.json")
 
 # --- Weights -----------------------------------------------------------------
 # wgt controls whether index estimates are weighted by population (2) or

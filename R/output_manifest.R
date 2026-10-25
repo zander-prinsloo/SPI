@@ -56,6 +56,70 @@ odin_dependent_column_patterns <- c(
 
 odin_marker_file <- "PROVISIONAL_ODIN.md"
 
+#' Read and verify the approved official ODIN release record.
+#'
+#' An official status is not a label attached to an unchanged provisional
+#' file. The record names the source release, the exact files approved for it,
+#' their current hashes and the hashes they supersede.
+#'
+#' @param path Release-record JSON path.
+#' @param odin_files ODIN files consumed by estimation.
+#' @return The validated release record.
+#' @export
+read_odin_release_record <- function(path, odin_files) {
+  if (!file.exists(path)) {
+    stop(
+      "OFFICIAL ODIN RELEASE RECORD NOT FOUND: ", path,
+      ". Record the official release and its file hashes before setting odin_status to 'official'.",
+      call. = FALSE
+    )
+  }
+  record <- jsonlite::read_json(path, simplifyVector = FALSE)
+  required <- c("schema_version", "source_url", "release_label", "released_at", "approved_by", "files")
+  missing <- setdiff(required, names(record))
+  if (length(missing) > 0L || !identical(record$schema_version, "spi-odin-release-v1")) {
+    stop("OFFICIAL ODIN RELEASE RECORD SCHEMA INVALID: ", path, call. = FALSE)
+  }
+  text_fields <- c("source_url", "release_label", "approved_by")
+  if (any(!vapply(record[text_fields], function(value) {
+    length(value) == 1L && !is.na(value) && nzchar(trimws(value))
+  }, logical(1)))) {
+    stop("OFFICIAL ODIN RELEASE RECORD HAS BLANK METADATA: ", path, call. = FALSE)
+  }
+  if (length(record$released_at) != 1L ||
+      is.na(as.POSIXct(record$released_at, format = "%Y-%m-%dT%H:%M:%SZ", tz = "UTC"))) {
+    stop("OFFICIAL ODIN RELEASE RECORD HAS INVALID released_at: ", path, call. = FALSE)
+  }
+  if (!is.list(record$files) || length(record$files) != length(odin_files)) {
+    stop("OFFICIAL ODIN RELEASE RECORD FILE COUNT MISMATCH: ", path, call. = FALSE)
+  }
+  names_in_record <- vapply(record$files, function(entry) as.character(entry$file), character(1))
+  expected_names <- basename(odin_files)
+  if (anyNA(names_in_record) || anyDuplicated(names_in_record) > 0L ||
+      !setequal(names_in_record, expected_names)) {
+    stop("OFFICIAL ODIN RELEASE RECORD FILE SET MISMATCH: ", path, call. = FALSE)
+  }
+  for (entry in record$files) {
+    current_path <- odin_files[match(entry$file, expected_names)]
+    hashes <- c(entry$sha256, entry$provisional_sha256)
+    if (length(hashes) != 2L || any(!grepl("^[0-9a-fA-F]{64}$", hashes))) {
+      stop("OFFICIAL ODIN RELEASE RECORD HASH INVALID for ", entry$file, call. = FALSE)
+    }
+    if (identical(tolower(as.character(entry$sha256)), tolower(as.character(entry$provisional_sha256)))) {
+      stop(
+        "OFFICIAL ODIN RELEASE RECORD DOES NOT REPLACE THE PROVISIONAL HASH for ",
+        entry$file,
+        call. = FALSE
+      )
+    }
+    actual <- digest::digest(current_path, algo = "sha256", file = TRUE)
+    if (!identical(tolower(as.character(entry$sha256)), tolower(actual))) {
+      stop("OFFICIAL ODIN RELEASE RECORD HASH MISMATCH for ", entry$file, call. = FALSE)
+    }
+  }
+  record
+}
+
 output_artifact_key_columns <- function(file) {
   if (identical(file, "SPI_databank_country_and_aggregates.csv")) {
     return(c("iso3c", "date", "source_id"))
@@ -184,9 +248,12 @@ odin_marker_text <- function(odin_files, end_date) {
 #' @param end_date Output vintage.
 #' @param odin Optional list with `status` ("provisional" or "official") and
 #'   `files` (the ODIN file paths read by the estimation).
+#' @param odin_release_record Validated record returned by
+#'   [read_odin_release_record()] when `odin$status` is official.
 #' @return A data frame with expected paths and existence flags.
 #' @export
-validate_output_manifest <- function(output_dir, end_date = 2024, odin = NULL) {
+validate_output_manifest <- function(output_dir, end_date = 2024, odin = NULL,
+                                     odin_release_record = NULL) {
   files <- expected_estimation_outputs(end_date)
   paths <- file.path(output_dir, files)
   present <- file.exists(paths)
@@ -220,11 +287,17 @@ validate_output_manifest <- function(output_dir, end_date = 2024, odin = NULL) {
     if (length(odin$files) == 0L || length(missing_odin) > 0L) {
       stop("ODIN FILES FOR THE OUTPUT MANIFEST NOT FOUND: ", paste(missing_odin, collapse = ", "), call. = FALSE)
     }
+    if (identical(odin$status, "official") && is.null(odin_release_record)) {
+      stop("OFFICIAL ODIN OUTPUTS REQUIRE A VALIDATED RELEASE RECORD.", call. = FALSE)
+    }
     manifest$odin_status <- odin$status
     manifest$odin_files <- lapply(odin$files, function(path) {
       list(file = basename(path), sha256 = digest::digest(path, algo = "sha256", file = TRUE))
     })
     manifest$odin_dependent_columns <- odin_dependent_columns(output_dir)
+    if (identical(odin$status, "official")) {
+      manifest$odin_release_record <- odin_release_record
+    }
     marker <- file.path(output_dir, odin_marker_file)
     if (identical(odin$status, "provisional")) {
       writeLines(odin_marker_text(odin$files, end_date), marker)

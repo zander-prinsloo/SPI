@@ -231,6 +231,18 @@ pipeline_targets <- function() {
     command = odin_file_paths(params),
     format = "file"
   )
+  odin_release_record <- tar_target(
+    name = "odin_release_record",
+    command = {
+      odin_files
+      if (identical(odin_status, "official")) {
+        read_odin_release_record(params$odin_release_record_file, odin_files)
+      } else {
+        NULL
+      }
+    },
+    format = "rds"
+  )
 
   odin_data <- tar_target(
     name = "odin_data",
@@ -543,7 +555,8 @@ pipeline_targets <- function() {
       validate_output_manifest(
         params$estimation_write_dir,
         params$end_date,
-        odin = list(status = odin_status, files = odin_files)
+        odin = list(status = odin_status, files = odin_files),
+        odin_release_record = odin_release_record
       )
       promote_output_set(
         params$estimation_write_dir,
@@ -577,6 +590,7 @@ pipeline_targets <- function() {
     ilo_area_names_files,
     dim1_5,
     odin_files,
+    odin_release_record,
     odin_data,
     dim2_core,
     dim2_odin,

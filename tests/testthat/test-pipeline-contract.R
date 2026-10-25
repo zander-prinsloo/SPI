@@ -184,7 +184,10 @@ test_that("the ODIN status reaches only the labelling outputs", {
   # marker, revision evidence); no estimation target reruns.
   script <- file.path(project_root, "_targets.R")
   edges <- targets::tar_network(script = script, targets_only = TRUE)$edges
-  expect_setequal(downstream_targets(edges, "odin_status"), c("revision_report", "output_manifest"))
+  expect_setequal(
+    downstream_targets(edges, "odin_status"),
+    c("odin_release_record", "revision_report", "output_manifest")
+  )
   manifest <- targets::tar_manifest(script = script)
   expect_match(manifest$command[manifest$name == "params"], "odin_status <- NULL", fixed = TRUE)
 })
